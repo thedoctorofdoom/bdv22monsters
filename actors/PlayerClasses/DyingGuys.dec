@@ -1,4 +1,4 @@
-ACTOR DyingZombieman
+ACTOR DyingZombieman : BDMO_GoreMonster
 {
 	Radius 12
 	Height 16
@@ -39,7 +39,7 @@ ACTOR DyingZombieman
 		TNT1 A 0 A_CustomMissile ("Teeth", 30, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_CustomMissile ("Blood", 30, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_CustomMissile ("TeethNoBounce", 30, 0, random (0, 360), 2, random (0, 160))
-		TNT1 A 0 A_SpawnItemEx("ArmorShardFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 A 0
 		TNT1 A 0 A_Pain
 		TNT1 A 0 A_FaceTarget
 		ZMAK ABA 4
@@ -51,10 +51,10 @@ ACTOR DyingZombieman
 	Death.ExtremeKicks:
 	Death.Extremepunches:
 		TNT1 A 0 A_NoBlocking
-		TNT1 A 0 A_GiveToTarget("GoFatality", 1)
+		TNT1 A 0
 		TNT1 A 0 A_GiveToTarget("GoSpecial", 1)
-		TNT1 AA 0 A_SpawnItemEx("ArmorShardFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
-		TNT1 AA 0 A_SpawnItemEx("HealthPlusFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 AA 0
+		TNT1 AA 0
 		TNT1 A 0 A_GiveToTarget("IsCurbstompingZombieman", 1)
 		Stop
 
@@ -96,8 +96,8 @@ ACTOR DyingZombieman
 	Death.LavaSplash:
 	Death.Flames:
 	Death.Burn:
-		TNT1 AA 0 A_SpawnItemEx("ArmorShardFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
-		TNT1 AA 0 A_SpawnItemEx("HealthPlusFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 AA 0
+		TNT1 AA 0
 		TNT1 A 0 A_SpawnItem ("DyingZombiemanInFlames")
 		Stop
 	Death.Trample:
@@ -110,7 +110,7 @@ ACTOR DyingZombieman
 		TNT1 AAAA 0 A_CustomMissile ("SmallBrainPieceFast", random (45, 55), random (5, -5), random (170, 190), 2, random (-10, 10))
 		TNT1 AAAA 0 A_CustomMissile ("SmallBrainPiece", 10, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_SpawnItem ("StompedZombieman")
-		TNT1 AA 0 A_SpawnItemEx("HealthPlusFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 AA 0
 		Stop
 
 	Death.SSG:
@@ -123,8 +123,8 @@ ACTOR DyingZombieman
 		TNT1 A 1
 		TNT1 A 1 A_XScream
 		TNT1 A 1 A_NoBlocking
-		TNT1 A 0 A_SpawnItemEx("ArmorShardFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
-		TNT1 A 0 A_SpawnItemEx("HealthPlusFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 A 0
+		TNT1 A 0
 		Stop
 
 	Death.Shotgun:
@@ -138,8 +138,8 @@ ACTOR DyingZombieman
 		TNT1 AAAA 0 A_CustomMissile ("SmallBrainPieceFast", random (45, 55), random (5, -5), random (170, 190), 2, random (-10, 10))
 		TNT1 AAAA 0 A_CustomMissile ("SmallBrainPiece", 20, 0, random (0, 360), 2, random (0, 160))
 		ZMAD B 0 A_XScream
-		TNT1 A 0 A_SpawnItemEx("ArmorShardFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
-		TNT1 A 0 A_SpawnItemEx("HealthPlusFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 A 0
+		TNT1 A 0
 		ZMAD C 0 A_NoBlocking
 		TNT1 A 0 A_SpawnItem("DeadZombieman_Noheadfront")
 		Stop
@@ -162,9 +162,9 @@ ACTOR DyingZombieman
 		TNT1 A 0 A_FaceTarget
 		TNT1 A 0 A_JumpIfInTargetInventory("IsPlayingAsPurist", 1,"GotoDeath")
 		TNT1 A 0 A_NoBlocking
-		TNT1 A 0 A_GiveToTarget("HasZManShield", 1)
-		TNT1 A 0 A_GiveToTarget("GotMeatShield", 1)
-		TNT1 A 1 ACS_NamedExecuteWithResult("MeatShield_Handler",0,0,0,0)
+		TNT1 A 0
+		TNT1 A 0
+		TNT1 A 0
 		Stop
 
 	Crush:
@@ -199,7 +199,7 @@ ACTOR DyingZombiemanOld: DyingZombieman
 	}
 }
 
-ACTOR ZombiemanFallingBeheaded
+ACTOR ZombiemanFallingBeheaded : BDMO_GoreMonster
 {
 	Radius 12
 	Height 40
@@ -279,8 +279,8 @@ ACTOR ZombiemanFallingBeheaded
 		TNT1 AAA 0 A_CustomMissile ("BloodMistBig", 40, 0, random (0, 360), 2, random (30, 90))
 		TNT1 AA 0 A_CustomMissile ("XDeathArm1", 40, 0, random (0, 360), 2, random (0, 160))
 		TNT1 AA 0 A_CustomMissile ("XDeathZombieLeg", 40, 0, random (0, 360), 2, random (0, 160))
-		TNT1 A 0 A_SpawnItemEx("ArmorShardFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
-		TNT1 A 0 A_SpawnItemEx("HealthPlusFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 A 0
+		TNT1 A 0
 		TNT1 A 0 A_SpawnItem("BigBloodspot")
 		Stop
 
@@ -297,7 +297,7 @@ ACTOR ZombiemanFallingBeheaded
 	}
 }
 
-ACTOR ZombiemanFallingSplattered
+ACTOR ZombiemanFallingSplattered : BDMO_GoreMonster
 {
 	Radius 12
 	Height 40
@@ -403,7 +403,7 @@ ACTOR ZombiemanFallingSplattered
 	}
 }
 
-ACTOR ZombiemanFallingHoleOnStomach
+ACTOR ZombiemanFallingHoleOnStomach : BDMO_GoreMonster
 {
 	Radius 12
 	Height 40
@@ -505,7 +505,7 @@ ACTOR ZombiemanFallingHoleOnStomach
 	}
 }
 
-ACTOR SergeantFallingSplattered
+ACTOR SergeantFallingSplattered : BDMO_GoreMonster
 {
 	Radius 12
 	Height 40
@@ -611,7 +611,7 @@ ACTOR SergeantFallingSplattered
 	}
 }
 
-ACTOR SergeantFallingHoleOnStomach
+ACTOR SergeantFallingHoleOnStomach : BDMO_GoreMonster
 {
 	Radius 12
 	Height 40
@@ -713,7 +713,7 @@ ACTOR SergeantFallingHoleOnStomach
 	}
 }
 
-ACTOR BrutalizedZombieMan1
+ACTOR BrutalizedZombieMan1 : BDMO_GoreMonster
 {
 	Game Doom
 	Radius 16
@@ -788,9 +788,9 @@ ACTOR BrutalizedZombieMan1
 		TNT1 A 0 A_FaceTarget
 		TNT1 A 0 A_JumpIfInTargetInventory("IsPlayingAsPurist", 1,"DieNow")
 		TNT1 A 0 A_NoBlocking
-		TNT1 A 0 A_GiveToTarget("HasZManShield", 1)
-		TNT1 A 0 A_GiveToTarget("GotMeatShield", 1)
-		TNT1 A 1 ACS_NamedExecuteWithResult("MeatShield_Handler",0,0,0,0)
+		TNT1 A 0
+		TNT1 A 0
+		TNT1 A 0
 		Stop
 	}
 }
@@ -874,8 +874,8 @@ ACTOR BrutalizedZombieMan3: BrutalizedZombieMan1
 		//TNT1 AAA 0 bright A_CustomMissile ("SuperGoreSpawner", 35, 0, random (0, 360), 2, random (30, 180))
 		TNT1 A 0 A_SpawnItem("MeatDeath")
 		TNT1 A 0 A_SpawnItem("RipGuts")
-		TNT1 A 0 A_SpawnItemEx("ArmorShardFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
-		TNT1 A 0 A_SpawnItemEx("HealthPlusFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 A 0
+		TNT1 A 0
 		ZZD1 EFG 6
 		TNT1 A 0 A_SpawnItem("BigBloodspot")
 		TNT1 A 0 A_SpawnItem("DeadZombiemanJustLegsAreLeft2")
@@ -950,7 +950,7 @@ ACTOR BrutalizedZombieManLeg: BrutalizedZombieMan1
 	}
 }
 
-ACTOR DyingSergeant
+ACTOR DyingSergeant : BDMO_GoreMonster
 {
 	Game Doom
 	Radius 16
@@ -982,8 +982,8 @@ ACTOR DyingSergeant
 	Death.LavaSplash:
 	Death.Flames:
 		TNT1 A 0 A_KillChildren
-		TNT1 A 0 A_SpawnItemEx("ArmorShardFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
-		TNT1 A 0 A_SpawnItemEx("HealthPlusFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 A 0
+		TNT1 A 0
 		TNT1 A 0 A_Scream
 		TNT1 A 0 A_NoBlocking
 		TNT1 A 0 A_SpawnItem("BurningZombie")
@@ -1033,8 +1033,8 @@ ACTOR DyingSergeant
 		TNT1 A 0 A_JumpIfInTargetInventory("HasCutingWeapon", 1, "Death.Decaptate")
 		TNT1 A 0 A_SpawnItem("ShotgunguyHeadExplode", 0, 30)
 		TNT1 A 0 A_XScream
-		TNT1 A 0 A_SpawnItemEx("ArmorShardFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
-		TNT1 A 0 A_SpawnItemEx("HealthPlusFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 A 0
+		TNT1 A 0
 		TNT1 AAAAAAAAAAA 0 A_CustomMissile ("BrainBlood", 37, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_StopSound(4)
 		SZD4 AAAAA 2 A_CustomMissile ("Brutal_LiquidBlood", 25, 0, random (0, 360), 2, random (30, 110))
@@ -1048,8 +1048,8 @@ ACTOR DyingSergeant
 		TNT1 A 0 A_PlaySound("misc/xdeath4")
 		TNT1 A 0 A_CustomMissile ("XDeathSergeantHead", 32, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_XScream
-		TNT1 A 0 A_SpawnItemEx("ArmorShardFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
-		TNT1 A 0 A_SpawnItemEx("HealthPlusFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 A 0
+		TNT1 A 0
 		TNT1 AAAAAAAAAAA 0 A_CustomMissile ("BrainBlood", 37, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_NoBlocking
 		TNT1 A 0 A_StopSound(4)
@@ -1074,8 +1074,8 @@ ACTOR DyingSergeant
 		TNT1 A 0 A_CustomMissile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_CustomMissile ("XDeathBurnedMeat2", 32, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_CustomMissile ("XDeathBurnedMeat3", 32, 0, random (0, 360), 2, random (0, 160))
-		TNT1 A 0 A_SpawnItemEx("ArmorShardFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
-		TNT1 A 0 A_SpawnItemEx("HealthPlusFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 A 0
+		TNT1 A 0
 		XBRN BB 2 BRIGHT A_SpawnItem("BlueFlare",0,43)
 		TNT1 A 0 A_CustomMissile ("Brutal_Blood", 30, 0, random (0, 360), 2, random (0, 160))
 		XBRN CC 2 BRIGHT A_SpawnItem("BlueFlare",0,43)
@@ -1116,9 +1116,9 @@ ACTOR DyingSergeant
 		TNT1 A 0 A_KillChildren
 		TNT1 A 0 A_NoBlocking
 		TNT1 A 0 A_StopSound(4)
-		TNT1 A 0 A_GiveToTarget("HasSGuyShield", 1)
-		TNT1 A 0 A_GiveToTarget("GotMeatShield", 1)
-		TNT1 A 1 ACS_NamedExecuteWithResult("MeatShield_Handler",0,0,0,0)
+		TNT1 A 0
+		TNT1 A 0
+		TNT1 A 0
 		Stop
 
 	LastStand:
@@ -1167,8 +1167,8 @@ ACTOR DeadShotgunguyNoHeadContinue: DyingSergeant
 		TNT1 A 0 A_CustomMissile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_CustomMissile ("XDeathBurnedMeat2", 32, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_CustomMissile ("XDeathBurnedMeat3", 32, 0, random (0, 360), 2, random (0, 160))
-		TNT1 A 0 A_SpawnItemEx("ArmorShardFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
-		TNT1 A 0 A_SpawnItemEx("HealthPlusFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 A 0
+		TNT1 A 0
 		XBRN BB 2 BRIGHT A_SpawnItem("BlueFlare",0,43)
 		TNT1 A 0 A_CustomMissile ("Brutal_Blood", 30, 0, random (0, 360), 2, random (0, 160))
 		XBRN CC 2 BRIGHT A_SpawnItem("BlueFlare",0,43)
@@ -1196,7 +1196,7 @@ ACTOR DeadShotgunguyNoHeadContinue: DyingSergeant
 	}
 }
 
-ACTOR DyingSergeantNoLeg
+ACTOR DyingSergeantNoLeg : BDMO_GoreMonster
 {
 	Radius 12
 	Height 16
@@ -1231,7 +1231,7 @@ ACTOR DyingSergeantNoLeg
 		TNT1 A 0 A_CustomMissile ("Teeth", 30, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_CustomMissile ("Blood", 30, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_CustomMissile ("TeethNoBounce", 30, 0, random (0, 360), 2, random (0, 160))
-		TNT1 A 0 A_SpawnItemEx("HealthPlusFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 A 0
 		TNT1 A 0 A_Pain
 		TNT1 A 0 A_FaceTarget
 		SMAK ABA 6
@@ -1243,10 +1243,10 @@ ACTOR DyingSergeantNoLeg
 	Death.Extremepunches:
 		TNT1 A 0 A_KillChildren
 		TNT1 A 0 A_NoBlocking
-		TNT1 A 0 A_GiveToTarget("GoFatality", 1)
+		TNT1 A 0
 		TNT1 A 0 A_GiveToTarget("GoSpecial", 1)
-		TNT1 AA 0 A_SpawnItemEx("ArmorShardFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
-		TNT1 AA 0 A_SpawnItemEx("HealthPlusFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 AA 0
+		TNT1 AA 0
 		TNT1 A 0 A_GiveToTarget("IsCurbstompingSergeant", 1)
 		TNT1 A 0 A_PlaySound ("grunt/death")
 		Stop
@@ -1300,8 +1300,8 @@ ACTOR DyingSergeantNoLeg
 		TNT1 A 0 A_CustomMissile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_CustomMissile ("XDeathBurnedMeat2", 32, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_CustomMissile ("XDeathBurnedMeat3", 32, 0, random (0, 360), 2, random (0, 160))
-		TNT1 A 0 A_SpawnItemEx("ArmorShardFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
-		TNT1 A 0 A_SpawnItemEx("HealthPlusFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 A 0
+		TNT1 A 0
 		XBRN BB 2 BRIGHT A_SpawnItem("BlueFlare",0,43)
 		TNT1 A 0 A_CustomMissile ("Brutal_Blood", 30, 0, random (0, 360), 2, random (0, 160))
 		XBRN CC 2 BRIGHT A_SpawnItem("BlueFlare",0,43)
@@ -1315,8 +1315,8 @@ ACTOR DyingSergeantNoLeg
 	Death.Flames:
 	Death.Burn:
 		TNT1 A 0 A_KillChildren
-		TNT1 A 0 A_SpawnItemEx("ArmorShardFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
-		TNT1 A 0 A_SpawnItemEx("HealthPlusFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 A 0
+		TNT1 A 0
 		TNT1 A 0 A_SpawnItem ("DyingSergeantNoLegInFlames")
 		Stop
 
@@ -1331,8 +1331,8 @@ ACTOR DyingSergeantNoLeg
 		TNT1 AAAA 0 A_CustomMissile ("SmallBrainPieceFast", random (45, 55), random (5, -5), random (170, 190), 2, random (-10, 10))
 		TNT1 AAAA 0 A_CustomMissile ("SmallBrainPieceFast", 10, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_SpawnItem ("StompedSergeant")
-		TNT1 A 0 A_SpawnItemEx("ArmorShardFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
-		TNT1 A 0 A_SpawnItemEx("HealthPlusFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 A 0
+		TNT1 A 0
 		Stop
 
 	Pain.Stealth:
@@ -1341,9 +1341,9 @@ ACTOR DyingSergeantNoLeg
 		TNT1 A 0 A_JumpIfInTargetInventory("IsPlayingAsPurist", 1,"GotoDeath")
 		TNT1 A 0 A_KillChildren
 		TNT1 A 0 A_NoBlocking
-		TNT1 A 0 A_GiveToTarget("HasSGuyShield", 1)
-		TNT1 A 0 A_GiveToTarget("GotMeatShield", 1)
-		TNT1 A 1 ACS_NamedExecuteWithResult("MeatShield_Handler",0,0,0,0)
+		TNT1 A 0
+		TNT1 A 0
+		TNT1 A 0
 		Stop
 
 	LastStand:
@@ -1423,8 +1423,8 @@ ACTOR DyingSergeantLegBlewedOff: DyingSergeantNoLeg
 		TNT1 A 0 A_PlaySound("misc/xdeath4")
 		TNT1 A 0 A_SpawnItem("ShotgunguyHeadExplode", 0, 30)
 		TNT1 A 0 A_XScream
-		TNT1 A 0 A_SpawnItemEx("ArmorShardFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
-		TNT1 A 0 A_SpawnItemEx("HealthPlusFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 A 0
+		TNT1 A 0
 		TNT1 AAAAAAAAAAA 0 A_CustomMissile ("BrainBlood", 37, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_NoBlocking
 		TNT1 A 0 A_StopSound(4)
@@ -1460,8 +1460,8 @@ ACTOR DyingSergeantLegBlewedOff: DyingSergeantNoLeg
 		TNT1 A 0 A_CustomMissile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_CustomMissile ("XDeathBurnedMeat2", 32, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_CustomMissile ("XDeathBurnedMeat3", 32, 0, random (0, 360), 2, random (0, 160))
-		TNT1 A 0 A_SpawnItemEx("ArmorShardFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
-		TNT1 A 0 A_SpawnItemEx("HealthPlusFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 A 0
+		TNT1 A 0
 		XBRN BB 2 BRIGHT A_SpawnItem("BlueFlare",0,43)
 		TNT1 A 0 A_CustomMissile ("Brutal_Blood", 30, 0, random (0, 360), 2, random (0, 160))
 		XBRN CC 2 BRIGHT A_SpawnItem("BlueFlare",0,43)
@@ -1500,15 +1500,15 @@ ACTOR DyingSergeantLegBlewedOff: DyingSergeantNoLeg
 		TNT1 A 0 A_JumpIfInTargetInventory("IsPlayingAsPurist", 1,"GotoDeath")
 		TNT1 A 0 A_KillChildren
 		TNT1 A 0 A_NoBlocking
-		TNT1 A 0 A_GiveToTarget("HasSGuyShield", 1)
-		TNT1 A 0 A_GiveToTarget("GotMeatShield", 1)
+		TNT1 A 0
+		TNT1 A 0
 		TNT1 A 0 A_StopSound(4)
-		TNT1 A 1 ACS_NamedExecuteWithResult("MeatShield_Handler",0,0,0,0)
+		TNT1 A 0
 		Stop
 	}
 }
 
-ACTOR BrutalizedSergeant1
+ACTOR BrutalizedSergeant1 : BDMO_GoreMonster
 {
 	Game Doom
 	Radius 16
@@ -1579,8 +1579,8 @@ ACTOR BrutalizedSergeant1
 		TNT1 A 0 A_CustomMissile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_CustomMissile ("XDeathBurnedMeat2", 32, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_CustomMissile ("XDeathBurnedMeat3", 32, 0, random (0, 360), 2, random (0, 160))
-		TNT1 A 0 A_SpawnItemEx("ArmorShardFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
-		TNT1 A 0 A_SpawnItemEx("HealthPlusFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 A 0
+		TNT1 A 0
 		XBRN BB 2 BRIGHT A_SpawnItem("BlueFlare",0,43)
 		TNT1 A 0 A_CustomMissile ("Brutal_Blood", 30, 0, random (0, 360), 2, random (0, 160))
 		XBRN CC 2 BRIGHT A_SpawnItem("BlueFlare",0,43)
@@ -1594,9 +1594,9 @@ ACTOR BrutalizedSergeant1
 		TNT1 A 0 A_FaceTarget
 		TNT1 A 0 A_JumpIfInTargetInventory("IsPlayingAsPurist", 1,"DieNow")
 		TNT1 A 0 A_NoBlocking
-		TNT1 A 0 A_GiveToTarget("HasSGuyShield", 1)
-		TNT1 A 0 A_GiveToTarget("GotMeatShield", 1)
-		TNT1 A 1 ACS_NamedExecuteWithResult("MeatShield_Handler",0,0,0,0)
+		TNT1 A 0
+		TNT1 A 0
+		TNT1 A 0
 		Stop
 	}
 }
@@ -1682,8 +1682,8 @@ ACTOR BrutalizedSergeant3: BrutalizedSergeant1
 		TNT1 A 0 A_Recoil(2)
 		TNT1 A 0 A_SpawnItem("MeatDeath")
 		TNT1 A 0 A_SpawnItem("RipGuts")
-		TNT1 A 0 A_SpawnItemEx("ArmorShardFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
-		TNT1 A 0 A_SpawnItemEx("HealthPlusFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 A 0
+		TNT1 A 0
 		SZD1 EFGH 6
 		TNT1 A 0 A_SpawnItem("DeadShotgunguySZD1H")
 		TNT1 A 0 A_SpawnItem("GrowingBloodPool")
@@ -1797,8 +1797,8 @@ ACTOR DyingZombiemanNoArm: DyingSergeant
 	Death.Fire: Death.LavaSplash:
 	Death.Flames:
 		TNT1 A 0 A_KillChildren
-		TNT1 A 0 A_SpawnItemEx("ArmorShardFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
-		TNT1 A 0 A_SpawnItemEx("HealthPlusFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 A 0
+		TNT1 A 0
 		TNT1 A 0 A_Scream
 		TNT1 A 0 A_NoBlocking
 		TNT1 A 0 A_SpawnItem("BurningZombie")
@@ -1896,8 +1896,8 @@ ACTOR DyingZombiemanNoArm: DyingSergeant
 		TNT1 A 0 A_XScream
 		TNT1 AAAAAAAAAAA 0 A_CustomMissile ("BrainBlood", 37, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_NoBlocking
-		TNT1 A 0 A_SpawnItemEx("ArmorShardFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
-		TNT1 A 0 A_SpawnItemEx("HealthPlusFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 A 0
+		TNT1 A 0
 		TNT1 A 0 A_StopSound(4)
 		ZZD3 FFF 2 A_CustomMissile ("Brutal_LiquidBlood", 35, 0, random (0, 360), 2, random (0, 90))
 		ZZD3 GGG 2 A_CustomMissile ("Brutal_LiquidBlood", 30, 0, random (0, 360), 2, random (0, 90))
@@ -1911,8 +1911,8 @@ ACTOR DyingZombiemanNoArm: DyingSergeant
 		TNT1 A 0 A_CustomMissile ("XDeathZombiemanHead", 35, 0, random (0, 360), 2, random (30, 110))
 		TNT1 A 0 A_XScream
 		TNT1 A 0 A_NoBlocking
-		TNT1 A 0 A_SpawnItemEx("ArmorShardFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
-		TNT1 A 0 A_SpawnItemEx("HealthPlusFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 A 0
+		TNT1 A 0
 		TNT1 A 0 A_StopSound(4)
 		ZZD3 FFF 2 A_CustomMissile ("Brutal_LiquidBlood", 35, 0, random (0, 360), 2, random (0, 90))
 		ZZD3 GGG 2 A_CustomMissile ("Brutal_LiquidBlood", 30, 0, random (0, 360), 2, random (0, 90))
@@ -1936,8 +1936,8 @@ ACTOR DyingZombiemanNoArm: DyingSergeant
 		TNT1 A 0 A_CustomMissile ("XDeathBurnedMeat", 32, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_CustomMissile ("XDeathBurnedMeat2", 32, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_CustomMissile ("XDeathBurnedMeat3", 32, 0, random (0, 360), 2, random (0, 160))
-		TNT1 A 0 A_SpawnItemEx("ArmorShardFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
-		TNT1 A 0 A_SpawnItemEx("HealthPlusFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 A 0
+		TNT1 A 0
 		XBRN BB 2 BRIGHT A_SpawnItem("BlueFlare",0,43)
 		TNT1 A 0 A_CustomMissile ("Brutal_Blood", 30, 0, random (0, 360), 2, random (0, 160))
 		XBRN CC 2 BRIGHT A_SpawnItem("BlueFlare",0,43)
@@ -1995,10 +1995,10 @@ ACTOR DyingZombiemanNoArm: DyingSergeant
 		TNT1 A 0 A_KillChildren
 		TNT1 A 0 A_NoBlocking
 		TNT1 A 0 A_PlaySound ("grunt/death")
-		TNT1 A 0 A_GiveToTarget("HasZManShield", 1)
-		TNT1 A 0 A_GiveToTarget("GotMeatShield", 1)
+		TNT1 A 0
+		TNT1 A 0
 		TNT1 A 0 A_StopSound(4)
-		TNT1 A 1 ACS_NamedExecuteWithResult("MeatShield_Handler",0,0,0,0)
+		TNT1 A 0
 		Stop
 	}
 }
@@ -2016,8 +2016,8 @@ ACTOR ZombieManDyingAfterFatality: DyingZombiemanNoArm
 		TNT1 A 0 A_KillChildren
 		TNT1 AA 0 A_CustomMissile ("MuchBlood2", 35, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_XScream
-		TNT1 A 0 A_SpawnItemEx("ArmorShardFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
-		TNT1 A 0 A_SpawnItemEx("HealthPlusFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 A 0
+		TNT1 A 0
 		TNT1 O 0 A_NoBlocking
 		TNT1 A 0 A_CustomMissile ("RipZombieMan", 0, 0, random (0, 360), 2, random (0, 160))
 		TNT1 AAAA 0 A_CustomMissile ("Brutal_LiquidBlood", 30, 0, random (0, 360), 2, random (0, 40))
@@ -2032,8 +2032,8 @@ ACTOR ZombieManDyingAfterFatality: DyingZombiemanNoArm
 	Death.LavaSplash:
 	Death.Flames:
 		TNT1 A 0 A_KillChildren
-		TNT1 A 0 A_SpawnItemEx("ArmorShardFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
-		TNT1 A 0 A_SpawnItemEx("HealthPlusFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 A 0
+		TNT1 A 0
 		TNT1 A 0 A_Scream
 		TNT1 A 0 A_NoBlocking
 		TNT1 A 0 A_SpawnItem("BurningZombie")
@@ -2098,8 +2098,8 @@ ACTOR ZombieManDyingAfterFatality: DyingZombiemanNoArm
 		TNT1 A 0 A_XScream
 		TNT1 AAAAAAAAAAA 0 A_CustomMissile ("BrainBlood", 37, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_NoBlocking
-		TNT1 A 0 A_SpawnItemEx("ArmorShardFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
-		TNT1 A 0 A_SpawnItemEx("HealthPlusFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 A 0
+		TNT1 A 0
 		TNT1 A 0 A_StopSound(4)
 		ZZD5 HHHHIIII 2 A_CustomMissile ("Brutal_LiquidBlood", 30, 0, random (0, 360), 2, random (0, 90))
 		PP2X H 0 A_SpawnItem ("DeadZombieman_NoHeadFront")
@@ -2111,8 +2111,8 @@ ACTOR ZombieManDyingAfterFatality: DyingZombiemanNoArm
 		TNT1 A 0 A_CustomMissile ("XDeathZombiemanHead", 35, 0, random (0, 360), 2, random (30, 110))
 		TNT1 A 0 A_XScream
 		TNT1 A 0 A_NoBlocking
-		TNT1 A 0 A_SpawnItemEx("ArmorShardFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
-		TNT1 A 0 A_SpawnItemEx("HealthPlusFatalityBonus2", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 A 0
+		TNT1 A 0
 		TNT1 A 0 A_StopSound(4)
 		ZZD5 HHH 2 A_CustomMissile ("Brutal_LiquidBlood", 35, 0, random (0, 360), 2, random (0, 90))
 		PP2X H 0 A_SpawnItem ("DeadZombieman_NoHeadFront")
@@ -2213,7 +2213,7 @@ ACTOR ZombiemanGotHisLegBlowed: DyingZombiemanNoArm
 		TNT1 A 0 A_NoBlocking
 		TNT1 A 0 A_StopSound(4)
 		POS7 GHI 6
-		TNT1 A 0 A_SpawnItem ("HealthPlusFatalityBonus")
+		TNT1 A 0
 		TNT1 A 0 A_SpawnItem ("DeadZombieman_NoLeg", 1)
 		Stop
 
@@ -2226,7 +2226,7 @@ ACTOR ZombiemanGotHisLegBlowed: DyingZombiemanNoArm
 		TNT1 A 0 A_NoBlocking
 		TNT1 A 0 A_StopSound(4)
 		POS7 GHI 6
-		TNT1 A 0 A_SpawnItem ("HealthPlusFatalityBonus")
+		TNT1 A 0
 		TNT1 A 0 A_SpawnItem ("DeadZombieman_NoLeg", 1)
 		Stop
 
@@ -2321,7 +2321,7 @@ ACTOR SergeantGotHisLegBlowed: DyingZombiemanNoArm
 		TNT1 A 0 A_SpawnItem("ShotgunguyHeadExplode", 0, 30)
 		TNT1 A 0 A_Scream
 		TNT1 A 0 A_NoBlocking
-		TNT1 A 0 A_SpawnItem ("HealthPlusFatalityBonus")
+		TNT1 A 0
 		TNT1 A 0 A_StopSound(4)
 		SPO3 IJ 5
 		TNT1 A 0 A_SpawnItem ("DeadShotgunguy_NoLeg", 1)
@@ -2334,7 +2334,7 @@ ACTOR SergeantGotHisLegBlowed: DyingZombiemanNoArm
 		TNT1 A 0 A_Scream
 		TNT1 AAAAAAAAAAA 0 A_CustomMissile ("BrainBlood", 37, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_NoBlocking
-		TNT1 A 0 A_SpawnItem ("HealthPlusFatalityBonus")
+		TNT1 A 0
 		TNT1 A 0 A_StopSound(4)
 		SPO3 IJ 5
 		TNT1 A 0 A_SpawnItem ("DeadShotgunguy_NoLeg", 1)
@@ -2387,9 +2387,9 @@ ACTOR SergeantGotHisLegBlowed: DyingZombiemanNoArm
 		TNT1 A 0 A_NoBlocking
 		TNT1 A 0 A_StopSound(4)
 		TNT1 A 0 A_PlaySound("grunt/death")
-		TNT1 A 0 A_GiveToTarget("HasSGuyShield", 1)
-		TNT1 A 0 A_GiveToTarget("GotMeatShield", 1)
-		TNT1 A 1 ACS_NamedExecuteWithResult("MeatShield_Handler",0,0,0,0)
+		TNT1 A 0
+		TNT1 A 0
+		TNT1 A 0
 		Stop
 	}
 }
@@ -2443,7 +2443,7 @@ ACTOR FlyingImpaledSergeant
 	}
 }
 
-ACTOR DyingImp
+ACTOR DyingImp : BDMO_GoreMonster
 {
 	Game Doom
 	Radius 16
@@ -2556,7 +2556,7 @@ ACTOR DyingImp
 		TNT1 A 0 A_KillChildren
 		TNT1 A 0 A_Scream
 		TNT1 A 0 A_NoBlocking
-		TNT1 A 0 A_SpawnItem ("HealthPlusFatalityBonus")
+		TNT1 A 0
 		TROO JJJJ 2 A_CustomMissile ("FlameTrails", 45, 0, random (0, 360), 2, random (50, 130))
 		TROO KKKK 2 A_CustomMissile ("FlameTrails", 30, 0, random (0, 360), 2, random (50, 130))
 		TROO LLLL 2 A_CustomMissile ("FlameTrails", 25, 0, random (0, 360), 2, random (50, 130))
@@ -2577,7 +2577,7 @@ ACTOR DyingImp
 		TNT1 A 0 A_CustomMissile ("XDeath1", 40, 0, random (0, 360), 2, random (0, 160))
 		TROG A 2 A_CustomMissile ("RipImp", 0, 0, random (0, 360), 2, random (0, 160))
 		TROG AAA 4 A_SpawnItem ("MuchBlood", 0, 30)
-		TNT1 A 0 A_SpawnItem ("HealthPlusFatalityBonus")
+		TNT1 A 0
 		TROG BCDEFGH 8
 		TNT1 A 1 A_SpawnItem ("DeadImp_Half", 5)
 		//TROG H -1
@@ -2586,7 +2586,7 @@ ACTOR DyingImp
 	Death.SSG:
 		TNT1 A 0 A_KillChildren
 		//TNT1 A 0 A_CustomMissile ("MeatDeath", 0, 0, random (0, 360), 2, random (0, 160))
-		TNT1 A 0 A_SpawnItem ("HealthPlusFatalityBonus")
+		TNT1 A 0
 		TNT1 AA 0 A_CustomMissile ("XDeath1", 32, 0, random (170, 190), 2, random (0, 40))
 		TNT1 A 0 A_CustomMissile ("XDeath2", 32, 0, random (170, 190), 2, random (0, 40))
 		TNT1 A 0 A_CustomMissile ("XDeath3", 32, 0, random (170, 190), 2, random (0, 40))
@@ -2610,7 +2610,7 @@ ACTOR DyingImp
 	Death.Railgun:
 		TNT1 A 0 A_KillChildren
 		TNT1 A 0 A_XScream
-		TNT1 A 0 A_SpawnItem ("HealthPlusFatalityBonus")
+		TNT1 A 0
 		TNT1 AAA 0 A_CustomMissile ("Guts", 32, 0, random (150, 210), 2, random (0, 40))
 		TNT1 AAA 0 A_CustomMissile ("XDeath1", 32, 0, random (150, 210), 2, random (0, 40))
 		TNT1 A 0 A_CustomMissile ("XDeathImpArm", 32, 0, random (150, 210), 2, random (0, 40))
@@ -2632,9 +2632,9 @@ ACTOR DyingImp
 		TNT1 A 0 A_JumpIfInTargetInventory("IsPlayingAsPurist", 1,"GotoDeath")
 		TNT1 A 0 A_KillChildren
 		TNT1 A 0 A_NoBlocking
-		TNT1 A 0 A_GiveToTarget("HasImpShield", 1)
-		TNT1 A 0 A_GiveToTarget("GotMeatShield", 1)
-		TNT1 A 1 ACS_NamedExecuteWithResult("MeatShield_Handler",0,0,0,0)
+		TNT1 A 0
+		TNT1 A 0
+		TNT1 A 0
 		Stop
 	}
 }
@@ -2653,7 +2653,7 @@ ACTOR DyingImpNoHeadContinue: DyingImp
 	Death.kick:
 		TNT1 A 0 A_ChangeFlag("SHOOTABLE",0)
 		IMPC KKKK 2 A_CustomMissile ("Brutal_LiquidBlood", 16, 0, random (0, 360), 2, random (0, 45))
-		TNT1 A 0 A_SpawnItem ("HealthPlusFatalityBonus")
+		TNT1 A 0
 		IMPC LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL 2 A_CustomMissile ("Brutal_LiquidBlood", 12, 0, random (0, 360), 2, random (0, 45))
 		TNT1 A 0 A_SpawnItem("DeadImp_NoStomachNoHead")
 		TNT1 A 0 A_NoBlocking
@@ -2669,7 +2669,7 @@ ACTOR DyingImpNoHeadContinue: DyingImp
 		TNT1 A 0 A_CustomMissile ("XDeath1", 40, 0, random (0, 360), 2, random (0, 160))
 		TROG A 2 A_CustomMissile ("RipImp", 0, 0, random (0, 360), 2, random (0, 160))
 		TROG AAA 4 A_SpawnItem ("MuchBlood", 0, 30)
-		TNT1 A 0 A_SpawnItem ("HealthPlusFatalityBonus")
+		TNT1 A 0
 		TROG BCDEFGH 8
 		TNT1 A 1 A_SpawnItem ("DeadImp_Half", 5)
 		//TROG H -1
@@ -2680,7 +2680,7 @@ ACTOR DyingImpNoHeadContinue: DyingImp
 	Death.Blast:
 	Death.Railgun:
 		//TNT1 A 0 A_CustomMissile ("MeatDeath", 0, 0, random (0, 360), 2, random (0, 160))
-		TNT1 AA 0 A_SpawnItem ("HealthPlusFatalityBonus")
+		TNT1 AA 0
 		TNT1 AA 0 A_CustomMissile ("XDeath1", 32, 0, random (170, 190), 2, random (0, 40))
 		TNT1 A 0 A_CustomMissile ("XDeath2", 32, 0, random (170, 190), 2, random (0, 40))
 		TNT1 A 0 A_CustomMissile ("XDeath3", 32, 0, random (170, 190), 2, random (0, 40))
@@ -2703,7 +2703,7 @@ ACTOR DyingImpNoHeadContinue: DyingImp
 	Death.Minigun:
 	Death.Shotgun:
 		TNT1 A 0 A_XScream
-		TNT1 A 0 A_SpawnItem ("HealthPlusFatalityBonus")
+		TNT1 A 0
 		TNT1 AAA 0 A_CustomMissile ("Guts", 32, 0, random (150, 210), 2, random (0, 40))
 		TNT1 AAA 0 A_CustomMissile ("XDeath1", 32, 0, random (150, 210), 2, random (0, 40))
 		TNT1 A 0 A_CustomMissile ("XDeathImpArm", 32, 0, random (150, 210), 2, random (0, 40))
@@ -2869,7 +2869,7 @@ ACTOR DyingImpNoHeadNoArmContinue: DyingImp
 		TNT1 A 0
 		TNT1 A 0 A_FaceTarget
 		//TNT1 A 0 A_CustomMissile ("MeatDeath", 0, 0, random (0, 360), 2, random (0, 160))
-		TNT1 AA 0 A_SpawnItem ("HealthPlusFatalityBonus")
+		TNT1 AA 0
 		TNT1 AA 0 A_CustomMissile ("XDeath1", 32, 0, random (170, 190), 2, random (0, 40))
 		TNT1 A 0 A_CustomMissile ("XDeath2", 32, 0, random (170, 190), 2, random (0, 40))
 		TNT1 A 0 A_CustomMissile ("XDeath3", 32, 0, random (170, 190), 2, random (0, 40))
@@ -2890,7 +2890,7 @@ ACTOR DyingImpNoHeadNoArmContinue: DyingImp
 	}
 }
 
-ACTOR BrutalizedImp1
+ACTOR BrutalizedImp1 : BDMO_GoreMonster
 {
 	Game Doom
 	Radius 16
@@ -2948,9 +2948,9 @@ ACTOR BrutalizedImp1
 		TNT1 A 0 A_FaceTarget
 		TNT1 A 0 A_JumpIfInTargetInventory("IsPlayingAsPurist", 1,"DieNow")
 		TNT1 A 0 A_NoBlocking
-		TNT1 A 0 A_GiveToTarget("HasImpShield", 1)
-		TNT1 A 0 A_GiveToTarget("GotMeatShield", 1)
-		TNT1 A 1 ACS_NamedExecuteWithResult("MeatShield_Handler",0,0,0,0)
+		TNT1 A 0
+		TNT1 A 0
+		TNT1 A 0
 		Stop
 	}
 }
@@ -3059,7 +3059,7 @@ ACTOR BrutalizedImp3: BrutalizedImp1
 		TNT1 A 0 A_SpawnItem("MeatDeath")
 		TNT1 A 0 A_SpawnItem("RipGuts")
 		IZD1 EFGH 6
-		TNT1 A 0 A_SpawnItem ("HealthPlusFatalityBonus")
+		TNT1 A 0
 		TNT1 A 0 A_SpawnItem("GrowingBloodPool")
 		TNT1 A 0 A_SpawnItem("DeadImpIZD1H")
 		Stop
@@ -3097,7 +3097,7 @@ ACTOR ThisImpGotFuckedHard: DeadImpID17G
 	Health 200
 }
 
-ACTOR ImpBrutalizedWithNoLeg
+ACTOR ImpBrutalizedWithNoLeg : BDMO_GoreMonster
 {
 	Game Doom
 	Radius 16
@@ -3143,7 +3143,7 @@ ACTOR ImpBrutalizedWithNoLeg
 		TNT1 AA 0 A_CustomMissile ("XDeath1", 40, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 ThrustThingZ(0,30,0,1)
 		ID17 ABCDEF 5
-		TNT1 A 0 A_SpawnItem ("ArmorShardFatalityBonus")
+		TNT1 A 0
 		TNT1 A 0 A_SpawnItem ("ThisImpGotFuckedHard")
 		Stop
 
@@ -3152,14 +3152,14 @@ ACTOR ImpBrutalizedWithNoLeg
 		TNT1 A 0 A_FaceTarget
 		TNT1 A 0 A_JumpIfInTargetInventory("IsPlayingAsPurist", 1,"DieNow")
 		TNT1 A 0 A_NoBlocking
-		TNT1 A 0 A_GiveToTarget("HasImpShield", 1)
-		TNT1 A 0 A_GiveToTarget("GotMeatShield", 1)
-		TNT1 A 1 ACS_NamedExecuteWithResult("MeatShield_Handler",0,0,0,0)
+		TNT1 A 0
+		TNT1 A 0
+		TNT1 A 0
 		Stop
 	}
 }
 
-ACTOR DyingImpNoArm
+ACTOR DyingImpNoArm : BDMO_GoreMonster
 {
 	Game Doom
 	Radius 16
@@ -3247,7 +3247,7 @@ ACTOR DyingImpNoArm
 		TNT1 A 0 A_XScream
 		TNT1 A 0 A_NoBlocking
 		TR08 F 8
-		TNT1 A 0 A_SpawnItem ("HealthPlusFatalityBonus")
+		TNT1 A 0
 		TNT1 A 0 A_SpawnItem ("DeadImp_NoArmNoHead", 1)
 		Stop
 
@@ -3257,7 +3257,7 @@ ACTOR DyingImpNoArm
 		TNT1 A 0 A_XScream
 		TNT1 A 0 A_NoBlocking
 		TNT1 A 0 A_FaceTarget
-		TNT1 A 0 A_SpawnItem ("HealthPlusFatalityBonus")
+		TNT1 A 0
 		TNT1 AAA 0 A_CustomMissile ("XDeath1", 42, 0, random (170, 190), 2, random (10, 60))
 		TNT1 AAA 0 A_CustomMissile ("XDeath3", 42, 0, random (170, 190), 2, random (10, 60))
 		TNT1 A 0 A_CustomMissile ("XDeath2", 42, 0, random (170, 190), 2, random (10, 60))
@@ -3271,7 +3271,7 @@ ACTOR DyingImpNoArm
 	Death.Railgun:
 		TNT1 A 0 A_KillChildren
 		TNT1 A 0 A_XScream
-		TNT1 A 0 A_SpawnItem ("HealthPlusFatalityBonus")
+		TNT1 A 0
 		TNT1 AAA 0 A_CustomMissile ("Guts", 32, 0, random (150, 210), 2, random (0, 40))
 		TNT1 AAA 0 A_CustomMissile ("XDeath1", 32, 0, random (150, 210), 2, random (0, 40))
 		TNT1 A 0 A_CustomMissile ("XDeathImpHead", 32, 0, random (150, 210), 2, random (0, 40))
@@ -3296,14 +3296,14 @@ ACTOR DyingImpNoArm
 		TNT1 A 0 A_JumpIfInTargetInventory("IsPlayingAsPurist", 1,"GotoDeath")
 		TNT1 A 0 A_KillChildren
 		TNT1 A 0 A_NoBlocking
-		TNT1 A 0 A_GiveToTarget("HasImpShield", 1)
-		TNT1 A 0 A_GiveToTarget("GotMeatShield", 1)
-		TNT1 A 1 ACS_NamedExecuteWithResult("MeatShield_Handler",0,0,0,0)
+		TNT1 A 0
+		TNT1 A 0
+		TNT1 A 0
 		Stop
 	}
 }
 
-ACTOR DyingImpNoLeg
+ACTOR DyingImpNoLeg : BDMO_GoreMonster
 {
 	Game Doom
 	Radius 16
@@ -3384,7 +3384,7 @@ ACTOR DyingImpNoLeg
 		TNT1 A 0 A_NoBlocking
 		TR09 I 8
 		TNT1 A 0 A_SpawnItem ("DeadImp_Noleg", 1)
-		TNT1 A 0 A_SpawnItem ("HealthPlusFatalityBonus")
+		TNT1 A 0
 		Stop
 
 	Pain.Stealth:
@@ -3393,9 +3393,9 @@ ACTOR DyingImpNoLeg
 		TNT1 A 0 A_JumpIfInTargetInventory("IsPlayingAsPurist", 1,"GotoDeath")
 		TNT1 A 0 A_KillChildren
 		TNT1 A 0 A_NoBlocking
-		TNT1 A 0 A_GiveToTarget("HasImpShield", 1)
-		TNT1 A 0 A_GiveToTarget("GotMeatShield", 1)
-		TNT1 A 1 ACS_NamedExecuteWithResult("MeatShield_Handler",0,0,0,0)
+		TNT1 A 0
+		TNT1 A 0
+		TNT1 A 0
 		Stop
 	}
 }
@@ -3451,9 +3451,9 @@ ACTOR ImpDyingOfBloodLoss : Imp
 		TROD F 0 A_JumpIfInTargetInventory("IsPlayingAsPurist", 1,"GotoDeath")
 		TNT1 A 0 A_KillChildren
 		TNT1 A 0 A_NoBlocking
-		TNT1 A 0 A_GiveToTarget("HasImpShield", 1)
-		TNT1 A 0 A_GiveToTarget("GotMeatShield", 1)
-		TNT1 A 1 ACS_NamedExecuteWithResult("MeatShield_Handler",0,0,0,0)
+		TNT1 A 0
+		TNT1 A 0
+		TNT1 A 0
 		Stop
 	}
 }
@@ -3504,7 +3504,7 @@ ACTOR PoorPinkyLostHisArm: Demon
 		SAAR GGGGGGG 2 A_CustomMissile ("Brutal_LiquidBlood", 40, 0, random (0, 360), 2, random (30, 110))
 		TNT1 A 0 A_NoBlocking
 		TNT1 A 0 A_Scream
-		TNT1 A 0 A_SpawnItem ("HealthPlusFatalityBonus")
+		TNT1 A 0
 		SAAR HHHHHHHHH 2 A_CustomMissile ("Brutal_LiquidBlood", 30, 0, random (0, 360), 2, random (30, 110))
 		TNT1 A 0 A_SpawnItem ("GrowingBloodPool")
 		SAAR IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII 2 A_CustomMissile ("Brutal_LiquidBlood", 20, 0, random (0, 360), 2, random (30, 110))
@@ -3524,7 +3524,7 @@ ACTOR PoorPinkyLostHisArm: Demon
 	}
 }
 
-ACTOR BrutalizedCommando1
+ACTOR BrutalizedCommando1 : BDMO_GoreMonster
 {
 	Game Doom
 	Radius 16
@@ -3576,9 +3576,9 @@ ACTOR BrutalizedCommando1
 		TNT1 A 0 A_FaceTarget
 		CPOD K 0 A_JumpIfInTargetInventory("IsPlayingAsPurist", 1,"GotoDeath")
 		TNT1 A 0 A_NoBlocking
-		TNT1 A 0 A_GiveToTarget("HasCGuyShield", 1)
-		TNT1 A 0 A_GiveToTarget("GotMeatShield", 1)
-		TNT1 A 1 ACS_NamedExecuteWithResult("MeatShield_Handler",0,0,0,0)
+		TNT1 A 0
+		TNT1 A 0
+		TNT1 A 0
 		Stop
 	}
 }
@@ -3637,7 +3637,7 @@ ACTOR BrutalizedCommando3: BrutalizedCommando1
 		Goto Spawn
 
 	Death:
-		TNT1 A 0 A_SpawnItem ("HealthPlusFatalityBonus")
+		TNT1 A 0
 		TNT1 AA 0 A_CustomMissile ("XDeath1", 45, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_CustomMissile ("XDeath2", 45, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_CustomMissile ("XDeath3", 45, 0, random (0, 360), 2, random (0, 160))
@@ -4000,7 +4000,7 @@ ACTOR DyingZombiemanLostTeeth: RifleZombie
 		TNT1 A 0
 		TNT1 A 0 A_KillChildren
 		TNT1 A 0 A_PlaySound("misc/xdeath")
-		TNT1 A 0 A_SpawnItem("ArmorShardFatalityBonus2")
+		TNT1 A 0
 		TNT1 A 0 A_JumpIfInTargetInventory("HasPlasmaWeapon", 1, "Death.Plasma")
 		TNT1 A 0 A_JumpIfInTargetInventory("HasCutingWeapon", 1, "Death.Decaptate")
 		TNT1 A 0 A_JumpIfHealthLower(-600, "XDeath")
@@ -4021,10 +4021,10 @@ ACTOR DyingZombiemanLostTeeth: RifleZombie
 		TNT1 A 0 A_JumpIfInTargetInventory("IsPlayingAsPurist", 1,"GotoDeath")
 		TNT1 A 0 A_KillChildren
 		TNT1 A 0 A_NoBlocking
-		TNT1 A 0 A_GiveToTarget("HasZManShield", 1)
-		TNT1 A 0 A_GiveToTarget("GotMeatShield", 1)
+		TNT1 A 0
+		TNT1 A 0
 		TNT1 A 0 A_StopSound(4)
-		TNT1 A 1 ACS_NamedExecuteWithResult("MeatShield_Handler",0,0,0,0)
+		TNT1 A 0
 		Stop
 	}
 }
@@ -4081,7 +4081,7 @@ ACTOR DyingShotgunguyHitInEye: Shotgunguy1
 		TNT1 A 0
 		TNT1 A 0 A_KillChildren
 		TNT1 A 0 A_PlaySound("misc/xdeath")
-		TNT1 A 0 A_SpawnItem("ArmorShardFatalityBonus2")
+		TNT1 A 0
 		TNT1 A 0 A_JumpIfInTargetInventory("HasPlasmaWeapon", 1, "Death.Plasma")
 		TNT1 A 0 A_JumpIfInTargetInventory("HasCutingWeapon", 1, "Death.Decaptate")
 		TNT1 A 0 A_JumpIfHealthLower(-600, "XDeath")
@@ -4101,10 +4101,10 @@ ACTOR DyingShotgunguyHitInEye: Shotgunguy1
 		TNT1 A 0 A_JumpIfInTargetInventory("IsPlayingAsPurist", 1,"GotoDeath")
 		TNT1 A 0 A_KillChildren
 		TNT1 A 0 A_NoBlocking
-		TNT1 A 0 A_GiveToTarget("HasSGuyShield", 1)
-		TNT1 A 0 A_GiveToTarget("GotMeatShield", 1)
+		TNT1 A 0
+		TNT1 A 0
 		TNT1 A 0 A_StopSound(4)
-		TNT1 A 1 ACS_NamedExecuteWithResult("MeatShield_Handler",0,0,0,0)
+		TNT1 A 0
 		Stop
 	}
 }
@@ -4117,7 +4117,7 @@ ACTOR ZombieScientistDyingGuts: DyingZombiemanNoArm
 	Death.Flames:
 		TNT1 A 0 A_KillChildren
 		TNT1 A 0 A_PlaySound("BLANKSND")
-		TNT1 AA 0 A_SpawnItem ("HealthPlusFatalityBonus")
+		TNT1 AA 0
 		TNT1 A 0 A_Scream
 		TNT1 A 0 A_NoBlocking
 		TNT1 A 0 A_SpawnItem("BurningZombie")
@@ -4190,7 +4190,7 @@ ACTOR ZombieScientistDyingGuts: DyingZombiemanNoArm
 		TNT1 A 0 A_CustomMissile ("ShotgunguyHeadExplode", 32, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_XScream
 		TNT1 A 0 A_NoBlocking
-		TNT1 A 0 A_SpawnItem ("HealthPlusFatalityBonus")
+		TNT1 A 0
 		TNT1 A 0 A_StopSound(4)
 		FSD5 HI 10
 		FSAD E -1
@@ -4224,10 +4224,10 @@ ACTOR ZombieScientistDyingGuts: DyingZombiemanNoArm
 		TNT1 A 0 A_JumpIfInTargetInventory("IsPlayingAsPurist", 1,"GotoDeath")
 		TNT1 A 0 A_KillChildren
 		TNT1 A 0 A_NoBlocking
-		TNT1 A 0 A_GiveToTarget("HasZombieCivilianShield", 1)
-		TNT1 A 0 A_GiveToTarget("GotMeatShield", 1)
+		TNT1 A 0
+		TNT1 A 0
 		TNT1 A 0 A_StopSound(4)
-		TNT1 A 1 ACS_NamedExecuteWithResult("MeatShield_Handler",0,0,0,0)
+		TNT1 A 0
 		Stop
 	}
 }
@@ -4284,7 +4284,7 @@ ACTOR DyingZManFatality5: DyingZombiemanNoArm
 	Death.Head:
 		TNT1 A 0
 		TNT1 A 0 A_KillChildren
-		TNT1 A 0 A_SpawnItem("ArmorShardFatalityBonus2")
+		TNT1 A 0
 		TNT1 A 0 A_JumpIfInTargetInventory("HasPlasmaWeapon", 1, "Death.Plasma")
 		TNT1 A 0 A_JumpIfInTargetInventory("HasCutingWeapon", 1, "Death.Decaptate")
 		TNT1 A 0 A_PlaySound("misc/xdeath4")

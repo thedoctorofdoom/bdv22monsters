@@ -386,32 +386,6 @@ Actor HeavyFootSteps: FootStep
 	}
 }
 
-Actor PlayerBaronTrample: FootStep
-{
-	Damage (random(100,100))
-	-CLIENTSIDEONLY
-	-DONTSPLASH
-	DamageType "Stomp"
-	Obituary "%o was trampled by a Baron."
-	States
-	{
-	Spawn:
-		tnt1 A 2
-		NULL A 1 A_Explode(80,30,0)
-		stop
-
-	Death:
-		tnt1 A 1
-		NULL A 1 A_Explode(80,30,0)
-		Stop
-
-	Crash:
-		tnt1 A 1
-		NULL A 1 A_Explode(80,30,0)
-		stop
-	}
-}
-
 Actor HeavyFootSteps32: FootStep
 {
 	Damage 1

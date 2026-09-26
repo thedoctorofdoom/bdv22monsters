@@ -249,7 +249,7 @@ actor WeakRocket: Rocket2
 	Gravity 0
 }
 
-actor VanillaCyberRocket: Rocket2 Replaces Rocket
+actor VanillaCyberRocket: Rocket2
 {
 	speed 20
 	Damage (random (350, 350))

@@ -1,7 +1,8 @@
+// Monsters Only sanitization: removed sound aliases with no live referencer
+// (including via $random-group closure). See BDMO-tools reports for audit trail.
 //Sound caulking
 fatso/active		dsmanact
 pain/active			dspeact
-
 
 //FOOTSTEPS
 $Random grunt/footstep { ZomStep1 ZomStep2 ZomStep3 ZomStep4  }
@@ -76,17 +77,12 @@ $limit ZombieStep 3
 $volume ZombieStep 0.8
 //$rolloff  ZombieStep 150 400
 
-
 //IMP
 IMPCHARG IMPCHARG
 $random imp/melee { imp/melee1 imp/melee2 imp/melee3 } 
 imp/melee1	IMPCLAW1
 imp/melee2	IMPCLAW2
 imp/melee3	IMPCLAW3
-$random imp/miss { IMPMISS1 IMPMISS2 IMPMISS3 } 
-IMPMISS1 IMPMISS1
-IMPMISS2 IMPMISS2
-IMPMISS3 IMPMISS3
 
 ImpStep1 ImpStep1 
 ImpStep2 ImpStep2 
@@ -95,7 +91,6 @@ ImpStep4 ImpStep4
 $random ImpStep { ImpStep1 ImpStep2 ImpStep3 ImpStep4  }
 $limit ImpStep 3
 $volume ImpStep 0.8
-
 
 $random imp/attack { ImpBall4 ImpBall5 ImpBall6 } 
 ImpBall4 ImpBall4
@@ -113,7 +108,6 @@ PINKIDL1 PINKIDL1
 PINKIDL2 PINKIDL2
 PINKIDL3 PINKIDL3
 PINKIDL4 PINKIDL4
-DSBIGDPN DSBIGDPN
 
 //CACODEMON
 caco/pain			DSCACPAI
@@ -136,11 +130,6 @@ LSOD1 LSOD1
 LSOD2 LSOD2
 LSOD3 LSOD3
 LSOD4 LSOD4
-
-
-
-
-
 
 //BARON OF HELL + HELL KNIGHT
 baron/active		DSCYBACT
@@ -175,9 +164,6 @@ REVIDLE6 REVIDLE6
 REVIDLE7 REVIDLE7
 
 $random REVOUCH { REVIDLE1 REVIDLE2 REVIDLE3 REVIDLE4 REVIDLE5 REVIDLE6 REVIDLE7 } 
-REVOUCH1 REVOUCH1
-REVOUCH2 REVOUCH2
-REVOUCH3 REVOUCH3
 
 $rolloff skeleton/attack 400 1600
 
@@ -189,10 +175,7 @@ $rolloff Skeleton/explode 900 1600
 SPIPAIN1 SPIPAIN1
 SPIPAIN2 SPIPAIN2
 
-
 //CYBERDEMON
-$rolloff cyber/hoof 300 1800
-$rolloff spider/walk 350 1600
 CLAP CLAP
 $rolloff CLAP 800 3600
 $limit CLAP 4
@@ -204,29 +187,20 @@ $rolloff DSCANFIR 600 2400
 
 cyber/active		DSCYBACT
 
-
 //MASTERMIND
 Mastermind/minigun MASTFIRE
 $rolloff Mastermind/minigun 1200 3600
 $limit Mastermind/minigun 40
 
-
-
-
 //===============================================================================//
 //								CUSTOM MONSTERS
 //===============================================================================//
 //ICON OF SIN
-ICOSCRE ICOSCRE
-ICOBREAT ICOBREAT
-ICOTHUND ICOTHUND
 ICOFIRE ICOFIRE
 ICOLAUG ICOLAUG
 $volume ICOLAUG 2.0
 $rolloff ICOLAUG 4000 6400
 $rolloff ICOFIRE 4000 6400
-$rolloff ICOBREAT 4000 6400
-$rolloff ICOSCRE 4000 6400
 
 //VOLCABUS
 Volcabus/Sight VOLCST
@@ -238,7 +212,6 @@ VOLCCF1 VOLCCF1
 VOLCCF2 VOLCCF2
 VOLCCF3 VOLCCF3
 VOLCCF4 VOLCCF4
-VOLCBRN VOLCBRN
 
 //Arachnotron 2 gun
 PAILGF3 PAILGF3
@@ -408,7 +381,6 @@ EVMRSIT5 EVMRSIT5
 EVMRSIT6 EVMRSIT6
 
 $random EvilmarineActive { dsempty dsempty dsempty EVMRACT2 EVMRACT3 EVMRACT4}
-EVMRACT1 EVMRACT1
 EVMRACT2 EVMRACT2
 EVMRACT3 EVMRACT3
 EVMRACT4 EVMRACT4
@@ -422,11 +394,6 @@ EVMRDT1 EVMRDT1
 EVMRDT2 EVMRDT2
 
 EVMRLAUG EVMRLAUG
-
-
-
-
-
 
 //===============================================================================//
 //							WAD COMPATIBILITY MONSTERS
@@ -443,26 +410,23 @@ AlienGuard/See AGSEE
 AlienGuardian/Loop AGLoop
 AlienGuard/Death agdie 
 
-
 //Wolfenstein Natzheeeees
- 
+
 SS/pain BWZIPN1
 
 $random SS/death { BWZIDTH1 BWZIDTH2 }
 BWZIDTH1 BWZIDTH1 
 BWZIDTH2 BWZIDTH2
- 
+
 $random SS/sight { BWZISIT1 BWZISIT2 }
 BWZISIT1 BWZISIT1 
 BWZISIT2 BWZISIT2
-
 
 $random BrutalWolfensteinRetardedScream {ssscr1 ssscre2 ssscre3 }
 
 ssscr1 ssscr1
 ssscre2 ssscre2
 ssscre3 ssscre3
-
 
 //Eviternity
 
@@ -472,23 +436,15 @@ Ndemon/death NMDZDTH
 Ndemon/Active NMDZACT
 Ndemon/Attack NMDZATK
 
-
 BRobot/sight EVANSIT
 BRobot/death EVANDTH
-
 
 CacoAssholeSee BCAOACT
 CacoAssholepain BCAOSEE
 CacoAssholedeath BCAODTH
-CacoAssholeAttack BCAOAT
 
 Scheletro/Morte SKEFAL
 
-
-Angel/sight ANGSSIT
-angel/pain angSPN
-angel/cube AngCUB
-angel/death ANGDTH
 Angel/attack angATK
 
 $Random Commander/Sight {FCAL1 FCAL2 FCAL3 FCAL4}
@@ -520,11 +476,8 @@ DopeFish/Pain DOPEPN
 //Eviternity
 //Archangelus
 
-Archangel/sight			angelsit
-Archangel/pain			angelpn
 Archangel/death			angeldth
 Archangel/spit			angelpit
-Archangel/cube			angelcub
 Archangel/cubeboom		dsfirxpl
 
 //Wormwood

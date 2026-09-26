@@ -1,3 +1,5 @@
+// Monsters Only sanitization: removed sound aliases with no live referencer
+// (including via $random-group closure). See BDMO-tools reports for audit trail.
 //===============================================================================//
 //								GORE DECORATIONS
 //===============================================================================//
@@ -42,7 +44,6 @@ BTHUD7 BTHUD7
 //								GENERIC GORE
 //===============================================================================//
 
-
 $random misc/xdeath		
 { 
 	misc/xdeath1a misc/xdeath1b misc/xdeath1c misc/xdeath1d misc/xdeath1e misc/xdeath1f misc/xdeath2a misc/xdeath2b misc/xdeath2c  
@@ -79,38 +80,18 @@ $volume misc/xdeath2 0.4
 $volume misc/xdeath3 0.4
 $volume misc/xdeath4 0.4
 
-BONECR1 BONECR1
-BONECR2 BONECR2
-
-
-LQDRIP1 LQDRIP1
-LQDRIP2 LQDRIP2
-LQDRIP3 LQDRIP3
 LQDRIP4 LQDRIP4
 LQDRIP5 LQDRIP5
 LQDRIP6 LQDRIP6
 LQDRIP7 LQDRIP7
-LQDRIP8 LQDRIP8
-LQDRIP9 LQDRIP9
-LQDRIP10 LQDRIP10
-LQDRIP11 LQDRIP11
-LQDRIP12 LQDRIP12
-LQDRIP13 LQDRIP13
-LQDRIP14 LQDRIP14
 
-$random blooddrop  { LQDRIP1 LQDRIP2 LQDRIP3 } 
-$rolloff blooddrop 200 1000
-$limit blooddrop 3
 $random blooddrop2  { LQDRIP4 LQDRIP5 LQDRIP6 LQDRIP7 }
 $rolloff blooddrop2 200 1000
-$random blooddrop3  { LQDRIP8 LQDRIP9 LQDRIP10 LQDRIP11 LQDRIP12 LQDRIP13 LQDRIP14 LQDRIP14 } 
-$rolloff blooddrop3 200 1000
 
 $random BLOOOD  { DSBLUD01 DSBLUD02 DSBLUD03 }
 DSBLUD01 DSBLUD01
 DSBLUD02 DSBLUD02
 DSBLUD03 DSBLUD03
-
 
 $random HEDBON { HEDBON1 HEDBON2 HEDBON3 }
 HEDBON1 HEDBON1

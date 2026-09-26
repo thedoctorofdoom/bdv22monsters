@@ -1,6 +1,6 @@
 ///////Commander Keen
 
-Actor Commander_Keen Replaces CommanderKeen
+Actor Commander_Keen : BDMO_GoreMonster Replaces CommanderKeen
 {
 	Health 100
 	Radius 16
@@ -197,7 +197,7 @@ Actor Commander_Keen Replaces CommanderKeen
 
 // Afrit
 
-Actor Afrit
+Actor Afrit : BDMO_GoreMonster
 {
 	Health 1000 //Bloodstain : 1500, Scythe II: 2500
 	Speed 8 //Bloodstain : 10
@@ -412,7 +412,7 @@ Actor OrbitComet4 : OrbitComet3
 
 Actor OrbitCometTail : CometTail { Scale 0.5 }
 
-Actor TNTRevilutionDITEAMFORTRESS2
+Actor TNTRevilutionDITEAMFORTRESS2 : BDMO_GoreMonster
 {
 	Health 100
 	Radius 16
@@ -465,7 +465,7 @@ Actor TNTRevilutionDITEAMFORTRESS2
 
 //CyberBalls
 
-Actor TNTRevilutionDITEAMFORTRESS2_2
+Actor TNTRevilutionDITEAMFORTRESS2_2 : BDMO_GoreMonster
 {
 	Health 100
 	Radius 16
@@ -553,7 +553,7 @@ Actor JenesisBoss
 
 	See:
 		TNT1 A 0
-		TNT1 A 0 ACS_ExecuteAlways(621, 0, 0, 0, 0)//Health Bar
+		TNT1 A 0 ACS_NamedExecuteAlways("BD_BossHealthBar", 0)//Health Bar
 
 	Chasing:
 		JSUS ABCDCB 4 A_Chase
@@ -618,7 +618,7 @@ Actor Heart
 
 	See:
 		TNT1 A 0
-		TNT1 A 0 ACS_ExecuteAlways(621, 0, 0, 0, 0)//Health Bar
+		TNT1 A 0 ACS_NamedExecuteAlways("BD_BossHealthBar", 0)//Health Bar
 
 	Chasing:
 		HRTB A 15 Bright A_Chase

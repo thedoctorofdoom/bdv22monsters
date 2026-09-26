@@ -1,0 +1,114 @@
+// Extracted from actors/PlayerClasses/Player.dec (Player.dec itself remains
+// excluded per Phase 2 scope - it's the full player-pawn class tree). These
+// four CustomInventory/Powerup pairs are the "blood splatter on your screen"
+// cosmetic effect given via A_GiveInventory from kept monster/gore melee
+// fatality code. Each Power*OnVisor companion class is required by its
+// PowerupGiver's Powerup.Type reference.
+
+ACTOR BloodOnVisor : PowerupGiver
+{
+	Inventory.Amount 1
+	Scale 0.5
+	Inventory.MaxAmount 10
+	Powerup.Type BloodOnVisor
+	Powerup.Duration 400
+	Inventory.Icon TNT1A0
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.MaxAmount 0
+	States
+	{
+	Spawn:
+		NULL A 1
+		Stop
+	}
+}
+
+ACTOR PowerBloodOnVisor : PowerUp
+{
+	Powerup.Duration -90
+	Speed 0.4
+	Inventory.Icon "TNT1A0"
+	Powerup.Color 70,0,0,0.0
+}
+
+ACTOR BlueBloodOnVisor : PowerupGiver
+{
+	Inventory.Amount 1
+	Scale 0.5
+	Inventory.MaxAmount 10
+	Powerup.Type BlueBloodOnVisor
+	Powerup.Duration 400
+	Inventory.Icon TNT1A0
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.MaxAmount 0
+	States
+	{
+	Spawn:
+		NULL A 1
+		Stop
+	}
+}
+
+ACTOR PowerBlueBloodOnVisor : PowerUp
+{
+	Powerup.Duration -90
+	Speed 0.4
+	Inventory.Icon "TNT1A0"
+	Powerup.Color 70,0,0,0.0
+}
+
+ACTOR GreenBloodOnVisor : PowerupGiver
+{
+	Inventory.Amount 1
+	Scale 0.5
+	Inventory.MaxAmount 10
+	Powerup.Type GreenBloodOnVisor
+	Powerup.Duration 400
+	Inventory.Icon TNT1A0
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.MaxAmount 0
+	States
+	{
+	Spawn:
+		NULL A 1
+		Stop
+	}
+}
+
+ACTOR PowerGreenBloodOnVisor : PowerUp
+{
+	Powerup.Duration -90
+	Speed 0.4
+	Inventory.Icon "TNT1A0"
+	Powerup.Color 70,0,0,0.0
+}
+
+ACTOR PurpleBloodOnVisor : PowerupGiver
+{
+	Inventory.Amount 1
+	Scale 0.5
+	Inventory.MaxAmount 10
+	Powerup.Type PurpleBloodOnVisor
+	Powerup.Duration 400
+	Inventory.Icon TNT1A0
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.MaxAmount 0
+	States
+	{
+	Spawn:
+		NULL A 1
+		Stop
+	}
+}
+
+ACTOR PowerPurpleBloodOnVisor : PowerUp
+{
+	Powerup.Duration -90
+	Speed 0.4
+	Inventory.Icon "TNT1A0"
+	Powerup.Color 70,0,0,0.0
+}

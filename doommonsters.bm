@@ -67,15 +67,6 @@ brightmap sprite BSPIM0 { map "brightmaps/doom/monsters/Arachnotron/BSPIM0.png" 
 brightmap sprite BSPIN0 { map "brightmaps/doom/monsters/Arachnotron/BSPIN0.png" disablefullbright}
 brightmap sprite BSPIO0 { map "brightmaps/doom/monsters/Arachnotron/BSPIO0.png" disablefullbright}
 brightmap sprite BSPIP0 { map "brightmaps/doom/monsters/Arachnotron/BSPIP0.png" disablefullbright}
-brightmap sprite BSPIQ0 { map "brightmaps/doom/monsters/Arachnotron/BSPIQ0.png" disablefullbright}
-brightmap sprite BSPIR0 { map "brightmaps/doom/monsters/Arachnotron/BSPIR0.png" disablefullbright}
-brightmap sprite BSPIS0 { map "brightmaps/doom/monsters/Arachnotron/BSPIS0.png" disablefullbright}
-brightmap sprite BSPIT0 { map "brightmaps/doom/monsters/Arachnotron/BSPIT0.png" disablefullbright}
-brightmap sprite BSPIU0 { map "brightmaps/doom/monsters/Arachnotron/BSPIU0.png" disablefullbright}
-brightmap sprite BSPIV0 { map "brightmaps/doom/monsters/Arachnotron/BSPIV0.png" disablefullbright}
-brightmap sprite BSPIW0 { map "brightmaps/doom/monsters/Arachnotron/BSPIW0.png" disablefullbright}
-brightmap sprite BSPIX0 { map "brightmaps/doom/monsters/Arachnotron/BSPIX0.png" disablefullbright}
-brightmap sprite BSPIY0 { map "brightmaps/doom/monsters/Arachnotron/BSPIY0.png" disablefullbright}
 brightmap sprite NAHAA0 { map "brightmaps/doom/monsters/Arachnotron/NAHAA0.png" disablefullbright}
 brightmap sprite NAHAB0 { map "brightmaps/doom/monsters/Arachnotron/NAHAB0.png" disablefullbright}
 brightmap sprite NAHAC0 { map "brightmaps/doom/monsters/Arachnotron/NAHAC0.png" disablefullbright}
@@ -296,36 +287,6 @@ brightmap sprite PAING3G7 { map "brightmaps/doom/monsters/Caco/PAING3G7.png" dis
 brightmap sprite PAINH0 { map "brightmaps/doom/monsters/Caco/PAINH0.png" disablefullbright}
 brightmap sprite PAINI0 { map "brightmaps/doom/monsters/Caco/PAINI0.png" disablefullbright}
 brightmap sprite PAINJ0 { map "brightmaps/doom/monsters/Caco/PAINJ0.png" disablefullbright}
-brightmap sprite pl3mA1 { map "brightmaps/doom/monsters/Caco/pl3mA1.png" disablefullbright}
-brightmap sprite pl3mA2A8 { map "brightmaps/doom/monsters/Caco/pl3mA2A8.png" disablefullbright}
-brightmap sprite pl3mA3A7 { map "brightmaps/doom/monsters/Caco/pl3mA3A7.png" disablefullbright}
-brightmap sprite pl3mB1 { map "brightmaps/doom/monsters/Caco/pl3mB1.png" disablefullbright}
-brightmap sprite pl3mB2B8 { map "brightmaps/doom/monsters/Caco/pl3mB2B8.png" disablefullbright}
-brightmap sprite pl3mB3B7 { map "brightmaps/doom/monsters/Caco/pl3mB3B7.png" disablefullbright}
-brightmap sprite pl3mC1 { map "brightmaps/doom/monsters/Caco/pl3mC1.png" disablefullbright}
-brightmap sprite pl3mC2C8 { map "brightmaps/doom/monsters/Caco/pl3mC2C8.png" disablefullbright}
-brightmap sprite pl3mC3C7 { map "brightmaps/doom/monsters/Caco/pl3mC3C7.png" disablefullbright}
-brightmap sprite pl3mD1 { map "brightmaps/doom/monsters/Caco/pl3mD1.png" disablefullbright}
-brightmap sprite pl3mD2D8 { map "brightmaps/doom/monsters/Caco/pl3mD2D8.png" disablefullbright}
-brightmap sprite pl3mD3D7 { map "brightmaps/doom/monsters/Caco/pl3mD3D7.png" disablefullbright}
-brightmap sprite pl3mD4D6 { map "brightmaps/doom/monsters/Caco/pl3mD4D6.png" disablefullbright}
-brightmap sprite pl3mD5 { map "brightmaps/doom/monsters/Caco/pl3mD5.png" disablefullbright}
-brightmap sprite pl3mE1 { map "brightmaps/doom/monsters/Caco/pl3mE1.png" disablefullbright}
-brightmap sprite pl3mE2E8 { map "brightmaps/doom/monsters/Caco/pl3mE2E8.png" disablefullbright}
-brightmap sprite pl3mE3E7 { map "brightmaps/doom/monsters/Caco/pl3mE3E7.png" disablefullbright}
-brightmap sprite pl3mE4E6 { map "brightmaps/doom/monsters/Caco/pl3mE4E6.png" disablefullbright}
-brightmap sprite pl3mE5 { map "brightmaps/doom/monsters/Caco/pl3mE5.png" disablefullbright}
-brightmap sprite pl3mF1 { map "brightmaps/doom/monsters/Caco/pl3mF1.png" disablefullbright}
-brightmap sprite pl3mF2F8 { map "brightmaps/doom/monsters/Caco/pl3mF2F8.png" disablefullbright}
-brightmap sprite pl3mF3F7 { map "brightmaps/doom/monsters/Caco/pl3mF3F7.png" disablefullbright}
-brightmap sprite pl3mF4F6 { map "brightmaps/doom/monsters/Caco/pl3mF4F6.png" disablefullbright}
-brightmap sprite pl3mF5 { map "brightmaps/doom/monsters/Caco/pl3mF5.png" disablefullbright}
-brightmap sprite pl3mG1 { map "brightmaps/doom/monsters/Caco/pl3mG1.png" disablefullbright}
-brightmap sprite pl3mG2G8 { map "brightmaps/doom/monsters/Caco/pl3mG2G8.png" disablefullbright}
-brightmap sprite pl3mG3G7 { map "brightmaps/doom/monsters/Caco/pl3mG3G7.png" disablefullbright}
-brightmap sprite pl3mH0 { map "brightmaps/doom/monsters/Caco/pl3mH0.png" disablefullbright}
-brightmap sprite pl3mI0 { map "brightmaps/doom/monsters/Caco/pl3mI0.png" disablefullbright}
-brightmap sprite pl3mJ0 { map "brightmaps/doom/monsters/Caco/pl3mJ0.png" disablefullbright}
 
 //================================================================================================
 //Chaingunguy
@@ -401,9 +362,6 @@ brightmap sprite SKELV6 { map "brightmaps/doom/Monsters/Revenant/SKELV6.png" dis
 brightmap sprite SKELV7 { map "brightmaps/doom/Monsters/Revenant/SKELV7.png" disablefullbright}
 brightmap sprite SKELV8 { map "brightmaps/doom/Monsters/Revenant/SKELV8.png" disablefullbright}
 
-brightmap sprite FATBA8A2 { map "brightmaps/doom/Monsters/Revenant/FATBA8A2.png" disablefullbright}
-brightmap sprite FATBA7A3 { map "brightmaps/doom/Monsters/Revenant/FATBA7A3.png" disablefullbright}
-brightmap sprite FATBA6A4 { map "brightmaps/doom/Monsters/Revenant/FATBA6A4.png" disablefullbright}
 brightmap sprite FATBA5 { map "brightmaps/doom/Monsters/Revenant/FATBA5.png" disablefullbright}
 
 //================================================================================================
@@ -682,9 +640,6 @@ brightmap sprite DIABP8 { map "brightmaps/doom/Monsters/Diabolist/DIABP8.png" di
 
 //================================================================================================
 //GateKeeper
-brightmap sprite GATEKE1 { map "brightmaps/doom/Monsters/Gatekeeper/GATEKE1.png" disablefullbright}
-brightmap sprite GATEKE2 { map "brightmaps/doom/Monsters/Gatekeeper/GATEKE2.png" disablefullbright}
-brightmap sprite GATEKE3 { map "brightmaps/doom/Monsters/Gatekeeper/GATEKE3.png" disablefullbright}
 
 //================================================================================================
 //Baron Of Hell
@@ -832,10 +787,6 @@ brightmap sprite BBO2A0 { map "brightmaps/doom/monsters/HellKnight/BBO2A0.png" d
 brightmap sprite BBO2B0 { map "brightmaps/doom/monsters/HellKnight/BBO2B0.png" disablefullbright}
 brightmap sprite BBO2C0 { map "brightmaps/doom/monsters/HellKnight/BBO2C0.png" disablefullbright}
 brightmap sprite BBO2D0 { map "brightmaps/doom/monsters/HellKnight/BBO2D0.png" disablefullbright}
-brightmap sprite BNRJA0 { map "brightmaps/doom/monsters/HellKnight/BNRJA0.png" disablefullbright}
-brightmap sprite BNRJB0 { map "brightmaps/doom/monsters/HellKnight/BNRJB0.png" disablefullbright}
-brightmap sprite BNRJC0 { map "brightmaps/doom/monsters/HellKnight/BNRJC0.png" disablefullbright}
-brightmap sprite BNRJD0 { map "brightmaps/doom/monsters/HellKnight/BNRJD0.png" disablefullbright}
 brightmap sprite BOBAA0 { map "brightmaps/doom/monsters/HellKnight/BOBAA0.png" disablefullbright}
 brightmap sprite BOBAB0 { map "brightmaps/doom/monsters/HellKnight/BOBAB0.png" disablefullbright}
 brightmap sprite BOBAC0 { map "brightmaps/doom/monsters/HellKnight/BOBAC0.png" disablefullbright}
@@ -902,13 +853,6 @@ brightmap sprite BOS2H6 { map "brightmaps/doom/monsters/HellKnight/BOS2H6.png" d
 brightmap sprite BOS2H7 { map "brightmaps/doom/monsters/HellKnight/BOS2H7.png" disablefullbright}
 brightmap sprite BOS2H8 { map "brightmaps/doom/monsters/HellKnight/BOS2H8.png" disablefullbright}
 
-brightmap sprite BS12A0 { map "brightmaps/doom/monsters/HellKnight/BS12A0.png" disablefullbright}
-brightmap sprite BS12B0 { map "brightmaps/doom/monsters/HellKnight/BS12B0.png" disablefullbright}
-brightmap sprite BS12C0 { map "brightmaps/doom/monsters/HellKnight/BS12C0.png" disablefullbright}
-brightmap sprite BS12D0 { map "brightmaps/doom/monsters/HellKnight/BS12D0.png" disablefullbright}
-brightmap sprite BS12E0 { map "brightmaps/doom/monsters/HellKnight/BS12E0.png" disablefullbright}
-brightmap sprite BS12F0 { map "brightmaps/doom/monsters/HellKnight/BS12F0.png" disablefullbright}
-brightmap sprite BS12G0 { map "brightmaps/doom/monsters/HellKnight/BS12G0.png" disablefullbright}
 brightmap sprite BTC1A1 { map "brightmaps/doom/monsters/HellKnight/BTC1A1.png" disablefullbright}
 brightmap sprite BTC1A2A8 { map "brightmaps/doom/monsters/HellKnight/BTC1A2A8.png" disablefullbright}
 brightmap sprite BTC1A3A7 { map "brightmaps/doom/monsters/HellKnight/BTC1A3A7.png" disablefullbright}
@@ -969,57 +913,6 @@ brightmap sprite BTS3C0 { map "brightmaps/doom/monsters/HellKnight/BTS3C0.png" d
 brightmap sprite BTS3D0 { map "brightmaps/doom/monsters/HellKnight/BTS3D0.png" disablefullbright}
 brightmap sprite BTS3E0 { map "brightmaps/doom/monsters/HellKnight/BTS3E0.png" disablefullbright}
 brightmap sprite BTS3F0 { map "brightmaps/doom/monsters/HellKnight/BTS3F0.png" disablefullbright}
-brightmap sprite DABHA0 { map "brightmaps/doom/monsters/HellKnight/DABHA0.png" disablefullbright}
-brightmap sprite DABHB0 { map "brightmaps/doom/monsters/HellKnight/DABHB0.png" disablefullbright}
-brightmap sprite DABHC0 { map "brightmaps/doom/monsters/HellKnight/DABHC0.png" disablefullbright}
-brightmap sprite DABHD0 { map "brightmaps/doom/monsters/HellKnight/DABHD0.png" disablefullbright}
-brightmap sprite DABHE0 { map "brightmaps/doom/monsters/HellKnight/DABHE0.png" disablefullbright}
-brightmap sprite DAHKA1 { map "brightmaps/doom/monsters/HellKnight/DAHKA1.png" disablefullbright}
-brightmap sprite DAHKA2 { map "brightmaps/doom/monsters/HellKnight/DAHKA2.png" disablefullbright}
-brightmap sprite DAHKA3 { map "brightmaps/doom/monsters/HellKnight/DAHKA3.png" disablefullbright}
-brightmap sprite DAHKA4 { map "brightmaps/doom/monsters/HellKnight/DAHKA4.png" disablefullbright}
-brightmap sprite DAHKA5 { map "brightmaps/doom/monsters/HellKnight/DAHKA5.png" disablefullbright}
-brightmap sprite DAHKA6 { map "brightmaps/doom/monsters/HellKnight/DAHKA6.png" disablefullbright}
-brightmap sprite DAHKA7 { map "brightmaps/doom/monsters/HellKnight/DAHKA7.png" disablefullbright}
-brightmap sprite DAHKA8 { map "brightmaps/doom/monsters/HellKnight/DAHKA8.png" disablefullbright}
-brightmap sprite DAHKB1 { map "brightmaps/doom/monsters/HellKnight/DAHKB1.png" disablefullbright}
-brightmap sprite DAHKB2 { map "brightmaps/doom/monsters/HellKnight/DAHKB2.png" disablefullbright}
-brightmap sprite DAHKB3 { map "brightmaps/doom/monsters/HellKnight/DAHKB3.png" disablefullbright}
-brightmap sprite DAHKB4 { map "brightmaps/doom/monsters/HellKnight/DAHKB4.png" disablefullbright}
-brightmap sprite DAHKB5 { map "brightmaps/doom/monsters/HellKnight/DAHKB5.png" disablefullbright}
-brightmap sprite DAHKB6 { map "brightmaps/doom/monsters/HellKnight/DAHKB6.png" disablefullbright}
-brightmap sprite DAHKB7 { map "brightmaps/doom/monsters/HellKnight/DAHKB7.png" disablefullbright}
-brightmap sprite DAHKB8 { map "brightmaps/doom/monsters/HellKnight/DAHKB8.png" disablefullbright}
-brightmap sprite DAHKC1 { map "brightmaps/doom/monsters/HellKnight/DAHKC1.png" disablefullbright}
-brightmap sprite DAHKC2 { map "brightmaps/doom/monsters/HellKnight/DAHKC2.png" disablefullbright}
-brightmap sprite DAHKC3 { map "brightmaps/doom/monsters/HellKnight/DAHKC3.png" disablefullbright}
-brightmap sprite DAHKC4 { map "brightmaps/doom/monsters/HellKnight/DAHKC4.png" disablefullbright}
-brightmap sprite DAHKC5 { map "brightmaps/doom/monsters/HellKnight/DAHKC5.png" disablefullbright}
-brightmap sprite DAHKC6 { map "brightmaps/doom/monsters/HellKnight/DAHKC6.png" disablefullbright}
-brightmap sprite DAHKC7 { map "brightmaps/doom/monsters/HellKnight/DAHKC7.png" disablefullbright}
-brightmap sprite DAHKC8 { map "brightmaps/doom/monsters/HellKnight/DAHKC8.png" disablefullbright}
-brightmap sprite DAHKD1 { map "brightmaps/doom/monsters/HellKnight/DAHKD1.png" disablefullbright}
-brightmap sprite DAHKD2 { map "brightmaps/doom/monsters/HellKnight/DAHKD2.png" disablefullbright}
-brightmap sprite DAHKD3 { map "brightmaps/doom/monsters/HellKnight/DAHKD3.png" disablefullbright}
-brightmap sprite DAHKD4 { map "brightmaps/doom/monsters/HellKnight/DAHKD4.png" disablefullbright}
-brightmap sprite DAHKD5 { map "brightmaps/doom/monsters/HellKnight/DAHKD5.png" disablefullbright}
-brightmap sprite DAHKD6 { map "brightmaps/doom/monsters/HellKnight/DAHKD6.png" disablefullbright}
-brightmap sprite DAHKD7 { map "brightmaps/doom/monsters/HellKnight/DAHKD7.png" disablefullbright}
-brightmap sprite DAHKD8 { map "brightmaps/doom/monsters/HellKnight/DAHKD8.png" disablefullbright}
-brightmap sprite GORAA0 { map "brightmaps/doom/monsters/HellKnight/GORAA0.png" disablefullbright}
-brightmap sprite GORAB0 { map "brightmaps/doom/monsters/HellKnight/GORAB0.png" disablefullbright}
-brightmap sprite GORAC0 { map "brightmaps/doom/monsters/HellKnight/GORAC0.png" disablefullbright}
-brightmap sprite GORAD0 { map "brightmaps/doom/monsters/HellKnight/GORAD0.png" disablefullbright}
-brightmap sprite GORBA0 { map "brightmaps/doom/monsters/HellKnight/GORBA0.png" disablefullbright}
-brightmap sprite GORBB0 { map "brightmaps/doom/monsters/HellKnight/GORBB0.png" disablefullbright}
-brightmap sprite GORBC0 { map "brightmaps/doom/monsters/HellKnight/GORBC0.png" disablefullbright}
-brightmap sprite GORBD0 { map "brightmaps/doom/monsters/HellKnight/GORBD0.png" disablefullbright}
-brightmap sprite GORBE0 { map "brightmaps/doom/monsters/HellKnight/GORBE0.png" disablefullbright}
-brightmap sprite GORCA0 { map "brightmaps/doom/monsters/HellKnight/GORCA0.png" disablefullbright}
-brightmap sprite GORCB0 { map "brightmaps/doom/monsters/HellKnight/GORCB0.png" disablefullbright}
-brightmap sprite GORCC0 { map "brightmaps/doom/monsters/HellKnight/GORCC0.png" disablefullbright}
-brightmap sprite GORCD0 { map "brightmaps/doom/monsters/HellKnight/GORCD0.png" disablefullbright}
-brightmap sprite GORCE0 { map "brightmaps/doom/monsters/HellKnight/GORCE0.png" disablefullbright}
 brightmap sprite GORDA0 { map "brightmaps/doom/monsters/HellKnight/GORDA0.png" disablefullbright}
 brightmap sprite GORDB0 { map "brightmaps/doom/monsters/HellKnight/GORDB0.png" disablefullbright}
 brightmap sprite GORDC0 { map "brightmaps/doom/monsters/HellKnight/GORDC0.png" disablefullbright}
@@ -1035,10 +928,6 @@ brightmap sprite KAD1C0 { map "brightmaps/doom/monsters/HellKnight/KAD1C0.png" d
 brightmap sprite KAD1D0 { map "brightmaps/doom/monsters/HellKnight/KAD1D0.png" disablefullbright}
 brightmap sprite KAD1E0 { map "brightmaps/doom/monsters/HellKnight/KAD1E0.png" disablefullbright}
 brightmap sprite KAD1F0 { map "brightmaps/doom/monsters/HellKnight/KAD1F0.png" disablefullbright}
-brightmap sprite KNRJA0 { map "brightmaps/doom/monsters/HellKnight/KNRJA0.png" disablefullbright}
-brightmap sprite KNRJB0 { map "brightmaps/doom/monsters/HellKnight/KNRJB0.png" disablefullbright}
-brightmap sprite KNRJC0 { map "brightmaps/doom/monsters/HellKnight/KNRJC0.png" disablefullbright}
-brightmap sprite KNRJD0 { map "brightmaps/doom/monsters/HellKnight/KNRJD0.png" disablefullbright}
 brightmap sprite KSA1A0 { map "brightmaps/doom/monsters/HellKnight/KSA1A0.png" disablefullbright}
 brightmap sprite KSA1B0 { map "brightmaps/doom/monsters/HellKnight/KSA1B0.png" disablefullbright}
 brightmap sprite KSA1C0 { map "brightmaps/doom/monsters/HellKnight/KSA1C0.png" disablefullbright}
@@ -1349,7 +1238,6 @@ brightmap sprite SPIDA3A7 { map "brightmaps/doom/Monsters/Mastermind/SPIDA3A7.pn
 brightmap sprite SPIDB1E1 { map "brightmaps/doom/Monsters/Mastermind/SPIDB1E1.png" disablefullbright}
 brightmap sprite SPIDB3B7 { map "brightmaps/doom/Monsters/Mastermind/SPIDB3B7.png" disablefullbright}
 brightmap sprite SPIDC1F1 { map "brightmaps/doom/Monsters/Mastermind/SPIDC1F1.png" disablefullbright}
-brightmap sprite SPIDC1C8 { map "brightmaps/doom/Monsters/Mastermind/SPIDC2C8.png" disablefullbright}
 brightmap sprite SPIDF2F8 { map "brightmaps/doom/Monsters/Mastermind/SPIDF2F8.png" disablefullbright}
 brightmap sprite SPIDG1 { map "brightmaps/doom/Monsters/Mastermind/SPIDG1.png" disablefullbright }
 brightmap sprite SPIDG2G8 { map "brightmaps/doom/Monsters/Mastermind/SPIDG2G8.png" disablefullbright }
@@ -1572,22 +1460,6 @@ brightmap sprite NAZIF5
 
 //ShotgunGuy
 
-brightmap sprite ID12H0
-{
-	map "brightmaps/doom/Monsters/ShotgunGuy/ID12H0.png"
-}
-brightmap sprite ID12I0
-{
-	map "brightmaps/doom/Monsters/ShotgunGuy/ID12I0.png"
-}
-brightmap sprite ID12J0
-{
-	map "brightmaps/doom/Monsters/ShotgunGuy/ID12J0.png"
-}
-brightmap sprite ID12K0
-{
-	map "brightmaps/doom/Monsters/ShotgunGuy/ID12K0.png"
-}
 
 brightmap sprite SPOSA1
 {
@@ -2395,84 +2267,20 @@ brightmap sprite PSPOA1
 {
 	map "brightmaps/doom/Monsters/ZombieMan/PSPOA1.png"
 }
-brightmap sprite PSPOA2
-{
-	map "brightmaps/doom/Monsters/ZombieMan/PSPOA2.png"
-}
-brightmap sprite PSPOA3
-{
-	map "brightmaps/doom/Monsters/ZombieMan/PSPOA3.png"
-}
-brightmap sprite PSPOA7
-{
-	map "brightmaps/doom/Monsters/ZombieMan/PSPOA7.png"
-}
-brightmap sprite PSPOA8
-{
-	map "brightmaps/doom/Monsters/ZombieMan/PSPOA8.png"
-}
 
 brightmap sprite PSPOB1
 {
 	map "brightmaps/doom/Monsters/ZombieMan/POSRB1.png"
-}
-brightmap sprite PSPOB2
-{
-	map "brightmaps/doom/Monsters/ZombieMan/PSPOB2.png"
-}
-brightmap sprite PSPOB3
-{
-	map "brightmaps/doom/Monsters/ZombieMan/PSPOB3.png"
-}
-brightmap sprite PSPOB7
-{
-	map "brightmaps/doom/Monsters/ZombieMan/PSPOB7.png"
-}
-brightmap sprite PSPOB8
-{
-	map "brightmaps/doom/Monsters/ZombieMan/PSPOB8.png"
 }
 
 brightmap sprite PSPOC1
 {
 	map "brightmaps/doom/Monsters/ZombieMan/PSPOC1.png"
 }
-brightmap sprite PSPOC2
-{
-	map "brightmaps/doom/Monsters/ZombieMan/PSPOC2.png"
-}
-brightmap sprite PSPOC3
-{
-	map "brightmaps/doom/Monsters/ZombieMan/PSPOC3.png"
-}
-brightmap sprite PSPOC7
-{
-	map "brightmaps/doom/Monsters/ZombieMan/PSPOC7.png"
-}
-brightmap sprite PSPOC8
-{
-	map "brightmaps/doom/Monsters/ZombieMan/PSPOC8.png"
-}
 
 brightmap sprite PSPOD1
 {
 	map "brightmaps/doom/Monsters/ZombieMan/PSPOD1.png"
-}
-brightmap sprite PSPOD2
-{
-	map "brightmaps/doom/Monsters/ZombieMan/PSPOD2.png"
-}
-brightmap sprite PSPOD3
-{
-	map "brightmaps/doom/Monsters/ZombieMan/PSPOD3.png"
-}
-brightmap sprite PSPOD7
-{
-	map "brightmaps/doom/Monsters/ZombieMan/PSPOD7.png"
-}
-brightmap sprite PSPOD8
-{
-	map "brightmaps/doom/Monsters/ZombieMan/PSPOD8.png"
 }
 
 brightmap sprite PSPOE1

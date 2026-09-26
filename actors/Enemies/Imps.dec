@@ -4,7 +4,7 @@
 //
 //===========================================================================
 //ACTOR Imp: SwitchableDecoration Replaces DoomImp
-ACTOR Imp Replaces DoomImp
+ACTOR Imp : BDMO_GoreMonster Replaces DoomImp
 {
 	Game Doom
 	Scale 1.04
@@ -299,19 +299,19 @@ ACTOR Imp Replaces DoomImp
 	Death.Fatality:
 		TNT1 A 0 A_Pain
 		TNT1 A 0 A_FaceTarget
-		TNT1 A 0 A_SpawnItemEx("HealthPlusFatalityBonus", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
-		TNT1 A 0 A_SpawnItemEx("ArmorShardFatalityBonus", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 A 0
+		TNT1 A 0
 		TNT1 A 0 A_NoBlocking
-		TNT1 A 0 A_GiveToTarget("GoFatality", 1)
+		TNT1 A 0
 		TNT1 A 0 A_Jump(256, "Death.Fatality1", "Death.Fatality4", "Death.Fatality2", "Death.Fatality3")
 		Goto Death.Fatality1
  
 	Death.Fatality1:
-		TNT1 A 0 A_GiveToTarget("ImpFatality", 1)
+		TNT1 A 0
 		Stop
 
 	Death.Fatality2:
-		TNT1 A 0 A_GiveToTarget("ImpFatality2", 1)
+		TNT1 A 0
 		Stop
 
 	Death.Fatality3:
@@ -320,14 +320,14 @@ ACTOR Imp Replaces DoomImp
 		Stop
 
 	Death.Fatality4:
-		TNT1 A 0 A_GiveToTarget("ImpFatality4", 1)
+		TNT1 A 0
 		Stop
 
 	GotoStealthKill:
 		TROO A 1
 		TNT1 A 0 A_GiveToTarget("SKImp")
 		TNT1 A 0 A_GiveToTarget("GoSpecial", 1)
-		TNT1 A 0 A_GiveToTarget("GoFatality", 1)
+		TNT1 A 0
 		TROO A 1 A_Die("Stealthy")
 		Stop
 		Death.Stealthy:
@@ -337,20 +337,20 @@ ACTOR Imp Replaces DoomImp
 	Pain.Melee:
 		TNT1 D 0
 		TROO A 4
-		TNT1 A 0 A_JumpIfInventory ("SKImp", 1, "GotoStealthKill")
+		TNT1 A 0
 		TROO A 4 A_Pain
 		Goto SeeContinue
 
 	Pain.Stealth:
 		TNT1 A 0
-		TNT1 A 0 A_JumpIfInventory ("SKImp", 1, "GotoStealthKill")
+		TNT1 A 0
 		TNT1 A 0 A_JumpIfInventory ("IsDown", 1, "GroundExecution")
 		TNT1 A 0 A_Pain
 		Goto See
 
 	GroundExecution:
 		TNT1 A 0
-		TNT1 A 0 A_GiveToTarget("ExecuteDownedImp", 1)
+		TNT1 A 0
 		TNT1 A 0 A_GiveToTarget("GoSpecial", 1)
 		TNT1 A 0 A_Die("Vanish")
 		Stop
@@ -504,7 +504,7 @@ ACTOR Imp Replaces DoomImp
 	//Active:
 		//goto super::spawn
 		TNT1 A 0
-		TNT1 A 0 A_GiveToTarget("ExecuteDownedImp", 1)
+		TNT1 A 0
 		TNT1 A 0 A_GiveToTarget("GoSpecial", 1)
 		IZD4 M 0
 		IZD4 MMMMMM 2 A_JumpIfInTargetInventory("IsExecutingOnAir", 1, "FinishActive")
@@ -1293,7 +1293,7 @@ ACTOR Imp Replaces DoomImp
 		TNT1 A 0
 		TNT1 A 0 A_JumpIfInTargetInventory("IsPlayer", 1, 1)
 		Goto Death
-		TNT1 A 0 A_GiveToTarget("GoFatality", 1)
+		TNT1 A 0
 		TNT1 A 0 A_GiveToTarget("GoSpecial", 1)
 		TNT1 A 0 A_GiveToTarget("SKImp", 1)
 		TNT1 A 0 A_NoBlocking
@@ -1579,7 +1579,7 @@ ACTOR ImpTorso
 	}
 }
 
-Actor DeadImp: CurbstompedMarine Replaces DeadDoomImp
+Actor DeadImp: CurbstompedMarine
 {
 	Radius 12
 	Height 12

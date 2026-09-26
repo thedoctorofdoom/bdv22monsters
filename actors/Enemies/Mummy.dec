@@ -1,4 +1,4 @@
-ACTOR BDMummy
+ACTOR BDMummy : BDMO_GoreMonster
 {
 	Health 200
 	Height 48
