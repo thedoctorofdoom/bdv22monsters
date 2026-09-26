@@ -245,7 +245,7 @@ ACTOR Clip1 : Ammo
 	Inventory.MaxAmount 100
 	Ammo.BackpackAmount 100
 	Ammo.BackpackMaxAmount 200
-	Inventory.Icon "CLIPB0"
+	Inventory.Icon "BMCLB0"
 	Inventory.PickupSound "CLIPICK"
 	Scale 0.6
 	+FORCEXYBILLBOARD
@@ -255,15 +255,15 @@ ACTOR Clip1 : Ammo
 	Spawn:
 		TNT1 A 0
 		TNT1 A 0 ACS_NamedExecuteAlways("NoRandomSprites")
-		CLIP b 2
+		BMCL b 2
 		TNT1 A 0 A_Jump(128,2)
 		TNT1 A 0 A_SetScale(-scalex,scaley)
 		TNT1 A 0 A_Jump(256,"S1","S2")
 	NoRandom:
 	S1:
-		CLIP B -1
+		BMCL B -1
 	S2:
-		CLIP C -1
+		BMCL C -1
 		Stop
 	}
 }
@@ -292,9 +292,9 @@ ACTOR Clip1Drop: CustomInventory
 		TNT1 A 0 A_SetScale(-scalex,scaley)
 		TNT1 A 0 A_Jump(256,"S1","S2")
 	S1:
-		CLIP B -1
+		BMCL B -1
 	S2:
-		CLIP C -1
+		BMCL C -1
 		Stop
 
 	Pickup:

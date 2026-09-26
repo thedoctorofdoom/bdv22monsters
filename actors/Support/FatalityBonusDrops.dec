@@ -17,6 +17,9 @@
 // only needs them as parent classes for the fatality-bonus actors below -
 // reinstating vanilla map-pickup replacements would reintroduce exactly the
 // out-of-scope player-pickup behavior Health2.dec/Artifact.dec were removed for.
+// For the same reason they use BDMO-only sprite names (BMHB/BMAB) instead of
+// vanilla BON1/BON2, and carry no vanilla SpawnIDs: weapon mods reskin those
+// pickups under the vanilla names, and a later-loaded BDMO would override them.
 
 ACTOR BasicWeaponPickup : Health
 {
@@ -43,7 +46,6 @@ Actor BasicWeaponPickup2: BasicWeaponPickup
 Actor HealthPlus : Health
 {
 	Game Doom
-	SpawnID 152
 	+COUNTITEM
 	+INVENTORY.ALWAYSPICKUP
 	+INVENTORY.NEVERRESPAWN
@@ -56,17 +58,17 @@ Actor HealthPlus : Health
 	States
 	{
 	Spawn:
-		BON1 A 0
-		BON1 A 0 ACS_NamedExecuteAlways("BDCheckDecorations", 0, 0, 0, 0)
+		BMHB A 0
+		BMHB A 0 ACS_NamedExecuteAlways("BDCheckDecorations", 0, 0, 0, 0)
 	Spawn2:
         TNT1 A 0 A_CheckSight ("Spawn3")
-		BON1 ABCDCB 2 A_SpawnItem("BlueFlareSmallItem",0,7)
+		BMHB ABCDCB 2 A_SpawnItem("BlueFlareSmallItem",0,7)
 		Loop
 	Spawn3:
-		BON1 A 9
+		BMHB A 9
 		Goto Spawn2
 	Vanilla:
-		BON1 ABCDCB 2
+		BMHB ABCDCB 2
 		Loop
 	}
 }
@@ -79,11 +81,10 @@ Actor HealthPlusNoCount : HealthPlus
 Actor ArmorShard : BasicArmorBonus
 {
 	Game Doom
-	SpawnID 22
 	Radius 20
 	Height 16
 	Inventory.Pickupmessage "$GOTARMBONUS"
-	Inventory.Icon "BON2A0"
+	Inventory.Icon "BMABA0"
 	Armor.Savepercent 50.1
 	Armor.Saveamount 2
 	Armor.Maxsaveamount 300
@@ -95,7 +96,7 @@ Actor ArmorShard : BasicArmorBonus
 	States
 	{
 	Spawn:
-		BON2 AAABCDB 2
+		BMAB AAABCDB 2
 		Loop
 	}
 }
@@ -137,7 +138,7 @@ ACTOR SuperBlurSphere : CustomInventory
 	States
 	{
 	Spawn:
-		PINS AABBCCDDCCBB 2 Bright
+		BMPS AABBCCDDCCBB 2 Bright
 		Loop
 
 	Pickup:
