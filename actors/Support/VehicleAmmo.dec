@@ -1,0 +1,182 @@
+// Extracted from actors/MISC/Ammo.dec (which itself remains excluded per
+// Phase 2 scope - most of that file is player-pickup ammo boxes out of scope
+// for a monsters-only add-on). These specific ammo-token classes are still
+// referenced by kept monster/gore/vehicle code: SoulAmmo is given by the
+// GoreThrows.dec extraction (A_GiveToTarget on gib-death), Clip2/MP40Ammo are
+// referenced by kept marine-adjacent enemy drop logic, and the Tank/Mech/
+// Helicopter/HeavyMachinegun ammo tokens are referenced by the intentionally
+// untouched VEHICLES/* actors (see Phase 2 report for the VEHICLES scope
+// decision).
+
+ACTOR Clip2 : Clip
+{
+	Inventory.PickupMessage "$BDGOTCLIP"
+	Inventory.Amount 10
+	Inventory.MaxAmount 200
+	Ammo.BackpackAmount 30
+	Ammo.BackpackMaxAmount 400
+	Inventory.Icon "CLIPE0"
+	Inventory.PickupSound "CLIPICK2"
+	Scale 0.8
+	+FORCEXYBILLBOARD
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 ACS_NamedExecuteAlways("NoRandomSprites")
+		CLIP E 2
+		TNT1 A 0 A_Jump(128,2)
+		TNT1 A 0 A_SetScale(-scalex,scaley)
+		TNT1 A 0 A_Jump(256,"S1","S2","S3")
+	S1:
+		CLIP A -1
+	S2:
+		CLIP D -1
+	NoRandom:
+	S3:
+		CLIP E -1
+		Stop
+	}
+}
+
+ACTOR SoulAmmo : Ammo
+{
+	Inventory.Amount 0
+	Inventory.MaxAmount 999
+	Ammo.BackpackAmount 0
+	Ammo.BackpackMaxAmount 999
+}
+
+ACTOR MP40Ammo : Ammo
+{
+	Inventory.Amount 0
+	Inventory.MaxAmount 32
+	Ammo.BackpackAmount 0
+	Ammo.BackpackMaxAmount 32
+	Inventory.Icon "MP40Y0"
+}
+
+ACTOR TankAmmo : Ammo
+{
+	Inventory.PickupMessage "Picked up a Magazine."
+	Inventory.Amount 10
+	Inventory.MaxAmount 100
+	Ammo.BackpackAmount 0
+	Ammo.BackpackMaxAmount 100
+	Inventory.Icon "NULL"
+	States
+	{
+	Spawn:
+		CLIP A 0
+		CLIP A -1
+		Stop
+	}
+}
+
+ACTOR HeavyMachinegunAmmo : Ammo
+{
+	Game Doom
+	Inventory.PickupMessage "Picked up a Magazine."
+	Inventory.Amount 100
+	Inventory.MaxAmount 2000
+	Ammo.BackpackAmount 0
+	Ammo.BackpackMaxAmount 2000
+	Inventory.Icon "NULL"
+	States
+	{
+	Spawn:
+		CLIP A 0
+		CLIP A -1
+		Stop
+	}
+}
+
+ACTOR MechRocketAmmo : Ammo
+{
+	Game Doom
+	Inventory.PickupMessage "Picked up a Magazine."
+	Inventory.Amount 5
+	Inventory.MaxAmount 60
+	Ammo.BackpackAmount 0
+	Ammo.BackpackMaxAmount 60
+	Inventory.Icon "NULL"
+	States
+	{
+	Spawn:
+		CLIP A 0
+		CLIP A -1
+		Stop
+	}
+}
+
+ACTOR MechLaserAmmo : Ammo
+{
+	Game Doom
+	Inventory.PickupMessage "Picked up a Magazine."
+	Inventory.Amount 30
+	Inventory.MaxAmount 200
+	Ammo.BackpackAmount 0
+	Ammo.BackpackMaxAmount 200
+	Inventory.Icon "NULL"
+	States
+	{
+	Spawn:
+		CLIP A 0
+		CLIP A -1
+		Stop
+	}
+}
+
+ACTOR MechMOrtarAmmo : Ammo
+{
+	Game Doom
+	Inventory.PickupMessage "Picked up a Magazine."
+	Inventory.Amount 1
+	Inventory.MaxAmount 20
+	Ammo.BackpackAmount 0
+	Ammo.BackpackMaxAmount 20
+	Inventory.Icon "NULL"
+	States
+	{
+	Spawn:
+		CLIP A 0
+		CLIP A -1
+		Stop
+	}
+}
+
+ACTOR HelicopterRocketAmmo : Ammo
+{
+	Game Doom
+	Inventory.PickupMessage "Picked up a Magazine."
+	Inventory.Amount 1
+	Inventory.MaxAmount 100
+	Ammo.BackpackAmount 0
+	Ammo.BackpackMaxAmount 100
+	Inventory.Icon "NULL"
+	States
+	{
+	Spawn:
+		CLIP A 0
+		CLIP A -1
+		Stop
+	}
+}
+
+ACTOR HelicopterMissileAmmo : Ammo
+{
+	Game Doom
+	Inventory.PickupMessage "Picked up a Magazine."
+	Inventory.Amount 1
+	Inventory.MaxAmount 50
+	Ammo.BackpackAmount 0
+	Ammo.BackpackMaxAmount 50
+	Inventory.Icon "NULL"
+	States
+	{
+	Spawn:
+		CLIP A 0
+		CLIP A -1
+		Stop
+	}
+}

@@ -227,15 +227,6 @@ ACTOR KickAttackDetectDowned: KickAttack
 	}
 }
 
-ACTOR SuperKickAttack: KickAttack
-{
-	Damage (random(62,62))
-	-NOEXTREMEDEATH
-	+EXTREMEDEATH
-	DamageType ExtremeKicks//Extremepunches
-	Decal "CrackSmall"
-}
-
 ACTOR StompAttack: KickAttack
 {
 	Damage (random(150,200))
@@ -600,11 +591,6 @@ ACTOR SlideAttack: KickAttack
 		TNT1 A 10
 		Stop
 	}
-}
-
-ACTOR SuperKickAttackRealism: SuperKickAttack
-{
-	Damage (random(16,16))
 }
 
 ACTOR KickAttackRealism: Kickattack

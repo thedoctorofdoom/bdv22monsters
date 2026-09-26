@@ -1,0 +1,299 @@
+// Extracted from actors/Weapons/WeaponSpawners.dec, actors/MISC/Artifact.dec,
+// and actors/MISC/Health2.dec during Phase 2 DECORATE pruning. These are monster
+// on-death drop items (fatality bonuses, spectre blur) that
+// virtually every kept monster file (Imps/Demons/Barons/Revenant/Cyberdemon/
+// Mastermind/Archvile/Knight/Spectre/WCS/etc.) spawns via A_SpawnItemEx on
+// gib/glory-kill. The rest of WeaponSpawners.dec (weapon-pickup spawner
+// system), Artifact.dec (powerup artifacts), and Health2.dec (map health/armor
+// pickups) are out of scope and intentionally left out of the include tree.
+//
+// Base/parent classes are defined first in this file - DECORATE here resolves
+// parent-class references top-down within a file, so a subclass appearing
+// before its parent's definition fails to compile.
+//
+// Two of these base classes (HealthPlus, ArmorShard) originally carried
+// "Replaces HealthBonus"/"Replaces ArmorBonus" clauses in their donor files. Those clauses are stripped here (same pattern
+// as the Step 2 replaces-stripping done elsewhere in Phase 2) since this file
+// only needs them as parent classes for the fatality-bonus actors below -
+// reinstating vanilla map-pickup replacements would reintroduce exactly the
+// out-of-scope player-pickup behavior Health2.dec/Artifact.dec were removed for.
+
+ACTOR BasicWeaponPickup : Health
+{
+	scale 0.8
+	radius 16
+	+FORCEXYBILLBOARD
+	+MOVEWITHSECTOR
+	-COUNTITEM
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.Amount 0
+	Inventory.MaxAmount 99999
+	Inventory.PickupMessage ""
+	Inventory.PickupSound "dsempty"
+	+Quiet
+	+DONTGIB
+}
+
+Actor BasicWeaponPickup2: BasicWeaponPickup
+{
+	-INVENTORY.ALWAYSPICKUP
+	Inventory.MaxAmount 0
+}
+
+Actor HealthPlus : Health
+{
+	Game Doom
+	SpawnID 152
+	+COUNTITEM
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.NEVERRESPAWN
+	+FORCEXYBILLBOARD
+	-CANNOTPUSH
+	Inventory.Amount 2
+	Inventory.MaxAmount 300
+	Tag "Health Bonus"
+	Inventory.PickupMessage "$GOTHTHBONUS"
+	States
+	{
+	Spawn:
+		BON1 A 0
+		BON1 A 0 ACS_NamedExecuteAlways("BDCheckDecorations", 0, 0, 0, 0)
+	Spawn2:
+        TNT1 A 0 A_CheckSight ("Spawn3")
+		BON1 ABCDCB 2 A_SpawnItem("BlueFlareSmallItem",0,7)
+		Loop
+	Spawn3:
+		BON1 A 9
+		Goto Spawn2
+	Vanilla:
+		BON1 ABCDCB 2
+		Loop
+	}
+}
+
+Actor HealthPlusNoCount : HealthPlus
+{
+	-COUNTITEM
+}
+
+Actor ArmorShard : BasicArmorBonus
+{
+	Game Doom
+	SpawnID 22
+	Radius 20
+	Height 16
+	Inventory.Pickupmessage "$GOTARMBONUS"
+	Inventory.Icon "BON2A0"
+	Armor.Savepercent 50.1
+	Armor.Saveamount 2
+	Armor.Maxsaveamount 300
+	+COUNTITEM
+	+INVENTORY.NEVERRESPAWN
+	+INVENTORY.ALWAYSPICKUP
+	+FORCEXYBILLBOARD
+	-CANNOTPUSH
+	States
+	{
+	Spawn:
+		BON2 AAABCDB 2
+		Loop
+	}
+}
+
+Actor ArmorShardNoCount: ArmorShard
+{
+-COUNTITEM
+}
+
+actor SpectreBlurSphere: BasicWeaponPickup2
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 ACS_NamedExecuteAlways("BDNoPowerUps")
+		TNT1 A 4
+	Spawn2:
+		TNT1 A 1 A_SpawnItemEx ("SuperBlurSphere",3,0,5,0,0,0,0,SXF_NOCHECKPOSITION | SXF_TRANSFERAMBUSHFLAG ,0)
+		Stop
+
+	Cancels:
+		TNT1 A 0
+		Stop
+	}
+}
+
+ACTOR SuperBlurSphere : CustomInventory
+{
+	+COUNTITEM
+	+VISIBILITYPULSE
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.BIGPOWERUP
+	+FORCEXYBILLBOARD
+	RenderStyle "Translucent"
+	Inventory.PickupSound "Pickup/Invis" 
+	Inventory.PickupMessage "$BDGOTINVIS"
+	States
+	{
+	Spawn:
+		PINS AABBCCDDCCBB 2 Bright
+		Loop
+
+	Pickup:
+		TNT1 A 1
+		TNT1 A 0 ACS_NamedExecuteAlways("SetMugshot",0,4)
+		TNT1 A 0 A_GiveInventory("IsInvisible", 1)
+		TNT1 A 0 A_GiveInventory("Blursphere", 1)
+		TNT1 A 0 ACS_NamedExecuteAlways("BD_RemoveInvisibility", 0)
+		TNT1 A 1
+		Stop
+	}
+}
+
+ACTOR 1ealthPlusFatalityBonus : Health
+{
+	Game Doom
+	+THRUACTORS
+	+CANNOTPUSH
+	-COUNTITEM
+	-INVENTORY.ALWAYSPICKUP
+	+INVENTORY.NEVERRESPAWN
+	+FORCEXYBILLBOARD
+	Inventory.Amount 5
+	Inventory.MaxAmount 150
+	Tag "Demonic Essence"
+	Inventory.PickupMessage "$GOTESSENCE"
+	Scale 0.7
+	States
+	{
+	Spawn:
+		ZHHP A 0
+		ZHHP ABABAB 2
+		TNT1 A 0 A_ChangeFlag("THRUACTORS", 0)
+		Goto Spawn2
+
+	Spawn2:
+		TNT1 A 0 A_CheckSight ("Spawn3")
+		ZHHP AB 2
+		Loop
+
+	Spawn3:
+		ZHHP A 9
+		Goto Spawn2
+	}
+}
+
+Actor 1ealthPlusFatalityBonus2 : 1ealthPlusFatalityBonus
+{
+	Inventory.Amount 2
+	Inventory.MaxAmount 150
+}
+
+Actor 1rmorShardFatalityBonus : ArmorShard
+{
+	-INVENTORY.ALWAYSPICKUP
+	Tag "Demonic armor"
+	inventory.pickupmessage "$GOTDEMONSHARD"
+	Inventory.Icon "BON3A0"
+	Scale 0.5
+	Armor.Saveamount 5
+	Armor.Maxsaveamount 150
+	+THRUGHOST
+	+GHOST
+	+THRUACTORS
+	-COUNTITEM
+	+FORCEXYBILLBOARD
+	+CANNOTPUSH
+	States
+	{
+	Spawn:
+		BON3 AAABCBAAABCBAAABCB 2
+		TNT1 A 0 A_ChangeFlag("THRUACTORS", 0)
+		Goto Spawn2
+
+	Spawn2:
+		BON3 AAABCB 2
+		Loop
+	}
+}
+
+Actor 1rmorShardFatalityBonus2 : 1rmorShardFatalityBonus
+{
+	Armor.Saveamount 2
+	Armor.Maxsaveamount 300
+}
+
+actor HealthPlusFatalityBonus: BasicWeaponPickup2
+{
+	+CANNOTPUSH
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 ACS_NamedExecuteAlways("BDNoPowerUps")
+		TNT1 A 4
+	Spawn2:
+		TNT1 A 1 A_SpawnItemEx ("1ealthPlusFatalityBonus",3,0,5,0,0,0,0,SXF_NOCHECKPOSITION | SXF_TRANSFERAMBUSHFLAG ,0)
+		Stop
+
+	Cancels:
+		TNT1 A 0
+		Stop
+	}
+}
+
+actor HealthPlusFatalityBonus2: BasicWeaponPickup2
+{
+	+CANNOTPUSH
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 ACS_NamedExecuteAlways("BDNoPowerUps")
+		TNT1 A 4
+	Spawn2:
+		TNT1 A 1 A_SpawnItemEx ("1ealthPlusFatalityBonus2",3,0,5,0,0,0,0,SXF_NOCHECKPOSITION | SXF_TRANSFERAMBUSHFLAG ,0)
+		Stop
+
+	Cancels:
+		TNT1 A 0
+		Stop
+	}
+}
+
+actor ArmorShardFatalityBonus: BasicWeaponPickup2
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 ACS_NamedExecuteAlways("BDNoPowerUps")
+		TNT1 A 4
+	Spawn2:
+		TNT1 A 1 A_SpawnItemEx ("1rmorShardFatalityBonus",3,0,5,0,0,0,0,SXF_NOCHECKPOSITION | SXF_TRANSFERAMBUSHFLAG ,0)
+		Stop
+
+	Cancels:
+		TNT1 A 0
+		Stop
+	}
+}
+
+actor ArmorShardFatalityBonus2: BasicWeaponPickup2
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 ACS_NamedExecuteAlways("BDNoPowerUps")
+		TNT1 A 4
+	Spawn2:
+		TNT1 A 1 A_SpawnItemEx ("1rmorShardFatalityBonus2",3,0,5,0,0,0,0,SXF_NOCHECKPOSITION | SXF_TRANSFERAMBUSHFLAG ,0)
+		Stop
+
+	Cancels:
+		TNT1 A 0
+		Stop
+	}
+}

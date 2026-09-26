@@ -1,4 +1,4 @@
-Actor AlphaLostSoul
+Actor AlphaLostSoul : BDMO_GoreMonster
 {
 	Health 100
 	PainChance 40

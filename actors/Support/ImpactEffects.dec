@@ -1,0 +1,645 @@
+// Extracted from actors/DECORATIONS/FIREWORKS.dec during Phase 2 DECORATE pruning.
+// These are generic explosion/shrapnel/impact FX actors used throughout the kept
+// monster and weapon files (A_CustomMissile/A_SpawnItemEx calls), NOT decorative
+// map-placed barrel objects. The purely-decorative barrel actors (ExplodedBarrelRemains,
+// ExplosiveBarrel1, VanillaExplosiveBarrel, GrinderBarrel1) were intentionally left
+// behind in DECORATIONS/FIREWORKS.dec (no longer included) since nothing in the
+// kept monster/gore/weapon code references them.
+
+ACTOR BarrelShrapnel1
+{
+	Radius 2
+	Height 2
+	Speed 20
+	Mass 1
+	+NOBLOCKMAP
+	+MISSILE
+	+NOTELEPORT
+	+MOVEWITHSECTOR
+	+CLIENTSIDEONLY
+	+THRUACTORS
+	+FLOORCLIP
+	+DOOMBOUNCE
+	-NOGRAVITY
+	+FORCEXYBILLBOARD
+	BounceFactor 0.5
+	Gravity 0.9
+	Mass 1
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		BRPT A 0 A_SetScale(frandom(1.0,1.7))
+		BRPT A 0 A_JumpIf(waterlevel > 1, "Underwater")
+		BRPT ABCDEFGH 1
+		TNT1 A 0 A_ChangeFlag("NOGRAVITY", 0)
+		Goto Spawn2
+
+	Spawn2:
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Underwater")
+		BRPT ABCDEFGH 2
+		Loop
+
+	Death:
+		TNT1 A 0
+		BRPT I 300
+		BRPT IIIIIIIII 2 A_FadeOut(0.1)
+		Stop
+
+	Underwater:
+	Splash:
+		Goto Death
+	}
+}
+
+ACTOR BarrelShrapnel2: BarrelShrapnel1
+{
+	Scale 1.7
+}
+
+ACTOR BarrelShrapnel3: BarrelShrapnel1
+{
+	Scale 1.4
+}
+
+ACTOR BarrelShrapnel4: BarrelShrapnel1
+{
+	Scale 1.2
+}
+
+actor GreatKaboom
+{
+	Game Doom
+	RenderStyle "None"
+	+NOBLOCKMAP
+	+CLIENTSIDEONLY
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 50
+		TNT1 A 0 A_SpawnItemEx ("ExplosionSplashSpawner", 0, 0, 0)
+		TNT1 AAAA 0 A_CustomMissile ("ExplosionSpawner", 20, 0, random (0, 360), 2, random (0, 180))
+		TNT1 AAAAAA 0 A_CustomMissile ("ExplosionSpawner", 20, 0, random (0, 360), 2, random (0, 180))
+		Stop
+	}
+}
+
+actor BarrelKaboom: GreatKaboom
+{
+	Game Doom
+	RenderStyle "None"
+	+NOBLOCKMAP
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 1
+		TNT1 AAAA 0 A_CustomMissile ("ExplosionSpawner", 10, 0, random (0, 360), 2, random (10, 90))
+		Stop
+	}
+}
+
+actor BarrelKaboomSilent: GreatKaboom
+{
+	Game Doom
+	RenderStyle "None"
+	+NOBLOCKMAP
+	States
+	{
+		Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 1
+		TNT1 AAAA 0 A_CustomMissile ("ExplosionSpawnerSilent", 10, 0, random (0, 360), 2, random (10, 90))
+		Stop
+	}
+}
+
+actor BigExplosion1112: GreatKaboom
+{
+	Game Doom
+	RenderStyle "None"
+	+NOBLOCKMAP
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 1
+		EXPL A 0 Radius_Quake (2, 100, 0, 22, 0)
+		TNT1 AAA 0 A_CustomMissile ("FireworkSFXType2", 64, 0, random (0, 360), 2, random (30, 60))
+		TNT1 A 0 A_CustomMissile ("ExplosionSpawner", 10, 0, random (0, 360), 2, random (80, 90))
+		TNT1 AAA 0 A_CustomMissile ("SmallExplosionSpawner", 10, 0, random (0, 360), 2, random (0, 40))
+		TNT1 A 10
+		TNT1 AAAA 0 A_CustomMissile ("FireworkSFXType2", 94, 0, random (0, 360), 2, random (30, 60))
+		EXPL A 0 Radius_Quake (3, 100, 0, 22, 0)
+		TNT1 A 0 A_CustomMissile ("ExplosionSpawner",10, 0, random (0, 360), 2, random (80, 90))
+		TNT1 A 10
+		TNT1 AAAAAAA 0 A_CustomMissile ("FireworkSFXType2", 128, 0, random (0, 360), 2, random (30, 60))
+		EXPL A 0 Radius_Quake (6, 100, 0, 22, 0)
+		TNT1 A 0 A_CustomMissile ("ExplosionSpawner", 10, 0, random (0, 360), 2, random (80, 90))
+		TNT1 A 0 A_CustomMissile ("RidiculousExplosionSpawner", 10, 0, random (0, 360), 2, 90)
+		TNT1 A 35
+		Stop
+	}
+}
+
+actor KaboomWithSound: GreatKaboom
+{
+	Game Doom
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 1
+		TNT1 AA 0 A_CustomMissile ("ExplosionSpawner", 20, 0, random (0, 360), 2, random (0, 180))
+		TNT1 AA 0 A_CustomMissile ("ExplosionSpawner", 20, 0, random (0, 360), 2, random (0, 180))
+		TNT1 A 0 A_PlaySound("FAREXPL", 3)
+		TNT1 A 0 A_PlaySound("Explosion", 1)
+		TNT1 A 300
+		Stop
+	}
+}
+
+Actor ExplosionSpawner
+{
+	+MISSILE
+	+FORCEXYBILLBOARD
+	+NOBLOCKMAP
+	+NOINTERACTION
+	damage 0
+	radius 6
+	height 6
+	speed 40
+	RenderStyle "None"
+	alpha 0.9
+	scale .01
+	BounceFactor 0.5
+	Decal "FireworxScorch"
+	states
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 AA 2 A_SpawnItem("SpawnedExplosion")
+		EXPL A 0 A_CustomMissile ("BigBlackSmokeLarger", 0, 0, random (0, 360), 2, random (20, 90))
+		TNT1 AA 2 A_SpawnItem("SpawnedExplosion")
+		Stop
+
+	Death:
+		MISG A 1
+		TNT1 A 0 A_SpawnItemEx ("DetectCeilCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 10
+		Stop
+
+	XDeath:
+		MISG A 1
+		TNT1 A 10
+		Stop
+	}
+}
+
+Actor ExplosionSpawnersilent: ExplosionSpawner
+{
+	states
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 AA 2 A_SpawnItem("SpawnedExplosionsilent")
+		EXPL A 0 A_CustomMissile ("BigBlackSmokeLarger", 0, 0, random (0, 360), 2, random (20, 90))
+		TNT1 AA 2 A_SpawnItem("SpawnedExplosionSilent")
+		Stop
+
+	Death:
+		MISG A 1
+		TNT1 A 0 A_SpawnItemEx ("DetectCeilCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 10
+		Stop
+
+	XDeath:
+		MISG A 1
+		TNT1 A 10
+		Stop
+	}
+}
+
+Actor SmallExplosionSpawner: ExplosionSpawner
+{
+	Speed 30
+	states
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 AAA 2 A_SpawnItem("SpawnedExplosionSmall")
+		Stop
+	}
+}
+
+Actor LongExplosionSpawner: ExplosionSpawner
+{
+	speed 66
+	alpha 0.9
+	scale .15
+	Decal "BigScorch"
+	states
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 AAAAAA 2 A_SpawnItem("SpawnedExplosionLarge")
+		Stop
+	}
+}
+
+Actor HugeExplosionSpawner: ExplosionSpawner
+{
+	speed 100
+	alpha 0.9
+	scale .15
+	Decal "BigScorch"
+	+CLIENTSIDEONLY
+	states
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0
+		TNT1 A 2
+		TNT1 A 0 A_SpawnItem("HighExplosiveFlamesBig")
+		TNT1 A 0 A_Stop
+		Stop
+	}
+}
+
+Actor hUGEExplosionSpawner2: hUGEExplosionSpawner
+{
+	+CLIENTSIDEONLY
+	speed 80
+	states
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0
+		TNT1 AAAAA 3 A_SpawnItem("HighExplosiveFlamesBig")
+		TNT1 A 0 A_SpawnItem("HighExplosiveFlamesHuge")
+		TNT1 A 0 A_Stop
+		Stop
+	}
+}
+
+Actor RidiculousExplosionSpawner: ExplosionSpawner
+{
+	speed 20
+	alpha 0.9
+	scale .15
+	Decal "BigScorch"
+	+SKYEXPLODE
+	-DOOMBOUNCE
+	+NOGRAVITY
+	+CLIENTSIDEONLY
+	states
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		Goto Death
+
+	Death:
+		TNT1 AAAA 2 A_SpawnItem("HighExplosiveFlamesBig")
+		EXPL A 0 A_CustomMissile ("RidiculousNeoSmoke", 0, 0, random (0, 360), 2, random (0, 180))
+		TNT1 AA 2 A_SpawnItem("HighExplosiveFlamesHuge")
+		TNT1 A 0 A_SpawnItem("ExplosionFlareSpawner")
+		Stop
+	}
+}
+
+Actor SpawnedExplosion
+{
+	+NOCLIP
+	+NOGRAVITY
+	+NOINTERACTION
+	+NOBLOCKMAP
+	+CLIENTSIDEONLY
+	RenderStyle "None"
+	states
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0
+		TNT1 A 2 A_PlaySound("FAREXPL")
+		TNT1 A 0 A_CustomMissile ("HighExplosiveFlamesSmall", 0, 0, random (0, 360), 2, random (0, 90))
+		Stop
+	}
+}
+
+Actor SpawnedExplosionSilent
+{
+	+NOCLIP
+	+NOGRAVITY
+	+NOINTERACTION
+	+NOBLOCKMAP
+	+CLIENTSIDEONLY
+	RenderStyle "None"
+	states
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0
+		TNT1 A 0 A_CustomMissile ("HighExplosiveFlamesSmall", 0, 0, random (0, 360), 2, random (0, 90))
+		Stop
+	}
+}
+
+Actor SpawnedExplosionRepeat
+{
+	+NOCLIP
+	+NOGRAVITY
+	+NOINTERACTION
+	+NOBLOCKMAP
+	+CLIENTSIDEONLY
+	RenderStyle "None"
+	states
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 2
+		TNT1 A 2 A_PlaySound("FAREXPL")
+		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 AAAA 0 A_CustomMissile ("ExplosionFlames", 0, 0, random (0, 360), 2, random (0, 360))
+		TNT1 A 3
+		TNT1 AAAA 0 A_CustomMissile ("ExplosionFlames", 0, 0, random (0, 360), 2, random (0, 360))
+		TNT1 A 3
+		TNT1 AAAA 0 A_CustomMissile ("ExplosionFlames", 0, 0, random (0, 360), 2, random (0, 360))
+		Stop
+	}
+}
+
+Actor SpawnedExplosionBig
+{
+	+NOCLIP
+	+NOGRAVITY
+	+NOINTERACTION
+	+NOBLOCKMAP
+	+CLIENTSIDEONLY
+	RenderStyle "None"
+	states
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 2
+		TNT1 A 2 A_PlaySound("FAREXPL")
+		EXPL A 0 A_CustomMissile ("HugeNeoSmoke", 0, 0, random (0, 360), 2, random (0, 360))
+		EXPL A 0 A_CustomMissile ("BigNeoSmoke", 0, 0, random (0, 360), 2, random (0, 360))
+		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 AAAA 0 A_CustomMissile ("ExplosionFlamesBig", 0, 0, random (0, 360), 2, random (0, 180))
+		TNT1 A 3
+		TNT1 AAAA 0 A_CustomMissile ("ExplosionFlamesBig", 0, 0, random (0, 360), 2, random (0, 180))
+		Stop
+	}
+}
+
+Actor SpawnedExplosionLarge
+{
+	+NOCLIP
+	+NOGRAVITY
+	+NOINTERACTION
+	+NOBLOCKMAP
+	RenderStyle "None"
+	states
+	{
+	Spawn:
+		TNT1 A 2
+		TNT1 A 2 A_PlaySound("FAREXPL")
+		TNT1 AA 0 A_CustomMissile ("ExplosionFlamesBig2", 0, 0, random (0, 360), 2, random (0, 180))
+		tnt1 a 0 a_eXPLODE(200, 400)
+		Stop
+	}
+}
+
+Actor SpawnedFlamers
+{
+	+NOCLIP
+	+NOGRAVITY
+	+NOBLOCKMAP
+	RenderStyle "None"
+	DamageType Flames
+	states
+	{
+	Spawn:
+		TNT1 A 2
+		TNT1 A 0 A_Explode(100,40)
+		TNT1 AAAA 0 A_CustomMissile ("ExplosionFlames", 0, 0, random (0, 360), 2, random (0, 360))
+		Stop
+	}
+}
+
+Actor SpawnedExplosionSmall
+{
+	+NOCLIP
+	+NOGRAVITY
+	+NOINTERACTION
+	+NOBLOCKMAP
+	RenderStyle "None"
+	states
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse//
+
+    SpawnLoop:
+		TNT1 A 2
+		TNT1 A 2
+		EXPL A 0 A_CustomMissile ("BigNeoSmoke", 0, 0, random (0, 360), 2, random (0, 360))
+		EXPL A 0 A_CustomMissile ("ExplosionSmoke", 0, 0, random (0, 360), 2, random (0, 360))
+		TNT1 AAAA 0 A_CustomMissile ("SmallExplosionFlames", 0, 0, random (0, 360), 2, random (0, 360))
+		Stop
+	}
+}
+
+Actor RocketPenetrationExplosion
+{
+	+NOCLIP
+	+NOGRAVITY
+	+NOINTERACTION
+	+NOBLOCKMAP
+	RenderStyle "None"
+	DamageType "ExplosiveImpact"
+	states
+	{
+	Spawn:
+		TNT1 A 2
+		TNT1 A 2
+		TNT1 A 0 A_Explode(20, 80)
+		EXPL A 0 A_CustomMissile ("BigNeoSmoke", 0, 0, random (0, 360), 2, random (0, 360))
+		EXPL A 0 A_CustomMissile ("ExplosionSmoke", 0, 0, random (0, 360), 2, random (0, 360))
+		TNT1 AA 0 A_CustomMissile ("SmallExplosionFlames", 0, 0, random (0, 360), 2, random (0, 360))
+		Stop
+	}
+}
+
+ACTOR FireworkSFXType1
+{
+	Radius 4
+	Height 4
+	Speed 18
+	PROJECTILE
+	+THRUGHOST
+	+CLIENTSIDEONLY
+	+NOBLOCKMAP
+	RenderStyle "None"
+	-NOGRAVITY
+	Gravity 1
+	Alpha 1.0
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse//
+
+    SpawnLoop:
+		TNT1 A 0 A_SpawnItem ("SmallFlameTrails")
+		TNT1 A 1 A_SpawnItem("RedFlareSmall")
+		TNT1 A 1 A_SpawnItem("RedFlareSmall")
+		Loop
+
+	Death:
+		TNT1 A 0 A_SpawnItemEx("TinyBurningPiece", random (-15, 15), random (-15, 15))
+		Stop
+	}
+}
+
+ACTOR FireworkSFXType2: FireworkSFXType1
+{
+	Radius 2
+	Height 2
+	+DOOMBOUNCE
+	WallBounceFactor 0.5
+	BounceFactor 0.2
+	States
+	{
+	Death:
+		TNT1 A 0
+		Stop
+	}
+}
+
+Actor BarrelExplosionDamage
+{
+	+MISSILE
+	Radius 2
+	Height 42
+	PROJECTILE
+	Speed 0
+	Damagetype "ExplosiveImpact"
+	+NOBLOCKMAP
+	RenderStyle "None"
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_Explode(200,200)
+		Stop
+	}
+}
+
+ACTOR ExplosionAirBurstEffect
+{
+	Radius 1
+	Height 1
+	Speed 20
+	Damage 0 
+	+NOBLOCKMAP
+	+NOTELEPORT
+	+DONTSPLASH
+	+MISSILE
+	+CLIENTSIDEONLY
+	+DOOMBOUNCE
+	+FORCEXYBILLBOARD
+	RenderStyle "Add"
+	Scale 1.0
+	Alpha 0.6
+	Gravity 0
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0
+		FLXP CEGIKQSUY 1 BRIGHT A_FadeOut(0.07)
+		Stop
+	}
+}
+
+ACTOR ExplosionAirBurstEffectSmall : ExplosionAirBurstEffect
+{
+	Speed 15
+	Scale 0.8
+}

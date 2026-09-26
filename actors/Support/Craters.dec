@@ -1,0 +1,248 @@
+// Extracted from actors/PlayerClasses/FlatDecals.dec during Phase 2 DECORATE pruning.
+// Floor/ceiling "crater" decal-spawning actors used by A_SpawnItemEx calls from
+// weapon and monster explosion states throughout the kept code. The rest of
+// FlatDecals.dec (map floor-decal detection/placement system) is out of scope
+// and was intentionally left out of the include tree.
+
+ACTOR DetectFloorCrater
+{
+	game Doom
+	scale 3.4
+	speed 0
+	health 1
+	radius 8
+	height 4
+	Gravity 0.9
+	damage 0
+	renderstyle "Shaded"
+	StencilColor "Black"
+	Alpha 0.9
+	DamageType Blood
+	+MISSILE
+	+CLIENTSIDEONLY
+	+NOTELEPORT
+	+NOBLOCKMAP
+	+FORCEXYBILLBOARD
+	+NODAMAGETHRUST
+	+MOVEWITHSECTOR
+	-DONTSPLASH
+	+DOOMBOUNCE
+	BounceFactor 0.01
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 ThrustThingZ(0,-10,0,1)
+		TNT1 A 4
+		Stop
+
+	Death:
+		TNT1 A 1
+		XXX1 A 2000
+		Stop
+	}
+}
+
+ACTOR DetectCeilCrater
+{
+	game Doom
+	scale 3.4
+	speed 0
+	health 1
+	radius 1
+	height 1
+	Gravity 0.0
+	damage 0
+	renderstyle "Shaded"
+	StencilColor "Black"
+	Alpha 0.9
+	DamageType Blood
+	+MISSILE
+	+CLIENTSIDEONLY
+	+NOTELEPORT
+	+NOBLOCKMAP
+	-FORCEXYBILLBOARD
+	+NODAMAGETHRUST
+	-DONTSPLASH
+	+NOGRAVITY
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 ThrustThingZ(0,35,0,1)
+		TNT1 A 2
+		Stop
+
+	Death:
+		XXX1 A 4004
+		XXX1 AAAAAAAAAA 1 A_FadeOut(0.05)
+		Stop
+	}
+}
+
+ACTOR DetectFloorCraterSmall
+{
+	game Doom
+	scale 2.0
+	speed 0
+	health 1
+	radius 8
+	height 4
+	Gravity 0.9
+	damage 0
+	renderstyle "Shaded"
+	StencilColor "Black"
+	Alpha 0.9
+	DamageType Blood
+	+MISSILE
+	+CLIENTSIDEONLY
+	+NOTELEPORT
+	+NOBLOCKMAP
+	+FORCEXYBILLBOARD
+	+NODAMAGETHRUST
+	+MOVEWITHSECTOR
+	-DONTSPLASH
+	+DOOMBOUNCE
+	BounceFactor 0.01
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 ThrustThingZ(0,-10,0,1)
+		TNT1 A 4
+		Stop
+
+	Death:
+		TNT1 A 1
+		XXX1 A 1000
+		Stop
+	}
+}
+
+ACTOR DetectCeilCraterSmall
+{
+	game Doom
+	scale 2.0
+	speed 0
+	health 1
+	radius 1
+	height 1
+	Gravity 0.0
+	damage 0
+	renderstyle "Shaded"
+	StencilColor "Black"
+	Alpha 0.9
+	DamageType Blood
+	+MISSILE
+	+CLIENTSIDEONLY
+	+NOTELEPORT
+	+NOBLOCKMAP
+	-FORCEXYBILLBOARD
+	+NODAMAGETHRUST
+	-DONTSPLASH
+	+NOGRAVITY
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 ThrustThingZ(0,35,0,1)
+		TNT1 A 2
+		Stop
+
+	Death:
+		XXX1 A 1000
+		Stop
+	}
+}
+
+ACTOR DetectFloorCraterBig : DetectFloorCrater
+{
+	scale 4.0
+	speed 0
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 ThrustThingZ(0,-10,0,1)
+		TNT1 A 4
+		Stop
+
+	Death:
+		XXX1 A 2000
+		Stop
+	}
+}
+
+// Extracted from actors/PlayerClasses/FlatDecals.dec during Phase 2 asset cleanup.
+// Bullet-impact floor/ceiling decal detectors referenced from actors/MISC/PUFF.dec.
+
+ACTOR DetectFloorBullet
+{
+	game Doom
+	scale 0.4
+	speed 0
+	health 1
+	radius 8
+	height 1
+	Gravity 0.9
+	damage 0
+	RenderStyle "Translucent"
+	Alpha 0.70
+	DamageType Blood
+	+MISSILE
+	+CLIENTSIDEONLY
+	+NOTELEPORT
+	+NOBLOCKMAP
+	+FORCEXYBILLBOARD
+	+NODAMAGETHRUST
+	+MOVEWITHSECTOR
+	-DONTSPLASH
+	+DOOMBOUNCE
+	BounceFactor 0.01
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 5
+		Stop
+
+	Death:
+		XXX1 A 2000
+		Stop
+	}
+}
+
+ACTOR DetectCeilBullet
+{
+	game Doom
+	scale 0.4
+	speed 0
+	health 1
+	radius 1
+	height 1
+	Gravity 0.0
+	damage 0
+	RenderStyle "Translucent"
+	Alpha 0.70
+	DamageType Blood
+	+MISSILE
+	+CLIENTSIDEONLY
+	+NOTELEPORT
+	+NOBLOCKMAP
+	+FORCEXYBILLBOARD
+	+NODAMAGETHRUST
+	-DONTSPLASH
+	+NOGRAVITY
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 ThrustThingZ(0,35,0,1)
+		TNT1 A 2
+		Stop
+
+	Death:
+		XXX1 A 2000
+		Stop
+	}
+}

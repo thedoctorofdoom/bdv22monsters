@@ -1,4 +1,4 @@
-actor VeryDeadMarine: DeadMarine Replaces DeadMarine
+actor VeryDeadMarine: DeadMarine
 {
 	damagefactor "Avoid", 0.0 damagefactor "Taunt", 0.0 damagefactor "KillMe", 0.0
 	damagefactor "Blood", 0.0 damagefactor "GreenBlood", 0.0 damagefactor "BlueBlood", 0.0
@@ -49,7 +49,7 @@ actor VeryDeadMarine: DeadMarine Replaces DeadMarine
 	}
 }
 
-actor VeryVeryDeadMarine: GibbedMarine Replaces GibbedMarine
+actor VeryVeryDeadMarine: GibbedMarine
 {
 	+CLIENTSIDEONLY
 	damagefactor "Avoid", 0.0
@@ -94,7 +94,7 @@ actor VeryVeryDeadMarine: GibbedMarine Replaces GibbedMarine
 	}
 }
 
-Actor ZioGibbedMarineSpawner: GibbedMarine Replaces GibbedMarineExtra
+Actor ZioGibbedMarineSpawner: GibbedMarine
 {
 	Game Doom
 	-SpawnCeiling
@@ -591,7 +591,7 @@ actor GibDec
 
 // Dead on a stick ---------------
 
-ACTOR DeadDeadStick: DeadStick Replaces DeadStick
+ACTOR DeadDeadStick: DeadStick
 {
 	Health 200
 	Mass 99999999
@@ -646,7 +646,7 @@ ACTOR DeadDeadStick: DeadStick Replaces DeadStick
 
 // Still alive on a stick --------------------------------------------------
 
-ACTOR DeadLiveStick: LiveStick Replaces LiveStick
+ACTOR DeadLiveStick: LiveStick
 {
 	Health 200
 	Mass 99999999
@@ -927,7 +927,7 @@ Actor ImpaledMarineAlive1b: ImpaledMarineAlive1 { translation "112:127=[178,34,3
 Actor ImpaledMarineAlive1c: ImpaledMarineAlive1 { translation "112:127=[192,192,192]:[0,0,0]" }
 Actor ImpaledMarineAlive1d: ImpaledMarineAlive1 { translation "112:127=[0,128,192]:[0,0,0]" }
 
-ACTOR DeadBloodyTwitch: BloodyTwitch Replaces BloodyTwitch
+ACTOR DeadBloodyTwitch: BloodyTwitch
 {
 	Radius 16
 	Height 68
@@ -957,7 +957,7 @@ ACTOR DeadBloodyTwitch: BloodyTwitch Replaces BloodyTwitch
 		"####" A 0 ACS_NamedExecuteAlways("SlaughtermapCheckDecoration")
 		GOR1 A 2
 		TNT1 A 0 Thing_ChangeTID(0,728)
-		MARN A 0 ACS_ExecuteAlways(177, 0, 0, 0, 0)//Check if you are playing on TVR!
+		MARN A 0 ACS_NamedExecuteAlways("BD_WadTextureCheck", 0)//Check if you are playing on TVR!
 		GOR1 A 4
 		TNT1 A 0 A_JumpIfInventory("TVRRainVerification", 10, "Replacerain")
 		TNT1 A 0 A_SpawnItem("GoreFliesWsound", 0, random(0, 45))
@@ -1066,7 +1066,7 @@ ACTOR DeadBloodyTwitchC: DeadBloodyTwitchB
 
 // Meat 2 ------------------------------------------------------------------
 
-ACTOR HangingBody: Meat2 Replaces Meat2
+ACTOR HangingBody: Meat2
 {
 	Radius 16
 	Height 84
@@ -1125,7 +1125,7 @@ ACTOR HangingBody: Meat2 Replaces Meat2
 	}
 }
 
-ACTOR HangingPairOfLegs: DeadBloodyTwitchB Replaces Meat4
+ACTOR HangingPairOfLegs: DeadBloodyTwitchB
 {
 	Health 100
 	damagefactor "Fire", 0.0
@@ -1178,12 +1178,12 @@ ACTOR HangingPairOfLegs: DeadBloodyTwitchB Replaces Meat4
 	}
 }
 
-ACTOR NSHangingBody : HangingBody Replaces NonsolidMeat2
+ACTOR NSHangingBody : HangingBody
 {
 	Game Doom
 }
 
-ACTOR NSHangingPairOfLegs : HangingPairOfLegs Replaces NonsolidMeat4
+ACTOR NSHangingPairOfLegs : HangingPairOfLegs
 {
 	Game Doom
 }
@@ -1203,7 +1203,7 @@ ACTOR Meat2C: DeadBloodyTwitchB
 
 // Meat 3 ------------------------------------------------------------------
 
-ACTOR HangingDeadGuyNoLeg: Meat3 Replaces Meat3
+ACTOR HangingDeadGuyNoLeg: Meat3
 {
 	Radius 16
 	Height 84
@@ -1267,7 +1267,7 @@ ACTOR HangingDeadGuyNoLeg: Meat3 Replaces Meat3
 	}
 }
 
-ACTOR HangingLeg: DeadBloodyTwitchB Replaces Meat5
+ACTOR HangingLeg: DeadBloodyTwitchB
 {
 	Radius 16
 	Height 84
@@ -1327,26 +1327,26 @@ ACTOR Meat3C: DeadBloodyTwitchB
 	}
 }
 
-ACTOR NSHangingDeadGuyNoLeg : HangingDeadGuyNoLeg Replaces NonsolidMeat3
+ACTOR NSHangingDeadGuyNoLeg : HangingDeadGuyNoLeg
 {
 	Game Doom
 }
 
-ACTOR NSHangingLeg : HangingLeg Replaces NonsolidMeat5
+ACTOR NSHangingLeg : HangingLeg
 {
 	Game Doom
 }
 
 // Nonsolid bloody twitch --------------------------------------------------
 
-ACTOR DeadNonsolidTwitch : DeadBloodyTwitch Replaces NonsolidTwitch
+ACTOR DeadNonsolidTwitch : DeadBloodyTwitch
 {
 	Game Doom
 }
 
 // Hanging with no guts ----------------------------------------------------
 
-ACTOR DeadHangNoGuts: HangNoGuts Replaces HangNoGuts
+ACTOR DeadHangNoGuts: HangNoGuts
 {
 	Radius 20
 	Height 90
@@ -1404,7 +1404,7 @@ ACTOR DeadHangNoGuts: HangNoGuts Replaces HangNoGuts
 
 // Hanging from bottom with no brain ---------------------------------------
 
-ACTOR DeadHangBNoBrain: DeadHangNoGuts Replaces HangBNoBrain
+ACTOR DeadHangBNoBrain: DeadHangNoGuts
 {
 	Radius 16
 	Height 88
@@ -1437,7 +1437,7 @@ ACTOR DeadHangBNoBrain: DeadHangNoGuts Replaces HangBNoBrain
 
 // Hanging from top, looking down ------------------------------------------
 
-ACTOR DeadHangTLookingDown: DeadHangNoGuts Replaces HangTLookingDown
+ACTOR DeadHangTLookingDown: DeadHangNoGuts
 {
 	Radius 16
 	Height 64
@@ -1469,7 +1469,7 @@ ACTOR DeadHangTLookingDown: DeadHangNoGuts Replaces HangTLookingDown
 
 // Hanging from top, looking up --------------------------------------------
 
-ACTOR DeadHangTLookingUp: DeadHangNoGuts Replaces HangTLookingUp
+ACTOR DeadHangTLookingUp: DeadHangNoGuts
 {
 	Radius 16
 	Height 64
@@ -1502,7 +1502,7 @@ ACTOR DeadHangTLookingUp: DeadHangNoGuts Replaces HangTLookingUp
 
 // Hanging from top, skully ------------------------------------------------
 
-ACTOR DeadHangTSkull: DeadHangNoGuts replaces HangTSkull
+ACTOR DeadHangTSkull: DeadHangNoGuts
 {
 	Radius 16
 	Height 64
@@ -1534,7 +1534,7 @@ ACTOR DeadHangTSkull: DeadHangNoGuts replaces HangTSkull
 
 // Hanging from top without a brain ----------------------------------------
 
-ACTOR DeadHangTNoBrain: DeadHangNoGuts Replaces HangTNoBrain
+ACTOR DeadHangTNoBrain: DeadHangNoGuts
 {
 	Radius 16
 	Height 64
@@ -1625,7 +1625,7 @@ ACTOR DyingComando
 
 	Death:
 		CFTB D 1
-		TNT1 A 0 A_SpawnItem ("1ealthPlusFatalityBonus")
+		TNT1 A 0
 		TNT1 AAAAAAAAAA 0 A_CustomMissile ("Brutal_FlyingBlood", 15, 0, random (0, 360), 2, random (0, 160))
 		TNT1 AAA 0 A_CustomMissile ("Xdeath1", 15, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 1 A_SpawnItem ("SuperBrutalizedDeadChaingunGuy", 3)
@@ -1671,7 +1671,7 @@ ACTOR DyingRevenant
 	}
 }
 
-ACTOR ColonGibs2 Replaces ColonGibs
+ACTOR ColonGibs2
 {
 	Game Doom
 	SpawnID 147
@@ -1702,7 +1702,7 @@ ACTOR ColonGibs2 Replaces ColonGibs
 	}
 }
 
-ACTOR SmallBloodPool2 Replaces SmallBloodPool
+ACTOR SmallBloodPool2
 {
 	Game Doom
 	SpawnID 148
@@ -1755,7 +1755,7 @@ ACTOR VanillaColonGibs: SmallBloodPool
 
 // brain stem lying on the ground ------------------------------------------
 
-ACTOR BrainStem2 Replaces BrainStem
+ACTOR BrainStem2
 {
 	Game Doom
 	SpawnID 150
@@ -1777,7 +1777,7 @@ ACTOR BrainStem2 Replaces BrainStem
 	}
 }
 
-ACTOR RealGibs2 Replaces RealGibs
+ACTOR RealGibs2
 {
 	+DROPOFF
 	+CORPSE
@@ -1797,14 +1797,14 @@ ACTOR RealGibs2 Replaces RealGibs
 	}
 }
 
-ACTOR Gibs2 : RealGibs2 Replaces Gibs
+ACTOR Gibs2 : RealGibs2
 {
 	Game Doom
 	SpawnID 146
 	ClearFlags
 }
 
-Actor NewFloatingSkull : FloatingSkull replaces FloatingSkull
+Actor NewFloatingSkull : FloatingSkull
 {
 	+FLOATBOB
 	states
@@ -1819,7 +1819,7 @@ Actor NewFloatingSkull : FloatingSkull replaces FloatingSkull
 	}
 }
 
-ACTOR NewHeadCandles : HeadCandles replaces HeadCandles
+ACTOR NewHeadCandles : HeadCandles
 {
 	States
 	{

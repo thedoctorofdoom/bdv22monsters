@@ -1,0 +1,320 @@
+// Bridges BD's weapon-token gore branches (A_JumpIfInTargetInventory checks in
+// Death.* / XDeath states) to weapons that never grant those tokens, e.g.
+// vanilla weapons or third-party weapon mods. Death.Explosive, Death.Fire and XDeath
+// selection stays purely damage-type/gibhealth driven: splash and fire-type hits
+// pass through the shim untouched.
+//
+// Tokens are granted immediately before damage is applied and expire after
+// BDMO_GoreShimLedger.HOLD_TICS. They are mirrored onto the damaged actor as well,
+// because BD's two headshot paths re-enter DamageMobj with source == the monster
+// (Head_Shot ACS -> Thing_Damage2) or source == its HeadHitbox (A_DamageMaster),
+// and Die() then points the Death.Head token checks at that actor's own inventory.
+//
+// DECORATE classes are unknown when ZScript compiles, so BD token classes are
+// resolved by name at runtime.
+
+class BDMO_GoreShim play
+{
+	const TK_CUT       = 1;   // HasCutingWeapon
+	const TK_PLASMA    = 2;   // HasPlasmaWeapon
+	const TK_FISTS     = 4;   // FistsSelected
+	const TK_SSG       = 8;   // SSGSelected
+	const TK_MINIGUN   = 16;  // MinigunSelected
+	const TK_HEAVYAUTO = 32;  // HeavyAutomaticWeapon
+	const NUM_TOKENS   = 6;
+	const NUM_MARKERS  = 14;
+
+	// Ranges follow PB's A_DeathWepCheck calls (PBMonster.zsc), which use Distance2D.
+	const SSG_RANGE     = 200;
+	const MINIGUN_RANGE = 1000;
+	const MELEE_RANGE   = 128;
+
+	static Class<Inventory> TokenClass(int i)
+	{
+		Name n;
+		switch (i)
+		{
+			case 0: n = 'HasCutingWeapon'; break;
+			case 1: n = 'HasPlasmaWeapon'; break;
+			case 2: n = 'FistsSelected'; break;
+			case 3: n = 'SSGSelected'; break;
+			case 4: n = 'MinigunSelected'; break;
+			case 5: n = 'HeavyAutomaticWeapon'; break;
+			default: return null;
+		}
+		return (Class<Inventory>)(n);
+	}
+
+	// Tokens that only real BD player weapons grant; holding any means BD's own
+	// token logic is active and the shim must stay out of the way.
+	static Class<Inventory> MarkerClass(int i)
+	{
+		Name n;
+		switch (i)
+		{
+			case 0:  n = 'ChainsawSelected'; break;
+			case 1:  n = 'RifleSelected'; break;
+			case 2:  n = 'ShotgunSelected'; break;
+			case 3:  n = 'RocketLauncherSelected'; break;
+			case 4:  n = 'GrenadeLauncherSelected'; break;
+			case 5:  n = 'PlasmaGunSelected'; break;
+			case 6:  n = 'RailGunSelected'; break;
+			case 7:  n = 'BFGSelected'; break;
+			case 8:  n = 'BFG10KSelected'; break;
+			case 9:  n = 'SubMachineGunSelected'; break;
+			case 10: n = 'FlameCannonSelected'; break;
+			case 11: n = 'RevenantLauncherSelected'; break;
+			case 12: n = 'LostSoulSelected'; break;
+			case 13: n = 'SawSelected'; break;
+			default: return null;
+		}
+		return (Class<Inventory>)(n);
+	}
+
+	static bool HoldsRealToken(Actor a)
+	{
+		let ledger = BDMO_GoreShimLedger(a.FindInventory("BDMO_GoreShimLedger"));
+		int mine = ledger ? ledger.granted : 0;
+		for (int i = 0; i < NUM_TOKENS; i++)
+		{
+			let cls = TokenClass(i);
+			if (cls && a.FindInventory(cls) && !(mine & (1 << i)))
+				return true;
+		}
+		for (int i = 0; i < NUM_MARKERS; i++)
+		{
+			let cls = MarkerClass(i);
+			if (cls && a.FindInventory(cls))
+				return true;
+		}
+		return false;
+	}
+
+	static bool Has(String s, String part)
+	{
+		return s.IndexOf(part) >= 0;
+	}
+
+	static void Process(Actor victim, Actor inflictor, Actor source, Name mod, int flags)
+	{
+		if (!bd_goreshim || !victim || !source)
+			return;
+		if (source == victim)
+			return;
+		if (!source.player)
+			return;
+		if (HoldsRealToken(source))
+			return;
+		if (IsExplosiveOrFire(mod, flags))
+			return;
+
+		int wanted = Classify(victim, inflictor, source, mod);
+		Apply(source, wanted);
+		if (!HoldsRealToken(victim))
+			Apply(victim, wanted);
+	}
+
+	// Death.Explosive / Death.Fire / XDeath are chosen by damage type and gibhealth
+	// alone, so these hits are passed through untouched (nothing granted or revoked).
+	static bool IsExplosiveOrFire(Name mod, int flags)
+	{
+		if (flags & DMG_EXPLOSION)
+			return true;
+		String md = mod;
+		md = md.MakeLower();
+		return Has(md, "explos") || Has(md, "fire") || Has(md, "burn") || Has(md, "flame")
+			|| Has(md, "napalm") || Has(md, "incendiary");
+	}
+
+	static bool IsCutName(String s)
+	{
+		return Has(s, "saw") || Has(s, "axe") || Has(s, "blade") || Has(s, "sword") || Has(s, "knife")
+			|| Has(s, "katana") || Has(s, "machete") || Has(s, "cleaver");
+	}
+
+	static int Classify(Actor victim, Actor inflictor, Actor source, Name mod)
+	{
+		Weapon w = source.player.ReadyWeapon;
+		String wn = "";
+		String an = "";
+		if (w)
+		{
+			wn = w.GetClassName();
+			wn = wn.MakeLower();
+			if (w.AmmoType1)
+			{
+				an = w.AmmoType1.GetClassName();
+				an = an.MakeLower();
+			}
+		}
+		String inn = "";
+		if (inflictor && inflictor != source)
+		{
+			inn = inflictor.GetClassName();
+			inn = inn.MakeLower();
+		}
+		String md = mod;
+		md = md.MakeLower();
+
+		bool meleeWeapon = w && w.bMeleeWeapon;
+		bool kick = Has(md, "kick") || Has(md, "stomp") || Has(inn, "kick") || Has(inn, "stomp");
+		bool meleeMod = md == "melee" || Has(md, "punch") || Has(md, "fist") || kick;
+		bool meleeInflictor = Has(inn, "punch") || Has(inn, "fist") || Has(inn, "melee");
+		bool close = victim.Distance3D(source) <= MELEE_RANGE + victim.radius + source.radius;
+
+		if (close && (meleeWeapon || meleeMod || meleeInflictor))
+		{
+			if (kick)
+				return 0;
+			bool cutMod = md == "saw" || md == "cut" || md == "axe" || Has(md, "chainsaw")
+				|| Has(md, "blade") || Has(md, "slash") || Has(md, "sword") || Has(md, "knife")
+				|| Has(md, "katana") || Has(md, "machete");
+			bool punchInflictor = Has(inn, "punch") || Has(inn, "fist");
+			bool cutWeapon = (w is "Chainsaw") || (!punchInflictor && IsCutName(wn));
+			if (cutMod || cutWeapon || IsCutName(inn))
+				return TK_CUT;
+			if ((w is "Fist") || meleeWeapon || punchInflictor || Has(wn, "fist") || Has(wn, "punch") || Has(wn, "knuckle"))
+				return TK_FISTS;
+			return 0;
+		}
+
+		if (Has(md, "plasma") || Has(inn, "plasma") || Has(inn, "pulse") || Has(wn, "plasma")
+			|| Has(wn, "pulse") || (w is "PlasmaRifle"))
+			return TK_PLASMA;
+
+		bool ssg = (w is "SuperShotgun") || Has(wn, "supershotgun") || Has(wn, "ssg")
+			|| Has(wn, "doublebarrel") || Has(wn, "doubleshotgun") || Has(wn, "dbshotgun")
+			|| Has(wn, "quadshotgun") || (Has(an, "shell") && w.AmmoUse1 >= 2)
+			|| md == "ssg" || md == "quadblast";
+		if (ssg)
+			return victim.Distance2D(source) < SSG_RANGE ? TK_SSG : 0;
+
+		if ((w is "Chaingun") || Has(wn, "minigun") || Has(wn, "chaingun") || Has(wn, "gatling") || Has(wn, "vulcan"))
+			return TK_HEAVYAUTO | (victim.Distance2D(source) < MINIGUN_RANGE ? TK_MINIGUN : 0);
+
+		if (Has(wn, "mg42") || Has(wn, "hmg") || Has(wn, "heavymachinegun") || Has(wn, "lmg"))
+			return TK_HEAVYAUTO;
+
+		return 0;
+	}
+
+	static void Apply(Actor a, int wanted)
+	{
+		let ledger = BDMO_GoreShimLedger(a.FindInventory("BDMO_GoreShimLedger"));
+		if (!ledger)
+		{
+			if (!wanted)
+				return;
+			ledger = BDMO_GoreShimLedger(a.GiveInventoryType("BDMO_GoreShimLedger"));
+			if (!ledger)
+				return;
+		}
+		ledger.SetWanted(wanted);
+	}
+
+	// Vanilla-parented BD monsters that cannot be re-parented to BDMO_GoreMonster
+	// without losing inherited properties; they get BDMO_GoreShimHook instead.
+	static bool NeedsHook(Actor mo)
+	{
+		for (Class<Object> c = mo.GetClass(); c; c = c.GetParentClass())
+		{
+			Name n = c.GetClassName();
+			if (n == 'ShotgunGuy1' || n == 'ChaingunGuy1' || n == 'BullDemon' || n == 'Cacodemon_'
+				|| n == 'HellKnight2' || n == 'BaronofHell2' || n == 'Arachnotron1' || n == 'Revenant1'
+				|| n == 'Mancubus' || n == 'TehArchvile' || n == 'TehLostSoul' || n == 'TheCyberdemon'
+				|| n == 'BDFormerCommander' || n == 'Nazi')
+				return true;
+		}
+		return false;
+	}
+}
+
+class BDMO_GoreShimLedger : Inventory
+{
+	const HOLD_TICS = 10;
+
+	int granted;
+	int ticsLeft;
+
+	Default
+	{
+		Inventory.MaxAmount 1;
+		+INVENTORY.UNDROPPABLE
+		+INVENTORY.UNTOSSABLE
+	}
+
+	void SetWanted(int wanted)
+	{
+		for (int i = 0; i < BDMO_GoreShim.NUM_TOKENS; i++)
+		{
+			int bit = 1 << i;
+			let cls = BDMO_GoreShim.TokenClass(i);
+			if (!cls)
+				continue;
+			if ((granted & bit) && !owner.FindInventory(cls))
+				granted &= ~bit;
+
+			if (wanted & bit)
+			{
+				if (!owner.FindInventory(cls))
+				{
+					owner.GiveInventory(cls, 1);
+					if (owner.FindInventory(cls))
+						granted |= bit;
+				}
+			}
+			else if (granted & bit)
+			{
+				owner.TakeInventory(cls, 1);
+				granted &= ~bit;
+			}
+		}
+		ticsLeft = granted ? HOLD_TICS : 0;
+	}
+
+	// Never Destroy() here: the engine's DoEffect loop reads item.Inventory afterwards.
+	override void DoEffect()
+	{
+		Super.DoEffect();
+		if (owner && ticsLeft > 0 && --ticsLeft == 0)
+			SetWanted(0);
+	}
+}
+
+class BDMO_GoreMonster : Actor
+{
+	override int DamageMobj(Actor inflictor, Actor source, int damage, Name mod, int flags, double angle)
+	{
+		BDMO_GoreShim.Process(self, inflictor, source, mod, flags);
+		return Super.DamageMobj(inflictor, source, damage, mod, flags, angle);
+	}
+}
+
+// Passive ModifyDamage runs inside DamageMobj before health is subtracted and
+// before Die(), so it can grant tokens in time for the death-state checks.
+class BDMO_GoreShimHook : Inventory
+{
+	Default
+	{
+		Inventory.MaxAmount 1;
+		+INVENTORY.UNDROPPABLE
+		+INVENTORY.UNTOSSABLE
+	}
+
+	override void ModifyDamage(int damage, Name damageType, out int newdamage, bool passive, Actor inflictor, Actor source, int flags, double angle)
+	{
+		newdamage = damage;
+		if (passive && owner)
+			BDMO_GoreShim.Process(owner, inflictor, source, damageType, flags);
+	}
+}
+
+class BDMO_GoreShimHandler : EventHandler
+{
+	override void WorldThingSpawned(WorldEvent e)
+	{
+		let mo = e.Thing;
+		if (mo && mo.bIsMonster && !(mo is "BDMO_GoreMonster") && BDMO_GoreShim.NeedsHook(mo))
+			mo.GiveInventoryType("BDMO_GoreShimHook");
+	}
+}

@@ -16,7 +16,7 @@ Actor DebrisGeneral
 
 #include "actors/MISC/Optimization.dec"
 #include "actors/TOKENS.dec"
-#include "actors/KeyPLacement.dec"
+
 //Gore N' Blood
 #include "actors/Gore/GOREGROUPS.dec"
 #include "actors/Gore/BLOOD.dec"
@@ -32,8 +32,6 @@ Actor DebrisGeneral
 #include "actors/Gore/Leg.dec"
 #include "actors/Gore/Frozen.dec"
 
-#include "actors/Gore/EXECUTIONS.dec"
-
 #include "actors/Gore/BloodTypesMonsters.dec"
 #include "actors/Gore/PurpleGore.dec"
 
@@ -45,22 +43,30 @@ Actor DebrisGeneral
 #include "actors/MISC/FIRE.dec"
 #include "actors/MISC/SPARKS.dec"
 #include "actors/MISC/FLARES.dec"
-#include "actors/MISC/ARTIFACT.dec"
-#include "actors/MISC/HEALTH2.dec"
-#include "actors/MISC/DROPABLES.dec"
 #include "actors/MISC/PUFF.dec"
-#include "actors/MISC/AMMO.dec"
+
+//Support - actors extracted from out-of-scope Phase 2 removals that are
+//still referenced by kept monster/gore/weapon/vehicle code. Placed after the
+//Gore/MISC blocks above since some (e.g. NuclearFlames) subclass a base
+//class defined in actors/MISC/FIRE.dec.
+#include "actors/Support/ImpactEffects.dec"
+#include "actors/Support/Craters.dec"
+#include "actors/Support/FatalityBonusDrops.dec"
+#include "actors/Support/BodyCleanup.dec"
+#include "actors/Support/GoreThrows.dec"
+#include "actors/Support/LiquidSplashes.dec"
+#include "actors/Support/VisorBlood.dec"
+#include "actors/Support/VehicleAmmo.dec"
+#include "actors/Support/Dropables.dec"
+#include "actors/Support/MiscSingletons.dec"
 
 
 //Guns Guns Guns
-#include "actors/Weapons/DEFAULTWEAPON.dec"
 //#include "actors/LedgeGrab.dec"
-#include "actors/ExecutionsWeap.dec"
 
 #include "actors/Weapons/TRACERS.dec"
 #include "actors/Weapons/MELEE.dec"
 //#include "actors/Weapons/SAW.dec"
-#include "actors/Weapons/AXE.dec"
 #include "actors/Weapons/RIFLE.dec"
 //#include "actors/Weapons/DUALRIFLE.dec"
 //#include "actors/Weapons/PISTOL.dec"
@@ -77,21 +83,15 @@ Actor DebrisGeneral
 #include "actors/Weapons/BFG.dec"
 //#include "actors/Weapons/DUALMP40.dec"
 //#include "actors/Weapons/MP40.dec"
-#include "actors/Weapons/UNMAKER.dec"
 //#include "actors/Weapons/DRAGONSLAYER.dec"
 //#include "actors/Weapons/AmmoDroper.dec"
 
 //#include "actors/Weapons/GRENADELAUNCH.dec"
-#include "actors/Weapons/BFG10k.dec"
 //#include "actors/Weapons/RAILGUN.dec"
 //#include "actors/Weapons/REVOLVER.dec"
 //#include "actors/Weapons/ASSAULTSHOTGUN.dec"
 
-#include "actors/Weapons/NukeLauncher.dec"
 //#include "actors/Weapons/Sniper.dec"
-#include "actors/Weapons/IncendiaryLauncher.dec"
-#include "actors/Weapons/Flamethrower.dec"
-#include "actors/Weapons/Grenades.dec"
 
 //Enemies
 #include "actors/Enemies/ZOMBIEMEN.dec"
@@ -119,14 +119,6 @@ Actor DebrisGeneral
 #include "actors/Enemies/CYBERDEMON.dec"
 #include "actors/Enemies/MASTERMIND.dec"
 
-//Demon Weapons
-#include "actors/Weapons/Devastator.dec"//Uses Revenant missiles
-#include "actors/Weapons/FlameCannon.dec"
-#include "actors/Weapons/DualFlameCannon.dec"
-#include "actors/Weapons/HellishMissile.dec"
-
-#include "actors/Weapons/WeaponSpawners.dec"//Because of the devastator weapon spawner
-
 //ST Monsters
 #include "actors/Enemies/ST Monsters/BELPHEGOR.dec"
 #include "actors/Enemies/ST Monsters/JUGGERNAUT.dec"
@@ -137,59 +129,16 @@ Actor DebrisGeneral
 #include "actors/Enemies/Bosses/ICONOFSIN.dec"
 #include "actors/Enemies/Bosses/BossBrain.dec"
 
-//Monsters Cast
-#include "actors/Enemies/MonstersCast.dec"
-
-//DECORATIONS
-#include "actors/DECORATIONS/FURNITURE.dec"
-#include "actors/DECORATIONS/LAMPS.dec"
-#include "actors/DECORATIONS/NATURAL.dec"
-#include "actors/DECORATIONS/FIREWORKS.dec"
-#include "actors/DECORATIONS/TORCHES.dec"
-#include "actors/DECORATIONS/SPLASHES.dec"
-
-//MeatShields
-#include "actors/MeatShields/ZMANSHIELD.dec"
-#include "actors/MeatShields/IMPSHIELD.dec"
-#include "actors/MeatShields/SGUYSHIELD.dec"
-#include "actors/MeatShields/CGUYSHIELD.dec"
-#include "actors/MeatShields/NAZISHIELD.dec"
-#include "actors/MeatShields/EvilMarineSHIELD.dec"
-#include "actors/MeatShields/ZombieCivilianSHIELD.dec"
-
 //Player Classes
-#include "actors/PlayerClasses/PLAYER.dec"
-#include "actors/PlayerClasses/MARINES.dec"
 #include "actors/PlayerClasses/Footsteps.dec"
 
 #include "actors/PlayerClasses/VanillaMonsters.dec"
 #include "actors/PlayerClasses/DyingGuys.dec"
 #include "actors/PlayerClasses/LastStandMonsters.dec"
 #include "actors/PlayerClasses/SpecialDoom1Bosses.dec"
-#include "actors/PlayerClasses/CapturedMarine.dec"
-#include "actors/PlayerClasses/ChaingunMarine.dec"
-#include "actors/PlayerClasses/ShotgunMarine.dec"
-#include "actors/PlayerClasses/PlasmagunMarine.dec"
-#include "actors/PlayerClasses/RocketLauncherMarine.dec"
-#include "actors/PlayerClasses/BFGMarine.dec"
 #include "actors/PlayerClasses/UnderwaterMonsters.dec"
 #include "actors/PlayerClasses/StealthMonsters.dec"
-#include "actors/PlayerClasses/Epic2Stuff.dec"
-
-#include "actors/PlayerClasses/Teleports.dec"
-#include "actors/PlayerClasses/Water.dec"
-#include "actors/PlayerClasses/FlatDecals.dec"
 //#include "actors/PlayerClasses/BrutalChexQuest.dec"
-
-
-//MAP ENHANCEMENT SYSTEM
-#include "actors/MapEnhancementSystem/MapSpecificDec.dec"
-#include "actors/MapEnhancementSystem/MapDetection.dec"
-#include "actors/MapEnhancementSystem/Doom1Remap.dec"
-#include "actors/MapEnhancementSystem/Doom2Remap.dec"
-#include "actors/MapEnhancementSystem/PlutoniaRemap.dec"
-#include "actors/MapEnhancementSystem/TNTRemap.dec"
-#include "actors/MapEnhancementSystem/OthermapsRemap.dec"
 
 
 //VEHICLES
@@ -214,43 +163,3 @@ Actor DebrisGeneral
 #include "actors/Enemies/WCS/DoomZero.dec"
 #include "actors/Enemies/WCS/Wormwood.dec"
 #include "actors/Enemies/WCS/NERF.dec"
-
-#include "actors/VEHICLES/DemonRuneBaron.dec"
-#include "actors/VEHICLES/RevenantRune.dec"
-
-//For bullet and bloodsplash screen effect
-Actor ScreenFX : Inventory
-{
-inventory.maxamount 1
-}
-
-/*
-Actor ScreenFXv21 : Inventory
-{
-inventory.maxamount 1
-}
-*/
-
-Actor BloodTrail: Inventory
-{
-inventory.maxamount 1
-}
-
-Actor RandomIcon 1337
-{
-	//$Title "Random Icon"
-	+FLOAT
-	+FLOATBOB
-	+NOBLOCKMAP
-	+NOGRAVITY
-	+DROPOFF
-	+NOTELEPORT
-	+FORCEXYBILLBOARD
-	+GHOST
-	states
-	{
-	Spawn:
-		RAND O -1
-		Loop	
-	}
-}	

@@ -22,7 +22,7 @@ Actor BFGTrailParticle
 }
 
 
-Actor SuperBFGBall : BFGBall replaces BFGBall
+Actor SuperBFGBall : BFGBall
 {
 	+EXTREMEDEATH
 	Damage (random(1500, 1500))
@@ -180,7 +180,7 @@ Actor BFGDeathParticleSuperFast: BFGDeathParticleFast { Speed 20 }
 
 /////////////BFGextra STUFF
 
-Actor SuperBFGExtra : BFGExtra Replaces BFGExtra
+Actor SuperBFGExtra : BFGExtra
 {
 	RenderStyle "Add"
 	Alpha 0.75

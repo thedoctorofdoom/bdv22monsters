@@ -240,12 +240,6 @@ Actor RedFlareSmall : RedFlare
 	scale 0.3
 }
 
-Actor RedFlareVerySmall : RedFlare
-{
-	alpha 0.15
-	scale 0.4
-}
-
 Actor RedFlareSmall2 : RedFlare
 {
 	scale 0.2

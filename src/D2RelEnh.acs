@@ -1,5 +1,0 @@
-// Doom II Reloaded Enhancements
-Script "BD_ME_15161171513505177399" // MAP20
-{
-	SpawnForced("EvidenceCheckerBlueKey",-6240.0,2448.0,0.0,15,0.0);
-}

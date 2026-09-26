@@ -1,4 +1,4 @@
-ACTOR ZombieMainBattleTank 9951
+ACTOR ZombieMainBattleTank : BDMO_GoreMonster 9951
 {
 	//$Category Monsters
 	//$Sprite TNK1B1
@@ -239,7 +239,7 @@ ACTOR TankCheckRight: TankCheckLeft
 	}
 }
 
-Actor ZombieMainBattleTankBody1
+Actor ZombieMainBattleTankBody1 : BDMO_GoreMonster
 {
 	MONSTER
 	+FORCEXYBILLBOARD +DONTSPLASH
@@ -887,7 +887,7 @@ Actor ZombieArtilleryTankBody1: ZombieMainBattleTankBody1
 	}
 }
 
-ACTOR ZombieHelicopter 9953
+ACTOR ZombieHelicopter : BDMO_GoreMonster 9953
 {
 	//$Category Monsters
 	//$Sprite HELZA1
@@ -1028,7 +1028,7 @@ ACTOR ZombieHelicopter 9953
 	}
 }
 
-ACTOR ZombieMech 9954
+ACTOR ZombieMech : BDMO_GoreMonster 9954
 {
 	//$Category Monsters
 	//$Sprite MEKEA1

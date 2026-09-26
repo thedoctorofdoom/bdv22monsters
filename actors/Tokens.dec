@@ -350,8 +350,6 @@ Actor AimMode_Toggle : bd_Token {}
 Actor AimMode_Hold : bd_Token {}
 Actor SniperAim : bd_Token {}
 Actor FireHold: bd_Token { inventory.maxamount 40 }
-Actor HeavyStrikeRight : bd_Token {}
-Actor HeavyStrikeLeft : bd_Token {}
 Actor HeavyStrikeUpWard : bd_Token {}
 Actor PSeq1 : bd_Token { inventory.maxamount 2 }
 Actor PSeq2 : PSeq1 {}
@@ -653,8 +651,6 @@ ACTOR IsOnCeiling : bd_Token {}
 Actor BarrelExpMeasure : bd_Token { inventory.maxamount 950 }
 Actor evmarinenoway : bd_Token {}
 Actor evmarinecanjump : bd_Token {}
-Actor haszombiemanchunk : bd_Token {}
-Actor hassergeantchunk : bd_Token {}
 Actor HateImminent : bd_Token { inventory.maxamount 0x7FFFFFFF }
 Actor HateAttackHit : bd_Token {}
 Actor HasSpotedThePlayerAlready : bd_Token {}

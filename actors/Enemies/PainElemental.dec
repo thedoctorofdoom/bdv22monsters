@@ -1,4 +1,4 @@
-ACTOR PainElemental1 Replaces PainElemental
+ACTOR PainElemental1 : BDMO_GoreMonster Replaces PainElemental
 {
 	Health 400
 	Radius 31
@@ -92,11 +92,11 @@ ACTOR PainElemental1 Replaces PainElemental
 		TNT1 A 0 A_JumpIfIntargetInventory("FistsSelected", 1, 1)
 		Goto Death
 		TNT1 A 0 A_FaceTarget
-		TNT1 AA 0 A_SpawnItemEx("HealthPlusFatalityBonus", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
-		TNT1 A 0 A_SpawnItemEx("ArmorShardFatalityBonus", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 AA 0
+		TNT1 A 0
 		TNT1 A 0 A_NoBlocking
-		TNT1 A 0 A_GiveToTarget("GoFatality", 1)
-		TNT1 A 0 A_GiveToTarget("PEFatality", 1)
+		TNT1 A 0
+		TNT1 A 0
 		Stop
 
 	Pain:

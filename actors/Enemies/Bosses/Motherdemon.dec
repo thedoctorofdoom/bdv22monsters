@@ -1,4 +1,4 @@
-actor Motherdemon 2548
+actor Motherdemon : BDMO_GoreMonster 2548
 {
 	//$category "BD Bosses"
 	game Doom
@@ -41,7 +41,7 @@ actor Motherdemon 2548
 
 	See:
 		TNT1 A 0
-		TNT1 A 0 ACS_ExecuteAlways(621, 0, 0, 0, 0)//Health Bar
+		TNT1 A 0 ACS_NamedExecuteAlways("BD_BossHealthBar", 0)//Health Bar
 	Chasing:
 		MOTH AAABBBCCCDDD 3 A_Chase
 		loop

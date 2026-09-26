@@ -113,7 +113,7 @@ ACTOR FatalitySmashingPuff: SmashingPuff
 	-EXTREMEDEATH
 }
 
-ACTOR HitPuff Replaces BulletPuff
+ACTOR HitPuff
 {
 	RenderStyle "None"
 	alpha 0.3

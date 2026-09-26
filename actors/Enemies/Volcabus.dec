@@ -530,22 +530,22 @@ Actor Volcabus : Mancubus 2543
 		TNT1 A 0
 		TNT1 A 0 A_KillChildren
 		TNT1 A 0 A_FaceTarget
-		TNT1 AAA 0 A_SpawnItemEx("HealthPlusFatalityBonus", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
-		TNT1 AAA 0 A_SpawnItemEx("ArmorShardFatalityBonus", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 AAA 0
+		TNT1 AAA 0
 		TNT1 A 0 A_Jump(256, "Fatality2")
 
 	//Needs improvement, currently unused
 	Fatality1:
-		TNT1 A 0 A_GiveToTarget("GoFatality", 1)
-		TNT1 A 0 A_GiveToTarget("VolcabusFatality", 1)
+		TNT1 A 0
+		TNT1 A 0
 		TNT1 A 1 A_BossDeath
 		TNT1 A 0 
 		Stop
 
 	//Good enough animation
 	Fatality2:
-		TNT1 A 0 A_GiveToTarget("GoFatality", 1)
-		TNT1 A 0 A_GiveToTarget("VolcabusFatality2", 1)
+		TNT1 A 0
+		TNT1 A 0
 		TNT1 A 1 A_BossDeath
 		TNT1 A 0 
 		Stop
@@ -1259,10 +1259,10 @@ Actor AncientAlienMancubus: Volcabus
 		TNT1 A 0
 		TNT1 A 0 A_KillChildren
 		TNT1 A 0 A_FaceTarget
-		TNT1 AAA 0 A_SpawnItemEx("HealthPlusFatalityBonus", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
-		TNT1 AAA 0 A_SpawnItemEx("ArmorShardFatalityBonus", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
-		TNT1 A 0 A_GiveToTarget("GoFatality", 1)
-		TNT1 A 0 A_GiveToTarget("AncientAliensMancubusFatality", 1)
+		TNT1 AAA 0
+		TNT1 AAA 0
+		TNT1 A 0
+		TNT1 A 0
 		TNT1 A 1 A_BossDeath
 		TNT1 A 0 
 		Stop

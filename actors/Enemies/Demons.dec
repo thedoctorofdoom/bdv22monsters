@@ -608,23 +608,23 @@ ACTOR BullDemon: Demon Replaces Demon
 		TNT1 A 0 A_NoBlocking
 		TNT1 A 0 A_JumpIfIntargetInventory("IsARevenant", 1, "Death.Kick")
 		TNT1 A 0 A_FaceTarget
-		TNT1 AA 0 A_SpawnItemEx("HealthPlusFatalityBonus", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
-		TNT1 A 0 A_SpawnItemEx("ArmorShardFatalityBonus", 0, 0, 20, random (-1, 1), random (-1, 1), 8)
+		TNT1 AA 0
+		TNT1 A 0
 		TNT1 A 0 A_JumpIfIntargetInventory("FistsSelected", 1, 1)
 		Goto Death.Explosive
-		TNT1 A 0 A_GiveToTarget("GoFatality", 1)
+		TNT1 A 0
 		TNT1 A 0 A_Jump(256, "DemonFatality1", "DemonFatality2", "DemonFatality3")
 	DemonFatality1:
-		TNT1 A 0 A_GiveToTarget("DemonFatality", 1)
+		TNT1 A 0
 		Stop
 
 	DemonFatality2:
-		TNT1 A 0 A_GiveToTarget("DemonFatality2", 1)
+		TNT1 A 0
 		TNT1 A 0
 		Stop
 
 	DemonFatality3:
-		TNT1 A 0 A_GiveToTarget("DemonFatality3", 1)
+		TNT1 A 0
 		TNT1 A 0
 		Stop
 
@@ -1072,7 +1072,7 @@ ACTOR DemonAttack_Slaughtermap: DemonAttack
 	}
 }
 
-Actor DeadDemon1: CurbstompedMarine Replaces DeadDemon
+Actor DeadDemon1: CurbstompedMarine
 {
 	Radius 18
 	Height 12

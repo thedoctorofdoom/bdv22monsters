@@ -1,4 +1,14 @@
 
+// zt-bcc 0.10.0-alpha.8's libbcs.bcs moved INT_MAX/INT_MIN into "strict namespace bcs".
+// Pull the namespace in here so they stay usable unqualified, rather than patching the
+// compiler's own library.
+using bcs;
+
+// Phase 4: these scratch globals used to be declared in the now-removed GameTips.acs.
+// This file's RotateVector/RotateVectorCS/RotatePoint/etc. functions (below) write their
+// multi-value results into r1/r2/r3, so the declaration moved here, next to its real users.
+internal raw r1, r2, r3;
+
 enum : fixed { HUDTIC = 0.03 };
 enum : fixed { HUD_STAYTIME_FOREVER = (fixed)(-1) };
 
@@ -415,19 +425,6 @@ bool JustCrouched(void)
   return (GetActorViewHeight(0) <= ((PLAYER_VIEWHEIGHT / 2 << 16) + 6.0) || buttons & BT_CROUCH);
 }
 
-bool SprintCheck(void)
-{
-    if (bd_infinitesprint || CheckInventory("PowerStrength"))
-    {
-        GiveInventory("InfiniteSprint", 1);
-        TakeInventory("UsedStamina", INT_MAX);
-        return true;
-    }
-
-    TakeInventory("InfiniteSprint", INT_MAX);
-    return false;
-}
-
 function bool notflag(int flags, int flag)
 {
 	return !(flags & flag);
@@ -552,68 +549,3 @@ World str 21: VehicleArrayArmorClass[32];
 int playerprevioushealth;
 int playerpreviousarmor;
 int vehicleprevioushealth;
-
-#define DROPCOUNT 28
-str dropItems[DROPCOUNT] =
-{
-	"BrutalAxe",
-	"Chain_saw",
-	"BrutalPistol",
-	"BrutalSMG",
-	"Revolver",
-	"Rifle",
-	"Sniper",
-	"Shot_Gun",
-	"SSG",
-	"AssaultShotgun",
-	"MiniGun",
-	"GrenadeLauncher",
-	"Rocket_Launcher",
-	"RailGun",
-	"Plasma_Gun",
-	"BFG10K",
-	"BIG_FUCKING_GUN",
-	"Unmaker",
-	"HellishMissileLauncher",
-	"FlameCannon",
-	"Flamethrower2",
-	"Devastator",
-	"MP40",
-	"NukeLauncher",
-	"MG42",
-	"DSweap",
-	"IncendiaryLauncher",
-	"HandGrenades"
-};
-
-str checkItem[DROPCOUNT] =
-{
-	"BrutalAxe",
-	"Chain_saw",
-	"BrutalPistol",
-	"BrutalSMG",
-	"Revolver",
-	"Rifle",
-	"Sniper",
-	"Shot_Gun",
-	"SSG",
-	"AssaultShotgun",
-	"MiniGun",
-	"GrenadeLauncher",
-	"Rocket_Launcher",
-	"RailGun",
-	"Plasma_Gun",
-	"BFG10K",
-	"BIG_FUCKING_GUN",
-	"Unmaker",
-	"HellishMissileLauncher",
-	"FlameCannon",
-	"Flamethrower2",
-	"Devastator",
-	"MP40",
-	"NukeLauncher",
-	"MG42",
-	"DSweap",
-	"IncendiaryLauncher",
-	"HandGrenades"
-};

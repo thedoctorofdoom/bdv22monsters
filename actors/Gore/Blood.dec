@@ -2131,7 +2131,7 @@ Actor UltraGoreSpawner: SuperGoreSpawner
 
 //Bloody footprints still requires the player to be edited to work.
 //Gives the player an inventory item to indicate the feet are smeared.
-ACTOR BootSmearerRed
+ACTOR BootSmearerRed : BDMO_GoreMonster
 {
 	MONSTER
 	-SOLID

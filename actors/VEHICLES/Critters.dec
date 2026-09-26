@@ -1,4 +1,4 @@
-ACTOR BDCritterMouse
+ACTOR BDCritterMouse : BDMO_GoreMonster
 {
 	//$Category BD Decorations
 	//$Sprite MOUSB0

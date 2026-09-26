@@ -32,7 +32,7 @@ Actor NaziMag:Inventory { Inventory.maxamount 32 }
 
 Actor SSCombo:Inventory { Inventory.maxamount 32 }
 
-Actor ZioBrutalWolfensteinSS
+Actor ZioBrutalWolfensteinSS : BDMO_GoreMonster
 {
 	Game Doom
 	Health 100
@@ -56,7 +56,7 @@ Actor ZioBrutalWolfensteinSS
 	-DOHARMSPECIES
 	+Solid
 	DamageFactor "ExtremePunches", 2.0 DamageFactor "ExtremeKicks", 2.0
-	DropItem "None"
+	DropItem "Clip"
 	pAINcHANCE "Kick",256
 	DamageFactor "Melee", 2.0
 	DamageFactor "KillMe", 0.0
@@ -600,7 +600,7 @@ Actor MeinDick
 	Death:
 		TNT1 A 0 
 		NPB2 DE 8
-		tnt1 a 0 A_SpawnItem("Clip")
+		tnt1 a 0
 		TNT1 A 0 A_STOPSOUND(5)
 		TNT1 A 0 A_PlaySound ("SS/death")
 		NPB2 F -1
@@ -612,7 +612,7 @@ Actor MeinDick
 		TNT1 A 0 A_STOPSOUND(5)
 		TNT1 A 0 A_XScream
 		TNT1 A 0 A_SpawnItem("NaziHeadExplode", 0, 50)
-		TNT1 A 0 A_SpawnItem ("HealthPlusFatalityBonus")
+		TNT1 A 0
 		TNT1 A 0 A_NoBlocking
 		BWHD AAA 2 A_CustomMissile ("Brutal_LiquidBlood2", 40, 0, random (0, 360), 2, random (60, 120))
 		TNT1 A 0 A_FaceTarget
@@ -680,7 +680,7 @@ ACTOR ArmlessNazi
 		TNT1 A 0 A_NoBlocking
 		TNT1 A 0  A_CustomMissile ("Brutal_LiquidBlood2", 40, 0, random (0, 360), 2, random (60, 120))
 		TNT1 A 0 A_XScream
-		TNT1 A 0 A_SpawnItem ("HealthPlusFatalityBonus")
+		TNT1 A 0
 		TNT1 AAAAAAAAAAA 0 A_CustomMissile ("BrainBlood", 37, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_NoBlocking
 		NAZ5 GGGG 10
@@ -953,7 +953,7 @@ ACTOR BrutalizedNAZI3: BrutalizedNAZI1
 		TNT1 A 0 A_CustomMissile ("XDeath1", 40, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_CustomMissile ("XDeath3", 40, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_CustomMissile ("XDeath2", 40, 0, random (0, 360), 2, random (0, 160))
-		TNT1 A 0 A_SpawnItem ("HealthPlusFatalityBonus")
+		TNT1 A 0
 		NAZ9 JJKKLL 6
 		NAZ9 L -1
 		Stop

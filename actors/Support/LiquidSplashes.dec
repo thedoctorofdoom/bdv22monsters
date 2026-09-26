@@ -1,0 +1,369 @@
+// Extracted from actors/DECORATIONS/Splashes.dec and actors/PlayerClasses/Water.dec
+// during Phase 2 DECORATE pruning. These are the small cosmetic blood/liquid
+// particle actors that kept monster footstep code (Footsteps.dec), melee gore
+// (Gore/*.dec), and the GoreThrows.dec extraction spawn via A_CustomMissile /
+// A_SpawnItem. Only the leaf particle classes and the underwater-explosion pair
+// (which only depends on the also-included BUBULZ/EXPLOSIONBUBULZ bubble
+// actors) are extracted here.
+//
+// NOTE (residual, documented, low risk): ExplosionSplashSpawner and
+// LargeMassWaterImpact (below) are extracted as-is from Water.dec because they
+// are still referenced by kept code, but their own internal branches
+// (SpawnSlime/SpawnNukage/SpawnBlood/SpawnBDLava/SpawnLava/SpawnGrass/SpawnSand)
+// reference additional narrow, terrain-specific splash-particle classes that
+// were NOT extracted (e.g. WaterParticleX* family, grass/sand splash decals).
+// DECORATE resolves A_CustomMissile/A_SpawnItem class-name strings at state
+// execution time, not compile time, so this does not break compilation or
+// cause a crash - at worst a specific terrain-splash branch silently spawns
+// nothing (ZDoom logs a warning) if that branch is ever reached. Flagged for
+// human review; full resolution would require importing most of Water.dec's
+// splash-particle subsystem.
+
+Actor BloodParticleX
+{
+	Height 2
+	Radius 2
+	Mass 0
+	+Missile
+	+NoBlockMap
+	-NoGravity
+	+DontSplash
+	+FORCEXYBILLBOARD
+	+THRUACTORS
+	+CLIENTSIDEONLY
+	+NOTELEPORT
+	Gravity 0.5
+	RenderStyle "Add"
+	Scale 1.0
+	Alpha 0.5
+	Speed 2
+	States
+	{
+	Spawn:
+	    TNT1 A 0 A_QueueCorpse
+		BSPH ABCDDDDDD 4 A_QueueCorpse
+		Stop
+
+	Death:
+	    TNT1 A 0 A_QueueCorpse
+		BSPL ABCDEFGH 1
+		Stop
+	}
+}
+
+Actor BloodParticleXFAster: BloodParticleX { Speed 4 }
+
+Actor BloodLiquidParticleX
+{
+	Height 1
+	Radius 1
+	Mass 0
+	+Missile
+	-NoGravity
+	+DontSplash
+	+BOUNCEONCEILINGS
+	+FORCEXYBILLBOARD
+	+THRUACTORS
+	+CLIENTSIDEONLY
+	+NOTELEPORT
+	+DontSplash
+	BounceFactor 0.1
+	Gravity 0.5
+	RenderStyle "Translucent"
+	Scale 2.0
+	Alpha 0.3
+	//decal BloodWaterDecal
+	Speed 7
+	States
+	{
+	Spawn:
+	    TNT1 A 0 A_QueueCorpse
+		MSBL ABCDEFG 2 A_QueueCorpse
+		MSBL H 100 A_QueueCorpse
+		Stop
+
+	Death:
+	    TNT1 A 0 A_QueueCorpse
+		TNT1 A 0 A_SetScale(1.9, 1.9)
+		BSPL ABCDEFGH 1
+		Stop
+	}
+}
+
+Actor BlueLiquidParticleX: BloodLiquidParticleX
+{
+	//Translation "176:191=192:196"
+	RenderStyle "Add"
+	Alpha 0.6
+	Scale 1.2
+	Speed 10
+	//decal BloodWaterDecal
+	States
+	{
+	Spawn:
+		WTXP ABCDEFGHIJKLMNOPQRSTUV 1
+		WTXP W -1
+		Stop
+
+	Death:
+		TNT1 A 0
+		Stop
+	}
+}
+
+Actor BlueLiquidParticleXNoMove: BlueLiquidParticleX
+{
+	Speed 1
+	+NOGRAVITY
+	Scale 1.8
+	States
+	{
+	Spawn:
+		WTXZ ABCDEFGHIJKLMNOPQRSTUVWXY 1
+		Stop
+	}
+}
+
+Actor GreenLiquidParticleX: BloodLiquidParticleX
+{
+	Translation "179:191=112:127"
+	RenderStyle "Add"
+	Alpha 0.8
+	//decal BloodWaterDecal
+	damagetype "Slime"
+	+BRIGHT
+	States
+	{
+	Spawn:
+	    TNT1 A 0 A_QueueCorpse
+		MSBL ABCDEFG 2 BRIGHT A_QueueCorpse
+		MSBL H 120 BRIGHT A_QueueCorpse
+		Stop
+
+	Death:
+	    TNT1 A 0 A_QueueCorpse
+		TNT1 A 0 A_SetScale(1.9, 1.9)
+		BSPL ABCDEFGH 1
+		Stop
+	}
+}
+
+Actor BrownLiquidParticleX: BloodLiquidParticleX
+{
+	Translation "179:191=144:151"
+	RenderStyle "Add"
+	Alpha 0.8
+	//decal BloodWaterDecal
+	damagetype "Slime"
+	States
+	{
+	Spawn:
+	    TNT1 A 0 A_QueueCorpse
+		MSBL ABCDEFG 2 BRIGHT A_QueueCorpse
+		MSBL H 120 BRIGHT A_QueueCorpse
+		Stop
+
+	Death:
+	    TNT1 A 0 A_QueueCorpse
+		TNT1 A 0 A_SetScale(1.9, 1.9)
+		BSPL ABCDEFGH 1
+		Stop
+	}
+}
+
+Actor nukageParticleX
+{
+	Height 2
+	Radius 2
+	Mass 0
+	+Missile
+	-NoGravity
+	+DontSplash
+	+FORCEXYBILLBOARD
+	+THRUACTORS
+	+CLIENTSIDEONLY
+	+NOTELEPORT
+	Gravity 0.5
+	RenderStyle "Add"
+	Scale 1.0
+	Alpha 0.5
+	Speed 3
+	+BRIGHT
+	States
+	{
+	Spawn:
+	    TNT1 A 0 A_QueueCorpse
+		NKSH ABCDDDDDD 4 A_QueueCorpse
+		Stop
+
+	Death:
+	    TNT1 A 0 A_QueueCorpse
+		NSPL ABCDEFGH 1
+		Stop
+	}
+}
+
+Actor nukageParticleXFAster: nukageParticleX  { Speed 6 }
+
+Actor BUBULZ
+{
+	Height 0
+	Radius 0
+	Mass 0
+	+Missile
+	+NoBlockMap
+	+NoGravity
+	+FORCEXYBILLBOARD
+	+CLIENTSIDEONLY
+	+DOOMBOUNCE
+	+NOTELEPORT
+	+DontSplash
+	RenderStyle "Add"
+	Scale 0.5
+	Speed 2
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_Jump(255, "Spawn1", "Spawn2")
+	Spawn1:
+		TNT1 A 0 ThrustThingZ(0,2,0,1)
+		BUBL A 1 Bright A_JumpIf(waterlevel < 1, "Death")
+		Stop
+
+	Spawn2:
+		TNT1 A 0 ThrustThingZ(0,2,0,1)
+		BUBL B 1 Bright A_JumpIf(waterlevel < 1, "Death")
+		Loop
+
+	Death:
+		TNT1 A 0
+		Stop
+	}
+}
+
+Actor EXPLOSIONBUBULZ: BUBULZ
+{
+	Speed 10
+	+NOTELEPORT
+	States
+	{
+	Spawn:
+		BUBL A 10
+		TNT1 A 0 A_Jump(255, "Spawn1", "Spawn2")
+	Spawn1:
+		BUBL A 1 BRIGHT A_JumpIf(waterlevel < 1, "Death")
+		TNT1 A 0 ThrustThingZ(0,4,0,1)
+		BUBL A 1 BRIGHT A_JumpIf(waterlevel < 1, "Death")
+		Stop
+
+	Spawn2:
+		BUBL B 1 BRIGHT A_JumpIf(waterlevel < 1, "Death")
+		TNT1 A 0 ThrustThingZ(0,4,0,1)
+		BUBL B 1 BRIGHT A_JumpIf(waterlevel < 1, "Death")
+		Stop
+	}
+}
+
+Actor UnderwaterExplosion
+{
+	+NOCLIP
+	+NOGRAVITY
+	states
+	{
+	Spawn:
+		TNT1 A 1
+		TNT1 A 0 A_JumpIf(waterlevel < 1, "Stap")
+		TNT1 AAAAA 0 A_CustomMissile ("BUBULZ", 0, 0, random (0, 360), 2, random (0, 180))
+		TNT1 AAAAAAAAAA 0 A_CustomMissile ("EXPLOSIONBUBULZ", 0, 0, random (0, 360), 2, random (180, 360))
+		Stop
+
+	Stap:
+		TNT1 A 0
+		Stop
+	}
+}
+
+Actor SmallUnderwaterExplosion
+{
+	+NOCLIP
+	+NOGRAVITY
+	states
+	{
+	Spawn:
+		TNT1 A 1
+		TNT1 A 0 A_JumpIf(waterlevel < 1, "Stap")
+		TNT1 AAAA 0 A_CustomMissile ("BUBULZ", 0, 0, random (0, 360), 2, random (0, 180))
+		TNT1 AAAAAAAAA 0 A_CustomMissile ("EXPLOSIONBUBULZ", 0, 0, random (0, 360), 2, random (180, 360))
+		Stop
+
+	Stap:
+		TNT1 A 0
+		Stop
+	}
+}
+
+ACTOR ExplosionSplashSpawner
+{
+	+THRUACTORS
+	+VULNERABLE
+	Radius 1
+	Height 1
+	Gravity 4
+	Mass 99999
+	Health 99999
+	+NOBLOODDECALS
+	states
+	{
+	Spawn:
+	Death:
+		TNT1 A 0
+		TNT1 A 0 ACS_NamedExecuteAlways("BDCheckFloorType3", 0, 0, 0, 0)//Check if is under grass/dirt
+		TNT1 A 0 ThrustThingZ(0,-30,0,1)
+		TNT1 A 3
+		TNT1 A 0 A_CheckFloor("Spawn2")
+		Stop
+
+	Spawn2:
+		TNT1 A 0
+		TNT1 A 2
+		TNT1 A 0 A_JumpIfInventory("IsOverWater", 1, "SpawnWater")
+		Stop
+
+	SpawnWater:
+		TNT1 A 0
+		TNT1 A 0 A_PlaySound("bigspl1")
+		TNT1 AAAAAAAAAAAAAAAAAAA 0 A_CustomMissile ("BlueLiquidParticleX", random (0, 40), 0, random (0, 360), 2, random (10, 90))
+		TNT1 A 0 A_CustomMissile ("BlueLiquidParticleXNoMove", random (0, 2), 0, random (0, 360), 2, random (30, 90))
+		TNT1 A 20
+		Stop
+	}
+}
+
+ACTOR LargeMassWaterImpact
+{
+	+THRUACTORS
+	+VULNERABLE
+	Radius 1
+	Height 1
+	Mass 99999
+	Health 99999
+	states
+	{
+	Spawn:
+	Death:
+		TNT1 A 0
+		TNT1 A 0 ACS_NamedExecuteAlways("BDCheckFloorType3", 0, 0, 0, 0)//Check if is under grass/dirt
+		TNT1 A 2
+		TNT1 A 0 A_JumpIfInventory("IsOverWater", 1, "SpawnWater")
+		Stop
+
+	SpawnWater:
+		TNT1 A 0
+		TNT1 A 0 A_PlaySound("bigspl1")
+		TNT1 A 0 A_AlertMonsters(500, AMF_TARGETNONPLAYER)
+		TNT1 AA 0 A_CustomMissile ("BlueLiquidParticleX", 12, 0, random (0, 360), 2, random (30, 90))
+		TNT1 A 20
+		Stop
+	}
+}
