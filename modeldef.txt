@@ -10,7 +10,7 @@ Model Tracer // Name of actor in DECORATE
 	Scale 4.5 4.5 1.5 // Scale values
 	PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
 	
-	FrameIndex TRAC A 0 0 // The sprite lump, sprite frame, model index, frame number
+	FrameIndex BMTR A 0 0 // The sprite lump, sprite frame, model index, frame number
 }
 
 Model DecorativeTracer // Name of actor in DECORATE
@@ -21,7 +21,7 @@ Model DecorativeTracer // Name of actor in DECORATE
 	Scale 3.5 4.5 1.5 // Scale values
 	PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
 	
-	FrameIndex TRAC A 0 0 // The sprite lump, sprite frame, model index, frame number
+	FrameIndex BMTR A 0 0 // The sprite lump, sprite frame, model index, frame number
 }
 
 Model MonsterMinigunTracer // Name of actor in DECORATE
@@ -32,7 +32,7 @@ Model MonsterMinigunTracer // Name of actor in DECORATE
 	Scale 4.5 4.5 1.5 // Scale values
 	PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
 	
-	FrameIndex TRAC A 0 0 // The sprite lump, sprite frame, model index, frame number
+	FrameIndex BMTR A 0 0 // The sprite lump, sprite frame, model index, frame number
 }
 
 Model MonsterMinigunTracer_SlaughterFest // Name of actor in DECORATE
@@ -43,7 +43,7 @@ Model MonsterMinigunTracer_SlaughterFest // Name of actor in DECORATE
 	Scale 4.5 4.5 1.5 // Scale values
 	PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
 	
-	FrameIndex TRAC A 0 0 // The sprite lump, sprite frame, model index, frame number
+	FrameIndex BMTR A 0 0 // The sprite lump, sprite frame, model index, frame number
 }
 
 Model MonsterTracer // Name of actor in DECORATE
@@ -54,7 +54,7 @@ Model MonsterTracer // Name of actor in DECORATE
 	Scale 4.5 4.5 1.5 // Scale values
 	PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
 	
-	FrameIndex TRAC A 0 0 // The sprite lump, sprite frame, model index, frame number
+	FrameIndex BMTR A 0 0 // The sprite lump, sprite frame, model index, frame number
 }
 
 Model ShotgunguyTracer // Name of actor in DECORATE
@@ -65,7 +65,7 @@ Model ShotgunguyTracer // Name of actor in DECORATE
 	Scale 4.5 4.5 1.5 // Scale values
 	PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
 	
-	FrameIndex TRAC A 0 0 // The sprite lump, sprite frame, model index, frame number
+	FrameIndex BMTR A 0 0 // The sprite lump, sprite frame, model index, frame number
 }
 
 Model ShotgunguyTracer_SlaughterFest // Name of actor in DECORATE
@@ -76,7 +76,7 @@ Model ShotgunguyTracer_SlaughterFest // Name of actor in DECORATE
 	Scale 4.5 4.5 1.5 // Scale values
 	PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
 	
-	FrameIndex TRAC A 0 0 // The sprite lump, sprite frame, model index, frame number
+	FrameIndex BMTR A 0 0 // The sprite lump, sprite frame, model index, frame number
 }
 
 Model ZombieManTracer // Name of actor in DECORATE
@@ -87,7 +87,7 @@ Model ZombieManTracer // Name of actor in DECORATE
 	Scale 4.5 4.5 1.5 // Scale values
 	PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
 	
-	FrameIndex TRAC A 0 0 // The sprite lump, sprite frame, model index, frame number
+	FrameIndex BMTR A 0 0 // The sprite lump, sprite frame, model index, frame number
 }
 
 Model ZombieManTracer_SlaughterFest // Name of actor in DECORATE
@@ -98,7 +98,7 @@ Model ZombieManTracer_SlaughterFest // Name of actor in DECORATE
 	Scale 4.5 4.5 1.5 // Scale values
 	PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
 	
-	FrameIndex TRAC A 0 0 // The sprite lump, sprite frame, model index, frame number
+	FrameIndex BMTR A 0 0 // The sprite lump, sprite frame, model index, frame number
 }
 
 Model MarineTracer // Name of actor in DECORATE
@@ -109,7 +109,7 @@ Model MarineTracer // Name of actor in DECORATE
 	Scale 4.5 4.5 1.5 // Scale values
 	PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
 	
-	FrameIndex TRAC A 0 0 // The sprite lump, sprite frame, model index, frame number
+	FrameIndex BMTR A 0 0 // The sprite lump, sprite frame, model index, frame number
 }
 
 Model MarineStrongTracer // Name of actor in DECORATE
@@ -120,7 +120,7 @@ Model MarineStrongTracer // Name of actor in DECORATE
 	Scale 1.5 1.5 1.5 // Scale values
 	PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
 	
-	FrameIndex TRAC A 0 0 // The sprite lump, sprite frame, model index, frame number
+	FrameIndex BMTR A 0 0 // The sprite lump, sprite frame, model index, frame number
 }
 
 Model MastermindTracer // Name of actor in DECORATE
@@ -131,7 +131,7 @@ Model MastermindTracer // Name of actor in DECORATE
 	Scale 4.5 4.5 1.5 // Scale values
 	PITCHFROMMOMENTUM // A flag that will fix the model pitch for projectiles
 	
-	FrameIndex TRAC A 0 0 // The sprite lump, sprite frame, model index, frame number
+	FrameIndex BMTR A 0 0 // The sprite lump, sprite frame, model index, frame number
 }
 
 Model HeavyMachinegunProjectile // Name of actor in DECORATE

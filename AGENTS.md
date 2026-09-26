@@ -130,6 +130,7 @@ cvar that ACS reads, add it to both `CVARINFO.txt` and `ServerCVars` /
 
 - **Case-insensitive lump names, case-sensitive filesystem tooling.** Class and actor names in DECORATE are case-insensitive, but keep file paths exactly as they are (`actors/VEHICLES`, `ST Monsters` with a space).
 - **Removing content:** before deleting an actor, sprite, or sound, grep for every reference: DECORATE `#include`s, `Replaces`, spawn calls, `SNDINFO.*`, `modeldef.*`, `GLDEFS.txt`, `doommonsters.bm`, and ACS. Missing sprites and sounds only show up at runtime.
+- **Never ship sprites under vanilla pickup, weapon, or projectile names** (`BON1`, `BON2`, `CLIP`, `SHEL`, `PINS`, `STIM`, `MEDI`, `TRAC`, and similar). Weapon mods reskin those under the vanilla names, so when BDMO loads after them, BDMO's copies override theirs. BDMO's own drop actors use `BM`-prefixed sprites instead (`BMHB`, `BMAB`, `BMCL`, `BMPS`, `BMTR`). For the same reason, don't give BDMO actors vanilla `SpawnID`s.
 - **Strings:** add new user-facing text to `language.enu` only. Other languages were removed on purpose. Engine `OB_*` obituaries fall back to UZDoom's built-in English strings.
 - Match the surrounding style. DECORATE uses tabs and BD's original naming (including misspellings such as `HasCutingWeapon` and `TehArchvile`). Don't "fix" names; other code references them.
 - The license in `DDZLICENSE` (zlib, Caligari87) covers bundled third-party code, not the whole mod. Leave it in place.

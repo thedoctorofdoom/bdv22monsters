@@ -18,7 +18,7 @@ Actor Tracer: FastProjectile
 	states
 	{
 	Spawn:
-		TRAC A 1 BRIGHT
+		BMTR A 1 BRIGHT
 		Loop
 
 	Death:
@@ -61,13 +61,13 @@ Actor MonsterTracer: Tracer
 	States
 	{
 	Spawn:
-		TRAC A 1 BRIGHT
+		BMTR A 1 BRIGHT
 		TNT1 A 0 ThrustThingZ(0,random(-8, 8),0,1)
-		TRAC A 1 BRIGHT
+		BMTR A 1 BRIGHT
 		Goto Spawn2
 
 	Spawn2:
-		TRAC A 1 BRIGHT
+		BMTR A 1 BRIGHT
 		Loop
 
 	Death:
@@ -98,13 +98,13 @@ Actor ShotgunguyTracer: Tracer
 	States
 	{
 	Spawn:
-		TRAC A 1 BRIGHT
+		BMTR A 1 BRIGHT
 		TNT1 A 0 ThrustThingZ(0,random(-8, 8),0,1)
-		TRAC A 1 BRIGHT
+		BMTR A 1 BRIGHT
 		Goto Spawn2
 
 	Spawn2:
-		TRAC A 1 BRIGHT
+		BMTR A 1 BRIGHT
 		Loop
 
 	Death:
@@ -155,8 +155,8 @@ Actor MonsterMinigunTracer: MonsterTracer
 	States
 	{
 	Spawn:
-		TRAC A 1 BRIGHT
-		TRAC A -1 BRIGHT
+		BMTR A 1 BRIGHT
+		BMTR A -1 BRIGHT
 		Loop
 
 	Death:
@@ -197,7 +197,7 @@ Actor MeatShieldTracer: Tracer
 		Stop
 
 	Spawn:
-		TRAC A 1 BRIGHT
+		BMTR A 1 BRIGHT
 		Loop
 	}
 }
@@ -236,13 +236,13 @@ Actor MarineStrongTracer: MarineTracer
 	States
 	{
 	Spawn:
-		TRAC A 1 BRIGHT
+		BMTR A 1 BRIGHT
 		TNT1 A 0 ThrustThingZ(0,random(-9, 9),0,1)
-		TRAC A 1 BRIGHT
+		BMTR A 1 BRIGHT
 		Goto Spawn2
 
 	Spawn2:
-		TRAC A 1 BRIGHT
+		BMTR A 1 BRIGHT
 		Loop
 	}
 }
@@ -255,13 +255,13 @@ Actor MarineShotgunTracer: MarineTracer
 	States
 	{
 	Spawn:
-		TRAC A 1 BRIGHT
+		BMTR A 1 BRIGHT
 		TNT1 A 0 ThrustThingZ(0,random(-9, 9),0,1)
-		TRAC A 1 BRIGHT
+		BMTR A 1 BRIGHT
 		Goto Spawn2
 
 	Spawn2:
-		TRAC A 1 BRIGHT
+		BMTR A 1 BRIGHT
 		Loop
 	}
 }
@@ -511,7 +511,7 @@ Actor WallPenetrationHitscan: FastProjectile
 	states
 	{
 	Spawn:
-		TRAC A 1 BRIGHT
+		BMTR A 1 BRIGHT
 		Loop
 
 	Death:
@@ -602,9 +602,9 @@ Actor Penetrator: MarineTracer
 	States
 	{
 	Spawn:
-		TRAC A 0
+		BMTR A 0
 		TNT1 A 0 A_CustomMissile("SpawnBulletDecalBackwards", 0, 0, 0)
-		TRAC A 10 BRIGHT
+		BMTR A 10 BRIGHT
 		Stop
 
 	Death:
@@ -670,9 +670,9 @@ Actor MonsterPenetrator: MarineTracer
 	States
 	{
 	Spawn:
-		TRAC A 0
+		BMTR A 0
 		TNT1 A 0 A_CustomMissile("SpawnBulletDecalBackwards", 0, 0, 0)
-		TRAC A 10 BRIGHT
+		BMTR A 10 BRIGHT
 		Stop
 
 	Death:

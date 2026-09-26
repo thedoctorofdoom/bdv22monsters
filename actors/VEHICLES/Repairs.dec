@@ -295,11 +295,11 @@ ACTOR VehicleSpeed : Ammo
 	Inventory.MaxAmount 999
 	Ammo.BackpackAmount 0
 	Ammo.BackpackMaxAmount 999
-	Inventory.Icon "CLIPA0"
+	Inventory.Icon "BMCLA0"
 	States
 	{
 	Spawn:
-		CLIP A -1
+		BMCL A -1
 		Stop
 	}
 }
@@ -320,11 +320,11 @@ ACTOR TankBaseDirection : Ammo
 	Inventory.MaxAmount 360
 	Ammo.BackpackAmount 0
 	Ammo.BackpackMaxAmount 360
-	Inventory.Icon "CLIPA0"
+	Inventory.Icon "BMCLA0"
 	States
 	{
 	Spawn:
-		CLIP A -1
+		BMCL A -1
 		Stop
 	}
 }
