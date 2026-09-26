@@ -133,7 +133,6 @@ cvar that ACS reads, add it to both `CVARINFO.txt` and `ServerCVars` /
 - **Never ship sprites under vanilla pickup, weapon, or projectile names** (`BON1`, `BON2`, `CLIP`, `SHEL`, `PINS`, `STIM`, `MEDI`, `TRAC`, and similar). Weapon mods reskin those under the vanilla names, so when BDMO loads after them, BDMO's copies override theirs. BDMO's own drop actors use `BM`-prefixed sprites instead (`BMHB`, `BMAB`, `BMCL`, `BMPS`, `BMTR`). For the same reason, don't give BDMO actors vanilla `SpawnID`s.
 - **Strings:** add new user-facing text to `language.enu` only. Other languages were removed on purpose. Engine `OB_*` obituaries fall back to UZDoom's built-in English strings.
 - Match the surrounding style. DECORATE uses tabs and BD's original naming (including misspellings such as `HasCutingWeapon` and `TehArchvile`). Don't "fix" names; other code references them.
-- The license in `DDZLICENSE` (zlib, Caligari87) covers bundled third-party code, not the whole mod. Leave it in place.
 
 ## Testing
 
@@ -141,8 +140,8 @@ Follow the user's UZDoom macOS rule:
 
 ```bash
 /Applications/uzdoom.app/Contents/MacOS/uzdoom \
-  -iwad "/Users/dbiek/Personal Dev/DOOM2.WAD" \
-  -file "/Users/dbiek/Personal Dev/bdv22monsters" > /tmp/uzdoom_run.log 2>&1 &
+  -iwad "/path/to/DOOM2.WAD" \
+  -file "/path/to/bdv22monsters" > /tmp/uzdoom_run.log 2>&1 &
 # wait ~10s, then kill the pid
 ```
 
