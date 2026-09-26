@@ -1,0 +1,286 @@
+// to allow supporting GZDoom versions prior to 4.3.1 (when the dictionary type was added)
+class ZC_IntStrMap
+{
+	protected Array<int> keys;
+	protected Array<string> values;
+
+	void insert (int key, string val)
+	{
+		int idx;
+		int keysSize = keys.size();
+		bool foundIdx = false;
+
+		for(idx = 0; idx < keysSize; idx++)
+		{
+			if(keys[idx] == key)
+			{
+				values[idx] = val;
+				return;
+			}
+
+			if(keys[idx] > key)
+			{
+				foundIdx = true;
+				break;
+			}
+		}
+
+		if(!foundIdx)
+		{
+			idx = 0;
+		}
+
+		keys.insert(idx, key);
+		values.insert(idx, val);
+	}
+
+	void insertInt (int key, int val)
+	{
+		insert(key, String.Format("%i", val));
+	}
+
+	int binSearch (int key)
+	{
+		int idx;
+		int keysSize = keys.size();
+		bool foundIdx = false;
+
+		for(idx = 0; idx < keysSize; idx++)
+		{
+			if(keys[idx] == key)
+			{
+				foundIdx = true;
+				break;
+			}
+		}
+
+		return (foundIdx) ? idx : -1;
+
+		// maybe some other day
+		/*int left, m;
+		int right = keys.size() - 1;
+
+		if(right < 0)
+			return -1;
+
+		while(left <= right)
+		{
+			m = (left + right) / 2;
+			if(keys[m] < key)
+				left = m + 1;
+			else if(keys[m] > key)
+				right = m - 1;
+			else
+				return m;
+		}
+
+		return -1;*/
+	}
+
+	void remove (int key)
+	{
+		int idx = binSearch(key);
+
+		if(idx > -1)
+		{
+			keys.delete(idx);
+			values.delete(idx);
+		}
+	}
+
+	string get (int key)
+	{
+		int idx = binSearch(key);
+
+		if(idx > -1)
+			return values[idx];
+
+		return "";
+	}
+
+	int getInt (int key)
+	{
+		return get(key).toInt(10);
+	}
+
+	bool checkKey (int key)
+	{
+		return binSearch(key) > -1;
+	}
+}
+
+class ZC_TMapHack : EventHandler
+{
+	ZC_IntStrMap lumpNames;
+	ZC_IntStrMap lumpRefCount; // intended to be map<int, int>
+	ZC_IntStrMap lumpBuf; // intended to be map<int, string>
+
+	static play ZC_TMapHack fetch()
+	{
+		ZC_TMapHack m = ZC_TMapHack(Find("ZC_TMapHack"));
+
+		if(!m.lumpNames)
+		{
+			m.lumpNames = new("ZC_IntStrMap");
+			m.lumpRefCount = new("ZC_IntStrMap");
+			m.lumpBuf = new("ZC_IntStrMap");
+		}
+
+		return m;
+	}
+}
+
+class ZandroCompat
+{
+	const LUMP_OPEN_FULLPATH = 1;
+
+	const LUMP_INFO_SIZE = 0;
+	const LUMP_INFO_NAME = 1;
+
+	const LUMP_READ_BYTE = 0;
+	const LUMP_READ_UBYTE = 1;
+	const LUMP_READ_SHORT = 2;
+	const LUMP_READ_USHORT = 3;
+	const LUMP_READ_INT = 4;
+	const LUMP_READ_FLOAT = 5; // unimplemented
+
+	static play int LumpOpen(String name, int start, int flags)
+	{
+		ZC_TMapHack m = ZC_TMapHack.fetch();
+
+		int lump;
+
+		if(flags & LUMP_OPEN_FULLPATH)
+			lump = Wads.CheckNumForFullName(name);
+		else if(start == -2)
+			lump = Wads.CheckNumForName(name, Wads.GLOBALNAMESPACE);
+		else
+			lump = Wads.FindLump(name, start + 1);
+
+		if(lump == -1)
+			return -1;
+
+		if(!m.lumpRefCount.checkKey(lump))
+		{
+			m.lumpRefCount.insertInt(lump, 1);
+			m.lumpBuf.insert(lump, Wads.ReadLump(lump));
+			m.lumpNames.insert(lump, name);
+			return lump;
+		}
+
+		m.lumpRefCount.insertInt(lump, m.lumpRefCount.getInt(lump) + 1);
+		return lump;
+	}
+
+	static play void LumpClose(int lump)
+	{
+		ZC_TMapHack m = ZC_TMapHack.fetch();
+
+		m.lumpRefCount.insertInt(lump, m.lumpRefCount.getInt(lump) - 1);
+		if( (lump == -1) || (!m.lumpRefCount.checkKey(lump)) || (m.lumpRefCount.getInt(lump) > 0) )
+			return;
+
+		m.lumpRefCount.remove(lump);
+		m.lumpNames.remove(lump);
+		m.lumpBuf.remove(lump);
+	}
+
+	static play int LumpGetInfoInt(int lump, int info)
+	{
+		ZC_TMapHack m = ZC_TMapHack.fetch();
+
+		if(lump == -1)
+			return 0;
+
+		switch(info)
+		{
+			case LUMP_INFO_SIZE:
+				return m.lumpBuf.get(lump).length(); //Wads.GetLumpLength(lump);
+
+			case LUMP_INFO_NAME:
+				Console.Printf("LumpGetInfo internal error: LUMP_INFO_NAME requested, but GetInfoInt called");
+				return 0;
+
+			default:
+				Console.Printf("LumpGetInfo: unknown info type %i", info);
+				return 0;
+		}
+	}
+
+	static play String LumpGetInfoStr(int lump, int info)
+	{
+		ZC_TMapHack m = ZC_TMapHack.fetch();
+
+		if(lump == -1)
+			return "";
+
+		switch(info)
+		{
+			case LUMP_INFO_SIZE:
+				Console.Printf("LumpGetInfo internal error: LUMP_INFO_SIZE requested, but GetInfoStr called");
+				return "";
+
+			case LUMP_INFO_NAME:
+				return m.lumpNames.get(lump); //Wads.GetLumpName(lump);
+
+			default:
+				Console.Printf("LumpGetInfo: unknown info type %i", info);
+				return "";
+		}
+	}
+
+	static play String LumpReadString(int lump, int pos, int len)
+	{
+		ZC_TMapHack m = ZC_TMapHack.fetch();
+
+		if( (lump == -1) || !m.lumpRefCount.checkKey(lump) )
+		{
+			Console.Printf("LumpReadString: Attempted read on non-existent lump handle (%i)!", lump);
+			return "";
+		}
+
+		return m.lumpBuf.get(lump).Mid(pos, len);
+	}
+
+	static play int LumpRead(int lump, int pos, int type)
+	{
+		ZC_TMapHack m = ZC_TMapHack.fetch();
+
+		if( (lump == -1) || !m.lumpRefCount.checkKey(lump) )
+		{
+			Console.Printf("LumpRead: Attempted read on non-existent lump handle!");
+			return 0;
+		}
+
+		int temp;
+
+		String b = m.lumpBuf.get(lump);
+
+		switch(type)
+		{
+			case LUMP_READ_UBYTE:
+				return b.CharCodeAt(pos) & 255;
+
+			case LUMP_READ_BYTE:
+				temp = b.CharCodeAt(pos) & 255;
+				return (temp > 127) ? (-temp) : temp;
+
+			case LUMP_READ_USHORT:
+				return (b.CharCodeAt(pos) & 255) | ((b.CharCodeAt(pos+1) & 255) << 8);
+
+			case LUMP_READ_SHORT:
+				temp = (b.CharCodeAt(pos) & 255) | ((b.CharCodeAt(pos+1) & 255) << 8);
+				return (temp > 32767) ? (-temp) : temp;
+
+			case LUMP_READ_INT:
+				return (b.CharCodeAt(pos) & 255) | ((b.CharCodeAt(pos+1) & 255) << 8) | ((b.CharCodeAt(pos+2) & 255) << 16) | ((b.CharCodeAt(pos+3) & 255) << 24);
+
+			case LUMP_READ_FLOAT:
+				Console.Printf("LumpRead: LUMP_READ_FLOAT not implemented!");
+				return 0;
+		}
+
+		Console.Printf("LumpRead: unknown read type %i!", type);
+		return 0;
+	}
+}

@@ -1,0 +1,121 @@
+//===============================================================================//
+//								GORE DECORATIONS
+//===============================================================================//
+
+//Tortured marines
+//From PTSD Simulator 2011 AKA Red Orchestra
+$random TorturedMarineBD { CPTRT01 CPTRT02 CPTRT03 CPTRT04 CPTRT05 CPTRT06 CPTRT07 CPTRT08 CPTRT09 CPTRT10 }
+CPTRT01 CPTRT01
+CPTRT02 CPTRT02
+CPTRT03 CPTRT03
+CPTRT04 CPTRT04
+CPTRT05 CPTRT05
+CPTRT06 CPTRT06
+CPTRT07 CPTRT07
+CPTRT08 CPTRT08
+CPTRT09 CPTRT09
+CPTRT10 CPTRT10
+$rolloff  TorturedMarineBD 200 500
+
+$random TorturedMarineDieBD { CPTRT11 CPTRT12 CPTRT13 CPTRT14 }
+CPTRT11 CPTRT11
+CPTRT12 CPTRT12
+CPTRT13 CPTRT13
+CPTRT14 CPTRT14
+
+$random TorturedMarinePain { CPTRP1 CPTRP2 CPTRP3 }
+CPTRP1 CPTRP1
+CPTRP2 CPTRP2
+CPTRP3 CPTRP3
+
+FLEAS FLEAS
+$random BodyThud		{ BTHUD1 BTHUD2 BTHUD3 BTHUD4 BTHUD5 BTHUD6 BTHUD7 }
+BTHUD1 BTHUD1
+BTHUD2 BTHUD2
+BTHUD3 BTHUD3
+BTHUD4 BTHUD4
+BTHUD5 BTHUD5
+BTHUD6 BTHUD6
+BTHUD7 BTHUD7
+
+//===============================================================================//
+//								GENERIC GORE
+//===============================================================================//
+
+
+$random misc/xdeath		
+{ 
+	misc/xdeath1a misc/xdeath1b misc/xdeath1c misc/xdeath1d misc/xdeath1e misc/xdeath1f misc/xdeath2a misc/xdeath2b misc/xdeath2c  
+	misc/xdeath2d misc/xdeath2e misc/xdeath2f misc/xdeath3a misc/xdeath3b misc/xdeath3c misc/xdeath4a misc/xdeath4b misc/xdeath4c 
+}
+$random misc/xdeath1	{ misc/xdeath1a misc/xdeath1b misc/xdeath1c misc/xdeath1d misc/xdeath1e misc/xdeath1f }
+misc/xdeath1a			dsxdth1a
+misc/xdeath1b			dsxdth1b
+misc/xdeath1c			dsxdth1c
+misc/xdeath1d			dsxdth1d
+misc/xdeath1e			dsxdth1e
+misc/xdeath1f			dsxdth1f
+$random misc/xdeath2	{ misc/xdeath2a misc/xdeath2b misc/xdeath2c misc/xdeath2d misc/xdeath2e misc/xdeath2f }
+misc/xdeath2a			dsxdth2a
+misc/xdeath2b			dsxdth2b
+misc/xdeath2c			dsxdth2c
+misc/xdeath2d			dsxdth2d
+misc/xdeath2e			dsxdth2e
+misc/xdeath2f			dsxdth2f
+$random misc/xdeath3	{ misc/xdeath3a misc/xdeath3b misc/xdeath3c }
+misc/xdeath3a			dsxdth3a
+misc/xdeath3b			dsxdth3b
+misc/xdeath3c			dsxdth3c
+$random misc/xdeath4	{ misc/xdeath4a misc/xdeath4b misc/xdeath4c }
+misc/xdeath4a			dsxdth4a
+misc/xdeath4b			dsxdth4b
+misc/xdeath4c			dsxdth4c
+$random misc/xdeath5	{ misc/xdeath4a misc/xdeath4b misc/xdeath2a misc/xdeath2b misc/xdeath2e}
+$limit misc/xdeath5 2
+
+$volume misc/xdeath 0.4
+$volume misc/xdeath1 0.4
+$volume misc/xdeath2 0.4
+$volume misc/xdeath3 0.4
+$volume misc/xdeath4 0.4
+
+BONECR1 BONECR1
+BONECR2 BONECR2
+
+
+LQDRIP1 LQDRIP1
+LQDRIP2 LQDRIP2
+LQDRIP3 LQDRIP3
+LQDRIP4 LQDRIP4
+LQDRIP5 LQDRIP5
+LQDRIP6 LQDRIP6
+LQDRIP7 LQDRIP7
+LQDRIP8 LQDRIP8
+LQDRIP9 LQDRIP9
+LQDRIP10 LQDRIP10
+LQDRIP11 LQDRIP11
+LQDRIP12 LQDRIP12
+LQDRIP13 LQDRIP13
+LQDRIP14 LQDRIP14
+
+$random blooddrop  { LQDRIP1 LQDRIP2 LQDRIP3 } 
+$rolloff blooddrop 200 1000
+$limit blooddrop 3
+$random blooddrop2  { LQDRIP4 LQDRIP5 LQDRIP6 LQDRIP7 }
+$rolloff blooddrop2 200 1000
+$random blooddrop3  { LQDRIP8 LQDRIP9 LQDRIP10 LQDRIP11 LQDRIP12 LQDRIP13 LQDRIP14 LQDRIP14 } 
+$rolloff blooddrop3 200 1000
+
+$random BLOOOD  { DSBLUD01 DSBLUD02 DSBLUD03 }
+DSBLUD01 DSBLUD01
+DSBLUD02 DSBLUD02
+DSBLUD03 DSBLUD03
+
+
+$random HEDBON { HEDBON1 HEDBON2 HEDBON3 }
+HEDBON1 HEDBON1
+HEDBON2 HEDBON2
+HEDBON3 HEDBON3
+
+heartbeat1 DSHEART1
+heartbeat2 DSHEART2

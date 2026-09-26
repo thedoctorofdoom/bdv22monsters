@@ -1,0 +1,20 @@
+// Thunderpeak Enhancements
+bool ThunderPeak = False;
+
+Script "BD_ME_15531474976941376192" // MAP01
+{
+	ThunderPeak = True;
+}
+
+Script "BD_ME_13313187781840620046" // MAP02
+{
+	ThunderPeak = True;
+}
+
+script "ThunderPeak_Patch"
+{ 
+	delay(1); 
+	if(ThunderPeak == False) terminate;
+	else 
+		SetActorState(0, "ThunderPeak"); 
+}

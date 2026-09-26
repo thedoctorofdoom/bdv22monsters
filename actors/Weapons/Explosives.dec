@@ -1,0 +1,1057 @@
+//Everything that can explode and hurt people goes here.
+
+ACTOR HorizontalShockwave
+{
+	Radius 2
+	Height 4
+	Alpha 0.3
+	RenderStyle "Add"
+	Scale 1.0 //you could easily make a bigger shockwave by just changing the scale
+	+NOGRAVITY
+	-SOLID
+	+FORCEXYBILLBOARD
+	+CLIENTSIDEONLY
+	+NOINTERACTION
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse//
+
+    SpawnLoop:
+		XXXX A 0
+		XXXX ABCDEFGI 1 A_SetTranslucent(alpha-0.03, 1)
+		stop
+	}
+}
+
+ACTOR HorizontalShockwave2 : HorizontalShockwave { Scale 1.5 Alpha 0.3 }
+ACTOR HorizontalShockwave3 : HorizontalShockwave { Scale 2.0 Alpha 0.3 }
+ACTOR HorizontalShockwave4 : HorizontalShockwave { Scale 4.0 Alpha 0.3 }
+
+ACTOR Rocket2
+{
+	Radius 4
+	Height 2
+	Projectile
+	Speed 50
+	Damage (random (150, 150))
+	DamageType Explosive
+	MeleeDamage 0
+	Scale 0.8
+	Decal "Scorch"
+	Projectile
+	+MISSILE
+	+NOGRAVITY
+	+EXTREMEDEATH
+	+BLOODSPLATTER 
+	+FORCEXYBILLBOARD
+	+THRUSPECIES
+	+MTHRUSPECIES
+	+SPECTRAL
+	SeeSound "Rocket/Fly"
+	DeathSound "Explosion"
+	Obituary "$OBBD_ROCKETLAUNCHERDIRECT"
+	Species "Marines"
+	States
+	{
+	Spawn:
+		MISL A 0
+		TNT1 A 0 A_PlaySound("Rocket/Fly")
+		TNT1 A 0 BRIGHT A_CustomMissile("RocketBackblast", 0, 0, angle-180, CMF_ABSOLUTEANGLE)
+		TNT1 A 0 BRIGHT A_CustomMissile("RocketBackblast2", 0, 0, angle-180, CMF_ABSOLUTEANGLE)
+		TNT1 A 0 BRIGHT A_CustomMissile("RocketBackblast3", 0, 0, angle-180, CMF_ABSOLUTEANGLE)
+		TNT1 A 0 BRIGHT A_CustomMissile("BackblastFlames1", 0, 0, angle-180, CMF_ABSOLUTEANGLE)
+		TNT1 A 0 BRIGHT A_CustomMissile("BackblastFlames2", 0, 0, angle-180, CMF_ABSOLUTEANGLE)
+		TNT1 A 0 BRIGHT A_CustomMissile("BackblastFlames3", 0, 0, angle-180, CMF_ABSOLUTEANGLE)
+		TNT1 A 0 BRIGHT A_CustomMissile("BackblastFlames4", 0, 0, angle-180, CMF_ABSOLUTEANGLE)	
+	Live:
+		MISL A 1 Bright 
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "SpawnUnderwater")
+		TNT1 A 0 A_SpawnItem("RocketFlare",-20,0)
+		TNT1 A 0 A_CustomMissile ("SmallFlameTrails3", 0, 0, random (160, 210), 2, random (-30, 30))
+		//TNT1 A 0 A_SpawnItem ("OldschoolRocketSmokeTrail2")
+		Loop
+
+	SpawnUnderwater:
+		TNT1 A 0 A_ChangeFlag("NOGRAVITY", 0)
+		TNT1 A 0 A_SpawnItem("RocketFlare",-20,0)
+		TNT1 A 0 A_CustomMissile ("BUBULZ", 0, 0, random (0, 360), 2, random (0, 180))
+		MISL A 1 Bright 
+		Goto Live
+
+	Death:
+		EXPL A 0 A_Quake(3,8,0,1000)
+		TNT1 A 0 A_CustomMissile("ExplosionSplashSpawner")
+		TNT1 A 0 A_SpawnItemEx ("DetectFloorCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("DetectCeilCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("UnderwaterExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		//TNT1 AAAAAA 0 A_CustomMissile ("BDExplosionparticles", 0, 0, random (0, 360), 2, random (0, 360))
+		//TNT1 AAAA 0 A_CustomMissile ("BDExplosionparticles2", 0, 0, random (0, 360), 2, random (0, 90))
+		TNT1 AAA 0 A_CustomMissile ("MediumExplosionFlames", 0, 0, random (0, 360), 2, random (0, 360))
+		TNT1 A 0 A_SpawnItemEx ("RocketExplosion",0,0,13,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEX("HorizontalShockwave",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		EXPL A 0 A_CustomMissile ("ExplosionSmokeHD", 0, 0, random (0, 360), 2, random (0, 90))
+		TNT1 A 2
+		TNT1 A 0 A_SpawnItemEx ("LiquidExplosionEffectSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_PlaySound("FAREXPL", 3)
+		TNT1 A 15
+		TNT1 A 0 A_PlaySound("distantexp", 5)
+		Stop
+	}
+}
+
+Actor Rocket2Fast: Rocket2
+{
+	Speed 80
+}
+
+Actor RocketBackblast: FastProjectile
+{
+	speed 80
+	damage (random(12,12))
+	Decal "Scorch"
+	Radius 22
+	Height 12
+	Alpha 0.9
+	Scale 1.0
+	RenderStyle "Add"
+	+RIPPER
+	+GHOST
+	+THRUGHOST
+	Species "Marines"
+	+THRUSPECIES
+	DamageType Shotgun
+	Obituary "$OBBD_ROCKETBACKBLAST"
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 2
+		//TNT1 A 0 A_CustomMissile("ExplosionSmokeHD", 2, 0, random(0, 360), 2, random(0, 90))
+		EXPL GHI 1 //A_CustomMissile ("BackblastFlames", 0, 0, random (0, 360), 2, random (0, 360))
+		Stop
+			
+	Death:
+		TNT1 A 0
+		TNT1 A 0 ACS_NamedExecuteAlways("CheckRocketBackblast")
+		TNT1 A 3
+		TNT1 A 0 A_Explode(4, 1, 0)
+		TNT1 A 0 A_SpawnItemEx ("LiquidExplosionEffectSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_CustomMissile("ExplosionSmokeHD", 2, 0, random(0, 360), 2, random(0, 90))
+		Stop
+		
+	Disappear:
+		TNT1 A 0
+		Stop
+	}
+}
+
+Actor RocketBackblast2: RocketBackblast
+{
+	Decal "None"
+	Radius 4
+	Height 4
+	DamageType "Shrapnel"
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 2
+		TNT1 A 0 A_CustomMissile("ExplosionSmokeHD", 2, 0, random(0, 360), 2, random(0, 90))
+		TNT1 GHI 1 //A_CustomMissile ("BackblastFlames", 0, 0, random (0, 360), 2, random (0, 360))
+		Stop
+			
+	Death:
+		TNT1 A 0
+		TNT1 A 0 ACS_NamedExecuteAlways("CheckRocketBackblast")
+		TNT1 A 3
+		//TNT1 A 0 A_Explode(22, 2)
+		TNT1 A 0 A_SpawnItemEx ("LiquidExplosionEffectSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_CustomMissile("ExplosionSmokeHD", 2, 0, random(0, 360), 2, random(0, 90))
+		Stop
+	}
+}
+
+Actor RocketBackblast3: RocketBackblast2
+{
+	Radius 32
+	Height 12
+	Damagetype "Shrapnel"
+	States
+	{	
+	Death:
+		TNT1 A 3
+		TNT1 A 0 A_Explode(32, 64, 0, 0, 64)
+		TNT1 A 0 A_SpawnItemEx ("LiquidExplosionEffectSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		//TNT1 A 0 A_CustomMissile("ExplosionSmokeHD", 2, 0, random(0, 360), 2, random(0, 90))
+		Stop
+	}
+}
+
+Actor RocketBackblastRealism: RocketBackblast
+{
+	damage (random(60,60))
+	damagetype ExplosiveImpact
+	States
+	{
+	Death:
+		TNT1 A 0
+		TNT1 A 0 ACS_NamedExecuteAlways("CheckRocketBackblast")
+		TNT1 A 3
+		TNT1 A 0 A_Explode(128, 32)
+		TNT1 A 0 A_SpawnItemEx ("LiquidExplosionEffectSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_CustomMissile("ExplosionSmokeHD", 2, 0, random(0, 360), 2, random(0, 90))
+		Stop
+	}
+}
+
+Actor HugeRocketBackblast: RocketBackblast
+{
+	speed 80
+	damage (random(120,120))
+	Decal "BigScorch"
+	DamageType Fire
+	RenderStyle "None"
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 2
+		Stop
+
+	Death:
+		TNT1 A 0
+		TNT1 A 0 ACS_NamedExecuteAlways("CheckRocketBackblast")
+		TNT1 A 3
+		TNT1 A 0 A_SpawnItemEx ("LiquidExplosionEffectSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_Explode(300, 200, 0, 1, 1)
+		Stop
+	}
+}
+
+actor RocketDM: Rocket2
+{
+	speed 50
+	Damage (random (250, 250))
+	Species "none"
+	-THRUSPECIES
+	-MTHRUSPECIES
+}
+
+
+actor WeakRocket: Rocket2
+{
+	speed 20
+	Damage (random (200, 200))
+	Gravity 0
+}
+
+actor VanillaCyberRocket: Rocket2 Replaces Rocket
+{
+	speed 20
+	Damage (random (350, 350))
+	Species "None"
+	-THRUSPECIES
+	-MTHRUSPECIES
+}
+
+actor JuggernautRocket: Rocket2
+{
+	speed 20
+	Damage (random (100, 110))
+	Species "None"
+	-THRUSPECIES
+	-MTHRUSPECIES
+}
+
+actor RocketExplosion
+{
+	+MISSILE
+	Radius 2
+	Height 2
+	Damagetype "ExplosiveImpact"
+	RenderStyle "None"
+	Obituary "$OBBD_ROCKETLAUNCHER"
+	States
+	{
+	Spawn:
+		Goto Death
+
+	Death:
+		TNT1 A 0
+		TNT1 A 3 A_SpawnItem("WhiteShockwave")
+		TNT1 AAAAAAA 0 A_CustomMissile ("ExplosionAirBurstEffectSmall", 2, 0, random (0, 360), 2, random (-45, 45))
+		TNT1 A 0 A_Explode(100,150)
+		Stop
+	}
+}
+
+actor LiquidExplosionEffectSpawner
+{
+	+NOBLOCKMAP
+	+MISSILE
+	Radius 2
+	Height 2
+	Damagetype "CauseWaterSplash"
+	RenderStyle "None"
+	States
+	{
+	Spawn:
+		TNT1 A 1
+		TNT1 A 0 A_Explode(3,9)
+		Stop
+	}
+}
+
+actor BarrelExplosion: RocketExplosion
+	{
+	+FORCERADIUSDMG
+	States
+	{
+	Spawn:
+		Goto Death
+
+	Death:
+		TNT1 A 0
+		TNT1 A 3 A_SpawnItem("WhiteShockwaveBig")
+		TNT1 A 0 A_Explode(160,200)
+		Stop
+	}
+}
+
+actor TankMissileExplosion: RocketExplosion
+{
+	+FORCERADIUSDMG
+	States
+	{
+	Spawn:
+		Goto Death
+
+	Death:
+		TNT1 A 0
+		TNT1 A 3 A_SpawnItem("WhiteShockwaveBig")
+		TNT1 A 0 A_Explode(200,300)
+		Stop
+	}
+}
+
+actor BarrelExplosionAnnouncer: RocketExplosion
+{
+	+FORCEPAIN
+	Damagetype BarrelExploded
+	+DONTSPLASH
+	States
+	{
+	Spawn:
+		Goto Death
+
+	Death:
+		TNT1 A 0
+		TNT1 A 3 A_SpawnItem("WhiteShockwaveBig")
+		TNT1 A 0 A_Explode(3,220)
+		Stop
+	}
+}
+
+actor GrenadeExplosion: RocketExplosion
+{
+	+FORCERADIUSDMG
+	Obituary "$OBBD_GRENADELAUNCHER"
+	RenderStyle "None"
+	States	
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 3
+		TNT1 A 0 A_Explode(100,300)
+		TNT1 AAAAAAA 0 A_CustomMissile ("ExplosionAirBurstEffect", 2, 0, random (0, 360), 2, random (-45, 45))
+		TNT1 A 0 A_SpawnItem("WhiteShockwaveBig")
+		Stop
+	}
+}
+
+actor UGBLExplosion: RocketExplosion
+{
+	+FORCERADIUSDMG
+	RenderStyle "None"
+	Obituary "$OBBD_RIFLE_GRENADE"
+	States	
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 3
+		TNT1 A 0 A_Explode(100,150)
+		TNT1 AAAAAAA 0 A_CustomMissile ("ExplosionAirBurstEffect", 2, 0, random (0, 360), 2, random (-45, 45))
+		TNT1 A 0 A_SpawnItem("WhiteShockwaveBig")
+		Stop
+	}
+}
+
+actor BFGSprayExplosion: RocketExplosion
+{
+	+FORCERADIUSDMG
+	RenderStyle "None"
+	DamageType "Desintegrate"
+	States
+	{
+		Spawn:
+		TNT1 A 0
+		TNT1 A 1
+		TNT1 A 0 A_Explode(40,1)
+		Stop
+	}
+}
+
+ACTOR CyberRocket: Rocket2
+{
+	Speed 30
+}
+
+ACTOR GrenadeMissile
+{
+	Radius 4
+	Height 4
+	Speed 55
+	Damage (random(60, 60))
+	+MISSILE
+	Gravity 0.8
+	+SKYEXPLODE
+	BounceType "doom"
+	+EXPLODEONWATER
+	+THRUSPECIES
+	+FORCEXYBILLBOARD
+	Species "Marines"
+	DamageType Kick
+	BounceFactor 0.5
+	WallBounceFactor 0.35
+	BounceSound "GrenadeLauncher/Bounce"
+	DeathSound "GrenadeLauncher/Bounce"
+	Obituary "$OBBD_GRENADELAUNCHERDIRECT"
+	Scale 0.75
+	States
+	{
+	Spawn:
+		GBPJ A 0 A_JumpIf(waterlevel > 1, "SpawnUnderwater")
+		TNT1 A 0 A_GiveInventory("STGrenadeTimer", 1)
+		TNT1 A 0 A_JumpIfInventory("STGrenadeTimer", 6, "Explode")
+		TNT1 A 0 A_CheckFloor("Death")
+		GBPJ AAABBBCCCDDD 1 A_CustomMissile ("DoxGrenadeSmokeTrail", 2, 0, random (70, 110), 2, random (0, 360))
+		TNT1 A 0 A_JumpIfInventory("STGrenadeTimer", 6, "Explode")
+		TNT1 A 0 A_GiveInventory("STGrenadeTimer", 1)
+		GBPJ EEEFFFGGGHHH 1 A_CustomMissile ("DoxGrenadeSmokeTrail", 2, 0, random (70, 110), 2, random (0, 360))
+		TNT1 A 0 A_JumpIfInventory("STGrenadeTimer", 6, "Explode")
+		Loop
+
+	SpawnUnderwater:
+		TNT1 A 0 A_GiveInventory("STGrenadeTimer", 1)
+		GBPJ ABCD 3
+		TNT1 A 0 A_JumpIfInventory("STGrenadeTimer", 6, "Explode")
+		TNT1 A 0 A_GiveInventory("STGrenadeTimer", 1)
+		GBPJ EFGH 3
+		TNT1 A 0 A_JumpIfInventory("STGrenadeTimer", 6, "Explode")
+		Goto Spawn
+
+	Death:
+		TNT1 A 0
+		TNT1 A 0 A_JumpIfInventory("STGrenadeTimer", 6, "Explode")
+		GBPJ AAAA 3 A_CustomMissile ("DoxGrenadeSmokeTrail", 2, 0, random (70, 110), 2, random (0, 360))
+		TNT1 A 0 A_GiveInventory("STGrenadeTimer", 1)
+		Loop
+
+	XDeath:
+		TNT1 A 0 A_Recoil(1)
+		TNT1 A 0 A_SetAngle(random (90,-90) + angle)
+		GBPJ C 1 ThrustThingZ(0,20,0,1)
+		Goto Spawn
+	
+	Explode:
+	Death.Slime:
+	Death.Fire:
+	Death.Bullet:
+	Death.Shotgun:
+	Death.SSG:
+	Death.Cutless:
+	Death.Shrapnel:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx ("GrenadeExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("Footstep91",0,0, 40,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		//TNT1 A 1
+		TNT1 A 0 A_ChangeFlag("SHOOTABLE", 0)
+		EXPL A 0 A_Quake(3,8,0,1000)
+		//TNT1 A 0 A_SpawnItemEx ("ExplosionSplashSpawner", 0, 0, -20)
+		TNT1 A 0 A_CustomMissile("ExplosionSplashSpawner")
+		TNT1 A 0 A_SpawnItemEx ("DetectFloorCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("DetectCeilCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("UnderwaterExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 AAAAAAAAAA 0 A_CustomMissile ("BDExplosionparticlesBig", 0, 0, random (0, 360), 2, random (0, 360))
+		TNT1 AAAAA 0 A_CustomMissile ("BDExplosionparticles2", 0, 0, random (0, 360), 2, random (0, 90))
+		TNT1 AAAA 0 A_CustomMissile ("MediumExplosionFlames", 0, 0, random (0, 360), 2, random (0, 360))
+		EXPL A 0 A_CustomMissile ("ExplosionSmokeHD", 0, 0, random (0, 360), 2, random (0, 90))
+		TNT1 AA 0
+		TNT1 A 0 A_PlaySound("Grenade/Explode", 1)
+		TNT1 A 0 A_SpawnItemEX("HorizontalShockwave2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_PlaySound("Grenade/DistantExplode", 3)
+		//TNT1 AAAAAAAAAAAAA 3 A_CustomMissile ("HeavyExplosionSmoke", 2, 0, random (0, 360), 2, random (0, 360))
+		Stop
+	}
+}
+
+ACTOR ShortGrenade: GrenadeMissile
+{
+	BounceType "none"
+	+SLIDESONWALLS
+	Damage (random(150, 150))
+	Damagetype Explosive
+	SeeSound "dsempty"
+	DeathSound "dsempty"
+	Decal "Scorch"
+	Obituary "$OBBD_RIFLE_GRENADEDIRECT"
+	States
+	{
+	Spawn:
+		GBPJ A 0 A_JumpIf(waterlevel > 1, "SpawnUnderwater")
+		GBPJ AAAAAAAAABBBBBBBCCCCCDDDDDEEEEEFFFFFGGGGGHHHHH 1 A_CustomMissile ("DoxGrenadeSmokeTrail", 2, 0, random (70, 110), 2, random (0, 360))
+		Loop
+
+	SpawnUnderwater:
+		GBPJ AAAAAAAAABBBBBBBCCCCCDDDDDEEEEEFFFFFGGGGGHHHHH 1
+		Goto Spawn
+
+	Death:
+	XDeath:
+		TNT1 A 1
+		Goto Explode
+
+	Explode:
+	Death.Slime:
+	Death.Fire:
+	Death.Bullet:
+	Death.Shotgun:
+	Death.SSG:
+	Death.Cutless:
+	Death.Shrapnel:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx ("UGBLExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("Footstep91",0,0, 40,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		//TNT1 A 1
+		TNT1 A 0 A_ChangeFlag("SHOOTABLE", 0)
+		EXPL A 0 A_Quake(3,8,0,1000)
+		//TNT1 A 0 A_SpawnItemEx ("ExplosionSplashSpawner", 0, 0, -20)
+		TNT1 A 0 A_CustomMissile("ExplosionSplashSpawner")
+		TNT1 A 0 A_SpawnItemEx ("DetectFloorCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("DetectCeilCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("UnderwaterExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 AAAAAAAAAA 0 A_CustomMissile ("BDExplosionparticlesBig", 0, 0, random (0, 360), 2, random (0, 360))
+		TNT1 AAAAA 0 A_CustomMissile ("BDExplosionparticles2", 0, 0, random (0, 360), 2, random (0, 90))
+		TNT1 AAAA 0 A_CustomMissile ("MediumExplosionFlames", 0, 0, random (0, 360), 2, random (0, 360))
+		EXPL A 0 A_CustomMissile ("ExplosionSmokeHD", 0, 0, random (0, 360), 2, random (0, 90))
+		TNT1 AA 0
+		TNT1 A 0 A_PlaySound("Grenade/Explode", 1)
+		TNT1 A 2 A_SpawnItemEX("HorizontalShockwave",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_PlaySound("Grenade/DistantExplode", 3)
+		//TNT1 AAAAAAAAAAAAA 3 A_CustomMissile ("HeavyExplosionSmoke", 2, 0, random (0, 360), 2, random (0, 360))
+		Stop
+	}
+}
+
+ACTOR ShortGrenade2: GrenadeMissile
+{
+	BounceType "none"
+	+SLIDESONWALLS
+	Damage (random(150, 150))
+	Damagetype Explosive
+	DeathSound "dsempty"
+	SeeSound "dsempty"
+	Decal "Scorch"
+	States
+	{
+	Spawn:
+		GBPJ A 0 A_JumpIf(waterlevel > 1, "SpawnUnderwater")
+		GBPJ AAAAAAAAABBBBBBBCCCCCDDDDDEEEEEFFFFFGGGGGHHHHH 1 A_CustomMissile ("DoxGrenadeSmokeTrail", 2, 0, random (70, 110), 2, random (0, 360))
+		Loop
+
+	SpawnUnderwater:
+		GBPJ AAAAAAAAABBBBBBBCCCCCDDDDDEEEEEFFFFFGGGGGHHHHH 1
+		Goto Spawn
+
+	Death:
+	XDeath:
+		TNT1 A 1
+		Goto Explode
+
+	Explode:
+	Death.Slime:
+	Death.Fire:
+	Death.Bullet:
+	Death.Shotgun:
+	Death.SSG:
+	Death.Cutless:
+	Death.Shrapnel:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx ("GrenadeExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("Footstep91",0,0, 40,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		//TNT1 A 1
+		TNT1 A 0 A_ChangeFlag("SHOOTABLE", 0)
+		EXPL A 0 A_Quake(3,8,0,1000)
+		//TNT1 A 0 A_SpawnItemEx ("ExplosionSplashSpawner", 0, 0, -20)
+		TNT1 A 0 A_CustomMissile("ExplosionSplashSpawner")
+		TNT1 A 0 A_SpawnItemEx ("DetectFloorCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("DetectCeilCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("UnderwaterExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 AAAAAAAAAA 0 A_CustomMissile ("BDExplosionparticlesBig", 0, 0, random (0, 360), 2, random (0, 360))
+		TNT1 AAAAA 0 A_CustomMissile ("BDExplosionparticles2", 0, 0, random (0, 360), 2, random (0, 90))
+		TNT1 AAAA 0 A_CustomMissile ("MediumExplosionFlames", 0, 0, random (0, 360), 2, random (0, 360))
+		EXPL A 0 A_CustomMissile ("ExplosionSmokeHD", 0, 0, random (0, 360), 2, random (0, 90))
+		TNT1 AA 0
+		TNT1 A 0 A_PlaySound("Grenade/Explode", 1)
+		TNT1 A 2 A_SpawnItemEX("HorizontalShockwave2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_PlaySound("Grenade/DistantExplode", 3)
+		//TNT1 AAAAAAAAAAAAA 3 A_CustomMissile ("HeavyExplosionSmoke", 2, 0, random (0, 360), 2, random (0, 360))
+		Stop
+	}
+}
+
+ACTOR GrenadeMissileWeak: ShortGrenade
+{
+	Radius 4
+	Height 4
+	Speed 60
+	Damage (random(50, 50))
+	States
+	{
+	Spawn:
+		GBPJ A 0 A_JumpIf(waterlevel > 1, "SpawnUnderwater")
+		GBPJ A 0 A_CheckFloor("Death")
+		GBPJ AAAAAAAABBBBBBBCCCCCCC 1 A_CustomMissile ("RocketSmokeTrail52", 2, 0, random (70, 110), 2, random (0, 360))
+		GBPJ C -1 A_CustomMissile ("RocketSmokeTrail52", 2, 0, random (70, 110), 2, random (0, 360))
+		Goto Explode
+
+	SpawnUnderwater:
+		TNT1 A 0 A_GiveInventory("STGrenadeTimer", 1)
+		GBPJ ABCD 3
+		TNT1 A 0 A_JumpIfInventory("STGrenadeTimer", 6, "Explode")
+		TNT1 A 0 A_GiveInventory("STGrenadeTimer", 1)
+		GBPJ EFGH 3
+		TNT1 A 0 A_JumpIfInventory("STGrenadeTimer", 6, "Explode")
+		Goto Spawn
+
+	Explode:
+	Death.Slime:
+	Death.Fire:
+	Death.Bullet:
+	Death.Shotgun:
+	Death.SSG:
+	Death.Cutless:
+	Death.Shrapnel:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx ("RocketExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("Footstep91",0,0, 40,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0
+		TNT1 A 0 A_ChangeFlag("SHOOTABLE", 0)
+		EXPL A 0 A_Quake(3,8,0,1000)
+		TNT1 A 0 A_SpawnItemEx ("ExplosionSplashSpawner", 0, 0, -20)
+		TNT1 A 0 A_SpawnItemEx ("DetectFloorCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("DetectCeilCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("UnderwaterExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 AAAAAAAAAA 0 A_CustomMissile ("BDExplosionparticlesBig", 0, 0, random (0, 360), 2, random (0, 360))
+		TNT1 AAAAA 0 A_CustomMissile ("BDExplosionparticles2", 0, 0, random (0, 360), 2, random (0, 90))
+		TNT1 AAAA 0 A_CustomMissile ("MediumExplosionFlames", 0, 0, random (0, 360), 2, random (0, 360))
+		EXPL A 0 A_CustomMissile ("ExplosionSmokeHD", 0, 0, random (0, 360), 2, random (0, 90))
+		TNT1 AA 0
+		TNT1 A 0 A_PlaySound("Grenade/Explode", 1)
+		TNT1 A 2 A_SpawnItemEX("HorizontalShockwave2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_PlaySound("Grenade/DistantExplode", 3)
+		//TNT1 AAAAAAAAAAAAA 3 A_CustomMissile ("HeavyExplosionSmoke", 2, 0, random (0, 360), 2, random (0, 360))
+		Stop
+	}
+}
+
+ACTOR GrenadeMissileBreaksGlass: ShortGrenade
+{
+	-BLOODSPLATTER
+	Damagetype "Normal"
+	RenderStyle "None"
+	+NOPAIN
+	Decal "None"
+	Damage (random (1,2))
+	States
+	{
+	Spawn:
+		TNT1 A 1
+		TNT1 A -1
+		Stop
+
+	Death:
+	XDeath:
+	Melee:
+		TNT1 A 0
+		Stop
+	}
+}
+
+ACTOR BouncingGrenade: GrenadeMissile
+{
+	+BOUNCEONFLOORS
+	+BOUNCEONWALLS
+	+BOUNCEONCEILINGS
+	+EXPLODEONWATER
+	BounceFactor 0.5
+	Damage (random (50, 50))
+	SeeSound "GrenadeLauncher/Bounce"
+}
+
+ACTOR CyberDemonGrenade: BouncingGrenade
+{
+	Speed 28
+	Damage 30
+	DamageType Explosive
+	BounceFactor 0.9
+	States
+	{
+	Death:
+		EXPL A 1 A_Explode(200,200)
+		EXPL A 0 Radius_Quake (2, 8, 0, 15, 0)
+		TNT1 A 0 //A_AlertMonsters
+		TNT1 A 0 A_SpawnItemEx ("DetectFloorCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("DetectCeilCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("UnderwaterExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("RocketExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 AAA 0 A_CustomMissile ("ExplosionParticleHeavy", 0, 0, random (0, 360), 2, random (0, 180))
+		TNT1 AAAAAAAAAAAAAAAAAA 0 A_CustomMissile ("ExplosionParticleHeavy", 0, 0, random (0, 360), 2, random (0, 360))
+		TNT1 AAAAAAAAA 0 A_CustomMissile ("ExplosionParticleVeryFast", 0, 0, random (0, 360), 2, random (0, 360))
+		TNT1 AAAAAAA 0 A_CustomMissile ("MediumExplosionFlames", 0, 0, random (0, 360), 2, random (0, 360))
+		TNT1 A 1 A_SpawnItemEX("HorizontalShockwave",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_PlaySound("FAREXPL", 3)
+		TNT1 AAAAAAAAAAAAA 3 A_CustomMissile ("HeavyExplosionSmoke", 2, 0, random (0, 360), 2, random (0, 360))
+		Stop
+	}
+}
+
+Actor DragonBreath
+{
+	Projectile
+	+RANDOMIZE
+	+FORCEXYBILLBOARD
+	-BLOODSPLATTER 
+	+BLOODLESSIMPACT
+	damage 0
+	radius 1
+	height 1
+	speed 40
+	renderstyle "none"
+	alpha 0.9
+	scale .15
+	DamageType Flames
+	SeeSound "fatso/attack"
+	Decal "BigScorch"
+	states
+	{
+	Spawn:
+		TNT1 AAAAA 2 A_SpawnItem("SpawnedFlamers")
+		Stop
+
+	Death:
+		TNT1 A 0
+		Stop
+	}
+}
+
+ACTOR MarinesRocket: Rocket2
+{
+	DamageType FriendBullet
+}
+
+ACTOR CyberBalls: Rocket2
+{
+	Radius 10
+	Height 8
+	Projectile
+	Speed 20 // 30 is way too much,why this change?!?
+	Damage (random (250, 250))
+	DamageType Extreme
+	Gravity 0.00
+	Decal "Scorch"
+	RenderStyle "Add"
+	-NOGRAVITY
+	+EXTREMEDEATH
+	//+THRUGHOST
+	-THRUSPECIES
+	Species "None"
+	Scale 1.7
+	SeeSound "DSCANFIR"
+	//SeeSound "Incendiary/Fire"
+	DeathSound "Explosion2"
+	Obituary "$OB_CYBERDEMON"
+	States
+	{
+	Spawn:
+		WYVB A 0
+		TNT1 A 0 ACS_NamedExecuteAlways("BDCheckJanitor", 0, 0, 0, 0)//Check Effects
+
+	Spawn1:
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "SpawnUnderwater")
+		WYVB A 1 Bright A_SpawnItem("RocketFlare",0,0) 
+		TNT1 A 0 A_CustomMissile ("SmallFlameTrails3", 2, 0, random (160, 210), 2, random (-30, 30))
+		TNT1 A 0 A_JumpIfInventory("lowgraphicsmode", 1, "SpawnCheap")
+		Loop
+
+	SpawnCheap:
+		TNT1 A 0
+		WYVB A 1 Bright A_SpawnItem("RocketFlare",0,0) 
+		Loop
+
+	SpawnUnderwater:
+		WYVB A 1 Bright A_SpawnItem("YellowFlareSmall",0,0) 
+		TNT1 A 0 A_CustomMissile ("BUBULZ", 0, 0, random (0, 360), 2, random (0, 180))
+		Goto Spawn1
+	}
+}
+
+
+
+
+ACTOR CyberBalls_Slaughter: CyberBalls
+{
+	Speed 20
+	States
+	{
+	Spawn:
+		WYVB AAA 1 Bright A_SpawnItem("RocketFlare",0,0) 
+		TNT1 A 0 A_CustomMissile ("SmallFlameTrails3", 2, 0, random (160, 210), 2, random (-30, 30))
+		Loop
+	}
+}
+
+
+Actor FastCyberballs: Cyberballs
+{
+	Speed 60
+	Damage 30
+}
+
+ACTOR CyberballTrail
+{
+	Radius 0
+	Height 0
+	Alpha 1.0
+	RenderStyle "Add"
+	Scale 0.9
+	Speed 2
+	+NOBLOCKMAP
+	+NOTELEPORT
+	+DONTSPLASH
+	+MISSILE
+	+FORCEXYBILLBOARD
+	+CLIENTSIDEONLY
+	Damage 0
+	+NOINTERACTION
+	States
+	{
+	Spawn:
+		WYVB A 0
+		WYVB CDE 1
+		Stop
+	}
+}
+
+ACTOR MarineGrenade
+{
+	Radius 4
+	Height 4
+	Speed 20
+	Damage 20
+	+MISSILE
+	+BLOODSPLATTER
+	+EXTREMEDEATH
+	+BOUNCEONFLOORS
+	+BOUNCEONWALLS
+	+BOUNCEONCEILINGS
+	BounceFactor 0.5
+	Damagetype "FriendBullet"
+	Gravity 1.0
+	Scale 0.7
+	Decal "Scorch"
+	SeeSound "dsempty"
+	DeathSound "Explosion"
+	Obituary "$OBBD_GRENADELAUNCHER"
+	+EXTREMEDEATH
+	States
+	{
+	Spawn:
+		GRND A 0
+		GRND C 0 ThrustThingZ (0,50,1,0)
+	Live:
+		GRND ABCDEFGH 2
+		Loop
+
+	Death:
+		EXPL A 0 Radius_Quake (2, 8, 0, 15, 0)//(intensity, duration, damrad, tremrad, tid)
+		TNT1 A 0 A_SpawnItemEx ("ExplosionSplashSpawner", 0, 0, -20)
+		TNT1 A 0 A_SpawnItemEx ("DetectFloorCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("DetectCeilCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("UnderwaterExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("BarrelKaboom",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 AAA 0 A_CustomMissile ("ExplosionParticleHeavy", 0, 0, random (0, 360), 2, random (0, 180))
+		TNT1 AAAAAAAAAAAAAAAAAA 0 A_CustomMissile ("ExplosionParticleHeavy", 0, 0, random (0, 360), 2, random (0, 360))
+		TNT1 AAAAAAAAA 0 A_CustomMissile ("ExplosionParticleVeryFast", 0, 0, random (0, 360), 2, random (0, 360))
+		TNT1 AAAAAAA 0 A_CustomMissile ("MediumExplosionFlames", 0, 0, random (0, 360), 2, random (0, 360))
+		TNT1 A 0 A_Explode(200, 300)
+		TNT1 A 1
+		TNT1 A 0 A_PlaySound("FAREXPL", 3)
+		TNT1 AAAAAAAAAAAAA 3 A_CustomMissile ("HeavyExplosionSmoke", 2, 0, random (0, 360), 2, random (0, 360))
+		Stop
+	}
+}
+
+ACTOR ZombiemanGrenade: MarineGrenade
+{
+	Damagetype "ExplosiveImpact"
+	Speed 10
+	Damage 0
+	-EXTREMEDEATH
+	+GHOST
+	+THRUGHOST
+	BounceFactor 0.7
+	States
+	{
+	Spawn:
+		GRND A 0
+		GRND C 0 ThrustThingZ (0,50,1,0)
+	Live:
+		GRND ABCDEFGH 2
+		Loop
+
+	Death:
+		EXPL A 0 Radius_Quake (2, 8, 0, 15, 0)//(intensity, duration, damrad, tremrad, tid)
+		TNT1 A 0 A_SpawnItemEx ("ExplosionSplashSpawner", 0, 0, -20)
+		TNT1 A 0 A_SpawnItemEx ("DetectFloorCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("DetectCeilCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("UnderwaterExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("BarrelKaboom",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 AAA 0 A_CustomMissile ("ExplosionParticleHeavy", 0, 0, random (0, 360), 2, random (0, 180))
+		TNT1 AAAAAAAAAAAAAAAAAA 0 A_CustomMissile ("ExplosionParticleHeavy", 0, 0, random (0, 360), 2, random (0, 360))
+		TNT1 AAAAAAAAA 0 A_CustomMissile ("ExplosionParticleVeryFast", 0, 0, random (0, 360), 2, random (0, 360))
+		TNT1 AAAAAAA 0 A_CustomMissile ("MediumExplosionFlames", 0, 0, random (0, 360), 2, random (0, 360))
+		EXPL AAAAAA 0 A_CustomMissile ("ExplosionSmokeFast22", 0, 0, random (0, 360), 2, random (0, 360))
+		TNT1 A 0 A_Explode(20, 200, 0)
+		TNT1 A 0 A_Explode(20, 70, 1)
+		TNT1 A 1
+		TNT1 A 0 A_PlaySound("FAREXPL", 3)
+		TNT1 AAAAAAAAAAAAA 3 A_CustomMissile ("HeavyExplosionSmoke", 2, 0, random (0, 360), 2, random (0, 360))
+		Stop
+	}
+}
+
+ACTOR TankShell
+{
+	Radius 6
+	Height 6
+	Speed 110
+	Damage (random (2000, 2000))
+	Projectile
+	+RANDOMIZE
+	+DEHEXPLOSION
+	+MISSILE
+	-NOGRAVITY
+	damagetype "TankShell"
+	Gravity 0.2
+	SeeSound "weapons/rocklf"
+	DeathSound "weapons/rocklx"
+	Obituary "$OBBD_TANKSHELL"
+	Decal "BigScorch"
+	Damagetype "Explosive"
+	States
+	{
+	Spawn:
+		MISL A 1 Bright
+		TNT1 A 0 A_SpawnItemEx("HeavyMachinegunProjectileTracerTrail2", (6 *momx)/-35.0, -(6 *momy)/-35.0, 2+(6 *momz)/-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("HeavyMachinegunProjectileTracerTrail3", (12 *momx)/-35.0, -(12 *momy)/-35.0, 2+(12 *momz)/-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("HeavyMachinegunProjectileTracerTrail4", (18 *momx)/-35.0, -(18 *momy)/-35.0, 2+(18 *momz)/-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("HeavyMachinegunProjectileTracerTrail5", (24 *momx)/-35.0, -(24 *momy)/-35.0, 2+(24 *momz)/-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("HeavyMachinegunProjectileTracerTrail6", (30*momx)/-35.0, -(30*momy)/-35.0, 2+(30*momz)/-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+		Loop
+
+	Death:
+		MISL B 0 Bright A_Explode
+		TNT1 A 0 A_SpawnItem("TankShotExplosionImpact")
+		TNT1 A 0 A_PlaySound("Explosion", 1)
+		TNT1 A 0 A_SpawnItemEx ("ExplosionSplashSpawner", 0, 0, -20)
+		TNT1 A 0 A_SpawnItemEx ("DetectFloorCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("DetectCeilCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("UnderwaterExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEX("HorizontalShockwave3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 AAA 0 A_CustomMissile ("TankExplosionFlames", 0, 0, random (0, 360), 2, random (0, 90))
+		TNT1 AAA 0 A_CustomMissile ("TankExplosionFlames", 0, 0, random (0, 360), 2, random (0, 20))
+		TNT1 A 6
+		TNT1 A 0 A_PlaySound("FAREXPL", 1)
+		TNT1 A 12
+		Stop
+	}
+}
+
+Actor TankShellLong: TankShell
+{
+	Gravity 0.1
+}
+
+Actor EnemYTankShell: TankShell
+{
+	Speed 50
+	Damage (random (300, 300))
+	+NOGRAVITY
+	+THRUSPECIES
+	Species "EnemyTank"
+}
+
+ACTOR TankFireEffect
+{
+	Radius 1
+	Height 1
+	Speed 70
+	Damage 1
+	Projectile
+	+RANDOMIZE
+	+MISSILE
+	States
+	{
+	Spawn:
+		TKFL A 2
+	Death:
+		TNT1 A 0
+		TNT1 A 0 Radius_Quake(6, 12, 0, 4, 0)
+		TNT1 AAAAA 0 A_SpawnItem("RedFlare")
+		TNT1 A 0 A_CustomMissile ("ExplosionSmokeHD", 0, 0, random (0, 360), 2, random (10, 90))
+		TNT1 A 1 BRIGHT
+		TNT1 AAAAA 0 A_SpawnItem("RedFlare")
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_Recoil(-5)
+		TKFL A 5 BRIGHT
+		Stop
+	}
+}
+
+ACTOR TankShotExplosionImpact
+{
+	damagetype "ExplosiveImpact"
+	RenderStyle "None"
+	+MISSILE
+	+NOCLIP
+	States
+	{
+	Spawn:
+		TNT1 A 1
+		TNT1 A 0 A_Explode(300, 500)
+		Stop
+	}
+}

@@ -1,0 +1,23 @@
+#library "IDDQDStuff"
+#include "zcommon.acs"
+#import "CommonFunc.acs"
+
+
+
+script "NormalWeaponStarterACS" (void)
+{
+	While(CheckInventory("ModernStartWeaponToken") < GetUserCvar(0,"bd_startweapon"))
+	{
+		GiveInventory("ModernStartWeaponToken",1);
+	}
+}
+
+script "InfiniteSprint" (void) net
+{
+	SetResultValue(GetCvar("bd_infinitesprint"));
+}
+
+Script "JenesisCheck" (VOID)
+{
+if	(GetCvar("bd_WadCheck") == 11) { SetActorState(0,"Jenesis"); }
+}

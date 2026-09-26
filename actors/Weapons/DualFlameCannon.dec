@@ -1,0 +1,9 @@
+ACTOR DualFlameCannon : DoomWeapon//BrutalWeapon
+{
+	States
+	{
+	Spawn:
+		MANA H 1
+		Loop
+	}
+}

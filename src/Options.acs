@@ -1,0 +1,1396 @@
+/*Separated it from BDRespawn because clicking "apply options" would display a new tip.
+We want only one tip per map, and even if we wanted more, that isn't really an intuitive
+way of getting a new one :(*/
+script "BDDisplayTip" ENTER CLIENTSIDE
+{
+	if(GameType() != GAME_TITLE_MAP)
+	{
+		if(PlayerNumber( ) == ConsolePlayerNumber( ) && BDCVarInfo[PlayerNumber()].bd_Tips == 1 )
+		{
+			SetFont("SMALLFONT");
+			SetHudSize(640, 480, TRUE);
+			HudMessage(s:ACS_NamedExecuteWithResult("BD_GetRandomTip"); HUDMSG_FADEINOUT|HUDMSG_LOG, 0, CR_UNTRANSLATED, 320.4 , 40.1, 8.0, 1.5, 1.5);
+		}
+	}
+	Delay(1);
+}
+
+script "BDDisplayRespawn" RESPAWN NET CLIENTSIDE
+{
+	ACS_NamedExecuteAlways("BDDisplayTip",0);
+	Delay(1);
+}
+
+script "BDRespawn" Respawn NET
+{
+	delay(1);
+
+	//===========================
+	//////// Detect Player Gender
+
+	TakeInventory("GenderFemale", 1);
+	TakeInventory("GenderMale", 1);
+
+	if(GetPlayerInfo(PlayerNumber(), PLAYERINFO_GENDER) == 1)
+	{
+		GiveInventory("GenderFemale", 1);
+	}
+	else
+	{
+		GiveInventory("GenderMale", 1);
+	}
+
+	//===========================
+	////////Sbar Type
+
+	str sbartypeNumber = StrParam(s:"sbartype",d:BDCVarInfo[PlayerNumber()].bd_sbartype);
+
+	TakeInventory("sbartype1",1);
+	TakeInventory("sbartype2",1);
+	TakeInventory("sbartype3",1);
+	TakeInventory("sbartype4",1);
+
+	GiveInventory(sbartypeNumber,1);
+
+	//===========================
+	////////Weapon handling
+
+	ACS_NamedExecuteAlways("AimMode",0);
+
+	SetInventory("NoReloading", bd_noreloading); //No reload accepted for all players
+
+	SetInventory("NoAutoReload", BDCVarInfo[PlayerNumber()].bd_noautoreload); //Auto Reload 
+
+	//===========================
+	////////Advanced Movement
+
+	ACS_NamedExecuteAlways("grabber",0);
+	ACS_NamedExecuteAlways("DoSlideKick",0);
+	
+	Delay(1);
+}
+
+script "BDInitialize" enter
+{
+	//===========================
+	// Fade In
+
+	if(GameType () == GAME_SINGLE_PLAYER)
+	{
+		sethudsize(160, 90, TRUE);
+		setfont("BLASCR");
+		HudMessageBold(s:"a"; HUDMSG_FADEOUT, 1, CR_BLACK, 0.1, 0.1, 0.1, 1.0);
+	}
+	//Delay(1);
+
+	//===========================
+	// Options / preferences
+	//ACS_NamedExecuteAlways("BDRespawn",0);
+	ACS_NamedExecuteAlways("GetCVars", 0);
+
+	if(bd_NoPickupsAnimations != 0)
+	{
+		TakeInventory("NeverSelectedRifle",1);
+		TakeInventory("NeverSelectedASG",1);
+		TakeInventory("NeverSelectedShotgun",1);
+		TakeInventory("NeverSelectedPistol",1);
+		TakeInventory("NeverSelectedSMG",1);
+		TakeInventory("NeverSelectedRevolver",1);
+		TakeInventory("NeverSelectedMinigun",1);
+		TakeInventory("NeverSelectedRL",1);
+		TakeInventory("NeverSelectedGL",1);
+		TakeInventory("NeverSelectedMP40",1);
+		TakeInventory("NeverSelectedPlasma",1);
+		TakeInventory("NeverSelectedRailgun",1);
+	}
+
+	if (checkinventory("istacticalclass") == 1 || checkinventory("isplayingaspurist") == 1) { SetActorProperty (0, APROP_Speed, 1.0); }
+	if (checkinventory("isplayingaspurist") == 1) { TAkeInventory("IsTacticalClass", 1); }
+
+	//===========================
+
+	if ( IsNetworkgame() && IsServerOnly() ) { ConsoleCommand("compat_clientssendfullbuttoninfo 1"); }
+
+	//===========================
+	//Spawn surviving marines
+///*
+	static str marineTypesInv[] =
+	{
+		"NumberOfAllies",
+		"NumberOfAlliesShotgun",
+		"NumberOfAlliesMinigun",
+		"NumberOfAlliesRocket",
+		"NumberOfAlliesPlasmagun"
+	};
+
+	static str marineTypesAct[] =
+	{
+		"Marine_Rifle",
+		"Marine_Shotgun",
+		"Marine_Minigun",
+		"Marine_Rocket",
+		"Marine_Plasmagun"
+	};
+
+	int x = GetActorX(0) - 32,
+		y = GetActorY(0),
+		z = GetActorZ(0);
+
+	for(int i = 0; i < lengthof(marineTypesInv); i++)
+	{
+		int limit = min(CheckInventory(marineTypesInv[i]), 7);
+
+		for(int j = 0; j < limit; j++)
+			Spawn(marineTypesAct[i], x, y, z);
+	}
+	
+
+//*/
+	TakeInventory("TankGun", 1);
+	TakeInventory("ArtilleryTankGun", 1);
+	TakeInventory("HelicopterGun", 1);
+	TakeInventory("MechGun", 1);
+	TakeInventory("HeavyMachinegunHUD", 1);
+	SetPlayerProperty(0, 0, PROP_BUDDHA);
+
+}
+
+SCRIPT "BDInitiate" OPEN
+{
+	if	(IsNetworkgame() && IsServerOnly() )
+	{
+		ConsoleCommand("compat_clientssendfullbuttoninfo 1");
+	}
+
+	if(!bd_disablemapenhancements)
+	{
+		ReplaceTextures("FLOOR5_3", "METAL52");
+		ReplaceTextures("FLOOR5_2", "METAL52");
+		ReplaceTextures("FLAT5", "METAL53");
+		ReplaceTextures("FLOOR0_1", "METAL54");
+		ReplaceTextures("FLOOR0_3", "METAL55");
+		ReplaceTextures("FLOOR3_3", "METAL56");
+		ReplaceTextures("TLITE6_5", "LITGEN7B");
+		ReplaceTextures("TLITE6_6", "LITGEN9C");
+		ReplaceTextures("FLAT2", "FLAT2B");
+		ReplaceTextures("GRNLITE1", "GRNLIT1B");
+	}
+
+	ReplaceTextures ("DSAND1", "SANDS1");
+	ReplaceTextures ("DSAND3", "SANDS1");
+	ReplaceTextures ("DSAND4", "SANDS1");
+	ReplaceTextures ("DSAND5", "SANDS1");
+	ReplaceTextures ("ETEX34", "SANDS1");
+	ReplaceTextures ("WALL81", "SANDS1");
+	ReplaceTextures ("ECEIL13", "SANDS1");
+	ReplaceTextures ("ECEIL15", "SANDS1");
+	ReplaceTextures ("GROUND20", "DESERT01");
+	ReplaceTextures ("SLUDGE01", "SLIME08");
+	ReplaceTextures ("LFALL1", "LFALL01");
+	ReplaceTextures ("LAVA1", "LAVAFL");
+	ReplaceTextures ("LAVA2", "LAVAFL");
+	ReplaceTextures ("LAVA3", "LAVAFL");
+	ReplaceTextures ("LAVA4", "LAVAFL");
+	ReplaceTextures ("LAVA01", "LAVAFL");
+	ReplaceTextures ("LAVA02", "LAVAFL");
+	ReplaceTextures ("LAVA03", "LAVAFL");
+	ReplaceTextures ("LAVA04", "LAVAFL");
+	ReplaceTextures ("LAVFALL1", "LFALL01");//Sunlust Lava
+	ReplaceTextures ("SLMFALL1", "CRFAL01");//CRAPFALLS
+	ReplaceTextures ("SLMFALL2", "CRFAL01");//CRAPFALLS
+	ReplaceTextures ("SLMFALL3", "CRFAL01");//CRAPFALLS
+
+	// Replaces similar textures so the flat checking scripts have less stuff
+	ReplaceTextures ("NUKAGE3", "NUKAGE1");
+	ReplaceTextures ("NUKAGE2", "NUKAGE1");
+	ReplaceTextures ("SLIME04", "SLIME01");
+	ReplaceTextures ("SLIME03", "SLIME01");
+	ReplaceTextures ("SLIME02", "SLIME01");
+	ReplaceTextures ("SLIME08", "SLIME05");
+	ReplaceTextures ("SLIME06", "SLIME05");
+	ReplaceTextures ("SLIME07", "SLIME05");
+	ReplaceTextures ("BLOOD3", "BLOOD1");
+	ReplaceTextures ("BLOOD2", "BLOOD1");
+}
+
+Script "BDCHeckJanitor" (VOID)
+{
+	Delay(1);
+	if	(BDCVarInfo[PlayerNumber()].bd_lowgraphicsmode == 1) { GiveInventory("LowGraphicsMode", 1); }
+	if	(zdoombrutaljanitor == 1) { GiveInventory("LowGraphicsMode", 1); }
+	if	(GameType () == GAME_NET_DEATHMATCH) { GiveInventory("LowGraphicsMode", 1); }
+}
+
+Script "BDCHeckJanitor2" (VOID)
+{
+	Delay(1);
+	if	(bd_infinitecasings == 0) { GiveInventory("LowGraphicsMode", 1); }
+}
+
+Script "BDCHeckJanitor3" (VOID)//Making limbs not bounce with explosives
+{
+	Delay(1);
+	if	(BDCVarInfo[PlayerNumber()].bd_lowgraphicsmode == 1) { SetActorState(0, "NoColision", 1); }
+	if	(zdoombrutaljanitor == 1) { SetActorState(0, "NoColision", 1); }
+}
+
+
+Script "BDCHeckJanitor4" (VOID)
+{
+	Delay(1);
+	if	(isrunningzandronum == 1)
+	{
+		if	(BDCVarInfo[PlayerNumber()].bd_bloodamount < 2) { SetActorState(0,"Vanish"); }
+	}
+
+	if	(isrunningzandronum == 0)
+	{
+		if	(zdoombrutalblood < 2) { SetActorState(0,"Vanish"); }
+	}
+}
+
+Script "BDCHeckClassicMonsters" (VOID)
+{
+	Delay(1);
+	if (bd_classicmonsters == 1) { SetActorState(0,"ReplaceVanilla"); }
+}
+
+Script "BDCheckDecorations" (VOID)
+{
+	delay(1);
+	if (bd_disabledecorations == 1) { SetActorState(0,"Vanilla"); }
+}
+
+Script "BDDisableMapEnhancements" (VOID)
+{
+	Delay(1);
+	if (bd_disablemapenhancements == 1) { SetActorState(0,"Vanilla"); }
+}
+
+
+Script "BDDisableNewGuns" (VOID)
+{
+	Delay(1);
+	if (bd_disablenewguns == 1) { SetActorState(0,"Vanilla"); }
+}
+
+
+Script "CheckIfDM" (VOID)
+{
+	if (GameType () == GAME_NET_DEATHMATCH)
+		GiveInventory("DMGame", 1);
+		Delay(1);
+	if (GameType () == GAME_NET_DEATHMATCH)
+		SetActorState(0,"DM");
+}
+
+
+Script "CheckGamemode" (VOID)
+{
+	SetResultValue( GameType () );
+}
+
+Script "BDCheckStuff" (VOID)
+{
+	Delay(1);
+	if (bd_nobulletpenetration == 0) { TakeInventory("nopenetration", 1);}
+	if (bd_nobulletpenetration == 1) { GiveInventory("nopenetration", 1);}
+	if (BDCVarInfo[PlayerNumber()].bd_shotgunstrap == 1) { GiveInventory("useshotgunstrap", 1);}
+	if (BDCVarInfo[PlayerNumber()].zdoombd_shotgunstrap == 1) { GiveInventory("useshotgunstrap", 1);}
+	if (bd_disablenewenemies == 1) { GiveInventory("nonewenemies", 1);}
+}
+
+
+Script "BDCheckWaterRipples" (VOID)
+{
+	Delay(1);
+	if (bd_disablewaterripples2 > 0) { GiveInventory("Clip2", 10); }
+}
+
+Script "BDDisableFriendlyMarines" (VOID)
+{
+	Delay(1);
+	if (bd_disablefriendlymarines > 0) { GiveInventory("Clip2", 10); }
+}
+
+
+Script "BDShootableAmmo" (VOID)
+{
+	Delay(1);
+	if (bd_shootablerocketammo < 1) { GiveInventory("Clip1", 10); }
+}
+
+Script "BDFootsteps" (VOID)
+{
+	Delay(1);
+	if (bd_footstepsounds == 0) { GiveInventory("FootStepDisabled", 1); }
+}
+
+
+Script "CheckRocketBackblast" (VOID)
+{
+	Delay(1);
+	if (bd_rocketbackblast == 0) { SetACtorState(0, "Disappear"); }
+}
+
+
+Script "CheckVoxels" (VOID)
+{
+	Delay(1);
+	if (bd_voxeldec == 0) { SetACtorState(0, "Disappear"); }
+}
+
+
+
+/*Script "BD_CheckBloodIntensity" (VOID)
+{
+	if (isrunningzandronum == 1)
+	{
+		if (BDCVarInfo[PlayerNumber()].bd_bloodamount == 0) { SetActorState(0,"LowBlood"); }
+		if (BDCVarInfo[PlayerNumber()].bd_bloodamount == 1) { SetActorState(0,"LowBlood"); }
+		if (BDCVarInfo[PlayerNumber()].bd_bloodamount == 3) { SetActorState(0,"LotsOfBlood"); }
+		if (BDCVarInfo[PlayerNumber()].bd_bloodamount >= 4) { SetActorState(0,"AbsurdBlood"); }
+	}
+
+	if (isrunningzandronum == 0)
+	{
+		if (zdoombrutalblood == 0) { SetActorState(0,"LowBlood"); }
+		if (zdoombrutalblood == 1) { SetActorState(0,"LowBlood"); }
+		if (zdoombrutalblood == 3) { SetActorState(0,"LotsOfBlood"); }
+		if (zdoombrutalblood == 4) { SetActorState(0,"AbsurdBlood"); }
+	}
+
+	if (isrunningzandronum == 1)
+	{
+		if	(BDCVarInfo[PlayerNumber()].bd_bloodamount >= 5)
+		{
+			SetActorState(0,"AbsurdBlood");
+			GiveInventory("AnimuGore", 1);
+		}
+	}
+
+	if (isrunningzandronum == 0)
+	{
+		if	(zdoombrutalblood >= 5)
+		{
+			SetActorState(0,"AbsurdBlood");
+			GiveInventory("AnimuGore", 1);
+		}
+	}
+}*/
+
+Script "BD_CheckBloodIntensity" (VOID)
+{
+	Delay(1);
+	if	(isrunningzandronum != 0)
+	{
+		switch( BDCVarInfo[PlayerNumber()].bd_bloodamount )
+		{
+			Case 0: SetActorState(0,"LowBlood"); break;
+			Case 1: SetActorState(0,"LowBlood"); break;
+			Case 2: break;
+			Case 3: SetActorState(0,"LotsOfBlood"); break;
+			Case 4: SetActorState(0,"AbsurdBlood"); break;
+			Default: //at least 5
+			SetActorState(0,"AbsurdBlood");
+			GiveInventory("AnimuGore", 1);
+			break;
+		}
+	}
+	else
+	{
+		switch( zdoombrutalblood )
+		{
+			Case 0: SetActorState(0,"LowBlood"); break;
+			Case 1: SetActorState(0,"LowBlood"); break;
+			Case 2: break;
+			Case 3: SetActorState(0,"LotsOfBlood"); break;
+			Case 4: SetActorState(0,"AbsurdBlood"); break;
+			Default: //at least 5
+			SetActorState(0,"AbsurdBlood");
+			GiveInventory("AnimuGore", 1);
+			break;
+		}
+	}
+}
+
+Script "BD_CheckBloodExtra1" (VOID)
+{
+	Delay(1);
+	if (BDCVarInfo[PlayerNumber()].bd_morebloodmist >= 1)
+	{
+		SetActorState(0,"AbsurdBlood");
+	}
+}
+
+
+Script "BD_CheckIfLowBlood" (VOID)
+{
+	Delay(1);
+	if (BDCVarInfo[PlayerNumber()].bd_bloodamount == 1) { SetActorState(0,"Vanish"); }
+	if (BDCVarInfo[PlayerNumber()].bd_bloodamount == 0) { SetActorState(0,"Vanish"); }
+}
+
+Script "CheckVoodoo" (VOID)
+{
+	if(ClassifyActor(0) & ACTOR_VOODOODOLL)
+	{
+		Delay(1);
+		SetActorState(0,"IsVoodooDoll");
+	}
+}
+
+Script "GetActorHealth" (int previoustid)//(VOID)
+{
+	previoustid = ActivatorTID();
+	if(!previoustid) previoustid = UniqueTID();
+	Thing_ChangeTid(0, previoustid);
+
+	SetActivator(previoustid);
+	GetActorHealth(previoustid);
+
+	//GetActorHealth(ActivatorTID());
+	//SetFont("smallfont");
+	//PrintBold(s:"Retrieved: ",i:previoushealth);
+}
+
+Script "SetActorHealth" (VOID)
+{
+	SetActorHealth(ActivatorTID(), previoushealth);
+	//SetFont("smallfont");
+	//PrintBold(s:"Set to: ",i:previoushealth);
+}
+
+//MechSan Scripts
+Script "ScreenEffects" (VOID)
+{
+	Delay(1);
+	TakeInventory("ScreenFX", 1);
+
+	if (BDCVarInfo[PlayerNumber()].bd_ScreenFX == 1) { GiveInventory("ScreenFX",1); }	//BDv21 Mode
+	//if	(GetCvar("bd_ScreenFX") == 1) { GiveInventory("ScreenFXv21",1); }	//BDv21 Mode
+	if (BDCVarInfo[PlayerNumber()].bd_ScreenFX == 2) { GiveInventory("ScreenFX",1); }	//Off Mode
+}
+
+Script "BloodSplashTrail" (VOID)
+{
+	Delay(1);
+	TakeInventory("BloodTrail", 1);
+	if (BDCVarInfo[PlayerNumber()].bd_BloodTrail == 1 || BDCVarInfo[PlayerNumber()].bd_ScreenFX == 1) { GiveInventory("BloodTrail",1); }
+}
+
+script "AimMode" (VOID)
+{
+	Delay(1);
+	int type = BDCVarInfo[PlayerNumber()].bd_AimMode;
+	Switch(Type)
+	{
+		Default:
+		Case 0:
+			TakeInventory("AimMode_Toggle",1);
+			TakeInventory("AimMode_Hold",1);
+			break;
+		Case 1:
+			GiveInventory("AimMode_Toggle",1);
+			TakeInventory("AimMode_Hold",1);
+			break;
+		Case 2:
+			TakeInventory("AimMode_Toggle",1);
+			GiveInventory("AimMode_Hold",1);
+			break;
+	}
+	Delay(1);
+}
+
+script "SetButtonInfo" OPEN
+{
+	//int oldcvar = GetCvar("compat_clientssendfullbuttoninfo");
+	if (IsNetworkgame() && IsServerOnly() && bd_compat_clientssendfullbuttoninfo == 0){
+		ConsoleCommand("compat_clientssendfullbuttoninfo 1"); }// else ConsoleCommand("compat_clientssendfullbuttoninfo 0");
+}
+
+//Dox Scripts
+SCRIPT "AgileZombies" (void)
+{
+	int value = bd_AgileZombies;
+	SetResultValue(value);
+}
+
+script "GetCrosshair" (int Weapon)
+{
+  static str _cvarPrefixes[50] = {
+    "Pistol", "SMG", "ASG", "SSG", "Shotgun", "Minigun", "Rifle", "RL", "GL", "Plasma", "Railgun", "BFG9K", "BFG10K", "Unmaker", "Flame", "Rev",//...
+	"MP40", "MG42", "Sniper", "Revolver", "Nuke", "M202"
+  };
+
+  str cvarName = StrParam(s:"bd_Cross", s:_cvarPrefixes[Weapon-1]);
+  
+  if(getusercvar(ConsolePlayerNumber(),"bd_cross"))
+  { 
+  SetResultValue(getcvar(cvarName)); 
+  }
+}
+
+Script "DefaultCrosshairs" (VOID) NET
+{
+	SetCvar("bd_CrossPistol",15);
+	SetCvar("bd_CrossSMG",22);
+	SetCvar("bd_CrossMP40",54);
+	SetCvar("bd_CrossASG",46);
+	SetCvar("bd_CrossShotgun",40);
+	SetCvar("bd_CrossSSG",9);
+	SetCvar("bd_CrossRifle",24);
+	SetCvar("bd_CrossMinigun",79);
+	SetCvar("bd_CrossMG42",79);
+	SetCvar("bd_CrossRL",43);
+	SetCvar("bd_CrossGL",33);
+	SetCvar("bd_CrossPlasma",39);
+	SetCvar("bd_CrossRailgun",50);
+	SetCvar("bd_CrossBFG9K",89);
+	SetCvar("bd_CrossBFG10K",78);
+	SetCvar("bd_CrossUnmaker",53);
+	SetCvar("bd_CrossFlame",28);
+	SetCvar("bd_CrossRev",76);
+	//Find values for these later
+	SetCvar("bd_CrossSniper",1);
+	SetCvar("bd_CrossRevolver",1);
+	SetCvar("bd_CrossNuke",1);
+	SetCvar("bd_CrossM202",1);
+	Delay(1);
+}
+
+
+
+script "SetMugshot" (int Face)
+{
+	if (GameType() != GAME_SINGLE_PLAYER) { terminate; } //it'd activate for all players in netplay, so yeah. don't.
+	Switch(Face)
+	{
+	case 0: SetMugShotState("Normal"); break;
+	case 1: SetMugShotState("Pain"); break;
+	case 2: SetMugShotState("Rampage"); break;
+	case 3: SetMugShotState("Ouch"); break;
+	case 4: SetMugShotState("Grin"); break;
+	case 5: SetMugShotState("God"); break;
+	}
+	delay(1);
+}
+
+/*script "SetMugshot" (int Face)
+{		
+	delay(1);
+	
+	if (GameType() != GAME_SINGLE_PLAYER) { terminate; } //it'd activate for all players in netplay, so yeah. don't.
+	
+	static str MugShotState[] =
+	{
+		"Normal", "Pain", "Rampage",
+		"Ouch", "Grin", "God"
+	};
+		
+	foreach(let str v; MugShotState)
+	{
+		if(!Face)
+		{
+			Face = v;
+			break;
+		}
+	}
+	SetMugShotState(MugShotState[Face - 1]);
+}*/
+
+Script "RandomizeCrosshair" (void) NET
+{
+	SetCVAR("bd_CrossPistol", random(1,99));
+	SetCVAR("bd_CrossSMG", random(1,99));
+	SetCVAR("bd_CrossASG", random(1,99));
+	SetCVAR("bd_CrossSSG", random(1,99));
+	SetCVAR("bd_CrossShotgun", random(1,99));
+	SetCVAR("bd_CrossMinigun", random(1,99));
+	SetCVAR("bd_CrossRifle", random(1,99));
+	SetCVAR("bd_CrossRL", random(1,99));
+	SetCVAR("bd_CrossGL", random(1,99));
+	SetCVAR("bd_CrossPlasma", random(1,99));
+	SetCVAR("bd_CrossRailgun", random(1,99));
+	SetCVAR("bd_CrossBFG9K", random(1,99));
+	SetCVAR("bd_CrossBFG10K", random(1,99));
+	SetCVAR("bd_CrossUnmaker", random(1,99));
+	SetCVAR("bd_CrossFlame", random(1,99));
+	SetCVAR("bd_CrossRev", random(1,99));
+	SetCvar("bd_CrossSniper",random(1,99));
+	SetCvar("bd_CrossRevolver",random(1,99));
+	SetCvar("bd_CrossNuke",random(1,99));
+	SetCvar("bd_CrossM202",random(1,99));
+	delay(1);
+}
+
+Function int CheckMorphClass (Void)
+{
+	return (!CheckInventory("IsAVehicle")) && (!CheckInventory("IsInATank"));
+}
+
+SCRIPT "Breathing" ENTER
+{
+    Delay(25); //Enough time for all the other size setting stuff to take place
+    While(IsPlayerAlive())
+	{
+		if (CheckMorphClass())
+		{
+			SetActorProperty(0, APROP_ScaleY, GetActorProperty(0, APROP_ScaleY) - 0.02 );
+			Delay(25);
+			SetActorProperty(0, APROP_ScaleY, GetActorProperty(0, APROP_ScaleY) + 0.02 );
+		}
+		Delay(25);
+	}
+}
+
+//IDDQD Scripts
+/*script "ReloadingMode" ENTER NET
+{
+	While(true)
+	{
+		int type = bd_reloading;
+		Switch(Type)
+		{
+			Case 0:
+				TakeInventory("NoReloading",1);
+				break;
+			Case 1:
+				GiveInventory("NoReloading",1);
+				break;
+		}
+		Delay(1);
+	}
+}
+
+script "Sbartype" Enter clientside
+{
+	While(true)
+	{
+		int type = BDCVarInfo[PlayerNumber()].bd_sbartype;
+		Switch(Type)
+		{
+			Case 1:
+				GiveInventory("Sbartype1",1);
+				TakeInventory("sbartype2",1);
+				TakeInventory("sbartype3",1);
+				break;
+			Case 2:
+				GiveInventory("Sbartype2",1);
+				TakeInventory("sbartype1",1);
+				TakeInventory("sbartype3",1);
+				break;
+			Case 3:
+				GiveInventory("Sbartype3",1);
+				TakeInventory("sbartype1",1);
+				TakeInventory("sbartype2",1);
+				break;
+		}
+		Delay(1);
+		SetInventory("CenteredHUD", BDCVarInfo[PlayerNumber()].bd_centeredhud);
+	}
+}*/
+
+script "NormalWeaponStarterACS" (void)// net
+{
+	delay(1);
+	SetInventory("ModernStartWeaponToken", BDCVarInfo[PlayerNumber()].bd_startweapon);
+}
+
+script "InfiniteSprint" (void)// net
+{
+	SetResultValue(bd_infinitesprint);
+}
+
+/*Script "AutoReload" enter
+{
+	While(true)
+	{
+		int type = BDCVarInfo[PlayerNumber()].bd_autoreload;
+		Switch(Type)
+		{
+			Case 0:
+				GiveInventory("NoAutoReload",1);
+				break;
+			Case 1:
+				TakeInventory("NoAutoReload",1);
+				break;
+		}
+		Delay(1);
+	}
+}*/
+
+/*Script "WadChecker" (VOID)
+{
+	delay(1);
+	int type = bd_WadCheck;
+	Switch(Type)
+	{
+		Case 1: SetActorState(0,"ISANazi"); break; //Doom 2 (Default Nazi)
+		Case 2: SetActorState(0,"BW"); break; //Doom 2 (Brutal Wolfenstein Nazi)
+		Case 3: SetActorState(0,"FormerMarine"); break;	//Doom 2 (Former Soldiers)
+		Case 4: SetActorState(0,"Alieni"); break; //Ancient Aliens
+		Case 5: SetActorState(0,"EVITERNITY"); break; //Eviternity
+		Case 6: SetActorState(0,"DOUBLETIMETOTHEHANGER"); break; //Scythe II/Resurgence
+		Case 7: SetActorState(0,"ReplaceGoingDown"); break; //Going Down
+		Case 8: SetActorState(0,"ISEpic2Alien"); break; //Epic 2
+		Case 9: SetActorState(0,"Bloodstain"); break; //Bloodstain
+		Case 10: SetActorState(0,"TNTRevilution"); break; //TNT Revilution
+		Case 11: SetActorState(0,"Jenesis"); break; //Jenesis
+		Case 12: SetActorState(0,"2048Unleashed"); break; //2048 Unleashed
+		Case 13: SetActorState(0,"DoomZero"); break; //Doom Zero
+	}
+}*/
+
+Script "DropItems" DEATH NET // The Zombie KIller's Drop Items Script
+{
+	int DropItemsCvar = bd_dropitems;
+	if (DropItemsCvar)
+	{
+		TakeInventory("ImpShield", 1);
+		TakeInventory("ZManShield", 1);
+		TakeInventory("SGuyShield", 1);
+		TakeInventory("СGuyShield", 1);
+		TakeInventory("ZombieCivilianShield", 1);
+		TakeInventory("NaziShield", 1);
+		TakeInventory("EvilMarineShield", 1);
+		for (int i = 0; i < DROPCOUNT; i++)
+		{
+			if (CheckInventory(checkItem[i]))
+			{
+				TakeInventory(checkItem[i], CheckInventory(checkItem[i]));
+				DropItem(0, dropItems[i], CheckInventory(checkItem[i]), 256);
+			}
+		}
+	}
+}
+
+/*Script "ZombiemanSpawner" (Void)
+{	
+	static str monsterType[] =
+	{
+		"ReplaceRifle", "ReplacePistol",
+		"ReplaceAxeman"
+	};
+	delay(1);
+	if(bd_zombiemanspawn == 0)
+	terminate;//SetActorState(0, monsterType[random(1,3)]);
+	else
+	SetActorState(0, monsterType[bd_zombiemanspawn - 1]);
+}
+
+Script "ShotgunguySpawner" (void)
+{
+	static str monsterType[] =
+	{
+		"ReplaceShotgun", "ReplaceSMG"
+	};
+	delay(1);
+	if(bd_shotgunguyspawn == 0)
+	terminate;//SetActorState(0, monsterType[random(1,2)]);
+	else
+	SetActorState(0, monsterType[bd_shotgunguyspawn - 1]);
+}
+
+Script "BDDisableChainsawSpawner" (VOID)
+{
+	static str spawnType[] =
+	{
+		"Vanilla", "ForceSpawn2"
+	};	
+	delay(1);
+	if(bd_ChainsawSpawner == 0)
+	terminate;//SetActorState(0, spawnType[random(1,2)]);
+	else
+	SetActorState(0, spawnType[bd_ChainsawSpawner - 1]);
+}
+
+Script "BDDisablePistolSpawner" (VOID)
+{
+	static str spawnType[] =
+	{
+		"Vanilla", "ForceSpawn2"
+	};	
+	delay(1);
+	if(bd_PistolSpawner == 0)
+	terminate;//SetActorState(0, spawnType[random(1,2)]);
+	else
+	SetActorState(0, spawnType[bd_PistolSpawner - 1]);
+}
+
+Script "BDDisableShotgunpawner" (VOID)
+{
+	static str spawnType[] =
+	{
+		"Vanilla", "ForceSpawn2"
+	};	
+	delay(1);
+	if(bd_ShotgunSpawner == 0)
+	terminate;//SetActorState(0, spawnType[random(1,2)]);
+	else
+	SetActorState(0, spawnType[bd_ShotgunSpawner - 1]);
+}
+
+Script "BDDisableSSGSpawner" (VOID)
+{
+	static str spawnType[] =
+	{
+		"Vanilla", "ForceSpawn2"
+	};	
+	delay(1);
+	if(bd_SSGSpawner == 0)
+	terminate;//SetActorState(0, spawnType[random(1,2)]);
+	else
+	SetActorState(0, spawnType[bd_SSGSpawner - 1]);
+}
+
+Script "BDDisableMinigunSpawner" (VOID)
+{	
+	static str spawnType[] =
+	{
+		"Vanilla", "ForceSpawn2",
+		"Spawn3"
+	};	
+	delay(1);
+	if(bd_ChaingunSpawner == 0)
+	terminate;//SetActorState(0, spawnType[random(1,3)]);
+	else
+	SetActorState(0, spawnType[bd_ChaingunSpawner - 1]);
+}
+
+Script "BDDisableROCKETLAUNCHERSPAWNER" (VOID)
+{
+	static str spawnType[] =
+	{
+		"Vanilla", "ForceSpawn2"
+	};	
+	delay(1);
+	if(bd_RLSpawner == 0)
+	terminate;//SetActorState(0, spawnType[random(1,2)]);
+	else
+	SetActorState(0, spawnType[bd_RLSpawner - 1]);
+}
+
+Script "BDDisablePlasmaRifleSpawner" (VOID)
+{
+	static str spawnType[] =
+	{
+		"Vanilla", "ForceSpawn2"
+	};	
+	delay(1);
+	if(bd_PlasmaSpawner == 0)
+	terminate;//SetActorState(0, spawnType[random(1,2)]);
+	else
+	SetActorState(0, spawnType[bd_PlasmaSpawner - 1]);
+}
+
+Script "BDDisableBFGSPAWNER" (VOID)
+{
+	static str spawnType[] =
+	{
+		"Vanilla", "ForceSpawn2",
+		"Unmaker"
+	};	
+	delay(1);
+	if(bd_BFGSpawner == 0)
+	terminate;//SetActorState(0, spawnType[random(1,3)]);
+	else
+	SetActorState(0, spawnType[bd_BFGSpawner - 1]);
+}
+
+Script "AmmoSupplyChecker" (Void)
+{		
+	static str spawnType[] =
+	{
+		"Vanilla", "BDV22Style"
+	};	
+	delay(1);
+	if(BD_AmmoPackCheck == 0)
+	terminate;//SetActorState(0, spawnType[random(1,2)]);
+	else
+	SetActorState(0, spawnType[BD_AmmoPackCheck - 1]);
+}*/
+
+/*Script "ZombiemanSpawner" (Void)
+{
+    static str monsterType[] =
+    {
+        "ReplaceRifle", "ReplacePistol", "ReplaceAxeman"
+    };
+
+    int numMonsters = 3; // Number of entries in the array
+    int jumpChance = 48; // 48/256 chance to change state
+
+    delay(1);
+
+    if (bd_zombiemanspawn == 0)
+    {
+        if (Random(0, 255) < jumpChance) // Apply the probability check
+        {
+            int randomIndex = Random(0, numMonsters - 1); // Pick a valid index
+            SetActorState(0, monsterType[randomIndex]);
+        }
+    }
+    else
+    {
+        // Ensure bd_zombiemanspawn is within array bounds
+        if (bd_zombiemanspawn >= 1 && bd_zombiemanspawn <= numMonsters)
+        {
+            SetActorState(0, monsterType[bd_zombiemanspawn - 1]);
+        }
+    }
+}*/
+
+// Zombieman Spawner
+Script "ZombiemanSpawner" (Void)
+{
+    static str monsterType[] =
+    {
+        "ReplaceRifle", "ReplacePistol", "ReplaceAxeman"
+    };
+
+    delay(1);
+
+    if (bd_zombiemanspawn == 0)
+    {
+        int roll = Random(0, 255); // Generate a number between 0 and 255
+
+        if (roll <= 1) // 1/256 chance for ReplaceAxeman
+        {
+            SetActorState(0, "ReplaceAxeman");
+        }
+        else if (roll <= 140) // 140/256 chance for ReplacePistol
+        {
+            SetActorState(0, "ReplacePistol");
+        }
+        else // Remaining 115/256 chance defaults to ReplaceRifle
+        {
+            SetActorState(0, "ReplaceRifle");
+        }
+    }
+    else
+    {
+        // Ensure bd_zombiemanspawn is within array bounds
+        if (bd_zombiemanspawn >= 1 && bd_zombiemanspawn <= 3)
+        {
+            SetActorState(0, monsterType[bd_zombiemanspawn - 1]);
+        }
+    }
+}
+
+// Shotgunguy Spawner
+Script "ShotgunguySpawner" (void)
+{
+    static str monsterType[] = { "ReplaceShotgun", "ReplaceSMG" };
+
+    delay(1);
+
+    if (bd_shotgunguyspawn == 0)
+    {
+        int roll = Random(0, 255); // Generate a number between 0 and 255
+
+        if (roll <= 32) // 32/256 chance for ReplaceSMG
+        {
+            SetActorState(0, "ReplaceSMG");
+        }
+        else // Remaining 224/256 chance defaults to ReplaceShotgun
+        {
+            SetActorState(0, "ReplaceShotgun");
+        }
+    }
+    else if (bd_shotgunguyspawn >= 1 && bd_shotgunguyspawn <= 2)
+    {
+        SetActorState(0, monsterType[bd_shotgunguyspawn - 1]);
+    }
+}
+
+// Chainsaw Spawner
+Script "BDDisableChainsawSpawner" (VOID)
+{
+    static str spawnType[] = { "Vanilla", "ForceSpawn2" };
+
+    delay(1);
+
+    if (bd_ChainsawSpawner == 0)
+    {
+        int roll = Random(0, 255); // Generate a number between 0 and 255
+
+        if (roll <= 128) // 128/256 chance for "ForceSpawn2"
+        {
+            SetActorState(0, "ForceSpawn2");
+        }
+        else // Remaining 128/256 chance defaults to "Vanilla"
+        {
+            SetActorState(0, "Vanilla");
+        }
+    }
+    else if (bd_ChainsawSpawner >= 1 && bd_ChainsawSpawner <= 2)
+    {
+        SetActorState(0, spawnType[bd_ChainsawSpawner - 1]);
+    }
+}
+
+// Pistol Spawner
+Script "BDDisablePistolSpawner" (VOID)
+{
+    static str spawnType[] = { "Vanilla", "ForceSpawn2" };
+
+    delay(1);
+
+    if (bd_PistolSpawner == 0)
+    {
+        int roll = Random(0, 255); // Generate a number between 0 and 255
+
+        if (roll <= 128) // 128/256 chance for "ForceSpawn2"
+        {
+            SetActorState(0, "ForceSpawn2");
+        }
+        else // Remaining 128/256 chance defaults to "Vanilla"
+        {
+            SetActorState(0, "Vanilla");
+        }
+    }
+    else if (bd_PistolSpawner >= 1 && bd_PistolSpawner <= 2)
+    {
+        SetActorState(0, spawnType[bd_PistolSpawner - 1]);
+    }
+}
+
+// Shotgun Spawner
+Script "BDDisableShotgunSpawner" (VOID)
+{
+    static str spawnType[] = { "Vanilla", "ForceSpawn2" };
+
+    delay(1);
+
+    if (bd_ShotgunSpawner == 0)
+    {
+        int roll = Random(0, 255); // Generate a number between 0 and 255
+
+        if (roll <= 48) // 48/256 chance for "ForceSpawn2" (18.75%)
+        {
+            SetActorState(0, "ForceSpawn2");
+        }
+        else // Remaining 208/256 chance defaults to "Vanilla"
+        {
+            SetActorState(0, "Vanilla");
+        }
+    }
+    else if (bd_ShotgunSpawner >= 1 && bd_ShotgunSpawner <= 2)
+    {
+        SetActorState(0, spawnType[bd_ShotgunSpawner - 1]);
+    }
+}
+
+// SSG Spawner
+Script "BDDisableSSGSpawner" (VOID)
+{
+    static str spawnType[] = { "Vanilla", "ForceSpawn2" };
+
+    delay(1);
+
+    if (bd_SSGSpawner == 0)
+    {
+        int roll = Random(0, 255); // Generate a number between 0 and 255
+
+        if (roll <= 48) // 48/256 chance for "ForceSpawn2" (18.75%)
+        {
+            SetActorState(0, "ForceSpawn2");
+        }
+        else // Remaining 208/256 chance defaults to "Vanilla"
+        {
+            SetActorState(0, "Vanilla");
+        }
+    }
+    else if (bd_SSGSpawner >= 1 && bd_SSGSpawner <= 2)
+    {
+        SetActorState(0, spawnType[bd_SSGSpawner - 1]);
+    }
+}
+
+// Minigun Spawner
+Script "BDDisableMinigunSpawner" (VOID)
+{
+    static str spawnType[] = { "Vanilla", "ForceSpawn2", "Spawn3" };
+
+    delay(1);
+
+    if (bd_ChaingunSpawner == 0)
+    {
+        int roll = Random(0, 255); // Generate a number between 0 and 255
+
+        if (roll <= 64) // 64/256 chance for "ForceSpawn2" (25%)
+        {
+            SetActorState(0, "ForceSpawn2");
+        }
+        //else if (roll <= 192) // 128/256 chance for "Spawn3" (50%)
+        //{
+           // SetActorState(0, "Spawn3");
+        //}
+        else // Remaining 64/256 chance defaults to "Vanilla" (25%)
+        {
+            SetActorState(0, "Vanilla");
+        }
+    }
+    else if (bd_ChaingunSpawner >= 1 && bd_ChaingunSpawner <= 3)
+    {
+        SetActorState(0, spawnType[bd_ChaingunSpawner - 1]);
+    }
+}
+
+// Rocket Launcher Spawner
+Script "BDDisableROCKETLAUNCHERSPAWNER" (VOID)
+{
+    static str spawnType[] = { "Vanilla", "ForceSpawn2" };
+
+    delay(1);
+
+    if (bd_RLSpawner == 0)
+    {
+        int roll = Random(0, 255); // Generate a number between 0 and 255
+
+        if (roll <= 48) // 48/256 chance for "ForceSpawn2" (~18.75%)
+        {
+            SetActorState(0, "ForceSpawn2");
+        }
+        else // Remaining 208/256 chance defaults to "Vanilla"
+        {
+            SetActorState(0, "Vanilla");
+        }
+    }
+    else if (bd_RLSpawner >= 1 && bd_RLSpawner <= 2)
+    {
+        SetActorState(0, spawnType[bd_RLSpawner - 1]);
+    }
+}
+
+// Plasma Rifle Spawner
+Script "BDDisablePlasmaRifleSpawner" (VOID)
+{
+    static str spawnType[] = { "Vanilla", "ForceSpawn2" };
+
+    delay(1);
+
+    if (bd_PlasmaSpawner == 0)
+    {
+        int roll = Random(0, 255); // Generate a number between 0 and 255
+
+        if (roll <= 48) // 48/256 chance for "ForceSpawn2" (~18.75%)
+        {
+            SetActorState(0, "ForceSpawn2");
+        }
+        else // Remaining 208/256 chance defaults to "Vanilla"
+        {
+            SetActorState(0, "Vanilla");
+        }
+    }
+    else if (bd_PlasmaSpawner >= 1 && bd_PlasmaSpawner <= 2)
+    {
+        SetActorState(0, spawnType[bd_PlasmaSpawner - 1]);
+    }
+}
+
+// BFG Spawner
+Script "BDDisableBFGSPAWNER" (VOID)
+{
+    static str spawnType[] = { "Vanilla", "ForceSpawn2", "Unmaker" };
+
+    delay(1);
+
+    if (bd_BFGSpawner == 0)
+    {
+        int roll = Random(0, 255); // Generate a number between 0 and 255
+
+        if (roll <= 4) // 4/256 chance for Unmaker
+        {
+            SetActorState(0, "Unmaker");
+        }
+        else if (roll <= 48) // 48/256 chance for "ForceSpawn2"
+        {
+            SetActorState(0, "ForceSpawn2");
+        }
+        else // Remaining 204/256 chance defaults to "Vanilla"
+        {
+            SetActorState(0, "Vanilla");
+        }
+    }
+    else if (bd_BFGSpawner >= 1 && bd_BFGSpawner <= 3)
+    {
+        SetActorState(0, spawnType[bd_BFGSpawner - 1]);
+    }
+}
+
+
+// Ammo Supply Checker
+Script "AmmoSupplyChecker" (Void)
+{
+    static str spawnType[] = { "Vanilla", "BDV22Style" };
+    int numSpawns = 2;
+    int jumpChance = 48;
+
+    delay(1);
+
+    if (BD_AmmoPackCheck == 0)
+    {
+        if (Random(0, 255) < jumpChance)
+        {
+            int randomIndex = Random(0, numSpawns - 1);
+            SetActorState(0, spawnType[randomIndex]);
+        }
+    }
+    else if (BD_AmmoPackCheck >= 1 && BD_AmmoPackCheck <= numSpawns)
+    {
+        SetActorState(0, spawnType[BD_AmmoPackCheck - 1]);
+    }
+}
+
+/*Script "Spawner_Handler" (int WeapSpawn)
+{
+    delay(1);
+	
+	if (GameType() != GAME_SINGLE_PLAYER) terminate;
+	
+    static str Weapons[][] =
+    {
+        {"Chain_saw", "BRUTALAXE"}, {"BrutalPistol", "Rifle"}, {"SSG", "AssaultShotgun"}, 
+        {"MiniGun", "BrutalSMG"}, {"Rocket_Launcher", "GrenadeLauncher"}, {"Plasma_Gun", "RailGun"}, 
+        {"BIG_FUCKING_GUN", "BFG10k"}
+    };
+    
+    int previousTID = ActivatorTID(); //store calling actor's TID
+    int newTID = ActivatorTID();
+    if(!newTID) newTID = UniqueTID();
+    Thing_ChangeTid(0, newTID);
+    
+    SetActivator(newTID);
+    
+    for(int j = 0; j < MAX_PLAYERS;  j++) // 64 maxplayers in zandronum
+    {
+        if (PlayerInGame(j))
+        {
+            SetActivatorToPlayer(j);  
+			foreach(let auto wpn; Weapons)
+			{
+				if(StrICmp(CheckInventory(Weapons), wpn[0]) == 0)
+				{
+					Switch(WeapSpawn)
+					{
+						//Default:
+						Case 0: SetActorState(newTID, "ForceSpawn2"); break; //ChainsawSpawnerReplacer
+						Case 1: SetActorState(newTID, "ForceSpawn2"); break; //PistolSpawnerReplacer
+						Case 2: SetActorState(newTID, "ForceSpawn2"); break; //SSGSpawnerReplacer
+						Case 3: SetActorState(newTID, "ForceSpawn2"); break; //ChaingunSpawnerReplacer
+						Case 4: SetActorState(newTID, "ForceSpawn2"); break; //RLSpawnerReplacer
+						Case 5: SetActorState(newTID, "ForceSpawn2"); break; //PlasmagunReplacer
+						Case 6: SetActorState(newTID, "ForceSpawn2"); break; //BFGReplacer
+					}
+				}
+			}
+        }
+    }        
+}*/
+
+// Spawner Handler
+/*Script "Spawner_Handler" (int WeapSpawn)
+{
+    delay(1);
+    
+    if (GameType() == GAME_SINGLE_PLAYER) terminate;
+    
+    static str Weapons[][] =
+    {
+        {"Chain_saw", "BRUTALAXE"}, {"BrutalPistol", "Rifle"}, {"SSG", "AssaultShotgun"}, 
+        {"MiniGun", "BrutalSMG"}, {"Rocket_Launcher", "GrenadeLauncher"}, {"Plasma_Gun", "RailGun"}, 
+        {"BIG_FUCKING_GUN", "BFG10k"}
+    };
+    
+    int totalPlayers = 0;
+    int playersWithWeapon = 0;
+	
+	int previousTID = ActivatorTID();
+	int newTID = ActivatorTID();
+	
+	if(!newTID) newTID = UniqueTID();
+	Thing_ChangeTid(0, newTID);
+	SetActivator(newTID);
+
+    // Count total players and players who have the first weapon in their respective slot
+    for(int j = 0; j < MAX_PLAYERS; j++)
+    {
+        if (PlayerInGame(j))
+        {
+            totalPlayers++;
+            SetActivatorToPlayer(j);
+            
+            if (CheckInventory(Weapons[WeapSpawn][0]) > 0) // Check first weapon in pair
+            {
+                playersWithWeapon++;
+            }
+        }
+    }
+
+    // If at least half of the players have the weapon, perform the state change
+    if (totalPlayers > 0 && playersWithWeapon >= (totalPlayers + 1) / 2)
+    {        
+        Switch(WeapSpawn)
+        {
+            Case 0: SetActorState(newTID, "ForceSpawn2"); break; // ChainsawSpawnerReplacer
+            Case 1: SetActorState(newTID, "ForceSpawn2"); break; // PistolSpawnerReplacer
+            Case 2: SetActorState(newTID, "ForceSpawn2"); break; // SSGSpawnerReplacer
+            Case 3: SetActorState(newTID, "ForceSpawn2"); break; // ChaingunSpawnerReplacer
+            Case 4: SetActorState(newTID, "ForceSpawn2"); break; // RLSpawnerReplacer
+            Case 5: SetActorState(newTID, "ForceSpawn2"); break; // PlasmagunReplacer
+            Case 6: SetActorState(newTID, "ForceSpawn2"); break; // BFGReplacer
+        }
+    }
+}*/
+
+script "MG42Checker" (void)
+{
+	delay(1);
+	Thing_ChangeTID(0,736);
+	if (CheckActorFloorTexture(736, "FLAT5_4"))
+	GiveActorInventory(736, "NaziVerificate1", 1);
+}
+
+Script "OhNoNomg42" (VOID)
+{
+	delay(1);
+	if (BD_NoMg42 == 1) { SetActorState(736,"IdontwantafuckingMG42"); }
+}
+
+Script "BDNoBossesCheck" (VOID)
+{
+	delay(1);
+	if (BD_NOBOSSES == 1) { SetActorState(0,"BDNOBOSSES"); }
+}
+
+Script "GIMMELESSAMMO" (VOID)
+{
+	delay(1);
+	if (BD_GIMMELESSAMMO == 1) { SetActorState(0,"Spawn3"); }
+}
+
+Script "GIMMEBDGREENARMOUR" (VOID)
+{
+	delay(1);
+	if (BD_GREENARMOUR == 1) { SetActorState(0,"Spawn3"); }
+}
+
+Script "NODemonWeapons" (VOID)
+{
+	delay(1);
+	if (BD_NODEMONWEAPONS == 1) { SetActorState(0,"Spawn3"); }
+}
+
+Script "BDNoPowerUps" (VOID)
+{
+	delay(1);
+	if (bd_NoPowerUps == 1) { SetActorState(0,"Cancels"); }
+}
+
+Script "NoRandomSprites" (VOID)
+{
+	delay(1);
+	if (bd_norandompickupsprites == 1) { SetActorState(0,"NoRandom"); }
+}

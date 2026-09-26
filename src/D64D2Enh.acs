@@ -1,0 +1,15 @@
+// D64D2 Enhancements
+bool D64D2 = False;
+Script "BD_ME_7956813805122853457" // MAP30
+{
+	D64D2 = True;
+}
+
+
+script "D64D2_Unmaker_Patch" 
+{ 
+	delay(1); 
+	if(D64D2 == False) terminate;
+	else 
+		SetActorState(0, "IsD64D2"); 
+}

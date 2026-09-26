@@ -1,0 +1,407 @@
+// ACS
+#library "LedgeClimb"
+#include "zcommon.acs"
+#import "CommonFunc.acs"
+
+// Defines
+
+// Returns the Z distance between the calling actor and the ceiling
+Script "GetActorZDist" (int ceilingZ, int actorZ)
+{
+    //int ceilingZ = GetActorCeilingZ(0);
+    //int actorZ = GetActorZ(0);
+    int zDistance = ceilingZ - actorZ;
+    
+    SetResultValue(zDistance);
+}
+
+Script "LedgeClimb" (void)
+{
+    str weapon = GetWeapon();
+    if (!StrICmp(weapon, "LedgeGrab"))
+        terminate;
+
+    SetPlayerProperty(0, 1, PROP_INSTANTWEAPONSWITCH);
+    SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN);
+    TakeInventory("PowerLightAmp", 1);
+    TakeInventory("Zoomed", 1);
+    TakeInventory("ADSmode", 1);
+    GiveInventory("LedgeGrab", 1);
+    GiveInventory("Climbed_Ledge", 1);
+    GiveInventory("Grabbing_A_Ledge", 1);
+    if (!CheckInventory("RevenantLauncherSelected"))TakeInventory(weapon, 1);
+    //SetActorState(0, "Clamber", 1);
+
+    //PlaySound(0, "ledgeclimb", CHAN_AUTO, 1.0, 0, 1);
+	//ActivatorSound("ledgeclimb",127);
+
+    if (CheckInventory("MinigunSelected") && CheckInventory("Spin"))
+    {
+        SetWeapon("LedgeGrab");
+        Delay(14);
+        GiveInventory("Spin", 1);
+    }
+    else if (CheckInventory("RevenantLauncherSelected"))
+    {
+        SetWeapon("LedgeGrab");
+        Delay(10);
+        GiveInventory("RevenantLauncherCheck", 1);
+    }
+    else if (CheckInventory("FistsSelected"))
+    {
+        SetWeapon("LedgeGrab");
+        Delay(10);
+        GiveInventory("FistsCheck", 1);
+    }
+    else
+    {
+        SetWeapon("LedgeGrab");
+    }
+
+    while (CheckInventory("Grabbing_A_Ledge"))
+        Delay(3);
+
+    SetPlayerProperty(0, 0, PROP_INSTANTWEAPONSWITCH);
+    SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN);
+    if (!CheckInventory("RevenantLauncherSelected"))GiveInventory(weapon, 1);
+    SetWeapon(weapon);
+    TakeInventory("LedgeGrab", 1);
+    TakeInventory("Climbed_Ledge", 1);
+    TakeInventory("Grabbing_A_Ledge", 1);
+    TakeInventory("IsVaulting", 1);
+    TakeInventory("IsMantling", 1);
+    TakeInventory("IsClimbing", 1);
+    TakeInventory("ClimbingCheck", 1);
+    Delay(10);
+    TakeInventory("RevenantLauncherCheck", 1);
+    TakeInventory("FistsCheck", 1);
+}
+
+//simplified version of PARKMORE's concept
+//checks for space using dummy actors
+script "grabber" ENTER
+{
+    int heightTID = 900; // Height object TIDs start at 900
+    int maxHeight = 186.0;
+    int climbDelay = 5;//14;
+    int moveSpeed = 4;
+    int floorCheckDelay = 1;
+
+    while (1)
+    {
+        int buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+        int modbuttons = GetPlayerInput(-1, MODINPUT_BUTTONS);
+        int forwardMove = GetPlayerInput(-1, INPUT_FORWARDMOVE);
+
+        if (!((modbuttons & BT_FORWARD || forwardMove > 0) && !CheckPlayerOnGround()) || 
+            CheckInventory("ClimbingCheck") > 0 ||
+            CheckInventory("ADS") > 0 ||
+            GetCvar("bd_mantling") == 1 ||
+            CheckInventory("Kicking") == 1 ||
+            CheckInventory("ExecuteDownedEnemy") == 1 ||
+            CheckInventory("GoFatality") == 1 ||
+            CheckInventory("TankGun") == 1 ||
+            CheckInventory("ArtilleryTankGun") == 1 ||
+            CheckInventory("MechGun") == 1 ||
+            CheckInventory("attackhelicopterGun") == 1 ||
+            CheckInventory("HeavyMachinegunHUD") == 1 ||
+            CheckInventory("BikeHUD") == 1 ||
+            CheckInventory("D4BaronHUD") == 1 ||
+            CheckInventory("D4RevenantHUD") == 1 ||
+            CheckInventory("HasBarrel") == 1 ||
+            CheckInventory("GotMeatShield") == 1)
+        {
+            Delay(climbDelay);
+            continue;
+        }
+
+        int curAngle = GetActorAngle(0);
+        int curX = GetActorX(0);
+        int curY = GetActorY(0);
+        int curZ = GetActorZ(0);
+        int newZ = curZ + maxHeight;
+        int cosAngle = moveSpeed * cos(curAngle);
+        int sinAngle = moveSpeed * sin(curAngle);
+
+        for (int k = 0; k < 5; k++)
+        {
+            Thing_Remove(heightTID + k);
+            int l = k + 3;
+            int iy = 1;
+
+            while (iy < 12)
+            {
+                if (Spawn("EdgeLord", curX + (cosAngle * l), curY + (sinAngle * l), curZ + 16.0 * iy, heightTID + k))
+                {
+                    PlaceOnFloor(heightTID + k);
+                    break;
+                }
+
+                iy++;
+            }
+        }
+
+        int highest = GetActorZ(0);
+        int highestTID = 0;
+
+        for (int i = 0; i < 5; i++)
+        {
+            int j = heightTID + (5 - (i + 1));
+
+            if (GetActorZ(j) > highest)
+            {
+                highest = GetActorZ(j);
+                if (highestTID) Thing_Remove(highestTID);
+                highestTID = j;
+            }
+            else
+            {
+                Thing_Remove(j);
+            }
+        }
+
+        if (highestTID == 0 || (GetActorX(highestTID) == 0 && GetActorY(highestTID) == 0 && GetActorFloorZ(highestTID) == 0))
+        {
+            Delay(floorCheckDelay);
+            continue;
+        }
+
+        /*int prevZ = GetActorFloorZ(highestTID); // Check for elevators
+        Delay(floorCheckDelay);
+        if (prevZ == GetActorFloorZ(highestTID))
+        {
+            ACS_NamedExecute("grabber_pullup", 0, GetActorX(highestTID), GetActorY(highestTID), GetActorFloorZ(highestTID));
+        }*/
+		
+        /*if ( 
+			ACS_NamedExecuteWithResult("GetActorZDist", 0, GetActorCeilingZ(highestTID), GetActorZ(highestTID)) + 56 >= 
+			//( GetActorProperty(highestTID, APROP_HEIGHT) << 16 * 2.0 ) + 4.0
+			56
+			)
+        {
+            Delay(floorCheckDelay);
+            continue;
+        }*/
+
+		ACS_NamedExecute("grabber_pullup", 0, GetActorX(highestTID), GetActorY(highestTID), GetActorFloorZ(highestTID));
+
+        Delay(climbDelay);
+    }
+}
+
+
+/*
+
+script "poz_debug" (void) //enter
+{
+while(1)
+ {Print(s:"X:",f:GetActorX(0),s:"Y:",f:GetActorY(0),s:"Z:",f:GetActorZ(0));
+  delay(2);}
+}*/
+
+script "grabber_pullup" (int x, int y, int z)
+{
+    TakeInventory("IsRunning", 1);
+    GiveInventory("ClimbingCheck", 1);
+    int height = z - GetActorZ(0);
+    int tim = 0;
+	int forwardMove = GetPlayerInput(-1, INPUT_FORWARDMOVE);
+	int ptc = GetActorPitch(0);
+
+    while (GetActorZ(0) < z && forwardMove > 0 && height < 60.0 && tim < 14)
+    {
+		if (height >= 30.0 && height <= 40.0)
+		{
+			ACS_NamedExecute("Is_Vaulting", 0, x, y, z);
+			TakeInventory("ClimbingCheck", 1);
+			for ( int i = 0; i < 2; i++ )
+			{
+				ThrustThingZ(0,25,0,0);
+				Delay(1);
+			}
+			terminate;
+		}
+        else if (((z - GetActorZ(0)) <= 60.0) && (z - GetActorZ(0)) >= 30.0)
+        {
+			if(!(ptc <= -40))
+			{
+				TakeInventory("ClimbingCheck", 1);
+				terminate;
+			}
+            ACS_NamedExecute("GrabClimb", 0, x, y, z);
+			TakeInventory("ClimbingCheck", 1);
+			for ( i = 0; i < 2; i++ )
+			{
+				ThrustThingZ(0,10,0,0);
+				Delay(1);
+			}
+            terminate;
+        }
+
+        tim++;
+        if (tim > 14)
+        {
+            TakeInventory("ClimbingCheck", 1);
+            tim = 0;
+            terminate;
+        }   
+		TakeInventory("ClimbingCheck", 1);
+        Delay(1);
+    }
+    TakeInventory("ClimbingCheck", 1);
+}
+
+
+Script 307 (VOID) NET
+{
+	ThrustThingZ(0,90,0,0);  
+}
+
+Script "KickClimb" (int x,int y,int z)
+{
+	GiveInventory("ClimbingCheck",1);
+	GiveInventory("IsClimbing",1);
+	TakeInventory("IsMantling",1);
+	//ACS_NamedExecute("climb_remover",0);
+	while(GetActorZ(0)<z-75.0)
+	{       
+		TakeInventory("IsRunning",1);
+		Delay(1);
+	}
+	ACS_NamedExecute("LedgeClimb", 0, 0, 0, 0);
+	ThrustThingZ(0,0,0,0);  
+	GiveInventory("ClimbCatch",1);  
+	while(GetActorZ(0)<z)
+	{    
+		ThrustThingZ(0,25,0,0); 
+		Delay(1);
+	}
+	SetActorPosition(0, x, y, z, 0);    
+	TakeInventory("ClimbingCheck",1);
+}
+
+Script "GrabClimb" (int x, int y, int z)
+{
+    int velx, vely, velz;
+    int height = z - GetActorZ(0);
+    int tim = 0;
+	int forwardMove = GetPlayerInput(-1, INPUT_FORWARDMOVE);
+	int forwardThrust = 5;
+	int Angle = GetActorAngle(0) >> 8;
+    GiveInventory("ClimbingCheck", 1);
+    GiveInventory("IsClimbing", 1);
+    GiveInventory("ClimbCatch", 1);
+    GiveInventory("IsMantling", 1);
+    ACS_NamedExecute("LedgeClimb", 0, 0, 0, 0);
+	ACS_NamedExecute("PitchShifter", 0, GetActorPitch(0));
+    ThrustThingZ(0, 0, 0, 0);
+	ThrustThing(Angle, forwardThrust);
+
+    while (GetActorZ(0) <= z && tim < 9)
+    {
+        if (GetActorZ(0) >= z)
+        {
+			PlaceOnFloor(0);
+        }
+        else
+        {
+            SetActorVelocity(0, velx, vely, velz, FALSE, FALSE);
+			ThrustThing(Angle, forwardThrust);
+			ThrustThingZ(0, 20, 1, 0);
+        }
+        ThrustThingZ(0, 20, 0, 0);
+        Delay(1);
+		tim++;
+    }
+	
+	if( z >= GetActorZ(0) ) { 
+		SetActorPosition(0, x, y, z, 0); }
+	if( !CheckPlayerOnGround() ) { 
+	SetActorPosition(0, x, y, z, 0); } 
+    TakeInventory("ClimbingCheck", 1);
+    TakeInventory("IsClimbing", 1);
+}
+
+
+
+Script 310 (VOID)
+{
+	ThrustThing(GetActorAngle(0) >> 8, 13);
+}
+
+Script 311 (int x, int y)
+{
+	ThrustThing((GetActorAngle(0) >> 8)+x, y);
+}
+
+Script "Is_Vaulting" (int x, int y, int z)//(VOID) NET
+{
+	int velx, vely, velz;
+    int height = z - GetActorZ(0);
+    int tim = 0;
+	int forwardMove = GetPlayerInput(-1, INPUT_FORWARDMOVE);
+	int forwardThrust = 4;
+	int Angle = GetActorAngle(0) >> 8;
+    GiveInventory("IsVaulting", 1);
+    ACS_NamedExecute("LedgeClimb", 0, 0, 0, 0);
+	ACS_NamedExecute("PitchShifter", 0, GetActorPitch(0));
+	ThrustThingZ(0, 0, 0, 0);
+	ThrustThing(Angle, forwardThrust);
+
+    while (GetActorZ(0) <= z && tim < 9)
+    {
+        if (GetActorZ(0) >= z)
+        {
+			PlaceOnFloor(0);
+        }
+        else
+        {
+            SetActorVelocity(0, velx, vely, velz, FALSE, FALSE);
+			ThrustThing(Angle, forwardThrust);
+			ThrustThingZ(0, 15, 1, 0);
+        }
+        ThrustThingZ(0, 15, 0, 0);
+        Delay(1);
+		tim++;
+    }
+	
+	if( z >= GetActorZ(0) ) { 
+		SetActorPosition(0, x, y, z, 0); }
+	if( !CheckPlayerOnGround() ) { 
+	SetActorPosition(0, x, y, z, 0); } 
+    TakeInventory("IsVaulting", 1);
+    TakeInventory("ClimbingCheck", 1);
+    Delay(25);
+}
+
+Script "PitchShifter" (VOID)
+{
+    int initialPitch = GetActorPitch(0) << 16;
+    int sign = (initialPitch > 0) - (initialPitch < 0); // Calculate the sign of the initial pitch
+    bool isPitchCentered = false;
+
+    // Gradually center the pitch from the initial pitch towards zero
+    while (initialPitch * sign > 1 && !isPitchCentered)
+    {
+        // Calculate the pitch adjustment based on the initial pitch and sign
+        int absInitialPitch = (initialPitch * sign); // Calculate absolute value
+        int pitchAdjustment = sign * (absInitialPitch >> 2); // You can adjust the right shift value (2) for the desired smoothness
+
+        // Check if the pitch adjustment is very small (close to zero)
+        if (absInitialPitch - pitchAdjustment <= 1)
+        {
+            SetActorPitch(0, 0.0); // Set the pitch to exactly zero
+            isPitchCentered = true; // Set the flag to true to break the loop
+        }
+
+        // Reduce the initial pitch by the calculated adjustment
+        initialPitch -= pitchAdjustment;
+
+        // Set the adjusted pitch back to the actor
+        SetActorPitch(0, initialPitch >> 16);
+
+        // Delay to control the speed of centering
+        Delay(1);
+		if(Checkinventory("LedgeGrab")==0)terminate;
+    }
+}

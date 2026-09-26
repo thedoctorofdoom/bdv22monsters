@@ -1,0 +1,512 @@
+// ACS
+
+#define MAX_PLAYERS 64
+
+#library "BD_Main"
+//#include "zcommon.acs"
+#import "zcommon.bcs"
+
+#if 1
+#define HEAP_SIZE 1 // BD won't use malloc, so turn it off
+#endif
+#include "libbcs.bcs"
+
+//Include all other text files (Decorate style)
+//#include "ACSFunc.acs"
+#include "BCSFunc.acs"
+//#include "AllySpawn.acs"
+#include "HUDFX.acs"
+#include "BOSSHEALTH.acs"
+#include "CHASECAM.acs"
+#include "Inputs.acs"
+#include "Options.acs"
+#include "OneLiners.acs"
+#include "DemonMorph.acs"
+#include "DYNAMICLEV.acs"
+#include "Flashlight.acs"
+#include "Mantling.acs"
+#include "SCOUTER.acs"
+#include "SLAUGHTER.acs"
+#include "SPLASH.acs"
+#include "VEHICLECONTROL.acs"
+//#include "mapenhance.acs"
+#include "WadChecker.acs"
+#include "WadPatches.acs"
+#include "WeapSelect.acs"
+#include "GameTips.acs"
+#include "zancmpat.acs"
+
+#include "UltDoomEnh.acs"
+#include "SigilEnh.acs"
+#include "SigilIIEnh.acs"
+#include "Doom2Enh.acs"
+#include "TNTEnh.acs"
+#include "PlutEnh.acs"
+#include "D2RelEnh.acs"
+#include "EDayEnh.acs"
+#include "EviEnh.acs"
+#include "ThunPkEnh.acs"
+#include "D64D2Enh.acs"
+#include "IrkallaEnh.acs"
+
+// Server Variables
+int bd_mantling;
+int zdoombrutalblood;
+int zdoombrutaljanitor;
+int isrunningzandronum;
+int bd_classicmonsters;
+int bd_disabledecorations;
+int bd_disablescanner;
+int bd_disablemapenhancements;
+int bd_disablenewguns;
+int bd_disablenewenemies;
+int bd_infinitecasings;
+int bd_disablewaterripples2;
+int bd_disablefriendlymarines;
+int bd_shootablerocketammo;
+int bd_footstepsounds;
+int bd_rocketbackblast;
+int bd_voxeldec;
+int bd_AgileZombies;
+bool bd_noreloading;
+bool bd_infinitesprint;
+int BD_DestructibleBodies;
+int bd_Chainsawspawner;
+int bd_PistolSpawner;
+int bd_ShotgunSpawner;
+int bd_SSGSpawner;
+int bd_Chaingunspawner;
+int bd_RLSpawner;
+int bd_PlasmaSpawner;
+int bd_BFGSpawner;
+int bd_WadCheck;
+int BD_AmmoPackCheck;
+int BD_Kar98kChecker;
+int BD_NoMg42;
+int BD_NOBOSSES;
+int BD_GIMMELESSAMMO;
+int BD_NODEMONWEAPONS;
+bool bd_NoPickupsAnimations;
+int bd_norandompickupsprites;
+int bd_nobulletpenetration;
+int bd_compat_clientssendfullbuttoninfo;
+int BD_GREENARMOUR;
+int bd_LavaSplashes = 0;
+int bd_dropitems;
+int bd_NoPowerUps;
+int bd_zombiemanspawn;
+int bd_shotgunguyspawn;
+int bd_testmap;
+int bd_skill;
+
+struct BD_CVarInfo
+{
+	// Client Variables
+	int bd_bloodamount;
+	int bd_lowgraphicsmode;
+	int bd_morebloodmist;
+	int bd_ScreenFX;
+	int bd_BloodTrail;
+	int bd_SimpleSlide;
+	int bd_AimMode;
+	int bd_flashlight;
+	int bd_sbartype;
+	int bd_startweapon;
+	bool bd_noautoreload;
+	int bd_shotgunstrap;
+	int zdoombd_shotgunstrap;
+	int bd_Quips;
+	int bd_Tips;
+
+} BDCVarInfo[MAX_PLAYERS];
+
+script "ServerCVars" OPEN
+{
+	bd_mantling = GetCvar("bd_mantling");
+	zdoombrutaljanitor = GetCvar("zdoombrutaljanitor");
+	zdoombrutalblood = GetCvar("zdoombrutalblood");
+	isrunningzandronum = GetCvar("isrunningzandronum");
+	bd_classicmonsters = GetCvar("bd_classicmonsters");
+	bd_disabledecorations = GetCvar("bd_disabledecorations");
+	bd_disablescanner = GetCvar("bd_disablescanner");
+	bd_disablemapenhancements = GetCvar("bd_disablemapenhancements");
+	bd_disablenewguns = GetCvar("bd_disablenewguns");
+	bd_disablenewenemies = GetCvar("bd_disablenewenemies");
+	bd_infinitecasings = GetCvar("bd_infinitecasings");
+	bd_disablewaterripples2 = GetCvar("bd_disablewaterripples2");
+	bd_disablefriendlymarines = GetCvar("bd_disablefriendlymarines");
+	bd_shootablerocketammo = GetCvar("bd_shootablerocketammo");
+	bd_footstepsounds = GetCvar("bd_footstepsounds");
+	bd_rocketbackblast = GetCvar("bd_rocketbackblast");
+	bd_voxeldec = GetCvar("bd_voxeldec");
+	bd_AgileZombies = GetCVAR("bd_AgileZombies");
+	bd_noreloading = getcvar("bd_noreloading");
+	bd_infinitesprint = GetCvar("bd_infinitesprint");
+	BD_DestructibleBodies = GetCvar("BD_DestructibleBodies");
+	bd_ChainsawSpawner = GetCvar("bd_ChainsawSpawner");	
+	bd_PistolSpawner = GetCvar("bd_PistolSpawner");
+	bd_ShotgunSpawner = GetCvar("bd_ShotgunSpawner");	
+	bd_SSGSpawner = GetCvar("bd_SSGSpawner");
+	bd_ChaingunSpawner = GetCvar("bd_ChaingunSpawner");
+	bd_RLSpawner = GetCvar("bd_RLSpawner");
+	bd_PlasmaSpawner = GetCvar("bd_PlasmaSpawner");
+	bd_BFGSpawner = GetCvar("bd_BFGSpawner");	
+	bd_WadCheck = GetCvar("bd_WadCheck");
+	BD_AmmoPackCheck = GetCvar("BD_AmmoPackCheck");
+	BD_NoMg42 = GetCvar("BD_NoMg42");
+	BD_NOBOSSES = GetCvar("BD_NOBOSSES");
+	BD_GIMMELESSAMMO = GetCvar("BD_GIMMELESSAMMO");
+	BD_NODEMONWEAPONS = GetCvar("BD_NODEMONWEAPONS");
+	bd_NoPickupsAnimations = getcvar("bd_NoPickupsAnimations");
+	bd_norandompickupsprites = GetCvar("bd_norandompickupsprites");
+	bd_nobulletpenetration = GetCvar("bd_nobulletpenetration");
+	bd_compat_clientssendfullbuttoninfo = GetCvar("compat_clientssendfullbuttoninfo"); //Not sure about this cvar, but including for now.
+	BD_GREENARMOUR = GetCvar("BD_GREENARMOUR");
+	bd_LavaSplashes = GetCvar("bd_LavaSplashes");
+	bd_dropitems = GetCvar("bd_dropitems");
+	bd_NoPowerUps = GetCvar("bd_NoPowerUps");
+	bd_zombiemanspawn = GetCvar("bd_zombiemanspawn");
+	bd_shotgunguyspawn = GetCvar("bd_shotgunguyspawn");
+	bd_testmap = GetCvar("bd_testmap");
+	bd_skill = GetCvar("skill");
+	delay(1);
+}
+
+script "ClientCVars" ENTER
+{
+	BDCVarInfo[PlayerNumber()].bd_bloodamount = GetCvar("bd_bloodamount");
+	BDCVarInfo[PlayerNumber()].bd_lowgraphicsmode = GetCvar("bd_lowgraphicsmode");
+	BDCVarInfo[PlayerNumber()].bd_morebloodmist = GetCvar("bd_morebloodmist");
+	BDCVarInfo[PlayerNumber()].bd_ScreenFX = GetCvar("bd_ScreenFX");
+	BDCVarInfo[PlayerNumber()].bd_BloodTrail = GetCvar("bd_BloodTrail");
+	BDCVarInfo[PlayerNumber()].bd_SimpleSlide = GetCvar("bd_SimpleSlide");
+	BDCVarInfo[PlayerNumber()].bd_AimMode = GetCvar("bd_AimMode");
+	BDCVarInfo[PlayerNumber()].bd_flashlight = GetCvar("bd_flashlight");
+	BDCVarInfo[PlayerNumber()].bd_sbartype = GetCvar("bd_sbartype");
+	BDCVarInfo[PlayerNumber()].bd_noautoreload = GetCvar("bd_noautoreload");
+	BDCVarInfo[PlayerNumber()].bd_shotgunstrap = GetCvar("bd_shotgunstrap");
+	BDCVarInfo[PlayerNumber()].zdoombd_shotgunstrap = GetCvar("zdoombd_shotgunstrap");
+	BDCVarInfo[PlayerNumber()].bd_Quips = GetCvar("bd_Quips");
+	BDCVarInfo[PlayerNumber()].bd_Tips = GetCvar("bd_Tips");
+	delay(1);
+}
+
+Script "BD_ShowVersionNumber" (void)
+{
+	SetHudSize(960,720,0);
+	SetFont("SMALLFNT");
+	HudMessageBold(l:"BD_ShowVerNum";HUDMSG_PLAIN,25322,CR_WHITE, 955.0, 710.0, 0);
+}
+
+script "GetCVars" (void) net
+{
+	delay(3);
+	ACS_NamedExecuteAlways("ServerCVars", 0);
+	ACS_NamedExecuteAlways("ClientCVars", 0);
+	ACS_NamedExecuteAlways("BDRespawn", 0);
+}
+
+script "BDSetSkill" (void) net
+{
+	delay(1);
+	ChangeSkill(GetCvar("bd_Skill"));
+	ChangeLevel(StrParam(n:PRINTNAME_LEVEL),0,CHANGELEVEL_NOINTERMISSION,-1);
+}
+
+//presets
+script "DefaultCvars" (void) net
+{
+	SetCvar("bd_mantling", 0);
+	SetCvar("bd_classicmonsters", 0);
+	SetCvar("bd_disabledecorations", 0);
+	SetCvar("bd_disablescanner", 0);
+	SetCvar("bd_disablemapenhancements", 0);
+	SetCvar("bd_disablenewguns", 0);
+	SetCvar("bd_disablenewenemies", 1);
+	SetCvar("bd_infinitecasings", 0);
+	SetCvar("bd_disablewaterripples2", 1);
+	SetCvar("bd_disablefriendlymarines", 0);
+	SetCvar("bd_shootablerocketammo", 0);
+	SetCvar("bd_footstepsounds", 1);
+	SetCvar("bd_rocketbackblast", 1);
+	SetCvar("bd_AgileZombies", 0);
+	SetCvar("bd_reloading", 0);
+	SetCvar("bd_infinitesprint", 0);
+	SetCvar("BD_DestructibleBodies", 1);
+	SetCvar("bd_ChainsawSpawner", 0);
+	SetCvar("bd_PistolSpawner", 0);
+	SetCvar("bd_ShotgunSpawner", 0);
+	SetCvar("bd_SSGSpawner", 0);
+	SetCvar("bd_ChaingunSpawner", 0);
+	SetCvar("bd_BFGSpawner", 0);
+	SetCvar("bd_RLSpawner", 0);
+	SetCvar("bd_PlasmaSpawner", 0);
+	SetCvar("bd_WadCheck", 1);
+	SetCvar("BD_AmmoPackCheck", 2);
+	SetCvar("BD_NoMg42", 0);
+	SetCvar("BD_NOBOSSES", 0);
+	SetCvar("BD_GIMMELESSAMMO", 0);
+	SetCvar("BD_NODEMONWEAPONS", 0);
+	SetCvar("bd_NoZombieRifleDrop", 0);
+	SetCvar("bd_NoPickupsAnimations", 0);
+	SetCvar("bd_norandompickupsprites", 1);
+	SetCvar("compat_clientssendfullbuttoninfo", 1);
+	SetCvar("bd_LavaSplashes", 0);
+	SetCvar("bd_dropitems", 0);
+	SetCvar("bd_NoPowerUps", 0);
+	SetCvar("bd_zombiemanspawn", 1);
+	SetCvar("bd_shotgunguyspawn", 1);
+	SetUserCVAR(PlayerNumber(), "bd_ScreenFX", 0);
+	SetUserCVAR(PlayerNumber(), "bd_BloodTrail", 0);
+	SetUserCVAR(PlayerNumber(), "bd_SimpleSlide", 0);
+	SetUserCVAR(PlayerNumber(), "bd_AimMode", 0);
+	SetUserCVAR(PlayerNumber(), "bd_flashlight", 0);
+	SetUserCVAR(PlayerNumber(), "bd_sbartype", 1);
+	SetUserCVAR(PlayerNumber(), "bd_autoreload", 1);
+	SetUserCVAR(PlayerNumber(), "bd_Quips", 0);
+	SetUserCVAR(PlayerNumber(), "bd_Tips", 1);
+	ACS_NamedExecute("ServerCVars", 0);
+	ACS_NamedExecute("ClientCVars", 0);
+	ACS_NamedExecute("BDRespawn", 0);
+	delay(1);
+}
+
+script "AllCvarsOn" (void) net
+{
+	SetCvar("bd_mantling", 1);
+	SetCvar("bd_classicmonsters", 0);
+	SetCvar("bd_disabledecorations", 0);
+	SetCvar("bd_disablescanner", 0);
+	SetCvar("bd_disablemapenhancements", 0);
+	SetCvar("bd_disablenewguns", 0);
+	SetCvar("bd_disablenewenemies", 1);
+	SetCvar("bd_infinitecasings", 0);
+	SetCvar("bd_disablewaterripples2", 0);
+	SetCvar("bd_disablefriendlymarines", 0);
+	SetCvar("bd_shootablerocketammo", 0);
+	SetCvar("bd_footstepsounds", 1);
+	SetCvar("bd_rocketbackblast", 1);
+	SetCvar("bd_AgileZombies", 0);
+	SetCvar("bd_reloading", 0);
+	SetCvar("bd_infinitesprint", 0);
+	SetCvar("BD_DestructibleBodies", 1);
+	SetCvar("bd_ChainsawSpawner", 0);
+	SetCvar("bd_PistolSpawner", 0);
+	SetCvar("bd_ShotgunSpawner", 0);
+	SetCvar("bd_SSGSpawner", 0);
+	SetCvar("bd_ChaingunSpawner", 0);
+	SetCvar("bd_BFGSpawner", 0);
+	SetCvar("bd_RLSpawner", 0);
+	SetCvar("bd_PlasmaSpawner", 0);
+	SetCvar("bd_WadCheck", 1);
+	SetCvar("BD_AmmoPackCheck", 3);
+	SetCvar("BD_NoMg42", 0);
+	SetCvar("BD_NOBOSSES", 0);
+	SetCvar("BD_GIMMELESSAMMO", 0);
+	SetCvar("BD_NODEMONWEAPONS", 0);
+	SetCvar("bd_NoZombieRifleDrop", 0);
+	SetCvar("bd_NoPickupsAnimations", 0);
+	SetCvar("bd_norandompickupsprites", 0);
+	SetCvar("compat_clientssendfullbuttoninfo", 1);
+	SetCvar("bd_LavaSplashes", 0);
+	SetCvar("bd_dropitems", 1);
+	SetCvar("bd_NoPowerUps", 0);
+	SetCvar("bd_zombiemanspawn", 0);
+	SetCvar("bd_shotgunguyspawn", 0);
+	SetUserCVAR(PlayerNumber(), "bd_ScreenFX", 1);
+	SetUserCVAR(PlayerNumber(), "bd_BloodTrail", 1);
+	SetUserCVAR(PlayerNumber(), "bd_SimpleSlide", 0);
+	SetUserCVAR(PlayerNumber(), "bd_AimMode", 0);
+	SetUserCVAR(PlayerNumber(), "bd_flashlight", 0);
+	SetUserCVAR(PlayerNumber(), "bd_sbartype", 1);
+	SetUserCVAR(PlayerNumber(), "bd_autoreload", 1);
+	SetUserCVAR(PlayerNumber(), "bd_Quips", 1);
+	SetUserCVAR(PlayerNumber(), "bd_Tips", 1);
+	ACS_NamedExecute("ServerCVars", 0);
+	ACS_NamedExecute("ClientCVars", 0);
+	ACS_NamedExecute("BDRespawn", 0);
+	delay(1);
+}
+
+
+script "MinimalismCvars" (void) net
+{
+	SetCvar("bd_mantling", 0);
+	SetCvar("bd_classicmonsters", 0);
+	SetCvar("bd_disabledecorations", 1);
+	SetCvar("bd_disablescanner", 1);
+	SetCvar("bd_disablemapenhancements", 1);
+	SetCvar("bd_disablenewguns", 1);
+	SetCvar("bd_disablenewenemies", 1);
+	SetCvar("bd_infinitecasings", 0);
+	SetCvar("bd_disablewaterripples2", 0);
+	SetCvar("bd_disablefriendlymarines", 1);
+	SetCvar("bd_shootablerocketammo", 0);
+	SetCvar("bd_footstepsounds", 0);
+	SetCvar("bd_rocketbackblast", 0);
+	SetCvar("bd_AgileZombies", 0);
+	SetCvar("bd_reloading", 0);
+	SetCvar("bd_infinitesprint", 0);
+	SetCvar("BD_DestructibleBodies", 0);
+	SetCvar("bd_ChainsawSpawner", 0);
+	SetCvar("bd_PistolSpawner", 0);
+	SetCvar("bd_ShotgunSpawner", 0);
+	SetCvar("bd_SSGSpawner", 0);
+	SetCvar("bd_ChaingunSpawner", 0);
+	SetCvar("bd_BFGSpawner", 0);
+	SetCvar("bd_RLSpawner", 0);
+	SetCvar("bd_PlasmaSpawner", 0);
+	SetCvar("bd_WadCheck", 1);
+	SetCvar("BD_AmmoPackCheck", 1);
+	SetCvar("BD_NoMg42", 1);
+	SetCvar("BD_NOBOSSES", 1);
+	SetCvar("BD_GIMMELESSAMMO", 0);
+	SetCvar("BD_NODEMONWEAPONS", 1);
+	SetCvar("bd_NoZombieRifleDrop", 0);
+	SetCvar("bd_NoPickupsAnimations", 1);
+	SetCvar("bd_norandompickupsprites", 1);
+	SetCvar("compat_clientssendfullbuttoninfo", 1);
+	SetCvar("bd_LavaSplashes", 0);
+	SetCvar("bd_dropitems", 1);
+	SetCvar("bd_NoPowerUps", 0);
+	SetCvar("bd_zombiemanspawn", 1);
+	SetCvar("bd_shotgunguyspawn", 1);
+	SetUserCVAR(PlayerNumber(), "bd_ScreenFX", 0);
+	SetUserCVAR(PlayerNumber(), "bd_BloodTrail", 0);
+	SetUserCVAR(PlayerNumber(), "bd_SimpleSlide", 0);
+	SetUserCVAR(PlayerNumber(), "bd_AimMode", 0);
+	SetUserCVAR(PlayerNumber(), "bd_flashlight", 0);
+	SetUserCVAR(PlayerNumber(), "bd_sbartype", 1);
+	SetUserCVAR(PlayerNumber(), "bd_autoreload", 1);
+	SetUserCVAR(PlayerNumber(), "bd_Quips", 1);
+	SetUserCVAR(PlayerNumber(), "bd_Tips", 1);
+	ACS_NamedExecute("ServerCVars", 0);
+	ACS_NamedExecute("ClientCVars", 0);
+	ACS_NamedExecute("BDRespawn", 0);
+	delay(1);
+}
+
+script "PerformanceFriendlyCVARS" (void) net
+{
+
+	ACS_NamedExecute("ServerCVars", 0);
+	ACS_NamedExecute("ClientCVars", 0);
+	ACS_NamedExecute("BDRespawn", 0);
+	delay(1);
+}
+
+Script "CheckSourcePortOptions" (void)// net clientside
+{
+	int IsSomethingWrong;
+	Log(s:"\n\n\cc-----------------------------------------------------------------------");
+	Log(l:"BD_SOURCE_PORT_CHECK");
+	
+	if (GameType() != 0)
+	{
+	log(l:"BD_SOURCE_PORT_CHECK_FAIL");
+	terminate;
+	}
+	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//Non-important reports first (those wont potentially make it seem like something is wrong)
+	If(GetCVAR("gl_texture_filter") != 0)
+	{
+		Log(l:"BD_SOURCE_PORT_CHECK_TEXTURE_FILTER");
+	}
+	Delay(1);
+	If(GetCVAR("nomonsterinterpolation") != 0)
+	{
+		Log(l:"BD_SOURCE_PORT_CHECK_MONSTER_INTERPOLATION");
+	}
+	Delay(1);
+	If(GetCVAR("gl_spriteclip") != 2)
+	{
+		Log(l:"BD_SOURCE_PORT_CHECK_SPRITE_CLIP");
+	}
+	Delay(1);
+	
+	
+	
+	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//Important reports (those could make someone think something is wrong)
+	
+	If(GetCVAR("r_drawplayersprites") != 1)
+	{
+		Log(l:"BD_SOURCE_PORT_CHECK_DRAW_SPRITES");
+		IsSomethingWrong++;
+	}
+	Delay(1);
+	If(GetCVAR("gl_light_sprites") != 1)
+	{
+		Log(l:"BD_SOURCE_PORT_CHECK_LIGHT_SPRITES");
+		IsSomethingWrong++;
+	}
+	Delay(1);
+	If(GetCVAR("gl_texture") != 1)
+	{
+		Log(l:"BD_SOURCE_PORT_CHECK_TEXTURE");
+		IsSomethingWrong++;
+	}
+	Delay(1);
+	
+	If(GetCVAR("gl_texture_format") != 0)
+	{
+		Log(l:"BD_SOURCE_PORT_CHECK_TEXTURE_FORMAT");
+		IsSomethingWrong++;
+	}
+	Delay(1);
+	
+	
+	
+	
+	/////////////////////////////
+	//SOURCE PORT EXCLUSIVE STUFF NOW
+	if( IsGZDoom() )
+	{
+		//yellow
+		If(GetCVAR("gl_billboard_faces_camera") != 0)
+		{
+			Log(l:"BD_SOURCE_PORT_CHECK_GZ_BILLBOARD_FACES_CAMERA");
+		}
+		Delay(1);
+	
+		//red
+	
+	}
+	else
+	{
+		//yellow
+		If(GetCVAR("gl_lights_additive") != 0)
+		{
+			Log(l:"BD_SOURCE_PORT_CHECK_ADDITIVE_LIGHTS");
+		}
+		Delay(1);
+		
+		If(GetCVAR("gl_use_models") != 1)
+		{
+			Log(l:"BD_SOURCE_PORT_CHECK_MODELS");
+		}
+		Delay(1);
+		
+		//red
+		
+		
+		
+	}
+	
+
+	
+
+
+	If(IsSomethingWrong == 0)
+	{
+		Log(l:"BD_SOURCE_PORT_CHECK_SUCCESS");
+	}
+	else
+	{
+		Log(l:"BD_SOURCE_PORT_CHECK_REVIEW");
+	}
+	Delay(3);
+	terminate;
+}

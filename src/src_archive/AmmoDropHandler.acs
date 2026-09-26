@@ -1,0 +1,53 @@
+// ACS
+#library "AmmoDropperHandler"
+#include "zcommon.acs"
+
+Script "AmmoDropperScreen" (VOID) NET
+{
+	SetHudSize(640,400,1);
+	HudMessage(s:"\cgPrimary fire - \cjdrop"; HUDMSG_PLAIN, 0, CR_WHITE, 566.0, 250.0, 0.1, 2.0);
+	HudMessage(s:"\cgalt fire - \cjcycle"; HUDMSG_PLAIN, 0, CR_WHITE, 556.0, 260.0, 0.1, 2.0);
+	HudMessage(s:"\cgreload - \cjdrop armor"; HUDMSG_PLAIN, 0, CR_WHITE, 570.0, 270.0, 0.1, 2.0);
+	
+	int ammoclip1 = CheckInventory("Clip1");
+	HudMessage(d:ammoclip1; HUDMSG_PLAIN, 0, CR_WHITE, 253.0, 310.0, 0.1, 2.0);
+	//delay(1);
+
+	int ammoclip2 = CheckInventory("Clip2");
+	HudMessage(d:ammoclip2; HUDMSG_PLAIN, 0, CR_WHITE, 304.0, 310.0, 0.1, 2.0);
+	//delay(1);
+
+	int ammoclip3 = CheckInventory("AmmoShell");
+	HudMessage(d:ammoclip3; HUDMSG_PLAIN, 0, CR_WHITE, 365.0, 310.0, 0.1, 2.0);
+
+	int ammoclip4 = CheckInventory("AmmoRocket");
+	HudMessage(d:ammoclip4; HUDMSG_PLAIN, 0, CR_WHITE, 413.0, 310.0, 0.1, 2.0);
+
+	int ammoclip5 = CheckInventory("AmmoCell");
+	HudMessage(d:ammoclip5; HUDMSG_PLAIN, 0, CR_WHITE, 280.0, 350.0, 0.1, 2.0);
+	//delay(1);
+
+	int ammoclip6 = CheckInventory("Gas");
+	HudMessage(d:ammoclip6; HUDMSG_PLAIN, 0, CR_WHITE, 335.0, 350.0, 0.1, 2.0);
+	//delay(1);
+
+	int ammoclip7 = CheckInventory("GrenadeAmmo");
+	HudMessage(d:ammoclip7; HUDMSG_PLAIN, 0, CR_WHITE, 393.0, 350.0, 0.1, 2.0);
+	//delay(1); 
+}  
+
+SCRIPT "Breathing" ENTER
+{
+	Delay(25); //Enough time for all the other size setting stuff to take place
+	while(true)
+	{
+	if(GetActorProperty(0, APROP_Health) < 1) { delay(25); }
+	else
+		{
+		SetActorProperty(0, APROP_ScaleY, GetActorProperty(0, APROP_ScaleY) - 0.02 );
+		Delay(25);
+		SetActorProperty(0, APROP_ScaleY, GetActorProperty(0, APROP_ScaleY) + 0.02 );
+		Delay(25);
+		}
+	}
+}

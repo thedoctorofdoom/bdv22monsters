@@ -1,0 +1,1768 @@
+//All the liquid gore stuff goes here.
+//Hit puff actor
+actor Purple_Blood: Brutal_Blood
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+	states
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		BSPR A 0
+		TNT1 A 0 A_CustomMissile ("PurpleSuperGoreMistTiny", 0, 0, random (0, 360), 2, random (0, 90))
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash")
+		TNT1 A 0 ACS_NamedExecuteAlways("BD_CheckBloodIntensity")
+		TNT1 A 0
+		TNT1 A 0 A_PlaySound("misc/XDeath5Purple")
+		BSPR A 2
+		TNT1 A 0 A_CustomMissile ("PurpleWaterBloodCHecker", 7, 0, random (0, 360), 2, random (30, 60))
+	Spawn2:
+		TNT1 A 0 A_CustomMissile ("Purple_FlyingBlood", 7, 0, random (0, 360), 2, random (30, 60))
+		TNT1 A 0 A_CustomMissile ("Purple_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (20, 90))
+		Goto LowBlood
+
+	Splash:
+		BLOD A 0
+		TNT1 AAA 0 A_CustomMissile ("PurpleUnderblood1", 7, 0, random (0, 360), 2, random (30, 150))
+		stop
+
+	LotsOfBlood:
+		TNT1 A 0
+		TNT1 AAAA 0 A_CustomMissile ("PurpleBloodMistSmall", 0, 0, random (0, 360), 2, random (0, 90))
+		TNT1 AAAAA 0 A_CustomMissile ("Purple_FlyingBlood", 7, 0, random (0, 360), 2, random (30, 70))
+		TNT1 A 0 A_CustomMissile ("SuperWallPurpleBlood", 0, 0, random (0, 360), 2, random (-15, 15))
+		TNT1 AAAA 0 A_CustomMissile ("Purple_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 90))
+		Goto LowBlood
+
+	AbsurdBlood:
+		TNT1 A 2
+		TNT1 AAAA 0 A_CustomMissile ("SuperWallPurpleBlood", 0, 0, random (0, 360), 2, random (-15, 15))
+		TNT1 A 0 A_JumpIfInventory("AnimuGore", 1, "AnimuGore")
+		TNT1 AA 0 A_CustomMissile ("PurpleBloodMist", 0, 0, random (0, 360), 2, random (0, 90))
+		TNT1 AAA 0 A_CustomMissile ("Purple_FlyingBloodMuchFaster", 7, 0, random (0, 360), 2, random (10, 50))
+		TNT1 A 0 A_CustomMissile ("Purple_FlyingBloodMuchFaster", 7, 0, random (0, 360), 2, random (40, 60))
+		TNT1 A 0 A_CustomMissile ("PurpleBloodMistSmall", 7, 0, random (0, 360), 2, random (30, 90))
+		TNT1 A 0 A_CustomMissile ("PurpleSuperGoreMist", 0, 0, random (0, 360), 2, random (10, 90))
+		TNT1 AAAAA 0 A_CustomMissile ("Purple_FlyingBlood", 7, 0, random (0, 360), 2, random (30, 70))
+		TNT1 AAA 0 A_CustomMissile ("PurpleBloodMistSpray", 0, 0, random (0, 360), 2, random (20, 90))
+		Goto LowBlood
+
+	AnimuGore:
+		TNT1 AAA 0 A_CustomMissile ("Purple_FlyingBloodMuchFaster", 7, 0, random (0, 360), 2, random (10, 50))
+		TNT1 A 0 A_CustomMissile ("SuperWallPurpleBlood", 0, 0, random (0, 360), 2, random (-15, 15))
+		TNT1 A 0 A_CustomMissile ("Purple_FlyingBloodMuchFaster", 7, 0, random (0, 360), 2, random (40, 60))
+		TNT1 AAAAAAA 0 A_CustomMissile ("Purple_FlyingBlood", 7, 0, random (0, 360), 2, random (30, 70))
+		TNT1 AAAAAAAAA 0 A_CustomMissile ("XDeath1Purple", 0, 0, random (0, 360), 2, random (40, 80))
+		TNT1 A 0 A_CustomMissile ("PurpleSuperGoreSpawner", 0, 0, random (0, 360), 2, random (10, 90))
+		TNT1 AAAAA 0 A_CustomMissile ("PurpleBloodMistSpray", 0, 0, random (0, 360), 2, random (20, 90))
+		Goto LowBlood
+
+	LowBlood:
+		TNT1 A 0
+		TNT1 A 0 A_JumpIf((z - floorz) < 48, 2)
+		TNT1 A 0 A_RadiusGive("BloodSplasher_Purple", 96, RGF_PLAYERS, 1)
+		TNT1 AA 0
+		BSPR BCDEFGHIJJJ 1
+		Stop
+	}
+}
+
+//Base flying blood actor. Leaves bloodspots on the floor
+ACTOR Purple_FlyingBlood: Brutal_FlyingBlood 
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash")
+		TNT1 A 0 A_Jump(255, "Spawn1", "Spawn2", "Spawn3", "Live")
+	Spawn1:
+		TNT1 A 0
+		TNT1 A 0 A_SetScale(-0.4, 0.4)
+		Goto Live
+
+	Spawn2:
+		TNT1 A 0
+		TNT1 A 0 A_SetScale(-0.45, -0.45)
+		Goto Live
+
+	Spawn3:
+		TNT1 A 0
+		TNT1 A 0 A_SetScale(0.5, -0.5)
+		Goto Live
+
+	Live:
+		BLHT BCDEFG 1
+		TNT1 A 0 
+		BLHT HHHHH 100 A_JumpIf(waterlevel > 1, "Splash")
+		Stop
+
+	Splash:
+		BLOD A 0
+		TNT1 A 0 A_SpawnItem ("PurpleUnderblood2")
+		stop
+
+	Death:
+		TNT1 A 0
+		TNT1 A 0 A_PlaySound("blooddrop2")
+		TNT1 A 0 A_CheckFloor("DeathFloor")
+		TNT1 A 1
+		Stop
+  
+	DeathFloor:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx ("Purple_BloodSpot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION |  SXF_TRANSFERTRANSLATION,0)
+		TNT1 A 0 A_PlaySound("blooddrop2")
+		XDT1 EFGHIJKL 2
+		Stop
+
+	NoSpawn:
+		TNT1 A 0
+		Stop
+	}
+}
+
+//Faster version used in some specific cases
+ACTOR Purple_FlyingBloodMuchFaster: Purple_FlyingBlood
+{
+	Scale 1.0
+	Speed 8
+}
+
+actor Purple_FlyingBloodTrail: Brutal_FlyingBloodTrail 
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+	states
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash")
+		BLHT BCDEFG 1
+		BLHT HHHHHHHHH 1 A_FadeOut(0.02)
+		stop
+
+	Death:
+		TNT1 A 0
+		Stop
+
+	Splash:
+		BLOD A 0
+		TNT1 A 0 A_SpawnItem ("PurpleUnderblood2")
+		stop
+	}
+}
+
+actor Purple_FlyingBloodFaster: Purple_FlyingBloodTrail
+{
+	Speed 4
+	states
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash")
+		BLOD ABCDEFFFFFF 3
+		stop
+	}
+}
+
+ACTOR Purple_FlyingBloodFake: Brutal_FlyingBloodFake 
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+	TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash")
+		BLOD KKKKKKKKKKKK 1 A_FadeOut(0.05)
+		Stop
+
+	Splash:
+		BLOD A 0
+		TNT1 A 0 A_SpawnItem ("PurpleUnderblood2")
+		stop
+
+	Death:
+		TNT1 A 10
+		Stop
+	}
+}
+
+ACTOR Purple_FlyingBloodFakeNoDecal: Purple_FlyingBloodFake { decal "none"}
+
+actor PurpleBloodMist : BloodMist
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+}
+
+actor PurpleBloodMistBig : BloodMistBig
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+}
+
+actor PurpleBloodMistSmall : BloodMistSmall
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+}
+
+actor PurpleBloodMistExtraBig :BloodMistExtraBig
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+}
+
+//More wattery version
+actor PurpleBloodMistSpray : BloodMistSpray
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+}
+
+actor PurpleBloodMistChainsaw : BloodMistChainsaw
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+}
+
+/////////////////////// BLOOD SPOTS //////////////////////////
+
+//base bloodspot actor
+ACTOR Purple_BloodSpot: Brutal_Bloodspot
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+}
+
+
+//a special flying blood actor that spawns muddy water pools over liquids
+ACTOR PurpleWaterBloodCHecker: WaterBloodCHecker
+{
+	Decal none
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 5
+		Loop
+
+	Death:
+		TNT1 A 0
+		TNT1 A 0 ACS_NamedExecuteAlways("BD_CheckIfOverLiquid")
+		TNT1 A 5
+		TNT1 A 0 A_JumpIfInventory("IsOverWater", 1, "IsOverLiquid")
+		TNT1 A 0 A_JumpIfInventory("IsOverSlime", 1, "IsOverLiquid")
+		TNT1 A 0 A_JumpIfInventory("IsOverBlood", 1, "IsOverLiquid")
+		TNT1 A 10
+		Stop
+
+	IsOverLiquid:
+		TNT1 A 1
+		TNT1 A 0 A_CheckFloor("SpawnOnWater")
+		TNT1 A 2
+		Stop
+
+	SpawnOnWater:
+		TNT1 A 1
+		TNT1 A 0 A_SpawnItem ("PurpleWaterBloodSpot", 5)
+		Stop
+	}
+}
+
+//muddy water bloodspot actor
+ACTOR PurpleWaterBloodSpot: WaterBloodSpot
+{
+//Renderstyle Shaded
+	StencilColor "5B 2C 6F"
+	Decal PurpleBloodSplat
+	states
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		BPDL E 1 A_FadeOut(0.9)
+		BPDL EEEEEEEEEEEEEEEEEEEE 4 A_FadeIn(0.02)
+		BPDL E 100
+		BPDL EEEEEEEEEEEEEEEEEEEE 4 A_FadeOut(0.02)
+		Stop
+	}
+}
+
+//bigger bloodsplat 
+actor PurpleGiantBloodSpot: GiantBloodSpot
+{
+	Scale 1.1
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+}
+
+actor PurpleMinuscleBloodSpot: Purple_BloodSpot {Scale 0.25}
+actor PurpleBigBloodSpot: PurpleGiantBloodSpot { Scale 0.7}
+actor PurpleMediumBloodSpot: PurpleGiantBloodSpot { Scale 0.4}
+actor PurpleMediumBloodSpot2: PurpleGiantBloodSpot{ Scale 0.4}
+
+//Big version spawned by XDeath animations
+ACTOR SplatteredPurpleSmall: Purple_BloodSpot
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+}
+
+//Big version spawned by XDeath animations of bigger enemies
+ACTOR SplatteredPurpleLarge: Purple_BloodSpot
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+	states
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash")
+		TNT1 A 0 A_CheckFloor("Live")
+		Goto Splash
+   
+	Live: 
+		TNT1 A 0
+		TNT1 A 0 ACS_NamedExecuteAlways("BD_CheckIfOverLiquid")//Check if is under a liquid
+		TNT1 A 4
+		TNT1 A 0 A_JumpIfInventory("IsOverWater", 1, "PurpleWaterBloodSpot")
+		TNT1 A 0 A_JumpIfInventory("IsOverSlime", 1, "PurpleWaterBloodSpot")
+		TNT1 A 0 A_JumpIfInventory("IsOverlava", 1, "PurpleWaterBloodSpot")
+		TNT1 A 0 A_SpawnItemEx ("BootSmearerPurple",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_QueueCorpse
+		BPDL A -1
+		Stop
+
+	PurpleWaterBloodSpot:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItem("PurpleWaterBloodSpot")
+		Stop
+	}
+}
+
+//A blood pool spawned by regular enemy deaths.
+
+actor PurpleGrowingBloodPool: GrowingBloodPool
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+	states
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash")
+		TNT5 A 1
+		TNT1 A 0 A_SpawnItemEx("BootSmearerPurple",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT5 A 2 A_QueueCorpse
+		TNT5 A 1 A_SetScale(0.33, 0.33)
+		TNT5 A 1 A_SetScale(0.36, 0.36)
+		TNT5 A 1 A_SetScale(0.39, 0.39)
+		TNT5 A 1 A_SetScale(0.42, 0.42)
+		TNT5 A 1 A_SetScale(0.45, 0.45)
+		TNT5 A 1 A_SetScale(0.48, 0.48)
+		TNT5 A 1 A_SetScale(0.50, 0.50)
+		TNT5 A 2 A_SetScale(0.53, 0.53)
+		TNT5 A 2 A_SetScale(0.56, 0.56)
+		TNT5 A 2 A_SetScale(0.59, 0.59)
+		TNT5 A 2 A_SetScale(0.62, 0.62)
+		TNT5 A 2 A_SetScale(0.65, 0.65)
+		TNT5 A 2 A_SetScale(0.68, 0.68)
+		TNT5 A 2 A_SetScale(0.70, 0.70)
+		TNT5 A 3 A_SetScale(0.73, 0.73)
+		TNT5 A 3 A_SetScale(0.76, 0.76)
+		TNT5 A 3 A_SetScale(0.79, 0.79)
+		TNT5 A 3 A_SetScale(0.82, 0.82)
+		TNT5 A 3 A_SetScale(0.85, 0.85)
+		TNT5 A 3 A_SetScale(0.88, 0.88)
+		TNT5 A 3 A_SetScale(0.90, 0.90)
+		TNT5 A 3 A_SetScale(0.93, 0.93)
+		TNT5 A 3 A_SetScale(0.96, 0.96)
+		TNT5 A 3 A_SetScale(0.99, 0.99)
+		TNT5 A 3 A_SetScale(1.02, 1.02)
+		TNT5 A 3 A_SetScale(1.05, 1.05)
+		TNT5 A 3 A_SetScale(1.08, 1.08)
+		TNT5 A 3 A_SetScale(1.11, 1.11)
+	Live:
+		TNT5 A 900//duration
+		TNT1 A 0 A_JumpIfInventory("lowgraphicsmode", 1, "Splash")
+		TNT5 A -1
+		Stop
+
+	Splash:
+		BLOD A 0
+		stop
+	}
+}
+
+//A decorative kind of flying blood spawned by arterial blood
+ACTOR Purple_LiquidBlood: Brutal_LiquidBlood 
+{
+	decal "PurpleBloodSmearSmall"
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0
+		TNT1 A 0 A_CustomMissile ("Purple_FlyingBloodTrail", 10, 0, random (0, 360), 2, random (0, 90))
+		BLOD AAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItem("Purple_LiquidBloodTrail")
+		Stop
+
+	Death:
+		TNT1 A 0 A_PlaySound("blooddrop2")
+		XDT1 FGHIJKL 2
+		TNT1 A 0
+		Stop
+	}
+}
+
+//Faster version, leaves no decals. Used to prevent decal overflow
+ACTOR Purple_LiquidBlood2: Purple_LiquidBlood
+{
+	speed 4
+	scale 0.4
+	gravity 0.6
+	decal "None"
+}
+
+//Very fast version
+ACTOR Purple_LiquidBloodFast: Purple_LiquidBlood2
+{
+	speed 8
+}
+
+//This version leaves a bloodspot
+ACTOR Purple_LiquidBlood3: Purple_FlyingBlood 
+{
+	Speed 3
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+	States
+	{
+	Death:
+		TNT1 A 0 A_PlaySound("blooddrop2")
+		TNT1 A 0 A_CheckFloor("SpawnFloor")
+		TNT1 A 4
+		Stop
+	
+	SpawnFloor:
+		tnt1 a 0 A_SPawnItem("Purple_BloodSpot")
+		XDT1 FGHIJKL 2
+		TNT1 A 0
+		Stop
+	}
+}
+
+//Decorative trails
+ACTOR Purple_LiquidBloodTrail: Brutal_LiquidBloodTrail 
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+}
+
+//An actor that will spawn multiple arterial blood actors
+ACTOR PurpleArterialBloodSpray
+{
+	Speed 0
+	+CLIENTSIDEONLY
+	+NOINTERACTION
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0
+		TNT1 A 0 A_stop
+		TNT1 AAAA 2 A_CustomMissile ("Purple_LiquidBlood2", 0, 0, 0, 2, random (0, 60))
+		TNT1 A 6
+		TNT1 A 2 A_CustomMissile ("Purple_LiquidBlood2", 0, 0, 0, 2, random (0, 60))
+		TNT1 A 6
+		TNT1 A 2 A_CustomMissile ("Purple_LiquidBlood2", 0, 0, 0, 2, random (0, 60))
+		TNT1 A 6
+		TNT1 A 2 A_CustomMissile ("Purple_LiquidBlood2", 0, 0, 0, 2, random (0, 60))
+		TNT1 A 6
+		TNT1 A 2 A_CustomMissile ("Purple_LiquidBlood2", 0, 0, 0, 2, random (0, 60))
+		TNT1 A 9
+		TNT1 A 2 A_CustomMissile ("Purple_LiquidBlood2", 0, 0, 0, 2, random (0, 60))
+		TNT1 A 9
+		TNT1 A 2 A_CustomMissile ("Purple_LiquidBlood2", 0, 0, 0, 2, random (0, 60))
+		TNT1 A 9
+		TNT1 A 2 A_CustomMissile ("Purple_LiquidBlood2", 0, 0, 0, 2, random (0, 60))
+		TNT1 A 9
+		TNT1 A 2 A_CustomMissile ("Purple_LiquidBlood2", 0, 0, 0, 2, random (0, 60))
+		TNT1 A 12
+		TNT1 A 2 A_CustomMissile ("Purple_LiquidBlood2", 0, 0, 0, 2, random (0, 60))
+		TNT1 A 12
+		TNT1 A 2 A_CustomMissile ("Purple_LiquidBlood2", 0, 0, 0, 2, random (0, 60))
+		TNT1 A 16
+		TNT1 A 2 A_CustomMissile ("Purple_LiquidBlood2", 0, 0, 0, 2, random (0, 60))
+		TNT1 A 19
+		TNT1 A 2 A_CustomMissile ("Purple_LiquidBlood2", 0, 0, 0, 2, random (0, 60))
+		Stop
+	}
+}
+
+/////////////////// CEILING BLOOD //////////////////////////
+
+//Launches bloodspots on the ceiling
+ACTOR PurpleCeilBloodLauncher: CeilBloodLauncher
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+	States
+	{
+	Death:
+		TNT1 A 0
+		TNT1 A 0 A_CheckCeiling("IsOnCeil")
+		TNT1 A 0
+		stop
+		
+	IsOnCeil:
+		TNT1 A 0
+		TNT1 A 1 A_SpawnItem("PurpleCeilBloodSpot",0,0,0,1)
+		Stop
+	}
+}
+
+//Longer version (for extreme deaths)
+ACTOR PurpleCeilBloodLauncherLong: PurpleCeilBloodLauncher
+{
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash")
+		TNT1 A 12
+		Stop
+	}
+}
+
+// The Ceil Blood Spot
+actor PurpleCeilBloodSpot: CeilBloodSpot
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+	states
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		BPDL A 1
+		TNT1 A 0 A_QueueCorpse
+		TNT1 A 0 A_SpawnItem ("DripingPurpleBloodLeavesSmallPool")
+		TNT1 A 0 A_SpawnItem ("PurpleCeilBloodTinyBloodSpawner")
+	Live:
+		BPDL A 5 ThrustThingZ(0, 20, 0, 1)
+		Loop
+	}
+}
+
+//Bigger version of a ceil blood spot, usually left by sticky gibs.
+actor PurpleCeilBloodSpotLarge: PurpleCeilBloodSpot
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+}
+
+//These are the actors that spawns blood drips. They are separate from the bloodspots so the sticky gibs can spawn them separately.
+
+//Small blood drips spawner, usually caused by regular blood touching the ceiling.
+ACTOR PurpleCeilBloodTinyBloodSpawner: CeilBloodTinyBloodSpawner
+{
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0
+		TNT1 A 1 A_SpawnItemEx ("DripingPurpleBloodLeavesSmallPool", random (-5, 5), random (-5, 5), 0, 0, 0, -5)
+		TNT1 AAAAAAAAAAAAAA 5 A_SpawnItemEx ("PurpleBloodDripingFromCeiling", random (-5, 5), random (-5, 5), 0, 0, 0, -5)
+		TNT1 AAAAAAAAAAAAAA 10 A_SpawnItemEx ("PurpleBloodDripingFromCeiling", random (-5, 5), random (-5, 5), 0, 0, 0, -5)
+		TNT1 AAAAAAAAAAAAAA 16 A_SpawnItemEx ("PurpleBloodDripingFromCeiling", random (-5, 5), random (-5, 5), 0, 0, 0, -5)
+		TNT1 AAAAAAAAAAAAAA 24 A_SpawnItem ("PurpleBloodDripingFromCeiling")
+		stop
+	}
+}
+
+//Large blood drips spawner, usually caused by huge chunks of meat getting stuck on the ceiling.
+ACTOR PurpleCeilBloodLargeBloodSpawner: Purple_FlyingBlood
+{
+	+NOGRAVITY
+	+THRUACTORS
+	+NOCLIP
+	Scale 0.5
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0
+		TNT1 A 1 A_SpawnItemEx ("DripingPurpleBloodLeavesSmallPool", random (-5, 5), random (-5, 5), 0, 0, 0, -5)
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 3 A_SpawnItemEx ("PurpleBloodDripingFromCeilingBig", random (-5, 5), random (-5, 5), 0, 0, 0, -5)
+		TNT1 AAAAAAAAAAAAAA 10 A_SpawnItemEx ("PurpleBloodDripingFromCeilingBig", random (-5, 5), random (-5, 5), 0, 0, 0, -5)
+		TNT1 AAAAAAAAAAAAAA 15 A_SpawnItemEx ("PurpleBloodDripingFromCeiling", random (-5, 5), random (-5, 5), 0, 0, 0, -5)
+		TNT1 AAAAAAAAAAAAAA 20 A_SpawnItemEx ("PurpleBloodDripingFromCeiling", random (-5, 5), random (-5, 5), 0, 0, 0, -5)
+		stop 
+	}
+}
+
+//This is the actual blood driping from the ceiling actor
+ACTOR PurpleBloodDripingFromCeiling: BloodDripingFromCeiling
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+}
+
+//This is a bigger and denser version of the blood drip, droped by sticky gibs
+ACTOR PurpleBloodDripingFromCeilingBig: BloodDripingFromCeiling
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+}
+
+//This is the first drip spawned by the drip spawners, which leaves a small blood pool
+ACTOR DripingPurpleBloodLeavesPool: DripingBloodLeavesPool
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash")
+		BLUD Z 4
+		loop
+
+	Death:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItem("PurpleMediumBloodSpot")
+		TNT1 A 0 A_PlaySound("blooddrop2")
+		XDT1 EFGHIJKL 2
+		stop
+	}
+}
+
+//Just like above, but leaves a smaller pool
+ACTOR DripingPurpleBloodLeavesSmallPool: DripingBloodLeavesSmallPool
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+	States
+	{
+	Death:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItem("PurpleMinuscleBloodSpot")
+		TNT1 A 0 A_PlaySound("blooddrop2")
+		XDT1 EFGHIJKL 2
+		stop
+	}
+}
+
+//An invisible projectile only used to spawn bloodsplats on the walls, usually spawned by extreme deaths.
+ACTOR WallPurpleBlood: WallRedBlood
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSmearer
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash")
+		TNT1 ABCD 4
+		loop
+
+	Splash:
+		BLOD A 0
+		stop
+
+	Death:
+		TNT1 A 3
+		stop
+	}
+}
+
+//This one spawns an even bigger decal
+ACTOR SuperWallPurpleBlood: WallRedBlood
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSuper
+}
+
+
+//This one spawns a ridiculously bigger decal, used by BFG extreme deaths
+ACTOR GiantWallPurpleBlood: WallPurpleBlood
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodGiant
+}
+
+//Spawns giant blood decals all around the area. Used in Purple Doom's BFG deaths.
+Actor PurpleBloodSplinter
+{
+	+THRUACTORS
+	+CLIENTSIDEONLY
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash")
+		TNT1 A 0 A_CustomMissile ("GiantWallPurpleBlood", 40, 0, 0, 2, random (0, 35))
+		TNT1 A 0 A_CustomMissile ("GiantWallPurpleBlood", 40, 0, 45, 2, random (0, 35))
+		TNT1 A 0 A_CustomMissile ("GiantWallPurpleBlood", 40, 0, 90, 2, random (0, 35))
+		TNT1 A 0 A_CustomMissile ("GiantWallPurpleBlood", 40, 0, 135, 2, random (0, 35))
+		TNT1 A 0 A_CustomMissile ("GiantWallPurpleBlood", 40, 0, 180, 2, random (0, 35))
+		TNT1 A 0 A_CustomMissile ("GiantWallPurpleBlood", 40, 0, 225, 2, random (0, 35))
+		TNT1 A 0 A_CustomMissile ("GiantWallPurpleBlood", 40, 0, 270, 2, random (0, 35))
+		TNT1 A 0 A_CustomMissile ("GiantWallPurpleBlood", 40, 0, 315, 2, random (0, 35))
+		Stop
+
+	Splash:
+		BLOD A 0
+		stop
+	}
+}
+
+//Spawned by BD's kicked heads  to spawn blood decals and make the head bounce sound.
+ACTOR ShortWallPurpleBlood: WallPurpleBlood
+{
+	speed 2
+	Gravity 1
+	Radius 24
+	Height 12
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash")
+		TNT1 A 3
+		Stop
+
+	Death:
+		TNT1 AAAAAAAAAAAAAAAAAA 0 A_CustomMissile ("Purple_FlyingBloodFakeNoDecal", 0, 0, random (0, 360), 2, random (0, 90))
+		TNT1 A 0 A_SpawnItem("Purple_BloodSpot",0,0,0,1)
+		TNT1 A 0 A_PlaySound("HEDBON")
+		TNT1 A 20
+		Stop
+	}
+}
+
+//Blood actors spawned underwater
+ACTOR PurpleUnderblood1: Underblood1
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+}
+
+//Shorter version
+ACTOR PurpleUnderblood2: PurpleUnderblood1
+{
+	scale 0.7
+	speed 0
+}
+//Bigger version that moves, used for gibbing.
+ACTOR PurpleUnderblood3: PurpleUnderblood1
+{
+	scale 2.2
+	speed 2
+	Alpha 0.3
+}
+
+//Big blood mists
+actor PurpleSuperGore: SuperGore
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+}
+
+
+Actor PurpleSuperGoreMist: SuperGoreMist
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+}
+
+
+//Used on bullet hit impacts
+Actor PurpleSuperGoreMistTiny: SuperGoreMistTiny
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+}
+
+actor BigPurpleSuperGore: BigSuperGore
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+}
+
+
+actor GiantPurpleSuperGore: GiantSuperGore
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+}
+
+
+//Spawners for the PurpleSuperGore thing
+Actor PurpleSuperGoreSpawner: SuperGoreSpawner
+{
+	states
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 3
+		TNT1 AAA 3 A_CustomMissile("PurpleSuperGore", 7, 0, random (0, 360), 2, random (30, 60))
+		Stop
+	}
+}
+
+Actor PurpleSuperGoreSpawner2: SuperGoreSpawner
+{
+	states
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 3
+		TNT1 AAAAA 3 A_CustomMissile("PurpleSuperGore", 7, 0, random (0, 360), 2, random (30, 60))
+		Stop
+	}
+}
+
+//Bloody footprints still requires the player to be edited to work.
+//Gives the player an inventory item to indicate the feet are smeaPurple.
+ACTOR BootSmearerPurple: BootSmearerRed
+{
+	states
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0
+		TNT1 A 1 A_Look
+		Goto See
+
+	See:
+		TNT1 A 1 A_Chase("","")
+		TNT1 A 0 A_Die("LookForPlayer")
+	Death:
+	Death.LookForPlayer:
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 8 A_JumpIfCloser(60, "SmearBootsWithPurpleBlood")
+		Stop
+
+	SmearBootsWithPurpleBlood:
+		TNT1 A 0 A_GiveToTarget("BootsSmearedWithPurpleBlood", 8)
+		BPDL A 0
+		Stop
+	}
+}
+
+ACTOR PurpleBloodFootPrintLeft: RedBloodFootPrintLeft
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+}
+
+
+ACTOR PurpleBloodFootPrintRight: RedBloodFootPrintRight
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+}
+
+//Gib actors
+
+ACTOR XDeath1Purple: XDeath1
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSuper
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Underwater")
+		BLOD AAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItem("Purple_LiquidBloodTrail")
+		Stop
+
+	Death:
+		TNT1 A 0 A_SpawnItemEx ("Purple_BloodSpot", 0, 0, 1)
+		TNT1 A 0 ACS_NamedExecuteAlways("BD_CheckIfOverLiquid")
+		XDT1 EF 3
+		TNT1 A 0 A_JumpIfInventory("IsOverWater", 1, "IsOverLiquid")
+		TNT1 A 0 A_JumpIfInventory("IsOverSlime", 1, "IsOverLiquid")
+		XDT1 GHIJKL 3
+		Stop
+		TNT1 A 1
+
+	Underwater:
+	Splash:
+		BLUD C 0 ThrustThingZ (0,35,1,0)
+		XDT1 AB 3 A_CustomMissile ("Purple_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 360))
+		BLUD C 0 ThrustThingZ (0,35,1,0)
+		XDT1 CD 3 A_CustomMissile ("Purple_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 360))
+		Loop
+
+	IsOverLiquid:
+		TNT1 A 1
+		TNT1 A 0 A_CheckFloor("SpawnOnWater")
+	SpawnOnWater:
+		TNT1 A 1
+		TNT1 A 0 A_SpawnItem ("PurpleWaterBloodSpot", 5)
+		Stop
+	}
+}
+
+//A flying piece of meat
+ACTOR XDeath2Purple: XDeath2
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSuper
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash")
+		XMT1 ABCDEFGH 2 A_CustomMissile ("Purple_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 360))
+		Loop
+
+	Death:
+		TNT1 AAAAAAA 0 A_CustomMissile ("Purple_FlyingBloodTrail", 0, 0, random (0, 180), 2, random (0, 180))
+		TNT1 A 0 A_CheckFloor("SpawnFloor")
+		TNT1 A 0 A_CheckCeiling("SpawnCeiling")
+		TNT1 A 0 A_SpawnItem("SmearingXDeath2Purple")
+		Stop
+
+	SpawnFloor:
+		XMT1 M 1
+		TNT1 A 0 A_QueueCorpse
+		TNT1 A 0 A_SpawnItemEx ("Purple_BloodSpot", 0, 0, 1)
+		XMT1 M -1
+		Stop
+
+	SpawnCeiling:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx ("CeilXDeath2Purple", 0, 0, 1)
+		TNT1 A 0 A_SpawnItemEx ("PurpleCeilBloodSpotLarge", 0, 0, 1)
+		Stop
+
+	Vanish:
+		TNT1 A 5
+		Stop
+	}
+}
+
+ACTOR XDeath2bPurple: XDeath2Purple {	Speed 4 } //Low-range version.
+
+//A piece of meat that has hit the wall, and now is slowly smearing
+ACTOR SmearingXDeath2Purple: SmearingXDeath2
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSuper
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		XMT1 N 10
+		TNT1 A 0 ThrustThingZ(0, 1, 1, 1)
+		TNT1 A 0 A_Jump(255, "Spawn1", "Spawn2", "Spawn3", "Spawn4")
+	Spawn1:
+		XMT1 NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN 2 A_CheckFloor("Rest")
+		Goto Death
+
+	Spawn2:
+		XMT1 NNNNNNNNNNNNNNNNNNNNNNNN 2 A_CheckFloor("Rest")
+		Goto Death
+
+	Spawn3:
+		XMT1 NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN 2 A_CheckFloor("Rest")
+		Goto Death
+
+	Spawn4:
+		XMT1 NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN 2 A_CheckFloor("Rest")
+		Goto Death
+
+	Death:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItem("XDeath2PurpleNoStick")
+		Stop
+
+	Rest:
+		XMT1 M 1
+		TNT1 A 0 A_QueueCorpse
+		TNT1 A 0 A_SpawnItem("Purple_BloodSpot",0,0,0,1)
+		XMT1 M -1
+		Stop
+
+	Vanish:
+		TNT1 A 5
+		Stop
+	}
+}
+
+//piece of meat that got stuck in the ceiling
+actor CeilXDeath2Purple: CeilXdeath2
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSuper
+	states
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0
+		TNT1 A 0 A_JUmp (255, "Live1", "Live2", "Live3")
+		Goto Live1
+
+	Live1:
+		XMT1 IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII 5 ThrustThingZ(0, 20, 0, 1)
+		Goto Fall
+		
+	Live2:
+		XMT1 IIIIIIIIIIIIIIIIIIIIIIIII 5 ThrustThingZ(0, 20, 0, 1)
+		Goto Fall
+		
+	Live3:
+		XMT1 IIIIIIIIIIIIIIIII 5 ThrustThingZ(0, 20, 0, 1)
+		Goto Fall
+
+	Fall:
+		XMT1 F 0
+		XMT1 JJJKKLL 2
+		TNT1 A 0 A_SpawnItemEx("XDeath2PurpleNoStick", 0, 0, 0, 0, 0, -1)
+		stop
+
+	Splash:
+		BLOD A 0
+		stop
+	}
+}
+
+//piece of meat that got stuck on the ceiling/wall and now is falling
+ACTOR XDeath2PurpleNoStick: XDeath2NoStick
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		XMT1 FFFGGH 2
+	Live:
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash")
+		TNT1 A 0 A_CheckFloor("Death")
+		XMT1 ABCDEFGH 3 A_CustomMissile ("Purple_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 360))
+		Loop
+
+	Death:
+		TNT1 AAAAAAA 0 A_CustomMissile ("Purple_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (20, 70))
+		XMT1 M 1
+		TNT1 A 0 A_QueueCorpse
+		XMT1 M 3
+		TNT1 A 0 A_SpawnItem("Purple_BloodSpot",0,0,0,1)
+		XMT1 M -1
+		Stop
+	}
+}
+
+//Variation of XDeath2Purple
+ACTOR XDeath3Purple: XDeath3
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSuper
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash")
+		XMT2 ABCDEFGH 3 A_CustomMissile ("Purple_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 360))
+		Loop
+
+	Death:
+		TNT1 AAAAAAA 0 A_CustomMissile ("Purple_FlyingBloodTrail", 0, 0, random (0, 180), 2, random (0, 180))
+		TNT1 A 0 A_CheckFloor("SpawnFloor")
+		TNT1 A 0 A_CheckCeiling("SpawnCeiling")
+		TNT1 A 0 A_SpawnItem("SmearingXDeath3Purple")
+		Stop
+
+	SpawnFloor:
+		XMT2 I 1
+		TNT1 A 0 A_QueueCorpse
+		TNT1 A 0 A_SpawnItemEx ("Purple_BloodSpot", 0, 0, 1)
+		XMT2 I -1
+		Stop
+
+	SpawnCeiling:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx ("CeilXDeath3Purple", 0, 0, 1)
+		TNT1 A 0 A_SpawnItemEx ("PurpleCeilBloodSpotLarge", 0, 0, 1)
+		Stop
+	}
+}
+
+ACTOR XDeath3bPurple: XDeath3Purple {	Speed 4 } //Low-range version.
+
+//A piece of meat that has hit the wall, and now is slowly smearing
+ACTOR SmearingXDeath3Purple: SmearingXDeath3
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSuper
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		XME2 G 10
+		TNT1 A 0 ThrustThingZ(0, 1, 1, 1)
+		TNT1 A 0 A_Jump(255, "Spawn1", "Spawn2", "Spawn3", "Spawn4")
+	Spawn1:
+		XMT2 OOOOOOOOOOOOOOOO 2 A_CheckFloor("Rest")
+		Goto Death
+
+	Spawn2:
+		XMT2 OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 2 A_CheckFloor("Rest")
+		Goto Death
+
+	Spawn3:
+		XMT2 OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 2 A_CheckFloor("Rest")
+		Goto Death
+
+	Spawn4:
+		XMT2 OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 2 A_CheckFloor("Rest")
+		Goto Death
+
+	Death:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItem("XDeath3PurpleNoStick")
+		Stop
+
+	Rest:
+		XMT2 I 1
+		TNT1 A 0 A_QueueCorpse
+		TNT1 A 0 A_SpawnItem("Purple_BloodSpot",0,0,0,1)
+		XMT2 I -1
+		Stop
+
+	Vanish:
+		TNT1 A 5
+		Stop
+	}
+}
+
+//piece of meat that got stuck in the ceiling
+actor CeilXDeath3Purple: CeilXDeath3
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSuper
+	states
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		Goto Crash
+
+	Death:
+	Crash:
+		TNT1 A 0
+		TNT1 A 0 A_JUmp (255, "Live1", "Live2", "Live3")
+		Goto Live1
+
+	Live1:
+		XMT2 JJJJJJJJJJJJJJJJJ 4 ThrustThingZ(0, 20, 0, 1)
+		Goto Fall
+
+	Live2:
+		XMT2 JJJJJJJJJJJJJJJJJJJJJJJJJJJ 4 ThrustThingZ(0, 20, 0, 1)
+		Goto Fall
+
+	Live3:
+		XMT2 JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ 4 ThrustThingZ(0, 20, 0, 1)
+		Goto Fall
+
+	Fall:
+		XMT2 JJJJKKKLLM 2
+		TNT1 A 0 A_SpawnItemEx("XDeath3PurpleNoStick", 0, 0, 0, 0, 0, -1)
+		XMT2 MMN 2
+		stop
+	}
+}
+
+//piece of meat that got stuck on the ceiling/wall and now is falling
+ACTOR XDeath3PurpleNoStick: XDeath3NoStick
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSuper
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash")
+		TNT1 A 0 A_CheckFloor("Death")
+		XMT2 O 3
+		Loop
+
+	Death:
+		TNT1 AAAAAAA 0 A_CustomMissile ("Purple_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (20, 70))
+		XMT2 I 1
+		TNT1 A 0 A_QueueCorpse
+		XMT2 I 3
+		TNT1 A 0 A_SpawnItem("Purple_BloodSpot",0,0,0,1)
+		XMT2 I -1
+		Stop
+	}
+}
+
+//Big piece of ribcage
+ACTOR XDeath4Purple: XDeath4
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash")
+		XDB6 AAAAAA 3 A_CustomMissile ("Purple_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 360))
+		Loop
+
+	Death:
+		XDB6 B 1
+		TNT1 A 0 A_QueueCorpse
+		XDB6 B -1
+		Stop
+	}
+}
+
+//Big piece of ribcage 2
+ACTOR XDeath5Purple: XDeath5
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash")
+		XME5 A 3 A_CustomMissile ("Purple_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 360))
+		Loop
+
+	Death:
+		TNT1 AAAAAAA 0 A_CustomMissile ("Purple_FlyingBloodTrail", 0, 0, random (0, 180), 2, random (0, 180))
+		TNT1 A 0 A_SpawnItemEx ("Purple_BloodSpot", 0, 0, 1)
+		XME5 B 1
+		TNT1 A 0 A_QueueCorpse
+		XME5 B -1
+		TNT1 A 0 
+		XME5 B 3
+	Living:
+		XME5 B 800//duration
+		TNT1 A 0 A_JumpIfInventory("lowgraphicsmode", 1, "Vanish")
+		Loop
+
+	Vanish:
+		TNT1 A 1
+		Stop
+		
+	}
+}
+
+//Big piece of ribcage 3
+ACTOR XDeath6Purple: XDeath6
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash")
+		XME5 C 3 A_CustomMissile ("Purple_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 360))
+		Loop
+
+	Death:
+		TNT1 AAAAAAA 0 A_CustomMissile ("Purple_FlyingBloodTrail", 0, 0, random (0, 180), 2, random (0, 180))
+		TNT1 A 0 A_SpawnItemEx ("Purple_BloodSpot", 0, 0, 1)
+		XME5 D 1
+		TNT1 A 0 A_QueueCorpse
+		XME5 D -1
+		TNT1 A 0 
+		XME5 D 3
+	Living:
+		XME5 D 800//duration
+		TNT1 A 0 A_JumpIfInventory("lowgraphicsmode", 1, "Vanish")
+		Loop
+
+	Vanish:
+		TNT1 A 1
+		Stop
+	}
+}
+
+ACTOR XDeath5PurpleBig: XDeath5Purple
+{
+	XScale -1.5
+	YScale 1.5
+	Speed 6
+}
+
+ACTOR XDeath6PurpleBig: XDeath6Purple
+{
+	XScale -1.5
+	YScale 1.5
+	Speed 6
+}
+
+//Generic organ
+ACTOR XDeathOrgan1Purple: XDeathOrgan1
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		XME8 A 4 A_CustomMissile ("Purple_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 360))
+		Loop
+	}
+}
+
+ACTOR XDeathOrgan1bPurple: XDeathOrgan1b
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+}
+
+ACTOR XDeathOrgan2Purple: XDeathOrgan1bPurple
+{
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		XME8 B 4 A_CustomMissile ("Purple_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 360))
+		Loop
+
+	Death:
+		XME8 B 1
+		TNT1 A 0 A_QueueCorpse
+		XME8 B -1
+		Stop
+	}
+}
+
+ACTOR PurpleGuts: Guts
+{
+	translation "168:191=[255,255,255]:[128,0,255]", "16:47=[196,136,255]:[51,0,102]"
+	Decal PurpleBloodSplat
+}
+
+ACTOR PurpleGuts2: PurpleGuts
+{
+	Speed 3
+}
+
+ACTOR SmallPurpleBrainPiece: SmallBrainPiece
+{
+	translation "1:17=[196,136,255]:[74,0,149]", "18:21=[128,0,255]:[43,0,85]"
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0
+		TNT1 A 0 A_Jump(255, "Spawn1", "Spawn2", "Spawn3", "Spawn4", "Fly")
+	Spawn1:
+		TNT1 A 0
+		TNT1 A 0 A_SetScale(0.35, 0.35)
+		Goto Fly
+
+	Spawn2:
+		TNT1 A 0
+		TNT1 A 0 A_SetScale(-0.5, 0.5)
+		Goto Fly
+
+	Spawn3:
+		TNT1 A 0
+		TNT1 A 0 A_SetScale(-0.3, 0.3)
+		Goto Fly
+
+	Spawn4:
+		TNT1 A 0
+		TNT1 A 0 A_SetScale(-0.25, 0.25)
+		Goto Fly
+
+	Fly:
+		XDB5 ABCDEFGH 2
+		Loop
+
+	Death:
+		TNT1 A 0
+		TNT1 A 0 A_CheckFloor("Rest")
+		TNT1 A 0 A_CheckCeiling("SpawnCeil")
+		TNT1 A 0 A_SpawnItemEx("SmearingPurpleBrain", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERSCALE)
+		Stop
+
+	SpawnCeil:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("SmallPurpleBrainPieceCeil", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERSCALE)
+		Stop
+	}
+}
+
+ACTOR PurpleBrainPiece: SmallPurpleBrainPiece
+{
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0
+		TNT1 A 0 A_Jump(255, "Spawn1", "Spawn2", "Spawn3", "Spawn4", "Fly")
+	Spawn1:
+		TNT1 A 0
+		TNT1 A 0 A_SetScale(0.45, 0.45)
+		Goto Fly
+
+	Spawn2:
+		TNT1 A 0
+		TNT1 A 0 A_SetScale(-0.6, 0.6)
+		Goto Fly
+
+	Spawn3:
+		TNT1 A 0
+		TNT1 A 0 A_SetScale(-0.4, 0.4)
+		Goto Fly
+
+	Spawn4:
+		TNT1 A 0
+		TNT1 A 0 A_SetScale(-0.35, 0.35)
+		Goto Fly
+	}
+}
+
+ACTOR SmallPurpleBrainPieceFast: SmallPurpleBrainPiece {  Speed 14 }
+
+Actor SmallPurpleBrainPieceCeil: SmallBrainPieceCeil
+{
+translation "1:17=[196,136,255]:[74,0,149]", "18:21=[128,0,255]:[43,0,85]"
+	States
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0
+		TNT1 A 0 A_JUmp (255, "Live1", "Live2", "Live3")
+		Goto Live1
+
+		Live1:
+		XDB5 JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ 4 ThrustThingZ(0, 20, 0, 1)
+		Goto Fall
+		
+		Live2:
+		XDB5 JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ 4 ThrustThingZ(0, 20, 0, 1)
+		Goto Fall
+		
+		Live3:
+		XDB5 JJJJJJJJJJJJJJJ 4 ThrustThingZ(0, 20, 0, 1)
+		Goto Fall
+		
+		Fall:
+		TNT1 A 0 A_SpawnItemEx("SmallPurpleBrainPieceFalling", 0, 0, 0, 0, 0, -2, SXF_TRANSFERSCALE)
+		stop
+		}
+}
+
+ACTOR SmallPurpleBrainPieceFalling: SmallBrainPieceFalling
+{
+	translation "1:17=[196,136,255]:[74,0,149]", "18:21=[128,0,255]:[43,0,85]"
+}
+
+ACTOR SmearingPurpleBrain: SmearingBrain
+{
+	translation "1:17=[196,136,255]:[74,0,149]", "18:21=[128,0,255]:[43,0,85]"
+}
+
+actor MuchBloodPurple : Blood
+{
+	states
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash")
+		TNT1 AAAAAAA 0 A_CustomMissile ("Purple_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 360))
+		TNT1 AAAAAAA 0 A_CustomMissile("Purple_FlyingBloodTrail", 0, 0, 180)
+		TNT1 AAA 0 A_CustomMissile("PurpleBloodMistSmall", 0, 0, random (0, 360), 2, random (30, 90))
+		TNT1 AA 0 A_CustomMissile ("Purple_FlyingBlood", 0, 0, random (0, 360), 2, random (0, 160))
+		BLOD BCD 0
+		stop
+
+	Splash:
+		BLOD A 0
+		stop
+	}
+}
+
+actor MuchBlood2Purple : Blood
+{
+	states
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash")
+		TNT1 A 0 A_PlaySound("misc/xdeath4")
+		TNT1 AAA 0 A_CustomMissile("PurpleBloodMistSmall", 0, 0, random (0, 360), 2, random (30, 90))
+		TNT1 AAAAAAAAA 0 A_CustomMissile ("Purple_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 360))
+		TNT1 AAAAAAAAA 0 A_CustomMissile("Purple_FlyingBloodTrail", 0, 0, 180)
+		TNT1 AAA 0 A_CustomMissile ("Purple_FlyingBlood", 0, 0, random (0, 360), 2, random (0, 160))
+		TNT1 AA 0 A_CustomMissile ("PurpleBloodMistBig", 0, 0, random (0, 360), 2, random (30, 90))
+		BLOD BCD 0
+		TNT1 A 10
+		stop
+
+	Splash:
+		BLOD A 0
+		stop
+	}
+}
+
+actor MuchBlood3Purple : Blood
+{
+	states
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash")
+		TNT1 A 0 A_PlaySound("misc/xdeath4")
+		TNT1 AAAAAAAAA 0 A_CustomMissile ("Purple_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (0, 360))
+		TNT1 AAAAAAAAA 0 A_CustomMissile("Purple_FlyingBloodTrail", 0, 0, 180)
+		TNT1 AAA 0 A_CustomMissile ("Purple_FlyingBlood", 0, 0, random (0, 360), 2, random (0, 160))
+		TNT1 AAAAA 0 A_CustomMissile ("PurpleBloodMistBig", 0, 0, random (0, 360), 2, random (30, 90))
+		BLOD BCD 0
+		stop
+
+	Splash:
+		BLOD A 0
+		stop
+	}
+}
+
+actor PurpleBloodDying : Brutal_Blood
+{
+	states
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		//TNT1 AAAAA 0 A_CustomMissile ("BloodTr2", 7, 0, random (0, 360), 2, random (0, 180))
+		//TNT1 AAAAAAAAAAA 0 A_CustomMissile ("BloodTr2", 0, 0, random (0, 180), 2, random (0, 180))
+		TNT1 AAAA 3 A_CustomMissile ("Purple_LiquidBlood", 10, 0, random (0, 360), 2, random (30, 80))
+		BLOD BCD 0
+		stop
+
+	Splash:
+		BLOD A 0
+		stop
+	}
+}
+
+actor PurpleSawBlood : Purple_Blood//SawBlood
+{
+	states
+	{
+	Spawn:
+        TNT1 A 0 A_JumpIfInventory("CorpseQueued", 1, "SpawnLoop")
+        TNT1 A 0 A_GiveInventory("CorpseQueued", 1)
+        TNT1 A 0 A_QueueCorpse
+
+    SpawnLoop:
+		TNT1 A 0
+		TNT1 A 1
+		TNT1 A 0 A_JumpIfInTargetInventory("HasCutingWeapon", 1, "HitSaw", AAPTR_TARGET)
+		TNT1 A 0 A_CustomMissile ("PurpleSuperGoreMistTiny", 0, 0, random (0, 360), 2, random (0, 90))
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash")
+		TNT1 A 0 ACS_NamedExecuteAlways("BD_CheckBloodIntensity")
+		TNT1 A 0
+		//TNT1 A 0 A_PlaySound("misc/XDeath5Purple")
+		TNT1 A 0 A_PlaySound("misc/XDeath5")
+		BSPR A 2
+		TNT1 A 0 A_CustomMissile ("PurpleWaterBloodCHecker", 7, 0, random (0, 360), 2, random (30, 60))
+	Spawn2:
+		TNT1 A 0 A_CustomMissile ("Purple_FlyingBlood", 7, 0, random (0, 360), 2, random (30, 60))
+		TNT1 A 0 A_CustomMissile ("Purple_FlyingBloodTrail", 0, 0, random (0, 360), 2, random (20, 90))
+		Goto LowBlood
+
+	HitSaw:
+		TNT1 A 0 A_RadiusGive("BloodSplasher_Purple", 96, RGF_PLAYERS, 1)
+		TNT1 A 0 A_RadiusGive("ChainsawHitPurple", 200, RGF_PLAYERS | RGF_MONSTERS , 1)
+		TNT1 A 0 A_RadiusGive("PowerPurpleBloodOnVisor", 200, RGF_PLAYERS | RGF_MONSTERS , 1)
+		TNT1 A 0 A_CustomMissile ("PurpleBloodmistChainsaw", -10, 0, random (0, 360), 2, random (60, 90))
+		TNT1 A 0 A_PlaySound("Chainsaw/Flesh")
+		TNT1 A 0 Radius_Quake (2, 2, 0, 2, 0)
+		Stop
+	}
+}

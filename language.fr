@@ -1,0 +1,900 @@
+//=====================================
+//French strings updated by Pygargue00fr.
+//=====================================
+
+[fr]
+//Tips!!!
+BD_TIP_AMOUNT = "66"; //Make sure it's up to date!!! ALSO DON'T TRANSLATE!!!
+BD_TIP1 = "\cjAnecdote sans valeur - vous aurez plus de chance la prochaine fois !";
+BD_TIP2 = "\cjChangez fréquemment d'armes - vous pourriez même découvrir de jolis combos d'armes ! Un bon exemple serait de changer d'arme juste après avoir tiré avec le Super-Fusil de chasse à caons sciés !";
+BD_TIP3 = "\cjVous vous sentez particulièrement sadique ? Massacrez davantage les ennemis mourants pour un bonus de cruauté !";
+BD_TIP4 = "\cjVeuillez signaler tous les bugs que vous trouvez sur le discord officiel de Brutal Doom – cela nous aidera beaucoup !";
+BD_TIP5 = "\cjFrappez un ennemi de type bleusaille et appuyez sur \cg%k \cjon sans le Berserk pour effectuer une exécution à la première personne - vous en tirerez un peu de santé, mais vous serez vulnérable en le faisant !";
+BD_TIP5_ARG0 = "+use"; //DO NOT TRANSLATE
+BD_TIP6 = "\cjLe multijoueur est très amusant – essayez-le de temps en temps !";
+BD_TIP7 = "\cjEn plus de faire exploser des barils explosifs, vous pouvez les ramasser en mode Berserker soit pour les déplacer, voir pour les balancer !";
+BD_TIP8 = "\cj"Des armes ont une petite chance d'apparaître à côté des sacs à dos, trouvez-en éparpillées un peu partout pour faire le plein et acquérir de nouveaux jouets ! \cu(Cette option est personnalisable);
+BD_TIP9 = "\cjLe pack berserk multiplie BEAUCOUP vos dégâts de mêlée. Déchirez et massacrez vos ennemis chaque fois que vous metterez la main desssus !";
+BD_TIP10 = "\cjLes diablotins sont peut-être de la chair à canon, mais ils peuvent quand même être assez dangereux de près. Soyez arrogant et ils vous sauteront dessus avec une attaque brutale au corps à corps !";
+BD_TIP11 = "\cjLa sphère de transformation démoniaque vous permet de vous transformer en un grand démon effrayant ! Déchirez et déchirez vos comfrères avec des griffes acérées et beaucoup de préjugés !";
+BD_TIP12 = "\cjFatigué de ces endroits difficiles d'accès ? Envie de jeter toute forme de progression logique de la carte à la poubelle ? Aimerais-tu être David Belle ?? Assurez-vous d'activer l'option pour grimper aux rebords dans le menu des options de jeu !";
+BD_TIP13 = "\cjEcraser vos ennemis sous votre botte lorsque vous n'utilisez pas votre arme ! Utile pour époustoufler vos camarades !";
+BD_TIP13 = "\cjCourez, ne marchez pas : les démons sont rapides, mais vous êtes plus rapide. Si cela ne suffit pas, la classe tactique vous permet de sprinter encore plus vite en maintenant \cg%k\cj.";
+BD_TIP13_ARG0 = "+speed"; //NO TOUCHY
+BD_TIP14 = "\cjS'il vous plaît, arrêtez de suggérer des tonnes de nouvelles armes et de nouveaux monstres. Il y a déjà des addons et d'autres mods pour ça...";
+BD_TIP15 = "\cjIl est FORTEMENT recommandé de jouer d’abord aux jeux originaux avant d'essayer l'expérience Brutal Doom!";
+BD_TIP16 = "\cjPensez à jeter un œil aux diverses options du mod ! Vous trouverez des TONNES de choses à modifier !";
+BD_TIP17 = "\cjRègle de base : chargez toujours les cartes en premier, puis le mod de votre choix en second !";
+BD_TIP18 = "\cjLa variété pimente la vie – des éléments comme les réticules et les sprites des armes/objets au sol sont tous personnalisables.";
+BD_TIP19 = "\cjSi les environnements semblent trop modernes ou sont en retard sur votre plate-forme, désactivez les décorations améliorées dans le menu des options de niveau.";
+BD_TIP20 = "\cjTrouvez-vous que les zombies... ressemblent trop à des zombies ?? Pimentez les rencontres avec de nouvelles réactions dans le menu des options de jeu BD.";
+BD_TIP21 = "\cjBien que BDv22 prenne en charge une poignée de WAD populaires, tous les WAD ne sont pas compatibles. Vérifiez la liste dans le menu des options de niveau et voyez lesquels peuvent être utilisés. \cu(Soumettre toute demande de support WAD au serveur Discord BD)";
+BD_TIP22 = "\cjLes coups de pied aériens vous poussent très légèrement vers l'avant, utilisez cet élan vers l'avant pour une petite augmentation de vitesse !";
+BD_TIP23 = "\cjLe cyberdémon aime VRAIMENT son espace personnel... ne vous approchez pas trop. S'il vous plaît.";
+BD_TIP24 = "\cjVoud recherchez une meilleur couverture ? En appuyant sur \cg%k\cj, les ennemis de type bleusaille \cu(ie. zombiemen/imps) \cjpeuvent être utilisés comme boucliers de viande lorsqu'ils meurent. Vous pouvez également le faire en les ramassant avec des poings fous et en appuyant sur le feu alternatif !";
+BD_TIP24_ARG0 = "+use"; //NUH UH
+BD_TIP25 = "\cjMême si la furtivité n'est pas une option viable, vous pouvez parfois vous faufiler derrière des ennemis de bas rang pour leur briser la nuque en silence !";
+BD_TIP26 = "\cjEssayer de recharger certaines de vos armes alors qu'elles sont pleines vous permet de jouer avec - une méthode de calcul parfaite !";
+BD_TIP27 = "\cjLes variantes des zombies supplémentaires de la v21 vous manquent-elles ? N'ayez crainte, libre à vous de les activer dans les options !";
+BD_TIP28 = "\cjEnvie d’une expérience légèrement plus vanilla ? Purist+ a ce qu'il vous faut ! Amusez-vous à jouer avec les gants vanilla, et certaines fonctions d'armes auront été désactivées pour ne pas vous distraire de l'expérience plus old-school !";
+BD_TIP29 = "\cjSaviez-vous que ce mod implémente des dégâts localisés ? Visez leurs têtes pour éliminer les ennemis plus rapidement !";
+BD_TIP30 = "\cjAssurez-vous de jeter un œil aux contrôles de Brutal Doom ! Il y en a probablement plus que vous ne le pensez !";
+BD_TIP31 = "\cjL'agression verbale est également une bonne chose : un Démon Cybernétique offensé cessera de vous tirer dessus pour vous hurler dessus avec rage, se rendant ainsi vulnérable ! Juste... méfiez-vous des conséquences...";
+BD_TIP32 = "\cjLes barils constituent des explosifs improvisés efficaces, et si vous êtes en mode Berserker et en soulevez un, ils constituent des explosifs improvisés LANCEABLES et efficaces !";
+BD_TIP33 = "\cjVoulez-vous que votre Brutal Doom soit encore plus BRUTAL ? Le menu des options BD est là pour vous ";
+BD_TIP34 = "\cjAppuyez sur \cg%k \cjpour faire un tonneau. Ce n'est pas une blague. La direction sera influencée par votre mitraillage. Vous pouvez également explicitement rouler à gauche avec \cg%k \cj et à droite avec \cg%k\cj !";
+BD_TIP34_ARG0 = "DodgeRoll"; //do
+BD_TIP34_ARG1 = "roleft"; //not
+BD_TIP34_ARG2 = "roright"; //touch
+BD_TIP35 = "\cjLe nouveau SAN \cu(Système d'amélioration des niveaux) \cji est capable de modifier les cartes existantes pour y ajouter de nouveaux ennemis, textures, décorations et effets ! Assurez-vous de vérifier s'il est activé dans les options !";
+BD_TIP36 = "\cjMark est parti depuis 23 492 ans maintenant. Nous attendons toujours son retour...";
+BD_TIP37 = "\cjBrutal Doom intègre 3 types d'ATH. Découvrez lequel vous plaît dans les options !";
+BD_TIP38 = "\cjLes munitions de roquettes au sol PEUVENT être personnalisées pour pouvoir exploser en tirant dessus ! Cela pourrait être utile comme piège à cons !";
+BD_TIP39 = "\cjLes grenades à main sont utiles pour nettoyer une sale d'énormes groupes d'ennemis de type bleusaille grâce à leur énorme rayon déstructeur ! Lancez-en une avec \cg%k\cj !";
+BD_TIP39_ARG0 = "tossrenade"; //touch (not)
+BD_TIP40 = "\cjLes Barons Infernaux et les Commandos de l'UAC sont peut-être coriaces, mais chacun a sa faiblesse : leur donner un coup de pied dans les cacahuètes les fera un peu chanceler, mais attention, cela va les foutre en rogne !";
+BD_TIP41 = "\cjFaites attention en pssant près des fenêtres ! Les éclats de verre sont définitivement tranchants et peuvent définitivement faire bobo!";
+BD_TIP42 = "\cjLe Fusil éléctro-magnétique peut transperser plusieurs ennemis d'un seul coup, et même... des surfaces minces ?! Voyez si vous pouvez essayer de dégommer un méchant monstre qui se cache derrière un mur !";
+BD_TIP43 = "\cjAprès avoir récupéré le berserk, vous pouvez changer de type d'attaque en appuyant sur le bouton \cg%k\cj - que vous souhaitiez effectuer des fatalités ou simplement briser des démons en morceaux, c'est à vous de décider !";
+BD_TIP43_ARG0 = "+reload"; //NUH UH
+BD_TIP44 = "\cjExprimez-vous! Changer de sexe dans le menu d'options reflétera cela dans le gameplay via la tête et la voix du joueur. Alors fais attention, Doomguy... il y a un autre Slayer en Enfer.";
+BD_TIP45 = "\cjTrouvez-vous les bosses mis à jour de BD un peu trop durs ? N'hésitez pas à les désactiver dans les options du mod !";
+BD_TIP46 = "\cjSaviez-vous que le nouveau mode de jeu Purist+ est « PP » en abrégé ? Maintenant, essaye-le.";
+BD_TIP47 = "\cjVous êtes totalement invincible lorsque vous effectuez des fatalités sur des méchants ! Gardez simplement à l’esprit qu’ils peuvent toujours vous entourer pendant que vous le faites !";
+BD_TIP48 = "\cjSi cette option est activée, les démons peuvent occasionnellement lâcher des runes de force démoniaque. Ils vous soignent de 10 PV et vous confèrent le mode Berserker jusqu'à la fin du niveau !";
+BD_TIP49 = "\cjSi cette option est activée, des marines en difficulté apparaîtront à la place des marines. Aidez-les et ils vous aideront pendant votre partie ! Prenez bien soin d'eux - ils ont un VRAIMENT puissant en groupe !";
+BD_TIP50 = "\cjToutes les armes rechargeables peuvent être déchargées avec \cg%k\cj. Utile si vous avez désespérément besoin des munitions d'une arme pour une autre !";
+BD_TIP50_ARG0 = "unreloader"; //NUH UH
+BD_TIP51 = "\cjLes Cacodémons tenteront d'esquiver les roquettes en vol, mais ils ne s'attendront pas au lance-grenades sous le canon de votre fusil d'assaut !";
+BD_TIP52 = "\cjEffectuer une fatalité sur un Doloris l'empêchera d'exploser après sa mort ! Son cadavre pourrait cependant être encore volatile...";
+BD_TIP53 = "\cjSous les effets du Berserk, vous pouvez transformer vos ennemis humanoïdes en armes, et pas seulement en les ramassant et en les lançant ! Frappez-les ou fracassez-les les uns contre les autres et transformez la carte entière en une table de billard géante !";
+BD_TIP54 = "\cjLes munitions pour pistolets/SMG ne sont pas aussi courantes que les balles de fusil d'assault, mais vous êtes plus susceptible d'en obtenir en tuant des zombies utilisant ces armes \cu(si elles sont autorisées à apparaître)\cj. Utilisez ces armes plus petites contre les ennemis de type bleusaille pour conserver vos munitions les plus précieuses.";
+BD_TIP55 = "\cjPour vaincre le Démon cybernétique, tirez dessus jusqu'à ce qu'il... attendez, cela ne s'appliquerait-il pas à tous les ennemis ?";
+BD_TIP56 = "\cjAussi horrible que cela puisse être, les cadavres suspendus et empalés lacheront généralement un peu de santé, de munitions et/ou d'armure après les avoirs détruits !";
+BD_TIP57 = "\cjCes barils noirs visibles sur certaines cartes avec le système d'amélioration de la carte activé ne sont pas uniquement destinés à la décoration. Ils peuvent être ouverts pour obtenir quelques fournitures !";
+BD_TIP58 = "\cjLes bonus de santé et d'armure peuvent remplir votre santé au-delà de 200 ! Cela ne s'applique pas aux bonus démoniaques liés aux fatalitées, car ils sont plafonnés à 150.";
+BD_TIP59 = "\cjSergeant. Mark IV et le reste de l'équipe de Brutal Doom ne sont pas responsables de toute humiliation reçue de la part de toutes les parties impliquées à travers : A) les ennuis causés pars d'autres auteurs de mods pour rendre leurs mods compatibles avec Brutal Doom \cu(ou vice versa)\cj, ou B) se plaindre des problèmes qui surgiront inévitablement lors de l'exécution conjointe de BD et d'un autre mod de gameplay. C'est entièrement de ta faute, mon pote.";
+BD_TIP60 = "\cjSalut Dox ! Puis-je dire « putain » dans les anecdotes ?";
+BD_TIP61 = "\cjContrairement aux autres démons, les Barons infernaux peuvent être assez opportunistes lorsqu'ils se trouvent à proximité de barils explosifs.";
+BD_TIP62 = "\cjEn fonction du jeu de cartes \cu(ou de vos goûts personnels)\cj, vous pouvez choisir quels ennemis apparaissent à la place des nazis secrets ; des Nazis de Brutal Doom plus réalistes aux Nazis de Brutal Wolfenstein plus fidèles, en passant par une collection de Marines de l'UAC pas commodes!";
+BD_TIP63 = "\cjBrutal Doom est compatible avec une poignée de pack de niveaux populaires, ce qui inclut l'amélioration de leurs ennemis personnalisés pour qu'ils soient à égalité avec les monstres de Brutal Doom ! Consultez les options pour voir lesquelles!";
+BD_TIP64 = "\cjBrutal Doom a une option pour voir la santé des ennemis. Cela peut être très utile pour déterminer quand un ennemi est sur le point de mourir, afin que vous sachiez quand effectuer une fatalité!";
+BD_TIP65 = "\cjVous pouvez désélectionner les armes pendant qu'elles rechargent - avec un bon timing, vous pouvez les désélectionner juste après l'insertion du chargeur pour potentiellement gagner du temps ! Méfiez-vous cependant s'ils doivent être rechargées, car vous devrez le faire après les avoir à nouveau sélectionnés.";
+BD_TIP66 = "\cjEssayez vous même [d'insérez votre jeu ou votre propre mod dans Doom] !";
+BD_TIP67 = "\cj";
+BD_TIP68 = "\cj";
+BD_TIP69 = "\cj";
+BD_TIP70 = "\cj";
+BD_TIP71 = "\cj";
+BD_TIP72 = "\cj";
+BD_TIP73 = "\cj";
+BD_TIP74 = "\cj";
+BD_TIP75 = "\cj";
+BD_TIP76 = "\cj";
+BD_TIP77 = "\cj";
+BD_TIP78 = "\cj";
+BD_TIP79 = "\cj";
+BD_TIP80 = "\cj";
+BD_TIP81 = "\cj";
+BD_TIP82 = "\cj";
+BD_TIP83 = "\cj";
+BD_TIP84 = "\cj";
+BD_TIP85 = "\cj";
+
+BD_TIP = "\cj"; //template
+
+//////////////////////////////////////////////////////////////////
+//Edited cheat messages for fun (no need to translate tbh)
+AMSTR_FOLLOWON = "\ckMode Suivre \cdACTIVÉ";
+AMSTR_FOLLOWOFF = "\ckMode Suivre \cgDÉSACTIVÉ";
+AMSTR_GRIDON = "\ckGrille \cdACTIVÉ";
+AMSTR_GRIDOFF = "\ckGrille \cgDÉSACTIVÉ";
+AMSTR_TEXON = "\ckMode Textures \cdACTIVÉ";
+AMSTR_TEXOFF = "\ckMode Textures \cgDÉSACTIVÉ";
+AMSTR_MARKEDSPOT = "\ckEndroit marqué";
+AMSTR_MARKSCLEARED = "\ckEffacer toutes les marques";
+STSTR_MUS = "\ckChangement de musique";
+STSTR_NOMUS = "SÉLECTION IMPOSSIBLE ";
+STSTR_DQDON = "\ckMode sans degré \cdACTIVÉ \n\ci(S'il vous plaît dites-moi que c'est juste pour effectuer des tests...)";
+STSTR_DQDOFF = "\ckMode sans degré \cgDÉSACTIVÉ \n\ci(Vous savez ce que vous avez fait pour sauter cette section.)";
+STSTR_KFAADDED = "\ckMunitions très heureuses ajoutées\n\ci(... Quelqu'un est un peu impatient, hein ?)";
+STSTR_FAADDED = "\ckMunitions (pas de clés) ajoutées \n\ci(... Quelqu'un est un peu impatient, hein ?)";
+STSTR_NCON = "\ckMode Noclip\cdACTIVÉ \n\ci(Aller! Découvrez le monde au-delà de ses frontières !)";
+STSTR_NCOFF = "\ckMode Noclip \cgDÉSACTIVÉ \n\ci(Revenons au jeu selon les règles...)";
+STSTR_NC2ON = "\ckMode Noclip 2 \cdACTIVÉ \n\ci(Aller! Découvrez le monde au-delà de ses frontières !";
+STSTR_BEHOLD = "\ckInvulnérabilité, Force, Invisibilitée, anti-raditation, Carte ou vision nocturne";
+STSTR_BEHOLDX = "\ckSuper pouvoirs activées";
+STSTR_CHOPPERS = "\ck... La diplomatie - FT";
+STSTR_CLEV = "\ckChanger de niveau...\n";
+TXT_BUDDHAON = "\ckMode Buddha \cdACTIVÉ \n\ciVous voulez jouer à Dieu, hmm ?)";
+TXT_BUDDHAOFF = "\ckMode Buddha \cgDÉSACTIVÉ \n\ci(d'accord, je veux vraiment mourir maintenant)";
+TXT_CHASECAM_ON = "\ckCaméra troisème personne \cdON"; //It's a commonly used command, so I think jokes in here could get annoying
+TXT_CHASECAM_OFF = "\ckCaméra troisème personne \cgDÉSACTIVÉ";
+TXT_LIGHTER = "\ckFlight \cdACTIVÉ \n\ci(Mod créatif, ou presque";
+TXT_GRAVITY = "\ckFlight \cgDÉSACTIVÉ \n\ci(Mode survie, ou presque)";
+TXT_NOTARGET_ON = "\ckNo Target \cdACTIVÉ \n\ci(OooOoo, I'm a ghost!)";
+TXT_NOTARGET_OFF = "\ckNo Target \cgDÉSACTIVÉ \n\ci(Qui vas-tu appeler ? SOS Fantômes !)";
+TXT_CHEATHEALTH = "\ckSanté au max \n\ci(Vous avez mis la main sur un code de triche dont vous avez VRAIMENT besoin !)"; 
+TXT_CHEATKEYS = "\cgAll \cdcléfs \chobtenues! \n\ci(Jeter toute progression par la fenêtre, n'est-ce pas ?)";
+TXT_LEADBOOTSON = "\ckBottes en plomb \cdACTIVÉ  \n\ci(Pourquoi faire ça?)";
+TXT_LEADBOOTSOFF = "\ckBottes en plomb \cgDÉSACTIVÉ \n\ci(Vous vous êtes amusé à vous promener comme un escargot ?)";
+TXT_CHEATIDDQD = "\ckSoit vous avez regardé dans la masse pour trouver ce message, soit vous avez essayé de lancer ce mod dans Heretic et de tricher, ce que... pourquoi feriez-vous ? Bien sûr, c'est le même moteur, mais le mod n'est pas conçu pour Heretic. Il y aura sans aucun doute beaucoup de problèmes. Donc, euh... si vous lisez ceçi en jeu, S'IL VOUS PLAIT, retournez jouer à Doom avec ce mod. Merci.";
+
+//////////////////////////////////////////////////////////////////
+//Tags for gamemodes 
+TAGBD_DEATHMATCH = "Match a mort brutal";
+TAGBD_HORDE = "Mode horde";
+
+//////////////////////////////////////////////////////////////////
+//Tags for Classes
+TAGBD_CLASS_PURIST = "Puriste++";
+TAGBD_CLASS_RIFLE = "Débute avec fusil d'assault";
+TAGBD_CLASS_PISTOL = "Débute avec pistolet";
+TAGBD_CLASS_MELEE = "Débute avec ses poings";
+TAGBD_CLASS_TACTICAL = "Tactique";
+
+//////////////////////////////////////////////////////////////////
+//Tags for Dificulties
+TAGBD_BABY = "je suis trop jeune pour mourir";
+TAGBD_EASY = "Eh! Pas si fort!";
+TAGBD_NORMAL = "Fait moi mal!";
+TAGBD_HARD = "Ultra-Violence";
+TAGBD_NIGHTMARE = "Cauchemard!";
+TAGBD_BLACKMETAL = "Black Metal";
+TAGBD_REALISM3 = "Violence réaliste";
+TAGBD_REALISM5 = "Cauchemard réaliste";
+
+//////////////////////////////////////////////////////////////////
+//Option values
+BD_OPTION_BLOOD = "Sang BD";
+BD_OPTION_BLOOD1 = "1) Faible";
+BD_OPTION_BLOOD1 = "2) Normal";
+BD_OPTION_BLOOD2 = "3) Beaucoup";
+BD_OPTION_BLOOD4 = "4) Extrême";
+BD_OPTION_BLOOD5 = "5) Comique";
+
+BD_OPTION_SCREEN = "Types d'écrans";
+BD_OPTION_SCREEN0 =  "Oui";
+BD_OPTION_SCREEN1 =  "BDv21";
+BD_OPTION_SCREEN2 =  "Non";
+
+BD_OPTION_ON = "Activé";
+BD_OPTION_OF = "Désactivé";
+
+BD_OPTION_CLASSIC_HUD = "Bar de status classique";
+BD_OPTION_FULLSCREEN_HUD = "ATH plein écran";
+
+BD_OPTION_HUD_SIMPLE = "Simple Brutal";
+BD_OPTION_HUD_MINIMAL = "Minimaliste";
+BD_OPTION_HUD_HELMET = "Casque entier";
+
+BD_OPTION_ADS_TOGGLE = "Activé";
+BD_OPTION_ADS_HOLD = "Maintenir la touche";
+BD_OPTION_ADS_BOTH = "Les deux";
+
+BD_OPTION_AGILEZOMBIE_DISABLED  = "Désactivé";
+BD_OPTION_AGILEZOMBIE_RARELY  = "Rarement";
+BD_OPTION_AGILEZOMBIE_SOMETIMES  = "Parfois";
+BD_OPTION_AGILEZOMBIE_OFTEN  = "Souvent";
+BD_OPTION_AGILEZOMBIE_ALWAYS  = "Toujours (Ne faites pas cela pauvre fou!)";
+
+BD_OPTION_ZANDRO1 = "Ne pas générer de logs";
+BD_OPTION_ZANDRO2 = "Afficher la fenêtre de crash";
+BD_OPTION_ZANDRO3 = "Toujours générer des logs";
+
+BD_OPTION_GZHUDSCALE1 = "Mettre à l'échelle en plein écran (recommandé)";
+BD_OPTION_GZHUDSCALE2 = "Utiliser l'échelle par défaut";
+BD_OPTION_GZHUDSCALE3 = "Force 1x";
+BD_OPTION_GZHUDSCALE4 = "Force 2x";
+BD_OPTION_GZHUDSCALE5 = "Force 3x";
+BD_OPTION_GZHUDSCALE6 = "Force 4x";
+BD_OPTION_GZHUDSCALE7 = "Force 5x";
+BD_OPTION_GZHUDSCALE8 = "Force 6x";
+BD_OPTION_GZHUDSCALE9 = "Force 7x";
+BD_OPTION_GZHUDSCALE10 = "Force 8x";
+
+BD_OPTION_WADCHECK = "DOOM II (Nazies Brutal Doom)";
+BD_OPTION_WADCHECK = "DOOM II (Nazies Brutal Wolfenstein)";
+
+BD_OPTION_RANDOMIZED = "Aléatoire";
+BD_OPTION_SPAWNER_SHOTGUN1 = "Fusil à pompe uniquement (Défault)";
+BD_OPTION_SPAWNER_SHOTGUN2 = "Revolver uniquement";
+BD_OPTION_SPAWNER_SSG1 = "Super-Fusil de chasse juxtaposé uniquement (Défault)";
+BD_OPTION_SPAWNER_SSG2 = "Fusil semi-automatique uniquement";
+BD_OPTION_SPAWNER_CHAINGUN1 = "Mitrailleuse uniquement (Défault)";
+BD_OPTION_SPAWNER_CHAINGUN2 = "Pistolet-mitrailleur uniquement";
+BD_OPTION_SPAWNER_CHAINGUN3 = "Fusil d'assault uniquement";
+BD_OPTION_SPAWNER_RL1 = "Lance-roquettes uniquement (Défault)";
+BD_OPTION_SPAWNER_RL2 = "Lance-grenades uniquement";
+BD_OPTION_SPAWNER_PLASMA1 = "Fusil à plasma uniquement (Défault)";
+BD_OPTION_SPAWNER_PLASMA2 = "Fusil éléctro-magnétique uniquement";
+BD_OPTION_SPAWNER_BFG1 = "BFG9000 uniquement (Défault)";
+BD_OPTION_SPAWNER_BFG2 = "BFG10K uniquement";
+BD_OPTION_SPAWNER_BFG3 = "Unmaker uniquement";
+BD_OPTION_SPAWNER_SAW1 = "Chainsaw uniquement (Défault)";
+BD_OPTION_SPAWNER_SAW2 = "Hache uniquement";
+//////////////////////////////////////////////////////////////////
+//menu
+
+BD_MENU_NEW_GAME = "Nouvelle partie";
+BD_MENU_LOAD_GAME = "Charger parite";
+BD_MENU_LOAD_SAVE ="Sauvegarder";
+BD_MENU_BRUTAL_OPTIONS ="Options de Brutal Doom";
+BD_MENU_CREDITS ="Crédits";
+
+BD_APPLY_ALL_CHANGES = "\"Apply All Changes\" pour que les options prennent effet.";
+BD_PERFORMANCE = "Options de performances BD";
+BD_LEVEL_OPTIONS = "Options de niveau BD";
+BD_DOOM_GAMEPLAY = "Options de gameplay BD Doom";
+BD_PLAYER_OPTIONS = "Options du joueur BD";
+BD_SCREEN_OPTIONS = "Options d'effets d'écran BD";
+BD_TESTING_MAP = "Aller à la carte des tests d'armes";
+BD_ENGINE_OPTIONS = "Raccourcis du moteur (GZD, Zand)";
+
+BD_ALL_CHANGES = "Toutes les modifications apportées ici ont un effet immédiat.";
+
+BD_SCREEN_TITLE = "Options d'effets d'écran";
+BD_SCREEN_BLOOD = "Effets d'écran", "bd_ScreenFX", "Types d'écrans";
+BD_SCREEN_BLOOD_TEXT = "Effets d'écran sur l' ATH (éclaboussures de sang, impactes de balles, etc.)";
+BD_SCREEN_SPLASH = "Éclaboussures et trainées de sang", "bd_BloodTrail", "OnOffReverse";
+BD_SCREEN_SPLASH_TEXT = "Éclaboussures de sang lorsque les ennemis saignent.";
+BD_SCREEN_DISABLED = "Si les effets d'écran sont désactivés, cette option sera également désactivée.";
+BD_SCREEN_NOTV21 = "Ne fonctionne pas pour le mode BDv21.";
+
+BD_BRUTAL_CREDITS_RESSOURCES = "Crédits - Ressources";
+BD_BRUTAL_CREDITS_THANKS = "Crédits - Remerciements spéciaux";
+
+BD_MENU_PERFORMANCE = "Options de performances";
+BD_MENU_ENGINE = "Veuillez sélectionner le moteur que vous utilisez.", "isrunningzandronum", "SelectEngineType";
+BD_MENU_CVAR = "En raison du fonctionnement des CVAR, vous devez informer le jeu";
+BD_MENU_CLIENT_SERVER = "si vous êtes connecté via client ou propriétaire du serveur avec cette option";
+BD_MENU_BLOOD_AMOUNT = "afin que vous puissiez contrôler les paramètres tels que la quantité de sang.";
+BD_MENU_SINGLEPLAYER = "Si vous jouez seul, utilisez toujours "Joueut Solo".";
+BD_MENU_MULTIPLAYER = "Si vous hébergez un serveur, utilisez toujours le mode "multijoueur".";
+
+BD_PERFORMANCE_BLOOD_SINGLE = "Quantitée de sang (Serveur/Solo)", "zdoombrutalblood", "BrutalBlood"; 
+BD_PERFORMANCE_BLOOD_MULTI = "Quantitée de sang (Client/Multijoueur)", "bd_bloodamount", "BrutalBlood";
+BD_PERFORMANCE_BLOOD_TEXT = "Combien de sang veux-tu voir ?"; 
+BD_PERFORMANCE_MAX_DECALS = "Maximum de traces aux murs", "cl_maxdecals", "maxdecals";
+BD_PERFORMANCE_MAX_GIBS = "Maximum de morceaux de chair et de mares de sang", "sv_corpsequeuesize", "maxgibs";
+BD_PERFORMANCE_GORE_JANITOR_SINGLE = "Nétoyeur de gore (serveur/solo)", "zdoombrutaljanitor", "OnOff";
+BD_PERFORMANCE_GORE_JANITOR_MULTI = "Nétoyeur de gore (Client/Multijoueur)", "bd_lowgraphicsmode", "OnOff";
+BD_PERFORMANCE_GORE_JANITOR_TEXT = "Fait disparaître les morceaux de chair après 30 secondes.";
+BD_PERFORMANCE_PERMANENT_CASING = "Douilles uséent permanentes", "bd_infinitecasings", "OnOff";
+BD_PERFORMANCE_WATTER_RIFFLE = "Effets d'ondulation de l'eau", "bd_disablewaterripples2", "OnOffReverse";
+BD_PERFORMANCE_DESTRUCTIBLE_BODIES = "Cadavres destructibles", "BD_DestructibleBodies", "OnOffReverse";
+BD_PERFORMANCE_DESTRUCTUBLE_BODIES_TEXT1 = "Désactiver pour gagner en performances.";
+BD_PERFORMANCE_DESTRUCTUBLE_BODIES_TEXT2 = "(N'affecte pas les cadavres des Mancubis et des Revenants)";
+BD_PERFORMANCE_FLASHLIGHT_BEAM = "Faisceau de lampe de poche", "bd_flashlight", "LightBeam" ; 
+BD_PERFORMANCE_FLASHLIGHT_SWITCH = "Bascule entre le faisceau de la lampe de poche v22 et v21.";
+BD_PERFORMANCE_FLASHLIGHT_PERFORMANCE = "AVERTISSEMENT - la v21 peut être plus gourmande en performances.";
+
+BD_MENU_HEADSHOT = "Guide de détection de tirs en pleine tête";
+BD_HEADSHOT_TEXT1 = "Cette option dictera le type de méthode de détection de tir à la tête ";
+BD_HEADSHOT_TEXT2 = "que les ennemis comme les Mancubi, les Archviles,";
+BD_HEADSHOT_TEXT3 = "les Nobles Infernaux, les Revenants et les Cyberdémons utiliseront !";
+BD_HEADSHOT_TEXT4 = "Forcez les hitbox de tir à la tête uniquement ! (Défaut)" ;
+BD_HEADSHOT_TEXT5 = "Les ennemis plus gros utiliseront toujours la détection ";
+BD_HEADSHOT_TEXT6 = "de tir à la tête la plus précise et la plus performante,";
+BD_HEADSHOT_TEXT7 = "même si la carte est détectée comme une";
+BD_HEADSHOT_TEXT8 = "slaughter map.";
+BD_HEADSHOT_TEXT9 = "Dynamique";
+BD_HEADSHOT_TEXT10 = "Les ennemis plus gros utiliseront en priorité l'ancien ";
+BD_HEADSHOT_TEXT11 = "système de détection tant qu'ils se trouvent ";
+BD_HEADSHOT_TEXT12 = "sous un plafond très bas ou si la carte n'a pas été détectée ";
+BD_HEADSHOT_TEXT13 = "comme étant une slaughter map!";
+BD_HEADSHOT_TEXT14 = "(N'activez pas cette option si le wad avec lequel "; // Is used multiple times
+BD_HEADSHOT_TEXT15 = "vous jouez actuellement utilise des scripts modernes)"; // Is used multiple times
+BD_HEADSHOT_TEXT16 = "Groupe sanguin semi-force uniquement";
+BD_HEADSHOT_TEXT17 = "Les ennemis plus gros utiliseront la détection de sang, moins précise ";
+BD_HEADSHOT_TEXT18 = "mais moins intensive, pour les tirs à la tête !";
+BD_HEADSHOT_TEXT19 = "Cependant, les ennemis qui apparaissent sous des plafonds très bas ";
+BD_HEADSHOT_TEXT20 = "apparaîtront avec l'ancienne détection de tir à la tête";
+
+BD_MENU_BACKPACK = "Liste des armes du sac à dos";
+BD_BACKPACK_DEFAULT = "Limité (Défault)";
+BD_BACKPACK_TEXT1 = "Pistolet-Mitrailleur, fusil semi-automatique, lance-grenades";
+BD_BACKPACK_TEXT2 = "Fusil éléctro-magnétique, BFG10K, lance-flammes M1, lanceur incendiaire";
+BD_BACKPACK_TEXT3 = "Lance-missiles Atomique.";
+BD_BACKPACK_TEXT4 = "Très faible chance d'apparition d'armes.";
+BD_BACKPACK_EXTENDED = "Étendue";
+BD_BACKPACK_TEXT5 = "Pistolet-Mitrailleur, fusil semi-automatique, lance-grenades";
+BD_BACKPACK_TEXT6 = "Fusil à rayons, BFG10K, lance-flammes M1, lanceur incendiaire";
+BD_BACKPACK_TEXT7 = "Lance-missiles Atomique, Pourfendeur de Dragons, MP40, MG42, Dévastateur";
+BD_BACKPACK_TEXT8 = "Revolver";
+BD_BACKPACK_TEXT9 = "Plus de chances d'apparition d'armes.";
+
+BD_WAD_LIST_TITLE = "Liste de tout les wads soutenus par le mod et leurs effects";
+BD_WAD_LIST_BDBW = "Doom II: Nazies Brutal Doom";
+BD_WAD_LIST_BDBW_TEXT = "Remplace les SS de Wolfenstein par les Nazies de Brutal Doom";
+BD_WAD_LIST_D2BW = "Doom II: SS Brutal Wolfenstein ";
+BD_WAD_LIST_D2BW_TEXT1 = "Remplace les SS de Wolfenstein  avec ceux de";
+BD_WAD_LIST_D2BW_TEXT2 = "Brutal Wolfenstein de ZioMcCall.";
+BD_WAD_LIST_BDFM = "Doom II: Brutal Doom Méchants Marines";
+BD_WAD_LIST_BDFM_TEXT = "Remplace les SS de Wolfenstein par une variente zombifié des marines.";
+BD_WAD_LIST_AA = "Ancient Aliens";
+BD_WAD_LIST_AA_TEXT1 = "Remplace les Mancubi avec des Mancubi antiques,";
+BD_WAD_LIST_AA_TEXT2 = "Remplace les Arachnotrons des Arachnotrons antiques,";
+BD_WAD_LIST_AA_TEXT3 = "Remplace les SS de Wolfenstein avec des Marines invisibles";
+BD_WAD_LIST_AA_TEXT4 = "Remplace les Commander Keens avec des Guardiens extraterrestres.";
+BD_WAD_LIST_EVIL = "Eviternity";
+BD_WAD_LIST_EVIL_TEXT1 = "Remplace les SS de Wolfenstein avec des Zombies capitaine,";
+BD_WAD_LIST_EVIL_TEXT2 = "Remplace les Barons infernales avec des Barons cybernétique,";
+BD_WAD_LIST_EVIL_TEXT3 = "Remplace les Commander keens avec des Cacodémons astrales";
+BD_WAD_LIST_EVIL_TEXT4 = "Remplace Le Gentil toutou avec des Démons cauchemardesques";
+BD_WAD_LIST_EVIL_TEXT5 = "Remplace l'Icon du péché par l'Archangelus.";
+BD_WAD_LIST_SCHYTE = "Scythe II";
+BD_WAD_LIST_SCHYTE_TEXT1 = "Remplace les SS de Wolfenstein par les Méchant Marines,";
+BD_WAD_LIST_SCHYTE_TEXT2 ="Les Commander Keens avec des Éfrits.";
+BD_WAD_LIST_GD = "Going Down";
+BD_WAD_LIST_GD_TEXT = "Remplace les SS de Wolfenstein par la Mère des démons." ;
+BD_WAD_LIST_EPIC2 = "Epic 2";
+BD_WAD_LIST_EPIC2_TEXT = "Remplace les SS de Wolfenstein ar des Extraterrestres invisibles.";
+BD_WAD_LIST_BLOOD = "Bloodstain";
+BD_WAD_LIST_BLOOD_TEXT1 = "Remplace les SS de Wolfenstein par des zombies armés de Pistolets-mitrailleurs,";
+BD_WAD_LIST_BLOOD_TEXT2 = "Les Commander Keens avec des Éfrits.";
+BD_WAD_LIST_TNTR = "TNT: Revilution";
+BD_WAD_LIST_TNTR_TEXT = "Remplace les SS de Wolfenstein par des tourelles.";
+BD_WAD_LIST_JENESIS = "Jenesis";
+BD_WAD_LIST_JENESIS_TEXT1 = "Remplace:";
+BD_WAD_LIST_JENESIS_TEXT2 = "Remplace les SS de Wolfenstein par des zombies sergeants,";
+BD_WAD_LIST_JENESIS_TEXT3 = "Les Commander Keens par le Boss.";
+BD_WAD_LIST_2048 = "2048 Unleashed";
+BD_WAD_LIST_2048_TEXT = "Remeplace les Commander Keens par le avec le Coeur.";
+BD_WAD_LIST_ZERO = "Doom Zero";
+BD_WAD_LIST_ZERO_TEXT1 = "Suppréssion du LiveStick dans le premier niveau"
+BD_WAD_LIST_ZERO_TEXT2 = "Remplace les SS de Wolfenstein par des Âmes Perdues (Alpha),";
+BD_WAD_LIST_ZERO_TEXT3 = "Remeplace les Commander Keens par le Dopefish,";
+BD_WAD_LIST_ZERO_TEXT4 = "Remeplace l'Icône du péché par des sorcières démoniaques.";
+BD_WAD_LIST_WORMWOOD = "Wormwood";
+BD_WAD_LIST_WORMWOOD_TEXT1 = "Remplace les SS de Wolfenstein par des chauves souris";
+BD_WAD_LIST_WORMWOOD_TEXT2 = "Remplace Commander Keen par des Démons Cybernétiques";
+
+BD_EXTREME_GAMEPLAY = "Options de gameplay extremes";
+BD_DEFAULT_DISABLED = "(Désactivé par défaut)";
+BD_DEFAULT_ENABLED = "(Activé par défaut)";
+BD_EXTREME_GAMEPLAY_TEXT1 = "Ces modificateurs modifient l’expérience Brutal Doom prévue.";
+BD_EXTREME_GAMEPLAY_TEXT2 = "Tout autre changement que les paramètres par DEFAULT peut interrompre le flux du mod.";
+BD_EXTREME_GAMEPLAY_TEXT3 = "A manipuler à votre propre discrétion.";
+BD_EXTREME_GAMEPLAY_AGILE = "Possédés agiles";
+BD_EXTREME_GAMEPLAY_AGILE_TEXT = "Laissez les zombies esquiver vos attaques en sautant ou en roulant sur le coté.";
+BD_EXTREME_GAMEPLAY_EXTRA_ENEMIES = "Ennemies en plus";
+BD_EXTREME_GAMEPLAY_EXTRA_ENEMIES_TEXT = "Restaure l'apparition des zombies pistolet, les zombies SMG et les scientifiques.";
+BD_EXTREME_GAMEPLAY_LEDGE_CLIMB = "Escalade des corniches";
+BD_EXTREME_GAMEPLAY_LEDGE_CLIMB_TEXT = "Permet de grimper sur les rebords.";
+BD_EXTREME_GAMEPLAY_INFINITE_SPRINT = "Sprint infini (tactique uniquement)";
+BD_EXTREME_GAMEPLAY_INFINITE_SPRINT_TEXT = "Supprime la consommation d'endurance pendant le sprint.";
+BD_EXTREME_GAMEPLAY_RELOADING = "Rechargement pour toutes les armes";
+BD_EXTREME_GAMEPLAY_RELOADING_DM = "Rechargement pour toutes les armes (Match à mort)";
+BD_EXTREME_GAMEPLAY_RELOADING_TEXT = "La deuxième option s'applique à tous les joueurs durant un Match à mort.";
+BD_EXTREME_GAMEPLAY_AUTORELOAD = "Rechargement automatique pour toutes les armes";
+BD_EXTREME_GAMEPLAY_POWERUPS = "Bonus";
+BD_EXTREME_GAMEPLAY_POWERUPS_TEXT1 = "S'applique à : rune de force démoniaque, la sphère d'invisibilé partielle,";
+BD_EXTREME_GAMEPLAY_POWERUPS_TEXT2 = "la sphère de transformation démoniaque et les bonus de cruauté.";
+BD_EXTREME_GAMEPLAY_DROP_ON_DEATH = "Lâcher des objets une fois mort(e)";
+BD_EXTREME_GAMEPLAY_DROP_ON_DEATH_TEXT = "Lorsque vous mourez, vous lâchez des objets.";
+BD_EXTREME_GAMEPLAY_ = "";
+BD_EXTREME_GAMEPLAY_ = "";
+BD_EXTREME_GAMEPLAY_ = "";
+BD_EXTREME_GAMEPLAY_ = "";
+BD_EXTREME_GAMEPLAY_ = "";
+BD_EXTREME_GAMEPLAY_ = "";
+
+BD_WEAPON_SPAWNERS = "Options d'apparition des armes";
+BD_APPLY_NEXT_LEVEL = "Tout changement ici nécessite un redémarrage du niveau pour fonctionner.";
+BD_WEAPON_SPAWNER_CHAINSAW = "Tronconeuse";
+BD_WEAPON_SPAWNER_SHOTGUN = "Fusil à pompe";
+BD_WEAPON_SPAWNER_SSG = "Super-Fusil de chasse";
+BD_WEAPON_SPAWNER_CHAINGUN = "Mitrailleuse";
+BD_WEAPON_SPAWNER_RL = "Lance-roquettes";
+BD_WEAPON_SPAWNER_PLASMA = "Fusil à plasma";
+BD_WEAPON_SPAWNER_BFG = "BFG9000";
+BD_WEAPON_SPAWNER_BACKPACK = "Sac à dos Fun!";
+BD_WEAPON_SPAWNER_MG42 = "Activer MG42";
+BD_WEAPON_SPAWNER_MG42_TEXT1 = "Remplace le BFG par un MG42 dans la map31 de Doom 2.";
+BD_WEAPON_SPAWNER_MG42_TEXT2 = "Nous vous recommandons de désactiver cette option si vous utiliser d'autres wads.";
+BD_WEAPON_SPAWNER_DEMON_GUNS = "Désactiver les armes des démons ?";
+BD_WEAPON_SPAWNER_DEMON_GUNS_TEXT = "Supprime les lanceurs des Revenants et des canons à flammes des Mancubi.";
+
+BD_LEVEL_OPTIONS = "Options des niveaux";
+BD_LEVEL_OPTIONS_CHANGES1 = "Toutes les modifications apportées ici ne prendront effet qu'au niveau suivant.";
+BD_LEVEL_OPTIONS_CHANGES1 = "ou lorsque vous commencez une nouvelle partie.";
+BD_LEVEL_OPTIONS_MAPSET = "Pack de niveaux utilisés", "bd_WadCheck", "WadChecking3";
+BD_LEVEL_OPTIONS_MAPSET_TEXT1 = "Nécessite un redémarrage de niveau pour fonctionner";
+BD_LEVEL_OPTIONS_MAPSET_TEXT2 = "Cette option n'est PAS AUTOMATIQUE et doit être ACTIVÉE MANUELLEMENT";
+BD_LEVEL_OPTIONS_MAPSET_TEXT3 = "avant de démarrer une nouvelle partie sur l'un des wads pris en charge !";
+BD_LEVEL_OPTIONS_MAPSET_TEXT4 = "Utilisez l'une des trois compatibilités Doom 2 pour les wads non pris en charge.";
+BD_LEVEL_OPTIONS_MAPSET_TEXT5 = "WADs implémentés", "WADLIST";
+BD_LEVEL_OPTIONS_MAP_ENHANCED = "Système d'amélioration des niveaux", "bd_disablemapenhancements", "OnOffReverse";
+BD_LEVEL_OPTIONS_MAP_ENHANCED_TEXT1 =  "Améliore plusieurs niveaux avec de meilleures textures,";
+BD_LEVEL_OPTIONS_MAP_ENHANCED_TEXT2 =  "de nouvelles décorations et parfois de nouveaux ennemis.";
+BD_LEVEL_OPTIONS_MAP_VOXEL = "SDN - Désactive les Voxels", "bd_voxeldec", "OnOffReverse";
+BD_LEVEL_OPTIONS_MAP_VOXEL_TEXT = "Désactivez les décorations à base de voxels pour éviter les plantages sur Android.";
+BD_LEVEL_OPTIONS_MAP_BOSS = "Les Boss de Brutal Doom","BD_NOBOSSES","OnOffReverse";
+BD_LEVEL_OPTIONS_MAP_BOSS_TEXT1 = "Refonte des boss et prise en charge des niveaux Icône du péché.";
+BD_LEVEL_OPTIONS_MAP_BOSS_TEXT2 = "Désactivez cette option si elle pose des problèmes sur certains wads personnalisés.";
+BD_LEVEL_OPTIONS_MAP_VANILLA = "Monstres vanilla", "bd_classicmonsters", "OnOff";
+BD_LEVEL_OPTIONS_MAP_VANILLA_TEXT = "Désactive la nouvelle IA et nouvelles attaques des monstres.";
+BD_LEVEL_OPTIONS_MAP_DECORATIONS = "Décorations avancées", "bd_disabledecorations", "OnOffReverse";
+BD_LEVEL_OPTIONS_MAP_DECORATIONS_TEXT = "Effets de particules améliorées pour torches et lampes.";
+
+BD_GAMEPLAY_OPTIONS = "Options de Gameplay";
+BD_GAMEPLAY_OPTIONS_CHANGES_TEXT = "La plupart des modifications apportées ici nécessitent un redémarrage du niveau.";
+BD_GAMEPLAY_OPTIONS_EXTREME ="Modificateurs de gameplay extrêmes", "ZIOGAMEPLAYMODIFIERS";
+BD_GAMEPLAY_OPTIONS_ROCKETBLAST = "Recul du lance-roquettes", "bd_rocketbackblast", "OnOff";
+BD_GAMEPLAY_OPTIONS_SLIDE = "Glissade amélioré","bd_SimpleSlide", "OnOff";
+BD_GAMEPLAY_OPTIONS_SLIDE_TEXT = "Appuyer sur un bouton pendant vos déplacement.";
+BD_GAMEPLAY_OPTIONS_AIM = "Mode de visée", "bd_AimMode", "Les mires des armes";
+BD_GAMEPLAY_OPTIONS_LAVA_SPLASH = "Les éclaboussures de lave causent des dégats", "bd_LavaSplashes", "OnOffReverse";
+BD_GAMEPLAY_OPTIONS_FOOTSTEP = "Bruits de pas", "bd_footstepsounds", "OnOff";
+BD_GAMEPLAY_OPTIONS_DEMON = "Apparition des sphères démoniaques", "bd_disabledemonspheres", "OnOffReverse";
+BD_GAMEPLAY_OPTIONS_MARINE = "Marines sauvables", "bd_disablefriendlymarines", "OnOffReverse";
+BD_GAMEPLAY_OPTIONS_SHOOT_ROCKET = "Rockettes peuvent êtres abbatues", "bd_shootablerocketammo", "OnOff";
+
+BD_CROSSHAIR = "Réticules personnalisables";
+BD_CROSSHAIR_INDIVIDUAL = "Réticules individuel",	"bd_Cross", "OnOff";
+BD_CROSSHAIR_CHOOSE ="Choisissez un réticule individuel pour chaque arme.";
+
+BD_PLAYER_OPTIONS = "Options du joueur";
+BD_PLAYER_OPTIONS_CUSTOM = "Réticules personnalisables", "DOXCROSSHAIRS";
+BD_PLAYER_OPTIONS_GENDER = "Genre du joueur", "Gender", "Gender";
+BD_PLAYER_OPTIONS_HUD_TYPE = "Type d'ATH", "bd_sbartype", "HUDType";
+BD_PLAYER_OPTIONS_HUD_SCREEN = "Type d'ATH (Taille d'écran)";
+BD_PLAYER_OPTIONS_HUD_CENTER = "ATH centré", "bd_centeredhud", "OnOff";
+BD_PLAYER_OPTIONS_HUD_CENTER_TEXT1 = "Cette option concerne les ATHs simple et minimalistes pour les moniteurs ultra-larges, ";
+BD_PLAYER_OPTIONS_HUD_CENTER_TEXT2 = "mais vous pouvez également l'utiliser pour d'autres formats d'image.";
+BD_PLAYER_OPTIONS_HUD_SCALING = "Options de mise à l'échelle de l'ATH", 	"BDScalingOptions";
+BD_PLAYER_OPTIONS_HEALTH = "Santé des ennemis visible", "bd_disablescanner", "OnOffReverse";
+BD_PLAYER_OPTIONS_WEAPON = "Animation lors du ramassage d'armes", "bd_NoPickupsAnimations", "OnOffReverse";
+BD_PLAYER_OPTIONS_WEAPON_TEXT1 = "Joue une animation lorsque vous récupérez une arme pour la première fois.";
+BD_PLAYER_OPTIONS_WEAPON_TEXT2 = "(Il est préférable de l'activer avant de commencer une nouvelle partie)";
+BD_PLAYER_OPTIONS_PICKUP = "Sprites des objects aléatoires", "bd_norandompickupsprites", "OnOffReverse";
+
+BD_MAP_SELECTION = "SélectionDeLaCarteDeTestBD";
+BD_MAP_SELECTION_TEXT = "Sélectionnez votre niveau de test";
+
+BD_SCALING_OPTIONS = "Options de mise à l'échelle du l'ATH";
+BD_SCALING_OPTIONS_STRETCH_BAR = "Étirer la barre d'état";
+BD_SCALING_OPTIONS_STRETCH_FULLSCREEN = "Étirer l'ATH en plein écran";
+BD_SCALING_OPTIONS_ADVANCED_SCALING = "Options de mise à l'échelle avancées";
+BD_SCALING_OPTIONS_BAR_SCALE = "Taille de l'échelle de la barre d'état";
+BD_SCALING_OPTIONS_FULLSCREEN_SCALE = "Taille de l'échelle de l'ATH plein écran";
+BD_SCALING_OPTIONS_PRESERVE_RATIO = "Préserver les proportions de l'ATH";
+BD_SCALING_OPTIONS_TEXT1 = "Veuillez noter que l'ATH casque intégral";
+BD_SCALING_OPTIONS_TEXT2 = "peut avoir des problèmes de mise à l'échelle";
+BD_SCALING_OPTIONS_TEXT3 = "sur les résolutions d'écran ultra-larges";
+BD_SCALING_OPTIONS_TEXT4 = "et sur les résolutions d'écran basses.";
+
+BD_ENGINE_OPTIONS = "Raccourcis du moteur (GZD, Zand)";
+BD_ENGINE_OPTIONS_TEXT1 = "Options Zdoom, disponibles ici pour votre commodité.";
+BD_ENGINE_OPTIONS_TEXT2 = "Nous vous recommandons de vérifier ces modifications avant de jouer !";
+BD_ENGINE_OPTIONS_TEXT3 = "Si une option n'est pas facilement accessible dans au moins un";
+BD_ENGINE_OPTIONS_TEXT4 = "des ports sources, ce sera également ici.";
+
+BD_ENGINE_OPTIONS_SPRITE_CLIP = "Ajuster le clipping des sprites";
+BD_ENGINE_OPTIONS_TEXTURE_FILTER = "Mode de filtrage des texture";
+BD_ENGINE_OPTIONS_JUMP = "Autoriser le saut";
+BD_ENGINE_OPTIONS_CROUCH = "Autoriser à s'accroupir";
+BD_ENGINE_OPTIONS_FREELOOK = "Autoriser Freelook";
+BD_ENGINE_OPTIONS_JUMP_ZANDRO = "Autoriser le saut (zandronum)";
+BD_ENGINE_OPTIONS_CROUCH_ZANDRO = "Autoriser à s'accroupir (zandronum)";
+BD_ENGINE_OPTIONS_FREELOOK_ZANDRO = "Autoriser Freelook (zandronum)";
+BD_ENGINE_OPTIONS_FPSCOUNTER = "compteur d'Images par secondes";
+BD_ENGINE_OPTIONS_FPS = "Maximum d'Images par secondes";
+BD_ENGINE_OPTIONS_CHASEDIST = "Distance de la caméra en 3ème personne";
+BD_ENGINE_OPTIONS_CHASEHEIGHT = "Hauteur de la caméra en 3ème personne";
+BD_ENGINE_OPTIONS_QUAKE = "Intensité des tremblements";
+BD_ENGINE_OPTIONS_ONLYZANDRO = "Zandronum exclusif";
+BD_ENGINE_OPTIONS_ONLYGZDOOM = "GZDoom exclusif";
+BD_ENGINE_OPTIONS_MOVEBOB = "Intensité du mouvement première personne";
+BD_ENGINE_OPTIONS_SOUNDINACTIVE = "Sons lorsque vous êtes inactif (en ligne)";
+BD_ENGINE_OPTIONS_ZANDROCRASH = "Gestion des crash de Zandronum";
+BD_ENGINE_OPTIONS_DISCORD = "Présence affiché(e) sur Discord";
+BD_ENGINE_OPTIONS_ = "";
+BD_ENGINE_OPTIONS_ = "";
+BD_ENGINE_OPTIONS_ = "";
+BD_ENGINE_OPTIONS_ = "";
+BD_ENGINE_OPTIONS_ = "";
+BD_ENGINE_OPTIONS_ = "";
+BD_ENGINE_OPTIONS_ = "";
+
+
+//////////////////////////////////////////////////////////////////
+//Options
+BD_OPTIONS_ADVANCED_OPTIONS = "------------------- Brutal Doom - Options Avancées -------------------";
+BD_OPTIONS_KICK = "Coup de pied" "+zoom";
+BD_OPTIONS_RELOAD = "Recharger" "+reload";
+BD_OPTIONS_FLASHLIGHT = "Lampe torche";
+BD_OPTIONS_UNDERBARREL = "Lance-grenades sous le garde-main (Fusil d'assault)";
+BD_OPTIONS_TOSSGRENADE = "Jeter Grenade";
+BD_OPTIONS_UNLOAD = "Décharger arme";
+BD_OPTIONS_AMMODROPPER = "Ouvrir menu pour déposer des munitions";
+BD_OPTIONS_INTERACTIONS = "Brutal Doom - Intéractions";
+BD_OPTIONS_OFFEND = "Insulter";
+BD_OPTIONS_TAUNT_GZDOOM = "Railler (GzDoom)";
+BD_OPTIONS_WAVE1 = "Posture de domination (1)";
+BD_OPTIONS_WAVE2 = "Posture de domination (2)";
+BD_OPTIONS_ADVANCED_TAUNTS = "Railleries Avancées";
+BD_OPTIONS_DUALWIELD = "Akimbo/Actions spéciales"
+BD_OPTIONS_ADVANCED_MOVES = "Brutal Doom - Déplacements Avancés";
+BD_OPTIONS_ROLL_LEFT = "Roulade à gauche";
+BD_OPTIONS_ROLL_RIGHT = "Roulade à droite";
+BD_OPTIONS_ROLL = "Roulade (esquive)";
+BD_OPTIONS_SLOWMOTION = "Activer le mode ralenti";
+
+
+EMPTYSTRING = "emplacement vide";
+
+//////////////////////////////////////////////////////////////////
+//Health / armor
+GOTHTHBONUS = "\chBonus de soin\c- récupéré";
+GOTSTIM = "\cdStimpack\c- récupéré";
+GOTMEDIKIT = "\cdKit de soins\c- récupéré";
+GOTESSENCE = "\cgEssense démoniaque\c- récupérée";
+GOTSTIMNEED = "\cdStimpack\c- récupéré, juste à temps!";
+GOTMEDINEED = "\cdKit de soins\c- récupéré Vous en aviez bien besoin!";
+
+GOTARMBONUS = "\cdBonus d'armure\c- récupéré";
+GOTARMOR = "\cdArumure de sécurité\c- récupéré";
+GOTMEGA = "\chArmure lourde de combat\c- récupéré";
+GOTDEMONARMOR = "\cgArmure démoniaque\c- récupéré";
+GOTDEMONSHARD = "\cdBonus d'armure démoniaque\c- récupéré";
+GOTCRUELTYARMOR = "*** Bonus de cruauté obtenu! \cd+5 Armure ***";
+
+//////////////////////////////////////////////////////////////////
+//powerups
+GOTSUPER = "\chSuperCharge!";
+GOTMSPHERE = "\cjMegaSphère!";
+GOTINVUL = "\cqInvulnérabilitée!";
+GOTBERSERK = "\cgBerserk! \cr(Appuier sur Recharger (R) pour changer de mode d'éxecution.)";
+GOTDSR = "\cgRune de Force démoniaque!";
+GOTDMSBARON = "\cgArtefact de métamorphose du Baron Infernal!";
+GOTDMSREV = "\cgArtefact de métamorphose du Revenant!";
+
+GOTINVIS = "\cgInvisibilité partielle!";
+GOTSUIT = "\cjCombinaison anti-radiations!";
+GOTMAP = "\cjCarte éléctronique!";
+GOTVISOR = "\cgLunettes de vision nocturne!";
+
+SW_BERSERK = "Appuier sur Recharger (R) pour changer de mode d'éxecution.";
+
+//////////////////////////////////////////////////////////////////
+//Keys
+GOTBLUECARD = "\cnClé magnétique bleue\ch récupérée";
+GOTYELWCARD = "\cfClé magnétique jaune\ck récupérée";
+GOTREDCARD = "\cgClé magnétique rouge\ca récupérée";
+GOTBLUESKUL = "\chClé crâne bleue\cn récupérée";
+GOTYELWSKUL = "\ckClé crâne jaune\cf récupérée";
+GOTREDSKUL = "\caClé crâne rouge\cg récupérée";
+
+//////////////////////////////////////////////////////////////////
+//ammo
+GOTBACKPACK = "\ceSac à dos rempli de munitions\c- récupéré!";
+GOTGAS = "Gazoil\ci récupéré";
+GOTGRENADE = "\cuGrenade\c- récupéré";
+GOTGRENADEBOX = "\cuBoîte de grenades\c- récupéré";
+
+GOTCLIP = "\cqChargeur de Fusil d'assault\c- récupéré";
+GOTPISTOLCLIP = "\cq Chargeur de Pistolet\c- récupéré";
+GOTCLIPBOX = "\cqBoîte de balles de fusil d'assault\c- récupéré";
+GOTROCKET = "\ceRoquette\c- récupéré";
+GOTROCKBOX = "\ceBoîte de roquettes\c- récupéré";
+GOTCELL = "\cnCellules d'énergie\c- récupérées";
+GOTCELLBOX = "cnPack d'énergie\c- récupéré";
+GOTSHELLS = "\caQuatres cartouches de Fusil à pompe\c- récupérées";
+GOTSHELLBOX = "\caBoîte de cartouches de Fusil à Pompe\c- récupéré";
+
+NOGRENADES = "Plus de \cugrenades\c-.";
+
+//////////////////////////////////////////////////////////////////
+//weapon pickups
+GOTDEFAULTWEAPON = "Vous avez mis la main sur \cjL'arme inconnue! \c-Je vous sommes de changer ce message. (Touche X)";
+//1
+GOTCHAINSAW = "Vous avez mis la main sur la Tronconneuse ! (Touche 1)";
+GOTAXE = "Vous avez mis la main sur la Hache ! (Touche 1)";
+//2
+GOTPISTOL = "Vous avez mis la main sur \cqun Pistolet! \c-(Touche 2)";
+GOTSMG = "Vous avez mis la main sur \cqle Pistolet-Mitrailleur ! \c-(Touche 2)";
+GOTREVOLVER = "Vous avez mis la main sur \caRevolver! \c-(Touche 2)";
+GOTMP40 = "Vous avez mis la main sur \cq le MP40! \c- (Touche 2)";
+//3
+GOTSHOTGUN = "Vous avez mis la main sur \cale Fusil à pompe ! \c-(Touche 3)";
+GOTSHOTGUN2 = "Vous avez mis la main sur \cale Super-Fusil de chasse à canons juxtaposé ! \c-(Touche 3)";
+GOTASSAULTSHOTGUN = "Vous avez mis la main sur \cale Fusil semi-automatique!\c-(Touche 3)";
+//4
+GOTRIFLE = "Vous avez mis la main sur \cqLe Fusil d'assault ! \c-(Touche 4)";
+GOTCHAINGUN = "Vous avez mis la main sur \cqla Mitrailleuse à canons rotatifs ! \c-(Touche 4)";
+GOTSNIPER = "Vous avez mis la main sur \cqle Fusil de précision du tireur d'élite ! \c-(Touche 4)";
+GOTMG42 = "Vous avez mis la main sur \cqLa scie circulaire d'Hitler, une MG42! \c-(Touche 4)";
+//5
+GOTLAUNCHER = "Vous avez mis la main sur \cele Lance-roquettes ! \c-(Touche 5)";
+GOTGRENADELAUNCHER = "Vous avez mis la main sur \cele Lance-grenades ! \c-(Touche 5)";
+GOTDEVASTATOR = "Vous avez mis la main sur \cele Dévastateur ! \c-(Touche 5)";
+GOTM202 = "Vous avez mis la main sur \cele Lance-roquettes incendiaire ! \c-(Touche 5)";
+//6
+GOTPLASMA = "Vous avez mis la main sur \cnle Fusil à plasma! \c- Maintenant, vous cuisinez au gaz! (Touche 6)";
+GOTRAILGUN = "Vous avez mis la main sur le\cn Fusil  électro-magnétique ! \c-(Touche 6)";
+//7
+GOTBFG9000 = "Vous avez mis la main sur le Saint Graal de la puissance! \cdLe BFG9000 ! \c-(Touche 7)";
+GOTBFG10K = "Vous avez mis la main sur \cdle BFG10K! \c-Non de dieu le Gun ! (Touche 7)";
+GOTNUKELAUNCHER = "Vous avez mis la main sur \cele Lance-missiles atomique ! \c-(Touche 7)";
+//8
+GOTUNMAKER = "Vous avez mis la main sur le \cu...Bordel mais c'est quoi ça !? \c-(Touche 8)";
+GOTREVMISSILE = "Vous avez mis la main sur \cule Lance-Missiles guidées du Revenant! \c-(Touche 8)";
+//9
+GOTFLAMECANNON = "Vous avez mis la main sur \cile Canon à flammes du Mancubus ! \c-(Touche 9)";
+GOTFLAMETHROWER = "Vous avez mis la main sur \ci le Lance-flammes M1 ! \c-(Touche 9)";
+//0
+GOTHANDNADES = "Vous avez mis rammassé(e) sur \ceune grenade à main ! \c-(Touche 0)";
+
+//////////////////////////////////////////////////////////////////
+// weapon tags
+TAGBD_DEFAULT = "Arme Inconnue";
+//1
+TAGBD_FIST = "Poings";
+TAGBD_SAW = "Tronconneuse";
+TAGBD_AXE = "Hache";
+//2
+TAGBD_PISTOL = "Pistolet";
+TAGBD_DUALPISTOLS = "Pistolets akimbo";
+TAGBD_SMG = "Pistolet-Mitrailleur";
+TAGBD_DUALSMG = "Pistolets Mitrailleurs akimbo";
+TAGBD_REVOLVER = "Revolver";
+TAGBD_MP40 = "MP40";
+TAGBD_DUALMP40 = "Schmeisser Akimbo";
+//3
+TAGBD_SHOTGUN = "Fusil à pompe";
+TAGBD_SSG = "Super-Fusil de chasse juxtaposé";
+TAGBD_ASG = "Fusil semi-automatique";
+//4
+TAGBD_RIFLE = "Fusil d'assault";
+TAGBD_DUALRIFLES = "Fusils d'assault Akimbo";
+TAGBD_CHAINGUN = "Mitrailleuse à canons rotatifs";
+TAGBD_SNIPER = "Fusil de Précision";
+TAGBD_MG42 = "La scie circulaire d'Hitler";
+//5
+TAGBD_RL = "Lance-roquettes";
+TAGBD_GL = "Lance-grenades";
+TAGBD_NUKE = "Lanceur Atomique";
+TAGBD_M202 = "Lance-roquettes incendiaire";
+//6
+TAGBD_PLASMA = "Fusil à plasma";
+TAGBD_RAILGUN = "Fusil électro-magnétique";
+//7
+TAGBD_BFG9000 = "BFG9000";
+TAGBD_BFG10K = "BFG10K";
+TAGBD_UNMAKER = "Unmaker";
+//8
+TAGBD_FLAMECANNON = "Canon à flammes";
+TAGBD_DUALFLAMECANNON = "Canon à flammes akimbo";
+TAGBD_FLAMETHROWER = "Lance-flammes M1";
+TAGBD_REVMISSILE = "Lance-missiles du Revenant";
+TAGBD_GRENADE = "Grenade à main";
+TAGBD_AMMODROPPER = "Déposeur de munitions";
+TAGBD_DEVASTATOR = "Dévastateurs";
+
+//////////////////////////////////////////////////////////////////
+//obituaries for weapons
+OBBD_DEFAULT = "\cr%o\c- a été(e) tué(e) par \cr%k\c-.";
+OB_MPTELEFRAG = "\cr%o\c- a été(e) télecrasé par \cr%k\c-.";
+//1
+OBBD_FISTS = "\cr%o\c- a été déchicté(e) par les gros bras de \cr%k's\c.";
+OBBD_KICK = "\cr%o\c- a léché(e) les bottes de \cr%k's \c.";
+OBBD_AIRKICK = "\cr%o\c- a été(e) maitrisé par le kung-fu de \cr%k\c-!";
+OBBD_SLIDE = "\cr%o\c- a glissé(e) sur \cr%k\c-.";
+OBBD_STOMP = "\cr%o\c- s'est fait écrasé(e) comme un vulgaire goomba par \cr%k\c-.";
+OBBD_GRAB = "\cr%o\c- s'est fait balancé(e) par \cr%k\c-.";
+OBBD_THROWNPLAYER = "\cr%o\c- aura fini écrabouillé par la victime de \cr%k's\c-, ouch!";
+OBBD_CHAINSAW = "\cr%o\c- aura compris que \cr%k's \c- est un exellent diplomate.";
+OBBD_AXE = "\cr%o\c- a été(e) hacher-menu par \cg%k\ca.";
+//2
+OBBD_PISTOL = "\cr%o\c- a été(e) tué(e) par le Pistolet- de \cg%k\ca.";
+OBBD_SMG = "\cr%o\c- a été(e) changer en  gruyère par le Pistolet-Mitrailleur de \cg%k\ca.";
+OBBD_REVOLVER = "\cr%o\c- a perdu un duel face a \cg%k\ca.";
+OBBD_MP40 = "\cr%o\c- a été descendu(e) par le MP40 de \cg%k\ca.";
+//3
+OBBD_SHOTGUN = "\cr%o\c- a s'est fait éclaté(e) la gueule par le Fusil à pompe de \cg%k\ca.";
+OBBD_SHOTGUN2 = "\cr%o\c- s'est fait découpé(e) en deux par le le Super-Fusil de chasse de \cg%k\ca.";
+OBBD_ASSAULTSHOTGUN = "\cr%o\c- a été(e) éparpillé(e) au sol par le Fusil semi-automatique de \cg%k\ca.";
+//4
+OBBD_RIFLE = "\cr%o\c- a été(e) abattu(e) par le le Fusil d'assault de \cg%k\ca.";
+OBBD_RIFLE_GRENADE = "\cr%o\c- a été(e) éxplosé par la grenade de \cr%k's \c- sortant toute droite d'un fusil d'assault!";
+OBBD_RIFLE_GRENADEDIRECT = "%o\c- a bouffer la grenade de \cr%k's \c- sortant toute droite d'un fusil d'assault!";
+OBBD_CHAINGUN = "\cr%o\c- a été(e) dégommé(e) par la Mitrailleuse à canons rotatifs de \cg%k\ca.";
+OBBD_SNIPER = "\cr%o\c- a reçu(e) une balle en pleine tête par le Fusil de précision de \cg%k\ca.";
+OBBD_MG42 = "\cr%o\c- a gouté à l'éfficacitée allemande de \cg%k\ca.";
+//5
+OBBD_ROCKETLAUNCHER = "\cr%o\c- a été(e) explosé(e) par le Lance-Roquettes de \cg%k\ca.";
+OBBD_ROCKETLAUNCHERDIRECT = "\cr%o\c- aura mangé(e) la roquette de \cr%k's\c-.";
+OBBD_ROCKETBACKBLAST = "\cr%o\c- s'est approché trop près du Lance-Roquettes de \cr%k's \c-.";
+OBBD_GRENADELAUNCHER = "\cr%o\c- a mangé(e) la grenade de \cg%k\ca";
+OBBD_GRENADELAUNCHERDIRECT = "\cr%o\c- aura mangé(e) la grenade de \cr%k's\c-.";
+OBBD_DEVASTATOR = "\cr%o\c- a été(e) dévasté(e) par \cg%k\ca.";
+OBBD_M202 = "Il ne reste plus que des miettes de \cg%k\ca.";
+//6
+OBBD_PLASMA = "\cr%o\c- a été(e) désintégré(e) Fusil à plasma de \cg%k\ca.";
+OBBD_DUALPLASMA = "\cr%o\c- a été(e) désintégré(e) par les Fusils à plasma de \cg%k\ca.";
+OBBD_RAILGUN = "\cr%o\c- é été réduit en cendres par le Fusil à rayons de \cg%k\ca.";
+//7
+OBBD_BFG = "\cr%o\c- a été(e) désintégré(e) ) par le le BFG9000! de \cg%k\ca.";
+OBBD_BFG10K = "\cr%o\c- a été(e) réduit(e) à néant par le BFG10K de \cg%k\ca.";
+OBBD_NUKELAUNCHER = "\cr%o\c- a été atomisé(e par le Lance-missiles atomique de \cg%k\ca.";
+//8
+OBBD_UNMAKER = "\cr%o\c- a subit la terreur de l'Unmaker de \cg%k\ca.";
+OBBD_REVMISSILE = "\cr%o\c- n'aura pas put ésquiver les missiles de \cg%k\ca.";
+//9
+OBBD_FLAMECANNON = "\cr%o\c- a été(e) brulé(e) vif par le Canon à flammes de \cg%k\ca.";
+OBBD_FLAMETHROWER = "\cr%o\c- n'aime pas l'odeur du Lance-flammes M1 de \cg%k\ca au p'tit matin.";
+//0
+OBBD_GRENADES = "\cr%o\c- a bouffé(e) de plein fouet la grenades de \cg%k\ca.";
+//VEHICLES
+OBBD_TANKSHELL = "\cr%o\c- aura perdu la guerre face à \cr%k\c-.";
+OBBD_HMG = "\cr%o\c- aura été(e) écrasé(e) par la mitrailleuse lourde de \cr%k's\c-.";
+OBBD_HELI = "\cr%o\c- a été(e) bombardé(e) par l'hélicopter de \cr%k's\c-.";
+OBBD_MECH = "\cr%o\c- a été(e) exterminé(e) par le robot de \cr%k's\c-.";
+
+
+//////////////////////////////////////////////////////////////////
+//Tags for demons
+TAGBD_LABGUY = "Zombie scientifique";
+TAGBD_ZOMBIEMAN = "Zombie fusil d'assault";
+TAGBD_ZOMBIEMAN2 = "Zombie pistolet";
+TAGBD_SHOTGUNGUY = "Zombie sergeant";
+TAGBD_SMGGUY = "Zombie d'assault";
+TAGBD_COMMANDER = "Zombie capitaine";
+TAGBD_COMMANDO = "Zombie commando";
+TAGBD_IMP = "Diablotin";
+TAGBD_PINKY = "Pinky";
+TAGBD_SPECTRE = "Spectre";
+TAGBD_SPIDER = "Arachnotron";
+TAGBD_ARACHNORB = "Arachnorb";
+TAGBD_FATSO = "Mancubus";
+TAGBD_KNIGHT = "Chevalier de l'Enfer";
+TAGBD_BARON = "Baron infernal";
+TAGBD_BRUISERBRO = "Jumeaux déstructeurs";
+TAGBD_BELPHEGOR = "Belphégor";
+TAGBD_JUGGERNAUT = "Mastodonte";
+TAGBD_ELEMENTAL = "Doloris";
+TAGBD_SOUL = "Âme Perdue";
+TAGBD_VILE = "Archvile";
+TAGBD_ICON = "Gardien du Portail";
+TAGBD_MOTHER = "Démon mère";
+TAGBD_CYBERDEMON = "Démon Cybernétique";
+TAGBD_CYBERLORD = "Cyber-empereur de Déimos"; //To be used for Doom 1 bosses
+TAGBD_MASTERMIND = "Cerveau arachide démoniaque";
+TAGBD_MASTERMINDINVADER = "Impétatrice arachnide démoniaque"; //To be used for Doom 1 bosses
+TAGBD_MUMMY = "Momie";
+TAGBD_MUMMY2 = "Experience";
+TAGBD_VOLCABUS = "Volcabus"
+TAGBD_ACIENTALIEN = "Gardien extraterrestre";
+TAGBD_UNALIENO = "Extraterrestre invisible";
+TAGBD_ZIOSS = "Wolfenstein SS";
+TAGBD_UBER = "Ubersoldat"
+TAGBD_ALPHASOUL = "Âme Perdue (Alpha)";
+TAGBD_EVILMARINE = "Méchant marine";
+TAGBD_FORMERMARINE = "Zombie marine";
+TAGBD_MRX = "Mr. X";
+TAGBD_NIGHTMAREDEMON = "Démon cauchemardesque";
+TAGBD_BRUTALANNIHILATOR = "Annihilateur";
+TAGBD_ASTRALCACODEMON = "Cacodémon astrale";
+TAGBD_ANTARESIANGOD = "Archangelus";
+TAGBD_SCYTHE = "Éfrit faucheuse II";
+TAGBD_BLOODSTAINED = "Éfrit ensanglenté";
+TAGBD_ANCIENTSPIDER = "Arachnotron antique";
+TAGBD_ANCIENTFATSO = "Mancubus antique";
+TAGBD_CYBERBRUISER = "Baron cybernétique";
+
+//////////////////////////////////////////////////////////////////
+//Tags for Bots
+TAGBD_BOT1 = "Bidasse";
+TAGBD_BOT2 = "Destructeur";
+TAGBD_BOT3 = "Exécuteur";
+TAGBD_BOT4 = "Belliciste";
+
+//////////////////////////////////////////////////////////////////
+//Tags for Allies
+TAGBD_FRIENDLYDOG = "Gentil toutou";
+TAGBD_SENTRYGUN = "Robot sentinelle";
+
+
+//////////////////////////////////////////////////////////////////
+//obituaries for Demons
+OB_NEARBURNINGMAN = "%o était trop près de quelqu'un en flames.";
+OB_ZOMBIESOLDIER = "%o a été(e) abbatu(e) par un \crsoldat Zombie\c-.";
+OB_ZOMBIESCOMMANDO = "%o s'est fait descendre par les \crCommandos Spéciaux de l'UAC.";
+OB_SMGGUY = "%o s'est fait troué(e) de partout par un \crZombie d'assault\c-.";
+OB_BRUTALSPECTRE = "%o a été(e) sodomisé(e) par un \crSpectre\c-.";
+OB_HELLKNIGHT = "%o a été(e) poutrée) par un \crChevalier de l'Enfer\c-.";
+OB_BARONOFHELL = "%o s'est fait victimisé(e) par un \crBaron Infernale\c-.";
+OB_CYBERDEMON = "%o a été(e) soulvé(e) par un \crDemon-Cybernétique\c-.";
+OB_CYBERSTEP = "%o a été(e) écrasé(e) par un \crDemon-Cybernétique\c-.";
+OB_SPIDER = "%o a été(e) brulé(e) vif par un \crArachnotron\c-.";
+OB_ANCIENTSPIDER = "%o a été(e) brulé(e) vif par un \crAncient arachnotron\c-.";
+OB_ARACNORB = "%o a été(e) éléctrocuté(e) par un \crAracnorb\c-.";
+OB_ARACNORBMELEE = "%o s'est fait bouffé(e) la cervelle par un \crAracnorb\c-.";
+
+OB_CYBERLORD = "%o a souffert la colère du \crCyber-Empereur de Déimos\c-."; //To be used for Doom 1 bosses
+OB_MANCUBI = "%o a été(e) incinéré par un \crMancubus.\c-";
+OB_BELPHEGOR = "%o ne faisait pas le poid face au \crBelphégor\c-.";
+OB_JUGGERNAUT = "%o a été(e) anéanti(e) par le \crMastodonte\c-.";
+OB_IMP2 = "%o a été(e) brulé(e) au quatrième degré par un \crDiablotin\c-.";
+OB_ICON = "%o a été(e) écrasé(e) par \crl'Icarnation du mal absolue\c-.";
+OB_LABGUY = "%o a été(e) hacher-menu par un \crzombie en blouse blanche\c-.";
+OB_NAZI = "%o a été(e) exterminé(e) par un \crNazi\c-."
+OB_UBER = "%o aura subit la solution finale d'un \crUbersoldat\c-.";
+OB_VOLCABUS = "%o a été(e) écrabouillé(e) par un \crVolcabus\c-."
+OB_ANCIENTALIEN = "%o a été(e) sodomisé(e) par un \crGardien extraterrestre\c-.";
+OB_UNALIENO = "%o a rencontré(e) un \crextraterrestre\c- qui ne venait pas en paix.";
+OB_ZIOSS = "%o a été(e) executé(e) par un \crSS\c-.";
+OB_EVILMARINE = "%o ne sera plus jamais un bâton dans les roues de \crl'UAC\c-."
+OB_EVILMARINEPLASMA = "%o a eu une altercation difficile avec \crMr. X\c-.";
+OB_NIGHTMAREDEMON = "%o n'a pu échapé(e) au \crDémon cauchemardesque\c-.";
+OB_BRUTALANNIHILATOR = "%o a été(e) sodomisé(e) par un \crAnnihilateur infernal\c-.";
+OB_ASTRALCACODEMON = "$o n'était pas aussi intelligent(e) qu'un \crCacodémon astrale\c-.";
+OB_ANTARESIANGOD = "$o a sombré(e) pour \crl'éternité!\c-";
+OB_SCYTHE = "%o a été(e) crammé(e) sur place par un \crÉfrit\c-."
+OB_SCYTHEMELLE = "%o maudit probablement tous les \crDieux existants en ce moment\c-.";
+OB_COMMANDER = "%o n'avait par reconnu(e) son \crCommandant\c-.";
+OB_MARINE = "%o a été descendu(e) par un \crMarine\c-."
+
+OB_ENEMYTANK = "%o a été(e) anéanti(e) par un \crChar d'assault piloté par un zombie\c-.";
+OB_ENEMYHELI = "%o a été(e) anéanti(e) par par un \crHélicopter piloté par un zombie\c-.";
+OB_ENEMYMECH = "%o a été(e) anéanti(e) par un \crRobot piloté par un zombie\c-.";
+
+OB_GLASS = "%o s'est coupé(e) avec un \crmorceau de verre\c-.";
+OB_SHRAPNEL = "%o aura gobé(e) \crpas male d'éclats d'obus\c-.";
+//////////////////////////////////////////////////////////////////
+//DOORS
+PD_BLUEO = "Une \chClé magnétique bleue \c- est nécéssaire pour activer cette object";
+PD_REDO = "Une \cgClé magnétique rouge \c-est nécéssaire pour activer cette object";
+PD_YELLOWO = "Une \ckClé magnétique jaune \c-est nécéssaire pour activer cette object";
+PD_BLUEK = "Une \chClé magnétique bleue \c-est nécéssaire pour activer cette object";
+PD_REDK = "Une \cgClé magnétique rouge \c-est nécéssaire pour activer cette object";
+PD_YELLOWK = "Une \ckClé magnétique jaune \c-est nécéssaire pour activer cette object";
+PD_BLUECO = "Une \chClé magnétique bleue \c-est nécéssaire pour activer cette object";
+PD_REDCO = "Une \cgClé magnétique rouge \c-est nécéssaire pour activer cette object";
+PD_YELLOWCO = "Une \ckCarte magnétique jaune \c-est nécéssaire pour activer cette object";
+PD_BLUESO = "Une \chClé crâne bleue\c-est nécéssaire pour activer cette object";
+PD_REDSO = "Une \cgClé crâne rouge \c-est nécéssaire pour activer cette object";
+PD_YELLOWSO = "Une \ckClé crâne jaune \c-est nécéssaire pour activer cette object";
+
+//////////////////////////////////////////////////////////////////
+// New strings from BOOM
+PD_BLUEC = "Une \chClé magnétique bleue \c- est nécéssaire pour ouvrir cette porte";
+PD_REDC = "Une \cgClé magnétique rouge \c-est nécéssaire pour ouvrir cette porte";
+PD_YELLOWC = "Une \ckClé magnétique jaune \c-est nécéssaire pour ouvrir cette porte";
+PD_BLUES = "Une \chClé crâne bleue\c-est nécéssaire pour ouvrir cette porte";
+PD_REDS = "Une \cgClé crâne rouge \c-est nécéssaire pour ouvrir cette porte";
+PD_YELLOWS = "Une \ckClé crâne jaune \c-est nécéssaire pour ouvrir cette porte";
+PD_ANY = "N'importe quelle clée ouvrira cette porte";
+PD_ANYOBJ = "N'importe quelle clée activera cet object";
+PD_ALL3 = "Vous devez rassembler \cgles \cktrois \chclées \c-pour ouvrir cette porte";
+PD_ALL3O = "Vous devez rassembler \cgles \cktrois \chclées \c- pour activer cette object";
+PD_ALL6 = "Vous devez rassembler \cgles \cksix \chclées \c-pour ouvrir cette porte";
+PD_ALL6O = "Vous devez rassembler \cgles \cksix \chclées \c- pour activer cette object";
+PD_ALLKEYS = "Vous devez rassembler toute les clées";
+
+//////////////////////////////////////////////////////////////////
+//Item Tags
+TAGBD_EXPLOSIVEBARREL = "Barril éxplosif";
+TAGBD_TROWEDBARREL = "Un barril particulièrement volatile!";

@@ -1,0 +1,37 @@
+Actor WormwoodBat
+{
+	Speed 25
+	-SOLID
+	-SHOOTABLE
+	+SPAWNCEILING
+	+FLOAT
+	-COUNTKILL
+	PainSound ""
+	DeathSound ""
+	ActiveSound ""
+	SeeSound "Bat/Sight"
+	States
+	{
+	See:
+		WRMB ABCB 3 A_Chase
+		goto See
+
+	Pain:
+		WRMB H 3 
+		WRMB H 3 A_Pain
+		WRMB ABCB 3 A_Chase
+		goto See
+
+	Missile:
+		TROO A -1 
+		stop
+
+	XDeath:
+		TROO A -1 
+		stop
+
+	Raise:
+		TROO A -1 
+		stop
+	}
+}

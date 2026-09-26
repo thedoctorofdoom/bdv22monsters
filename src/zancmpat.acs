@@ -1,0 +1,14 @@
+#ifdef __IMPORTED__
+	#error This file must be #included.
+#endif
+
+#linklibrary "zancmpat"
+
+enum {LUMP_OPEN_DEFSTART = -2};
+
+extern int ZC_IsZandronum ();
+extern int ZC_LumpOpen (str name, int start = LUMP_OPEN_DEFSTART, int flags = 0);
+extern void ZC_LumpClose (int lump);
+extern raw ZC_LumpGetInfo (int lump, int info = LUMP_READ_UBYTE);
+extern str ZC_LumpReadString (int lump, int pos = 0, int len = 0x7FFFFFFF);
+extern int ZC_LumpRead (int lump, int pos, int type = LUMP_READ_UBYTE);

@@ -1,0 +1,24 @@
+ACTOR RifleAmmo : Ammo
+{
+	Inventory.Amount 0
+	Inventory.MaxAmount 31
+	Ammo.BackpackAmount 0
+	Ammo.BackpackMaxAmount 31
+	Inventory.Icon "RIFLA0"
+}
+
+ACTOR MeatshieldGunAmmo : Ammo
+{
+	Inventory.Amount 0
+	Inventory.MaxAmount 30
+	Ammo.BackpackAmount 0
+	Ammo.BackpackMaxAmount 30
+}
+
+ACTOR MeatAmmo : Ammo
+{
+	Inventory.Amount 0
+	Inventory.MaxAmount 100
+	Ammo.BackpackAmount 0
+	Ammo.BackpackMaxAmount 100
+}

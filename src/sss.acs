@@ -1,0 +1,12 @@
+// ACS
+#library "BD_Main"
+#include "zcommon.acs"
+
+Script "GetFloorTexture" ENTER
+{
+	while(true)
+	{
+	Print(s:GetActorFloorTexture(0) );
+	delay(1);
+	}
+}

@@ -1,0 +1,676 @@
+//This decorate was made to prevent a bug
+
+//Main Doom Monsters
+
+actor RifleZombieCast : RifleZombie
+{
+	XScale 1.0
+	YScale 1.0
+	states
+	{
+	See:
+		POSR AABBCCDD 2
+		Loop
+
+	Missile:
+		POSR E 10
+		POSR F 2 Bright
+		POSR E 3
+		POSR F 2 Bright
+		Goto Missile+1
+
+	Death:
+		POSR HIJK 5
+		POSR L -1
+		Stop
+	}
+}
+
+actor PistolZombieCast : PistolZombie
+{
+	XScale 1.0
+	YScale 1.0
+	states
+	{
+	See:
+		PSPO AABBCCDD 2
+		Loop
+
+	Missile:
+		PSPO E 10
+		PSPO F 3 Bright
+		PSPO E 5
+		Goto See
+
+	Death:
+		POSR HIJK 5
+		POSR L -1
+		Stop
+		}
+}
+
+actor ShotgunGuy1Cast : ShotgunGuy1
+{
+	XScale 1.0
+	YScale 1.0
+	states
+	{
+	See:
+		SPOS AABBCCDD 2
+		Loop
+
+	Missile:
+		SPOS E 10
+		SPOS F 3 Bright
+		SPOS E 5
+	MissilePump:
+		SPSR ABA 7
+		Goto See
+
+	Death:
+		SPOS HIJK 5
+		SPOS L -1
+		Stop
+	}
+}
+
+actor SMGGuyCast : SMGGuy
+{
+	XScale 1.0
+	YScale 1.0
+	states
+	{
+	See:
+		PSS3 AABBCCDD 2
+		Loop
+
+	Missile:
+		PSS3 E 10
+		PSS3 F 1 Bright
+		PSS3 E 2
+		PSS3 F 1 Bright
+		Goto Missile+1
+
+	Death:
+		SPOS HIJK 5
+		SPOS L -1
+		Stop
+	}
+}
+
+Actor ChaingunGuy1Cast : ChaingunGuy1
+{
+	XScale 1.0
+	YScale 1.0
+	states
+	{
+	See:
+		CPOS AABBCCDD 2
+		Loop
+
+	Missile:
+		CPOS E 10
+		CPOS F 5 BRIGHT
+		CPOS E 3
+		CPOS F 5 BRIGHT
+		CPOS E 3
+		Goto Missile+2
+
+	Death:
+		CPOS HIJKLM 5
+		CPOS N -1
+		Stop
+	}
+}
+
+Actor LabguyCast : Labguy
+{
+	XScale 1.0
+	YScale 1.0
+	states
+	{
+	See:
+		SCZA AABBCCDD 2
+		Loop
+
+	Missile:
+	Melee:
+		SCZA E 8
+		SCZA F 5
+		SCZA E 3
+		Goto See
+
+	Death:
+		SCZA HIJK 8
+		SCZA L -1
+		Stop
+	}
+}
+
+actor ImpCast : Imp
+{
+	XScale 1.0
+	YScale 1.0
+	states
+	{
+	See:
+		TROO AABBCCDD 2
+		Loop
+
+	Melee:
+		TROO EF 4
+		TROO G 4
+		TROO FE 4
+		Goto See
+
+	Missile:
+		TROO EF 8
+		TROO G 6
+		TROO F 4
+		Goto See
+
+	Death:
+		TROO IJKL 5
+		TROO M -1
+		Stop
+	}
+}
+
+actor BullDemonCast : BullDemon
+{
+	XScale 1.0
+	YScale 1.0
+	states
+	{
+	See:
+		SARG AABBCCDD 2
+		Loop
+
+	Melee:
+		SARG EF 6
+		SARG G 5
+		Goto See
+
+	Death:
+		SARG IJKLM 5
+		SARG N -1
+		Stop
+	}
+}
+
+actor TehLostSoulCast : TehLostSoul
+{
+	XScale 1.0
+	YScale 1.0
+	states
+	{
+	See:
+		LSOL A 4
+		Loop
+
+	Missile:
+		LSOL B 4
+		Goto See
+
+	Death:
+		LSOL C  3
+		LSOL FGHI 5
+		TNT1 A -1
+		Stop
+	}
+}
+
+actor Cacodemon_Cast : Cacodemon_
+{
+	XScale 1.0
+	YScale 1.0
+	states
+	{
+	See:
+		HEAD A 4
+		Loop
+
+	Melee:
+		HEAD BC 3
+		HEAD D 5
+		HEAD B 2
+		Goto See
+
+	Missile:
+		HEAD BC 5
+		HEAD D 7
+		HEAD B 3
+		Goto See
+
+	Death:
+		HEAD EF 3
+		HEAD GHIJK 5
+		HEAD L -1
+		Stop
+	}
+}
+
+actor HellKnight2Cast : Hellknight2
+{
+	XScale 1.0
+	YScale 1.0
+	states
+	{
+	See:
+		BOS2 AABBCCDD 2
+		Loop
+
+	Melee:
+		BOS2 EF 5
+		BOS2 G 3
+		Goto See
+
+	Missile:
+		BOS2 EF 8
+		BOS2 G 5
+		Goto See
+
+	Death:
+		HKDD ABC 8
+		HKDD D -1
+		Stop
+	}
+}
+
+actor BaronOfHell2Cast : BaronOfHell2
+{
+	XScale 1.0
+	YScale 1.0
+	states
+	{
+	See:
+		BARO AABBCCDD 2
+		Loop
+
+	Melee:
+		BARO EF 5
+		BARO G 3
+		Goto See
+
+	Missile:
+		BARO EF 8
+		BARO G 5
+		Goto See
+
+	Death:
+		KSA8 ACDEF 6
+		KSA8 G -1
+		Stop
+	}
+}
+
+actor Belphegor2Cast : Belphegor2
+{
+	XScale 1.0
+	YScale 1.0
+	states
+	{
+	See:
+		BOS3 AABBCCDD 2
+		Loop
+
+	Melee:
+		BOS3 FG 5
+		BOS3 H 3
+		Goto See
+	Missile:
+		BOS3 FG 8
+		BOS3 H 5
+		Goto See
+
+	Death:
+		BOS3 IJK 8
+		BOS3 L -1
+		Stop
+	}
+}
+
+actor Arachnotron1Cast : Arachnotron1
+{
+	XScale 1.0
+	YScale 1.0
+	states
+	{
+	See:
+		BSPI AABBCCDDEEFF 2
+		Loop
+
+	Missile:
+		BSPI G 8
+		BSPI H 3 BRIGHT
+		BSPI G 2
+		Goto Missile+1
+
+	Death:
+		BSPI J 5
+		BSPI KLMNO 6
+		BSPI P -1
+		Stop
+	}
+}
+
+actor Arachnotron2Cast : Arachnotron2
+{
+	XScale 1.0
+	YScale 1.0
+	states
+	{
+	See:
+		ARAC AABBCCDDEEFF 2
+		Loop
+
+	Missile:
+		ARAC G 8
+		ARAC H 3 BRIGHT
+		ARAC G 2
+		Goto Missile+1
+
+	Death:
+		ARAC J 5
+		ARAC KLMNO 6
+		ARAC P -1
+		Stop
+	}
+}
+
+actor PainElemental1Cast : PainElemental1
+{
+	XScale 1.0
+	YScale 1.0
+	states
+	{
+	See:
+		PAIN AABBCC 2
+		Loop
+
+	Missile:
+		PAIN D 8
+		PAIN E 7 BRIGHT
+		PAIN F 6 BRIGHT
+		Goto See
+
+	Death:
+		PAIN G 5
+		PAIN HIJKLM 6
+		TNT1 A -1
+		Stop
+	}
+}
+
+actor Revenant1Cast : Revenant1
+{
+	XScale 1.0
+	YScale 1.0
+	states
+	{
+	See:
+		SKEL AABBCCDDEEFF 2
+		Loop
+
+	Melee:
+		SKEL GHI 7
+		Goto See
+
+	Missile:
+		SKEL J 8 BRIGHT
+		SKEL K 6
+		Goto See
+
+	Death:
+		SKEL L 5
+		SKEL MNOP 6
+		SKEL Q -1
+		Stop
+	}
+}
+
+actor BDMummyCast : BDMummy
+{
+	XScale 1.0
+	YScale 1.0
+	states
+	{
+	See:
+		MUMA AABBCCDDEEFF 2
+		Loop
+
+	Melee:
+		MUMA GHI 6
+		Goto See
+
+	Death:
+		MUMA LMNOP 7
+		MUMA Q -1
+		Stop
+	}
+}
+
+actor ExperimentCast : Experiment
+{
+	XScale 1.0
+	YScale 1.0
+	states
+	{
+	See:
+		ZKEL AABBCCDDEEFF 2
+		Loop
+
+	Melee:
+		ZKEL GHI 6
+		Goto See
+
+	Death:
+		ZKEL LMNOP 7
+		ZKEL Q -1
+		Stop
+	}
+}
+
+actor MancubusCast : Mancubus
+{
+	XScale 1.0
+	YScale 1.0
+	states
+	{
+	See:
+		FATT AABBCCDDEEFF 2
+		Loop
+
+	Missile:
+		FATT G 10
+		FATT H 8 BRIGHT
+		FATT I 6
+		FATT G 7
+		FATT H 8 BRIGHT
+		FATT I 6
+		FATT G 7
+		FATT H 8 BRIGHT
+		FATT I 6
+		Goto Missile
+
+	Death:
+		FATK ABCDE 5
+		FATK F -1
+		Stop
+	}
+}
+
+actor VolcabusCast : Volcabus
+{
+	XScale 1.0
+	YScale 1.0
+	states
+	{
+	See:
+		FAT2 AABBCCDDEEFF 2
+		Loop
+
+	Missile:
+		FAT2 G 10
+		FAT2 H 8 BRIGHT
+		FAT2 I 6
+		FAT2 G 7
+		FAT2 H 8 BRIGHT
+		FAT2 I 6
+		FAT2 G 7
+		FAT2 H 8 BRIGHT
+		FAT2 I 6
+		Goto See
+
+	Melee:
+		FAT2 G 4
+		FATO AB 4
+		FATO C 2
+		Goto See
+
+	Death:
+		F4T2 FGHIJKLMN 5
+		F4T2 O -1
+		Stop
+	}
+}
+
+
+actor TehArchvileCast : TehArchvile
+{
+	XScale 1.0
+	YScale 1.0
+	states
+	{
+	See:
+		DIAB AABBCCDDEEFF 2
+		Loop
+
+	Missile:
+		DIAB GHI 5 Bright
+		DIAB JKLMNOP 8 Bright
+		Goto See
+
+	Death:
+		DIAB RSTUVW 5
+		DIAB X -1
+		Stop
+	}
+}
+
+//Bosses
+
+actor TheSpiderMastermindCast : TheSpiderMastermind
+{
+	XScale 1.0
+	YScale 1.0
+	states
+	{
+	See:
+		SPID AABBCCDDEEFF 2
+		Loop
+
+	Missile:
+		SPID G 10
+		SPID H 2 BRIGHT
+		SPID G 4
+		SPID H 2 BRIGHT
+		SPID G 4
+		SPID H 2 BRIGHT
+		SPID G 4	
+		Goto See
+
+	Death:
+		SPID J 20
+		SPID K 10
+		SPID LMNOPQR 5
+		SPID S -1
+		Stop
+	}
+}
+
+actor TheCyberdemonCast : TheCyberdemon
+{
+	XScale 1.0
+	YScale 1.0
+	states
+	{
+	See:
+		CYBR AABBCCDD 2
+		Loop
+
+	Missile:
+		CYBR E 6
+		CYBR F 3 Bright
+		CYBR E 6
+		CYBR F 3 Bright
+		CYBR E 6
+		CYBR F 3 Bright
+		Goto See
+
+	Melee:
+		CYBR Z 5
+		CYMA AB 7
+		Goto See
+
+	Death:
+		CYBR H 10
+		CYBR IJK 4
+		CYBR LMNO 5
+		CYBR P -1
+		Stop
+	}
+}
+
+actor MotherdemonCast : Motherdemon
+{
+	XScale 1.0
+	YScale 1.0
+	states
+	{
+	See:
+		MOTH AABBCCDD 3
+		Loop
+
+	Missile:
+		MOTH EF 4
+		MOTH G 18 Bright
+		MOTH EF 8
+		MOTH G 14
+		MOTH E 8
+		Goto See
+
+	Death:
+		MOTH K 10
+		MOTH L 3
+		MOTH MNOPQRS 4
+		MOTH T -1
+		Stop
+	}
+}
+
+actor JuggernautCast : Juggernaut //This is the strangest (in terms of sprites) enemy I've ever seen
+{
+	XScale 1.0
+	YScale 1.0
+	states
+	{
+	See:
+		BS1W AABBCCDD 3
+		Loop
+
+	Missile:
+		BS1W A 5
+		BS1W A 3 Bright
+		BS1W A 5
+		BS1W A 3 Bright
+		BS1W A 5
+		BS1W A 3 Bright
+		Goto See
+
+	Death:
+		BS1B B 15
+		BS1B B -1
+		Stop
+	}
+}

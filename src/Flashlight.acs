@@ -1,0 +1,168 @@
+
+// Flashlight - ACS Checkers
+// This a ACS version of the BD Flashlight
+// Code, work better in acs
+
+Script "RemoveFlashlight" DEATH
+{
+	if(CheckInventory("FlashlightOn") == 1||CheckInventory("NightVisionTank") == 1)
+	{
+		TakeInventory("NightVisionTank", 1);
+		TakeInventory("PowerLightAmp", 1);
+		TakeInventory("DemonSight", 1);
+		TakeInventory("PowerDemonSight", 1);
+		TakeInventory("SwitchFlashlight", 1);
+		TakeInventory("FlashlightOn", 1);
+		PlaySound(0, "FLASHOFF", CHAN_AUTO, 1.0, FALSE, ATTN_NORM);	
+		Delay(1);
+	}	
+}
+		
+Script 313 (VOID) NET
+{
+	if( IsPlayerAlive() )
+	{
+		if(CheckInventory("AttackHelicopterGun") == 1||CheckInventory("MechGun") == 1) terminate;
+		
+		if(CheckInventory("TankGun") == 1||CheckInventory("ArtilleryTankGun") == 1)
+		{
+			if(CheckInventory("NightVisionTank") == 1)
+			{
+				TakeInventory("NightVisionTank", 1);
+				TakeInventory("PowerLightAmp", 1);
+				PlaySound(0, "FLASHOFF", CHAN_AUTO, 1.0, FALSE, ATTN_NORM);	
+				Delay(1);
+			}
+			Else
+			{
+				PlaySound(0, "FLASHON", CHAN_AUTO, 1.0, FALSE, ATTN_NORM);
+				Delay(2);
+				PlaySound(0, "INFRARED", CHAN_AUTO, 1.0, FALSE, ATTN_NORM);
+				GiveInventory("NightVisionTank", 1);
+				GiveInventory("PowerLightAmp", 1);
+				Delay(1);
+			}
+		}
+		Else If (CheckInventory("IsDemonPlayer") == 1)
+		{
+			if(CheckInventory("DemonSight") == 1)
+			{
+				TakeInventory("DemonSight", 1);
+				TakeInventory("PowerDemonSight", 1);
+				TakeInventory("PowerTorch", 1);
+				//PlaySound(0, "FLASHOFF", CHAN_AUTO, 1.0, FALSE, ATTN_NORM);	
+				Delay(1);
+			}
+			Else
+			{
+				//PlaySound(0, "FLASHON", CHAN_AUTO, 1.0, FALSE, ATTN_NORM);
+				Delay(2);
+				//PlaySound(0, "INFRARED", CHAN_AUTO, 1.0, FALSE, ATTN_NORM);
+				GiveInventory("DemonSight", 1);
+				GiveInventory("PowerDemonSight", 1);
+				Delay(1);
+			}
+		}
+		Else
+		{
+			if(CheckInventory("FlashlightOn") == 1)
+			{
+				TakeInventory("SwitchFlashlight", 1);
+				TakeInventory("FlashlightOn", 1);
+				PlaySound(0, "FLASHOFF", CHAN_AUTO, 1.0, FALSE, ATTN_NORM);	
+				Delay(1);
+			}
+			Else
+			{
+				GiveInventory("SwitchFlashlight", 1);
+				//GiveInventory("GoSpecial", 1);
+				GiveInventory("FlashlightOn", 1);
+				if(!IsNetworkgame())
+				{
+					ACS_NamedExecuteAlways("BDFlashLightSwitch",0,0,0,0);
+				}
+				else
+				{
+					ACS_NamedExecuteAlways("BDFlashLightSwitch2",0,0,0,0);
+				}
+				PlaySound(0, "FLASHON", CHAN_AUTO, 1.0, FALSE, ATTN_NORM);
+				Delay(1);
+			}
+		}
+	}
+	else
+	TakeInventory("SwitchFlashlight", 1);	
+}
+
+/*Script "BDFlashLightSwitch" (Void)
+{	
+	While(CheckInventory("SwitchFlashlight") == 1)
+	{
+		if(CheckInventory("SwitchFlashlight") == 0) terminate;
+		
+		If(BDCVarInfo[PlayerNumber()].bd_flashlight == 1)
+		{
+			GiveInventory("BDFlashlightSpawner3", 1);
+			GiveInventory("BDFlashlightSpawner4", 1);
+			
+		}
+		Else
+		{
+			GiveInventory("BDFlashlightSpawner1", 1);
+			GiveInventory("BDFlashlightSpawner2", 1);
+		}
+		delay(1);
+	}
+}*/
+
+Script "BDFlashLightSwitch" (Void)
+{
+	int uTID = UniqueTID();
+	int x;
+	int y;
+	int z;
+	int ang;
+	While(CheckInventory("SwitchFlashlight") == 1)
+	{
+		if(CheckInventory("SwitchFlashlight") == 0) terminate;
+		
+		If(BDCVarInfo[PlayerNumber()].bd_flashlight == 1)
+		{
+			GiveInventory("BDFlashlightSpawner2", 1);
+			//delay(1);
+			
+		}
+		Else
+		{
+			GiveInventory("BDFlashlightSpawner1", 1);
+			//delay(1);
+		}
+		//x = GetActorX(0);
+		//y = GetActorY(0);
+		//z = GetActorZ(0);
+		//ang = GetActorAngle(0)>>8;
+		//Spawn("FlashlightSource", x - 20.0, y - 20.0, z + 30.0, uTID, ang);
+		delay(1);
+	}
+}
+
+Script "BDFlashLightSwitch2" (Void)
+{	
+	While(CheckInventory("SwitchFlashlight") == 1)
+	{
+		if(CheckInventory("SwitchFlashlight") == 0) terminate;
+		
+		If(BDCVarInfo[PlayerNumber()].bd_flashlight == 1)
+		{
+			GiveInventory("BDFlashlightSpawner4", 1);
+			//delay(1);
+			
+		}
+		Else
+		{
+			GiveInventory("BDFlashlightSpawner3", 1);
+			//delay(1);
+		}
+		delay(1);
+	}
+}

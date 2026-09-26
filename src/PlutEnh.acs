@@ -1,0 +1,44 @@
+// The Plutonia Experiment Enhancements
+Script "BD_ME_9027008878189102257" // PL_MAP01
+{
+	SpawnForced("EvidenceCheckerGreenTorch",1392.0,48.0,0.0,20,0.0);
+}
+
+Script "BD_ME_11811718028783337239" // PL_MAP02
+{
+	SpawnForced("EvidenceCheckerYellowSkull",-1264.0,-657.0,0.0,44,0.0);
+}
+
+Script "BD_ME_6498230072622379916" // PL_MAP03
+{
+	SpawnForced("EvidenceCheckerRedKey",1696.0,288.0,0.0,138,0.0);
+}
+
+Script "BD_ME_12077643928003434890" // PL_MAP04
+{
+	SpawnForced("EvidenceCheckerBlueKey",-1584.0,-627.0,0.0,87,0.0);
+}
+
+Script "BD_ME_1414749103809987327" // PL_MAP05
+{
+	SpawnForced("EvidenceCheckerBlueKey",4544.0,-4672.0,0.0,110,0.0);
+}
+
+Script "BD_ME_15080154222218711644" // PL_MAP06
+{
+	SpawnForced("EvidenceCheckerBlueSkull",-448.0,1056.0,0.0,132,0.0);
+}
+
+Script "BD_ME_1468549651471659822" // PL_MAP07
+{
+	SpawnForced("EvidenceCheckerYellowSkull",-16.0,16.0,0.0,12,0.0);
+}
+
+Script "BD_ME_16921689528788525406" // PL_MAP29
+{
+	SpawnForced("EvidenceCheckerBlueSkull",1408.0,-768.0,0.0,178,0.0);
+}
+
+Script "BD_ME_10433106019640165557" // PL_MAP30
+{
+}

@@ -1,0 +1,163 @@
+//ACS Source Backup
+
+#libdefine     MarineIs        	  0
+#libdefine     CheckItemIs     	  1
+
+#libdefine     MaxMarineTypes  	  7
+#libdefine     MaxMarinesPerType  10 // Adjust this value as needed
+
+#libdefine     ID_Rifle        	  0
+#libdefine     ID_Shotgun      	  1
+#libdefine     ID_Minigun      	  2
+#libdefine     ID_Rocket       	  3
+#libdefine     ID_Plasmagun    	  4
+#libdefine     ID_BFG          	  5
+#libdefine     ID_Freeze          6
+
+function str GetAllyProperty (int Which, int Type)
+{
+    str Result, Marine, CheckItem;
+
+    Switch(Type)
+    {
+        CASE ID_Rifle:      Marine = "Marine_Rifle";        CheckItem = "NumberOfAllies";            break;
+        CASE ID_Shotgun:    Marine = "Marine_Shotgun";      CheckItem = "NumberOfAlliesShotgun";     break;
+        CASE ID_Minigun:    Marine = "Marine_Minigun";      CheckItem = "NumberOfAlliesMinigun";     break;
+        CASE ID_Rocket:     Marine = "Marine_Rocket";       CheckItem = "NumberOfAlliesRocket";      break;
+        CASE ID_Plasmagun:  Marine = "Marine_Plasmagun";    CheckItem = "NumberOfAlliesPlasmagun";   break;
+        CASE ID_BFG:        Marine = "Marine_BFG";          CheckItem = "NumberOfAlliesBFG";         break;
+        CASE ID_Freeze:     Marine = "Freezebot";           CheckItem = "NumberOfAlliesFreeze";      break;
+    }
+    
+    Switch(Which)
+    {
+        CASE MarineIs:       Result = Marine;        break;
+        CASE CheckItemIs:    Result = CheckItem;     break;
+    }
+    return Result;
+}
+
+script "MarineSpawner" enter
+{
+    int counter, TypeCounter;
+
+    if (GetActorProperty(PLRTID[PlayerNumber()], APROP_Health) > 0 )
+    while(Typecounter < MaxMarineTypes)
+    {
+        while(counter < CheckActorInventory(PLRTID[PlayerNumber()], GetAllyProperty(CheckItemIs, TypeCounter)))
+        {
+			int spawnedMarineTID = UniqueTID();
+			
+			int offset = 32;//64; // Modify this value to adjust the offset distance
+			
+            SpawnForced(GetAllyProperty(MarineIs, TypeCounter), GetActorX(PLRTID[PlayerNumber()]) + offset, GetActorY(PLRTID[PlayerNumber()]) + offset, GetActorZ(PLRTID[PlayerNumber()]), spawnedMarineTID, GetActorAngle(PLRTID[PlayerNumber()]));
+            counter++;
+        }
+        counter = 0;
+        TypeCounter++;
+    }
+}
+
+//Ally Checkers...yeah, I know it's super stupid, but this will have to do until
+//I can come up with a more reasonable approach.
+
+script "AddRifleAlly" (void)
+{
+    PLRTID[PlayerNumber()] = ActivatorTID();
+    GiveActorInventory(PLRTID[PlayerNumber()], "NumberOfAllies", 1);
+}
+
+script "AddShotgunAlly" (void)
+{
+    PLRTID[PlayerNumber()] = ActivatorTID();
+    GiveActorInventory(PLRTID[PlayerNumber()], "NumberOfAlliesShotgun", 1);
+}
+
+script "AddMinigunAlly" (void)
+{
+    PLRTID[PlayerNumber()] = ActivatorTID();
+    GiveActorInventory(PLRTID[PlayerNumber()], "NumberOfAlliesMinigun", 1);
+}
+
+script "AddRocketAlly" (void)
+{
+    PLRTID[PlayerNumber()] = ActivatorTID();
+    GiveActorInventory(PLRTID[PlayerNumber()], "NumberOfAlliesRocket", 1);
+}
+
+script "AddPlasmagunAlly" (void)
+{
+    PLRTID[PlayerNumber()] = ActivatorTID();
+    GiveActorInventory(PLRTID[PlayerNumber()], "NumberOfAlliesPlasmagun", 1);
+}
+
+script "AddBFGAlly" (void)
+{
+    PLRTID[PlayerNumber()] = ActivatorTID();
+    GiveActorInventory(PLRTID[PlayerNumber()], "NumberOfAlliesBFG", 1);
+}
+
+script "AddFreezeAlly" (void)
+{
+    PLRTID[PlayerNumber()] = ActivatorTID();
+    GiveActorInventory(PLRTID[PlayerNumber()], "NumberOfAlliesFreeze", 1);
+}
+
+Script "RemoveRifleAlly" (void)
+{
+	PLRTID[PlayerNumber()] = ActivatorTID();
+    TakeActorInventory(PLRTID[PlayerNumber()], "NumberOfAllies", 1);
+}
+
+Script "RemoveShotgunAlly" (void)
+{
+	PLRTID[PlayerNumber()] = ActivatorTID();
+    TakeActorInventory(PLRTID[PlayerNumber()], "NumberOfAlliesShotgun", 1);
+}
+
+Script "RemoveMinigunAlly" (void)
+{
+	PLRTID[PlayerNumber()] = ActivatorTID();
+    TakeActorInventory(PLRTID[PlayerNumber()], "NumberOfAlliesMinigun", 1);
+}
+
+Script "RemoveRocketAlly" (void)
+{
+	PLRTID[PlayerNumber()] = ActivatorTID();
+    TakeActorInventory(PLRTID[PlayerNumber()], "NumberOfAlliesRocket", 1);
+}
+
+Script "RemovePlasmagunAlly" (void)
+{
+	PLRTID[PlayerNumber()] = ActivatorTID();
+    TakeActorInventory(PLRTID[PlayerNumber()], "NumberOfAlliesPlasmagun", 1);
+}
+
+Script "RemoveBGFAlly" (void)
+{
+	PLRTID[PlayerNumber()] = ActivatorTID();
+    TakeActorInventory(PLRTID[PlayerNumber()], "NumberOfAlliesBFG", 1);
+}
+
+script "RemoveFreezeAlly" (void)
+{
+    PLRTID[PlayerNumber()] = ActivatorTID();
+    TakeActorInventory(PLRTID[PlayerNumber()], "NumberOfAlliesFreeze", 1);
+}
+
+
+script "PathFinder" (void)
+{
+    int x = GetActorX(PLRTID[PlayerNumber()]);
+    int y = GetActorY(PLRTID[PlayerNumber()]);
+    int z = GetActorZ(PLRTID[PlayerNumber()]);
+
+    int offset = 32; // Modify this value to adjust the offset distance
+
+    // Add the offset to the X and Y positions
+    int newX = x - offset;
+    int newY = y - offset;
+
+    // Set the actor position with the new X and Y coordinates, keeping the Z coordinate unchanged
+    SetActorPosition(0, newX, newY, z, 0);
+}

@@ -1,0 +1,156 @@
+pitchshiftrange 1
+
+//MALE
+$playersound	player	male	*death		dspldeth
+$playersound	player	male	*xdeath		dspdiehi
+$playersound	player	male	*gibbed		dsslop
+$playersound	player	male	*grunt		dsoof
+$playersounddup	player	male	*land		*grunt
+$playersound	player	male	*jump		dsoof
+$playersound	player	male	*fist		dspunch
+$playersound	player	male	*usefail	dsnoway
+$playeralias	player	male	plpain		Pain1
+$playersound	player	male	BIGSCRE		bigscrea
+$playersound	player	male	SALUTE		DSSALUTE
+$playersound	player	male	*gasp		Tired
+$playersound	player	male	*grunt2		DSOOF2
+
+
+PAIN1 PAIN1
+GZTAUNT DSTAUNT
+DSSALUTE DSSALUTE
+DSFDTHG DSFDTHG
+TIRED TIRED
+DSFDTHE BIGSCRE
+$random FUCK { FUCK1 FUCK2 FUCK3 FUCK4 }
+FUCK1 FUCK1
+FUCK2 FUCK2
+FUCK3 FUCK3
+FUCK4 FUCK4
+$limit FUCK 1
+
+
+//FEMALE
+$playersound	player	female	*death		DSFDETH
+$playersound	player	female	*xdeath		DSFDIEHI
+$playersound	player	female	*gibbed		dsslop
+$playeralias	player	female	*grunt		DSFEMUF
+$playersound	player	female	*land		DSF2OOF
+$playeralias	player	female	*jump		DSFEMUF
+$playersound	player	female	*fist		dspunch
+$playeralias	player	female	*usefail	DSFEMUF
+$playersound	player	female	*taunt		dsftaunt
+$playeralias	player	female	plpain		DSFPAIN
+$playersound	player	female	BIGSCRE		DSFDIEHI
+$playersound	player	female	SALUTE		DSFTAUN2
+$playersound	player	female	*gasp		Tired
+$playeralias	player	female	*grunt2		DSFEMUF
+
+//FEMALE
+$playersound	fplayer	female	*death		DSFDETH
+$playersound	fplayer	female	*xdeath		DSFDIEHI
+$playersound	fplayer	female	*gibbed		dsslop
+$playeralias	fplayer	female	*grunt		DSFEMUF
+$playersound	fplayer	female	*land		DSF2OOF
+$playeralias	fplayer	female	*jump		DSFEMUF
+$playersound	fplayer	female	*fist		dspunch
+$playeralias	fplayer	female	*usefail	DSFEMUF
+$playersound	fplayer	female	*taunt		dsftaunt
+$playeralias	fplayer	female	plpain		DSFPAIN
+$playersound	fplayer	female	BIGSCRE		DSFDIEHI
+$playersound	fplayer	female	SALUTE		DSFTAUN2
+$playersound	fplayer	female	*gasp	Tired
+
+
+DSF2OOF DSF2OOF
+$random DSFPAIN { DSFPAIN1 DSFPAIN2 DSFPAIN3 DSFPAIN4 DSFPAIN5 DSFPAIN6 DSFPAIN7 }
+DSFPAIN1 DSFPAIN1
+DSFPAIN2 DSFPAIN2
+DSFPAIN3 DSFPAIN3
+DSFPAIN4 DSFPAIN4
+DSFPAIN5 DSFPAIN5
+DSFPAIN6 DSFPAIN6
+DSFPAIN7 DSFPAIN7
+
+$random DSFEMUF { dsfnowa1 dsfnowa2 dsfnowa3 }
+dsfnowa3 dsfnowa3
+dsfnowa2 dsfnowa2
+dsfnowa1 dsfnowa1
+
+$random MTAUN { MTAUN01 MTAUN02 MTAUN03 MTAUN04 MTAUN05 MTAUN06 }
+MTAUN01 MTAUN01
+MTAUN02 MTAUN02
+MTAUN03 MTAUN03
+MTAUN04 MTAUN04
+MTAUN05 MTAUN05
+MTAUN06 MTAUN06
+$limit MTAUN 1
+
+$random FTAUNT { FTAUNT1 FTAUNT2 FTAUNT3 FTAUNT4}
+FTAUNT1 FTAUNT1
+FTAUNT2 FTAUNT2
+FTAUNT3 FTAUNT3
+FTAUNT4 FTAUNT4
+
+
+//GENDER NEUTRAL
+$random TAUNT0 { TAUNT01 TAUNT02 TAUNT03 TAUNT04 TAUNT05 TAUNT06 TAUNT07 TAUNT08 TAUNT09 TAUNT10 TAUNT11 TAUNT12 TAUNT13 TAUNT14 TAUNT15 TAUNT16 TAUNT17 TAUNT18 }
+TAUNT01 TAUNT01
+TAUNT02 TAUNT02
+TAUNT03 TAUNT03
+TAUNT04 TAUNT04
+TAUNT05 TAUNT05
+TAUNT06 TAUNT06
+TAUNT07 TAUNT07
+TAUNT08 TAUNT08
+TAUNT09 TAUNT09
+TAUNT10 TAUNT10
+TAUNT11 TAUNT11
+TAUNT12 TAUNT12
+TAUNT13 TAUNT13
+TAUNT14 TAUNT14
+TAUNT15 TAUNT15
+TAUNT16 TAUNT16
+TAUNT17 TAUNT17
+TAUNT18 TAUNT18
+$limit TAUNT0 1
+
+
+$random ONELIN { ONELIN01 ONELIN02 ONELIN03 ONELIN04 ONELIN05 ONELIN06 ONELIN07 ONELIN08 ONELIN09 ONELIN10 ONELIN11 ONELIN12}
+ONELIN01 ONELIN01
+ONELIN02 ONELIN02
+ONELIN03 ONELIN03
+ONELIN04 ONELIN04
+ONELIN05 ONELIN05
+ONELIN06 ONELIN06
+ONELIN07 ONELIN07
+ONELIN08 ONELIN08
+ONELIN09 ONELIN09
+ONELIN10 ONELIN10
+ONELIN11 ONELIN11
+ONELIN12 ONELIN12
+$limit ONELIN 1
+
+
+$random PIKUPTALK { PIKUPTALK1 PIKUPTALK2 PIKUPTALK3 PIKUPTALK4 }
+PIKUPTALK1 PIKUPTALK1
+PIKUPTALK2 PIKUPTALK2
+PIKUPTALK3 PIKUPTALK3
+PIKUPTALK4 PIKUPTALK4
+
+LANDS1 LANDS1
+
+pitchshiftrange 1
+
+//Climb Ledge
+$random ledgeclimb {CLIMB_1 CLIMB_2 CLIMB_3}
+CLIMB_1 CLIMB_1
+CLIMB_2 CLIMB_2
+CLIMB_3 CLIMB_3
+
+$random PlayerRoll {jmpland1 jmpland2 jmpland3 jmpland4 jmpland5}
+jmpland1 jmpland1
+jmpland2 jmpland2
+jmpland3 jmpland3
+jmpland4 jmpland4
+jmpland5 jmpland5

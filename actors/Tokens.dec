@@ -1,0 +1,667 @@
+actor CorpseQueued : Inventory
+{
+    Inventory.MaxAmount 1
+    +INVENTORY.HUBPOWER
+}
+
+Actor bd_Token : Inventory
+{
+	Inventory.MaxAmount 1
+	+inventory.Undroppable
+	-inventory.Invbar
+	+NONETID
+	+INVISIBLE
+	+NOCLIP
+	+NOTARGET
+	+NOBLOCKMAP
+	+NOINTERACTION
+	Radius 0
+	Height 0
+	Alpha 0.0
+	Mass 0
+	RenderStyle "None"
+}
+
+ACTOR TokenCleaner : CustomInventory
+{
+	+Inventory.AlwaysPickup
+	+NONETID
+	Inventory.amount 0
+	Inventory.MaxAmount 0x7FFFFFFF//999
+	States
+	{
+	Spawn:
+		TNT1 A -1
+		stop
+
+	Pickup:
+		TNT1 A 0
+		AXEG A 0 A_Takeinventory("HasCutingWeapon",1)
+		TNT1 A 0 A_Takeinventory("HasPlasmaWeapon",1)
+		//weapon "skins"
+		TNT1 A 0 A_Takeinventory("FistsSelected",1)
+		TNT1 A 0 A_Takeinventory("SawSelected",1)
+		TNT1 A 0 A_Takeinventory("ShotgunSelected",1)
+		TNT1 A 0 A_Takeinventory("SSGSelected",1)
+		TNT1 A 0 A_Takeinventory("MinigunSelected",1)
+		TNT1 A 0 A_Takeinventory("PlasmaGunSelected",1)
+		TNT1 A 0 A_Takeinventory("RocketLauncherSelected",1)
+		TNT1 A 0 A_Takeinventory("GrenadeLauncherSelected",1)
+		TNT1 A 0 A_Takeinventory("BFGSelected",1)
+		TNT1 A 0 A_Takeinventory("BFG10kSelected",1)
+		TNT1 A 0 A_Takeinventory("RailGunSelected",1)
+		TNT1 A 0 A_Takeinventory("SubMachineGunSelected",1)
+		TNT1 A 0 A_Takeinventory("RevenantLauncherSelected",1)
+		TNT1 A 0 A_Takeinventory("LostSoulSelected",1)
+		TNT1 A 0 A_Takeinventory("FlameCannonSelected",1)
+		TNT1 A 0 A_Takeinventory("HasBarrel",1)
+		//weapon actions
+		TNT1 A 0 A_TakeInventory("RFGrenade")
+		TNT1 A 0 A_TakeInventory("IsRunning")
+		TNT1 A 0 A_TakeInventory("Kicking")
+		TNT1 A 0 A_TakeInventory("Taunting")
+		TNT1 A 0 A_TakeInventory("Salute1")
+		TNT1 A 0 A_TakeInventory("Salute2")
+		TNT1 A 0 A_TakeInventory("Reloading")
+		TNT1 A 0 A_TakeInventory("TossGrenade")
+		TNT1 A 0 A_TakeInventory("Unloading")
+		TNT1 A 0 A_TakeInventory("StartDualWield")
+		TNT1 A 0 A_TakeInventory("IsInspecting")
+		TNT1 A 0 A_TakeInventory("DoInspect")
+		TNT1 A 0 A_TakeInventory("HoldInspect")
+		//Make sure to give the respective "weaponSelected" token afterwards, as well as "GoSpecial"!
+		stop
+	}
+}
+
+ACTOR WeaponTokenCleaner : TokenCleaner//CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_TakeInventory("Kicking")
+		TNT1 A 0 A_TakeInventory("Taunting")
+		TNT1 A 0 A_TakeInventory("Salute1")
+		TNT1 A 0 A_TakeInventory("Salute2")
+		TNT1 A 0 A_TakeInventory("Reloading")
+		TNT1 A 0 A_TakeInventory("TossGrenade")
+		TNT1 A 0 A_TakeInventory("Unloading")
+		TNT1 A 0 A_TakeInventory("StartDualWield")
+		stop
+	}
+}
+
+ACTOR FatalityTokenCleaner : TokenCleaner//CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0 A_TakeInventory("PVPFatality")
+		TNT1 A 0 A_TakeInventory("IsCurbstompingZombieman")
+		TNT1 A 0 A_TakeInventory("IsCurbstompingSergeant")
+		TNT1 A 0 A_TakeInventory("SKZombieman")
+		TNT1 A 0 A_TakeInventory("SKShotgunGuy")
+		TNT1 A 0 A_TakeInventory("SKLabguy")
+		TNT1 A 0 A_TakeInventory("SKImp")
+		TNT1 A 0 A_TakeInventory("SKNazi")
+		TNT1 A 0 A_TakeInventory("SKChaingunguy")
+		TNT1 A 0 A_TakeInventory("ImpFatality")
+		TNT1 A 0 A_TakeInventory("ImpFatality2")
+		TNT1 A 0 A_TakeInventory("ImpFatality3")
+		TNT1 A 0 A_TakeInventory("ImpFatality4")
+		TNT1 A 0 A_TakeInventory("ZombieManFatality")
+		TNT1 A 0 A_TakeInventory("ZombieManFatality2")
+		TNT1 A 0 A_TakeInventory("ZombieManFatality3")
+		TNT1 A 0 A_TakeInventory("ZombieManFatality4")
+		TNT1 A 0 A_TakeInventory("ZombieManFatality5")
+		TNT1 A 0 A_TakeInventory("LabGuyToken1")
+		TNT1 A 0 A_TakeInventory("LabGuyToken2")
+		TNT1 A 0 A_TakeInventory("LabGuyToken3")
+		TNT1 A 0 A_TakeInventory("SergeantFatality")
+		TNT1 A 0 A_TakeInventory("SergeantFatality2")
+		TNT1 A 0 A_TakeInventory("SergeantFatality3")
+		TNT1 A 0 A_TakeInventory("SergeantFatality4")
+		TNT1 A 0 A_TakeInventory("ComandoFatality")
+		TNT1 A 0 A_TakeInventory("ComandoFatality2")
+		TNT1 A 0 A_TakeInventory("DemonFatality")
+		TNT1 A 0 A_TakeInventory("DemonFatality2")
+		TNT1 A 0 A_TakeInventory("DemonFatality3")
+		TNT1 A 0 A_TakeInventory("RevenantFatality")
+		TNT1 A 0 A_TakeInventory("RevenantFatality2")
+		TNT1 A 0 A_TakeInventory("FatsoFatality")
+		TNT1 A 0 A_TakeInventory("ArachnotronFatality")
+		TNT1 A 0 A_TakeInventory("ArachnotronFatality2")
+		TNT1 A 0 A_TakeInventory("ArchVileFatality")
+		TNT1 A 0 A_TakeInventory("ArchVileFatality2")
+		TNT1 A 0 A_TakeInventory("VolcabusFatality")
+		TNT1 A 0 A_TakeInventory("VolcabusFatality2")
+		TNT1 A 0 A_TakeInventory("Arachnotron2FatalityA")
+		TNT1 A 0 A_TakeInventory("Arachnotron2FatalityB")
+		TNT1 A 0 A_TakeInventory("PEFatality")
+		TNT1 A 0 A_TakeInventory("MastermindFatality")
+		TNT1 A 0 A_TakeInventory("CyberdemonFatality")
+		TNT1 A 0 A_TakeInventory("AncientAliensMancubusFatality",1)
+		TNT1 A 0 A_TakeInventory("CacoAssholeFatality",1)
+		TNT1 A 0 A_TakeInventory("CyberBaronFatality",1)
+		TNT1 A 0 A_TakeInventory("NMDemonFatality",1)
+		TNT1 A 0 A_TakeInventory("CacoDemonFatality")
+		TNT1 A 0 A_TakeInventory("CacoDemonFatality2")
+		TNT1 A 0 A_TakeInventory("BaronFatality")
+		TNT1 A 0 A_TakeInventory("HKFatality")
+		TNT1 A 0 A_TakeInventory("HKFatality2")
+		TNT1 A 0 A_TakeInventory("HKFatality3")
+		TNT1 A 0 A_TakeInventory("BelphegorFatality")
+		TNT1 A 0 A_TakeInventory("GoFatality")
+		TNT1 A 0 A_TakeInventory("SKZombieman")
+		TNT1 A 0 A_TakeInventory("SKShotgunGuy")
+		TNT1 A 0 A_TakeInventory("SKLabguy")
+		TNT1 A 0 A_TakeInventory("SKImp")
+		TNT1 A 0 A_TakeInventory("SKNazi")
+		TNT1 A 0 A_TakeInventory("SKChaingunguy")
+		TNT1 A 0 A_TakeInventory("IsCurbstompingZombieman")
+		TNT1 A 0 A_TakeInventory("IsCurbstompingSergeant")
+		TNT1 A 0 A_TakeInventory("ExecuteDownedImp")
+		TNT1 A 0 A_TakeInventory("ExecuteDownedZombieman")
+		TNT1 A 0 A_TakeInventory("ExecuteDownedShotgunguy")
+		TNT1 A 0 A_TakeInventory("ExecuteDownedLabGuy")
+		TNT1 A 0 A_TakeInventory("GoSpecial")
+		stop
+	}
+}
+
+
+ACTOR Token1 : bd_Token {}
+ACTOR Token2 : bd_Token {}
+ACTOR Token3 : bd_Token {}
+ACTOR Token4 : bd_Token {}
+
+///WCS
+
+actor AncientAliensMancubusFatality: bd_Token {}
+Actor CacoAssholeFatality: bd_Token {}
+Actor CyberBaronFatality : bd_Token {}
+Actor NMDemonFatality : bd_Token {}
+actor IsSlaughterMonster: bd_Token {}
+actor IsSwapped: bd_Token {}
+actor SlaughterMonsterCheck: bd_Token {}
+ACTOR MorphToken : bd_Token {}
+ACTOR IsDemonPlayer : bd_Token {}
+ACTOR DemonSight : bd_Token {}
+ACTOR NightVisionTank : bd_Token {}
+Actor GZVKTaunt : bd_Token {}
+Actor DemonGotHeadshotHitbox: bd_Token {}
+
+//==================================================================================================\\
+/////////////////decoration related
+Actor MarkForDeletion : bd_Token {}
+Actor BDECNukageChecker : bd_Token {}
+Actor GotBloody : bd_Token {}
+Actor FootPrintAlternate: bd_Token {}
+Actor SlaughterCounter : bd_Token { inventory.maxamount 9999 }
+Actor SlaughterCounter2 : SlaughterCounter {}
+Actor ItsASlaughter : bd_Token { inventory.maxamount 100 }
+Actor DMgame : bd_Token { +INVENTORY.UNDROPPABLE }
+Actor BarrelExpMeas2 : bd_Token { inventory.maxamount 950 }
+Actor DecorationDisabled : bd_Token {}
+Actor TargetIsAnExplosiveBarrel : bd_Token {}
+Actor NaziVerificate1 : bd_Token {}
+Actor NaziVerificate2 : bd_Token {}
+Actor TVRRainVerification : bd_Token { inventory.maxamount 30 }
+Actor Epic2AlienVerification : bd_Token {}
+Actor BDECLightCheckerRed : bd_Token {}
+Actor BDECLightCheckerOrange : bd_Token {}
+Actor BDECLightCheckerBlue : bd_Token {}
+Actor BDECLightCheckerGreen : bd_Token {}
+Actor BDECLightCheckerWhite : bd_Token {}
+
+
+//==================================================================================================\\
+/////////////////player related
+Actor IsInATank : bd_Token {}
+Actor Crashed : bd_Token {}
+Actor Accident : bd_Token {}
+Actor IsStandingStill : bd_Token {}
+Actor BootsSmearedWithRedBlood : bd_Token { inventory.maxamount 20 }
+Actor BootsSmearedWithBlueBlood : bd_Token { inventory.maxamount 20 }
+Actor BootsSmearedWithGreenBlood : bd_Token { inventory.maxamount 20 }
+Actor BootsSmearedWithPurpleBlood : bd_Token { inventory.maxamount 20 }
+Actor GoFatality : bd_Token {}
+Actor GoSpecial : bd_Token {}
+Actor GotMeatShield : bd_Token {}
+Actor MeatShieldCheck : bd_Token {}
+Actor Salute1 : bd_Token {}
+Actor Salute2 : bd_Token {}
+Actor Taunting : bd_Token {}
+Actor SelectionHack : bd_Token {}
+Actor IsJumping : bd_Token {}
+Actor IsDown : bd_Token {}
+Actor HasBarrel : bd_Token {}
+Actor RollLeft : bd_Token {}
+Actor RollRight : bd_Token {}
+Actor IsRolling : bd_Token {}
+Actor oneliner: bd_Token {}
+Actor advtaunting: bd_Token {}
+Actor PitchFrontToken : bd_Token { inventory.maxamount 20 }
+Actor PitchBackToken : bd_Token { inventory.maxamount 20 }
+Actor PitchFrontToken2 : bd_Token { inventory.maxamount 20 }
+Actor PitchBackToken2 : bd_Token { inventory.maxamount 20 }
+Actor CenteredHUD : bd_Token {}
+Actor IsCrouching : bd_Token {}
+Actor IsInvisible : bd_Token {}
+Actor CeaseMorph : bd_Token {}
+Actor HasCacoEye: bd_Token {}
+Actor HasImpFatality: bd_Token {}
+Actor HasHearthFatality: bd_Token {}
+Actor IsChainsawingEnemyPlayer: bd_Token {}
+Actor SwitchToFist : bd_Token {}
+Actor ExecuteDownedEnemy : bd_Token {}
+Actor ExecuteDownedImp : ExecuteDownedEnemy {}
+Actor ExecuteDownedZombieman : ExecuteDownedEnemy {}
+Actor ExecuteDownedShotgunguy : ExecuteDownedEnemy {}
+Actor ExecuteDownedLabGuy : ExecuteDownedEnemy {}
+Actor ExecuteStompWall : ExecuteDownedEnemy {}
+Actor ExecuteBashWall : ExecuteDownedEnemy {}
+Actor IsExecutingOnAir : ExecuteDownedEnemy {}
+Actor IsFloating : bd_Token {}
+Actor PlayerCountDifficulty : bd_Token { inventory.maxamount 32 }
+Actor PuristWarningToken : bd_Token { inventory.maxamount 3 }
+
+ACTOR UsedStamina : Ammo
+{
+   Inventory.Amount 0
+   Inventory.MaxAmount 100
+   Ammo.BackpackAmount 0
+   Ammo.BackpackMaxAmount 100
+}
+
+Actor PlayerIsDead : bd_Token {}
+
+Actor JustStartedGame : bd_Token {}
+Actor GenderMale : bd_Token { +INVENTORY.UNDROPPABLE }
+Actor GenderFemale : bd_Token { +INVENTORY.UNDROPPABLE }
+Actor IsTacticalClass : bd_Token { inventory.maxamount 2 +INVENTORY.UNDROPPABLE }
+Actor IsNOTTacticalClass : IsTacticalClass {}
+Actor IsPlayingAsPurist : IsTacticalClass {}
+Actor IsRunning : bd_Token {}
+Actor IsRunning2 : IsRunning {}
+Actor IsPlayer : bd_Token { +INVENTORY.UNDROPPABLE }
+Actor InfiniteSprint : bd_Token { +INVENTORY.UNDROPPABLE }
+
+//Sbar Types
+Actor sbartype1 : bd_Token { +INVENTORY.UNDROPPABLE }
+Actor sbartype2 : bd_Token { +INVENTORY.UNDROPPABLE }
+Actor sbartype3 : bd_Token { +INVENTORY.UNDROPPABLE }
+Actor sbartype4 : bd_Token { +INVENTORY.UNDROPPABLE }
+Actor sbartype5 : bd_Token { +INVENTORY.UNDROPPABLE }
+Actor sbartype6 : bd_Token { +INVENTORY.UNDROPPABLE }
+Actor sbartype7 : bd_Token { +INVENTORY.UNDROPPABLE }
+
+//allies
+Actor NumberOfAllies : bd_Token { inventory.maxamount 8 }
+Actor NumberOfAlliesMinigun : NumberOfAllies {}
+Actor NumberOfAlliesShotgun : NumberOfAllies {}
+Actor NumberOfAlliesPlasmaGun : NumberOfAllies {}
+Actor NumberOfAlliesRocket : NumberOfAllies {}
+Actor NumberOfAlliesBFG : NumberOfAllies { inventory.maxamount 5 }
+
+//footsteps
+Actor FootStepDisabled : bd_Token {}
+Actor IsOverLava : bd_Token {}
+Actor IsOverBDLava : bd_Token {}
+Actor IsOverWater : bd_Token {}
+Actor IsOverSlime : bd_Token {}
+Actor IsOverFlesh : bd_Token {}
+Actor IsOverSludge : bd_Token {}
+Actor IsOverBlood : bd_Token {}
+Actor IsOverSand : bd_Token {}
+Actor IsOverNukage : bd_Token {}
+Actor IsOverGrass : bd_Token {}
+Actor IsOverCarpet : bd_Token {}
+Actor IsOverBottomless : bd_Token {}
+
+// Floor Definitions
+Actor IsOverDirt : bd_Token {}
+Actor IsOverGravel : bd_Token {}
+Actor IsOverMetal : bd_Token {}
+Actor IsOverMetal2 : bd_Token {}
+Actor IsOverRock : bd_Token {}
+Actor IsOverSnow : bd_Token {}
+Actor IsOverWood : bd_Token {}
+Actor IsOverTile : bd_Token {}
+Actor IsOverTile2 : bd_Token {}
+Actor IsOverSlimy : bd_Token {}
+
+//==================================================================================================\\
+/////////////////weapon related
+Actor SwitchDuals : bd_Token {}
+Actor PistolFireAnimation1 : bd_Token {}
+Actor PistolBurstFire : bd_Token {}
+Actor RevolverChangeAmmo : bd_Token {}
+Actor Axe/Hit : bd_Token {}
+Actor NoAutoreload : bd_Token {}
+Actor BDWeaponACtion : bd_Token {}
+Actor NoDualWield : bd_Token {}
+Actor StartDualWield : bd_Token {}
+Actor TurboReload : bd_Token {}
+Actor STGrenadeTimer : bd_Token { inventory.maxamount 20 }
+Actor Zoomed : bd_Token {}
+Actor ZoomHold : bd_Token {}
+Actor AimMode_Toggle : bd_Token {}
+Actor AimMode_Hold : bd_Token {}
+Actor SniperAim : bd_Token {}
+Actor FireHold: bd_Token { inventory.maxamount 40 }
+Actor HeavyStrikeRight : bd_Token {}
+Actor HeavyStrikeLeft : bd_Token {}
+Actor HeavyStrikeUpWard : bd_Token {}
+Actor PSeq1 : bd_Token { inventory.maxamount 2 }
+Actor PSeq2 : PSeq1 {}
+Actor PSeq3 : PSeq1 {}
+Actor FlashKick : bd_Token {}
+Actor CanSlide : bd_Token {}
+Actor InAction : bd_Token {}
+Actor Punching : bd_Token {}
+Actor Berserker : bd_Token {}
+Actor IsFiring : bd_Token {}
+Actor IsFiringAltFireOnFullAuto : bd_Token {}
+Actor ADSMode : bd_Token {}
+Actor HasInfrared : bd_Token {}
+Actor GrenadeTime : bd_Token { inventory.maxamount 6 }
+Actor FiredGrenade : bd_Token {}
+Actor FiredGrenade1 : bd_Token {}//Token for a spent grenade in the chamber
+Actor FiredMGGrenade : bd_Token {}
+Actor HeavyAutomaticWeapon : bd_Token {}
+Actor ChainsawHitRed : bd_Token {}
+Actor ChainsawHitBlue : bd_Token {}
+Actor ChainsawHitGreen : bd_Token {}
+Actor ChainsawHitPurple : bd_Token {}
+Actor SwitchFlashlight : bd_Token {}
+Actor FlashlightOn : bd_Token {}
+Actor ModernStartWeaponToken : bd_Token { Inventory.MaxAmount 4 }
+actor PlasmaCharging : bd_Token {}
+Actor TurningLeft123 : bd_Token {}
+Actor HeliIsLeft : bd_Token {}
+Actor HeliIsRight : bd_Token {}
+Actor RifleSpread : bd_Token { inventory.maxamount 6 }
+Actor FiredSecondary : bd_Token {}
+Actor FiredPrimary : bd_Token {}
+Actor StopDualWield : bd_Token {}
+Actor IsFiringSecondary : bd_Token {}
+Actor Pumping : bd_Token {}
+Actor ImpactMovesSling : bd_Token {}
+Actor UseShotgunStrap : bd_Token {}
+Actor ShotgunWasEmpty : bd_Token {}
+Actor RevolverIsReloading : bd_Token {}
+Actor HasPlasmaWeapon: bd_Token {}
+Actor Spin: bd_Token {}
+Actor RandomHeadExploder: bd_Token {}
+Actor HasCutingWeapon: bd_Token {}
+Actor HasClassicSaw: bd_Token {}
+Actor SawFireSeq1: bd_Token {}
+Actor SawFireSeq2: bd_Token {}
+Actor Kicking : bd_Token {}
+Actor Reloading : bd_Token {}
+Actor Unloading : bd_Token {}
+Actor TossGrenade : bd_Token {}
+Actor DoInspect : bd_Token {}
+Actor HoldInspect : bd_Token {}
+Actor IsInspecting : bd_Token {}
+Actor RFGrenade : bd_Token {} //Token to fire the grenade.
+Actor RFGLoaded : bd_Token {} //Token to indicate if the UGBL is loaded.
+Actor BurstCounter : bd_Token { inventory.maxamount 3 }
+Actor FireFrameCount : bd_Token {}
+Actor NeedToHammer : bd_Token {}
+Actor IsAlreadyTaunting : bd_Token {}
+Actor IsExecutingEnemy : bd_Token {}
+
+
+//Ledge Grab Tokens
+Actor RevenantLauncherCheck : bd_Token {}
+Actor FistsCheck : bd_Token {}		
+Actor Grabbing_A_Ledge : bd_Token {}	
+Actor Climbed_Ledge : bd_Token {}
+actor ClimbingCheck : bd_Token {}
+actor IsClimbing : bd_Token {}
+actor IsVaulting : bd_Token {}
+actor ClimbCatch : bd_Token {}
+actor IsMantling : bd_Token {}
+
+//No-reload weapon system tokens
+actor NoReloading : bd_Token {}
+actor SSGReloading : bd_Token {}
+actor GLReloading : bd_Token {}
+
+//remembering dual
+Actor HasDualFlameCannon : bd_Token {}
+Actor HasDualMP40 : bd_Token {}
+Actor HasDualPistol : bd_Token {}
+Actor HasDualPlasma : bd_Token {}
+Actor HasDualRifle : bd_Token {}
+Actor HasDualSMG : bd_Token {}
+
+//has unloaded
+Actor HasUnloaded : bd_Token {}
+ACTOR HasUnloadedPistol : HasUnloaded {}
+ACTOR HasUnloadedDualPistols : HasUnloaded {}
+ACTOR HasUnloadedSMG : HasUnloaded {}
+ACTOR HasUnloadedDualSMG : HasUnloaded {}
+Actor HasUnloadedMP40 : HasUnloaded {}
+Actor HasUnloadedDualMP40 : HasUnloaded {}
+Actor HasUnloadedRevolver : HasUnloaded {}
+Actor HasUnloadedShotgun : HasUnloaded {}
+Actor HasUnloadedSSG : HasUnloaded {}
+ACTOR HasUnloadedASG : HasUnloaded {}
+Actor HasUnloadedRifle : HasUnloaded {}
+Actor HasUnloadedDualRifles : HasUnloaded {}
+Actor HasUnloadedRL : HasUnloaded {}
+ACTOR HasUnloadedGL : HasUnloaded {}
+Actor HasUnloadedRailgun : HasUnloaded {}
+ACTOR HasUnloadedPlasma : HasUnloaded {}
+ACTOR HasUnloadedDualPlasmas: HasUnloaded {}
+
+//never selected
+ACTOR NeverSelectedPistol : bd_Token {}
+ACTOR NeverSelectedSMG : bd_Token {}
+Actor NeverSelectedShotgun : bd_Token {}
+Actor NeverSelectedRevolver : bd_Token {}
+ACTOR NeverSelectedMP40 : bd_Token {}
+ACTOR NeverSelectedASG : bd_Token {}
+ACTOR NeverSelectedMinigun : bd_Token {}
+ACTOR NeverSelectedRifle : bd_Token {}
+ACTOR NeverSelectedRL : bd_Token {}
+ACTOR NeverSelectedGL : bd_Token {}
+ACTOR NeverSelectedPlasma : bd_Token {}
+ACTOR NeverSelectedRailgun : bd_Token {}
+
+//reload token
+Actor MP40ReloadToken : bd_Token {}
+ACTOR SSGReloadToken : bd_Token {}
+Actor ASGReloadToken : bd_Token {}
+Actor RifleReloadToken : bd_Token {}
+ACTOR GLReloadToken : bd_Token {}
+
+//loaded (For Purist)
+Actor SSGLoaded : bd_Token {} //Token to indicate if the barrels are loaded.
+ACTOR GLLoaded : bd_Token {}
+
+//meatshields
+Actor GrabbedAZombieman : bd_Token {}
+Actor GrabbedAShotgunguy : bd_Token {}
+Actor GrabbedAImp : bd_Token {}
+Actor GrabbedAChaingunguy : bd_Token {}
+Actor GrabbedAZombieCivilian : bd_Token {}
+Actor GrabbedAEvilMarine: bd_Token {}
+Actor GrabbedANazi : bd_Token {}
+
+Actor HasImpShield : bd_Token {}
+Actor HasZManShield : bd_Token {}
+Actor HasSGuyShield : bd_Token {}
+Actor HasNaziShield : bd_Token {}
+Actor HasZombieCivilianShield : bd_Token {}
+Actor HasEvilMarineShield : bd_Token {}
+Actor HasCGuyShield : bd_Token {}
+
+//Fatality
+Actor IsCurbstompingZombieman : bd_Token {}
+Actor IsCurbstompingSergeant : bd_Token {}
+Actor SKImp : bd_Token {}
+Actor SKNazi : bd_Token {}
+Actor SKUbersoldat : bd_Token {}
+Actor SKZombieman : bd_Token {}
+Actor SKShotgunguy : bd_Token {}
+Actor SKChaingunguy: bd_Token {}
+ACTOR SKLabguy : bd_Token {}
+Actor PVPFatality : bd_Token {}
+Actor MastermindFatality : bd_Token {}
+Actor CyberdemonFatality : bd_Token {}
+Actor ZombieManFatality : bd_Token {}
+Actor ZombieManFatality3 : ZombieManFatality {}
+Actor ZombieManFatality4 : ZombieManFatality {}
+Actor ZombieManFatality5 : ZombieManFatality {}
+Actor ZombieManFatality2 : ZombieManFatality {}
+Actor ImpFatality : bd_Token {}
+Actor ImpFatality2 : ImpFatality {}
+Actor ImpFatality3 : ImpFatality {}
+Actor ImpFatality4 : ImpFatality {}
+Actor SergeantFatality : bd_Token {}
+Actor SergeantFatality2 : SergeantFatality {}
+Actor SergeantFatality3 : SergeantFatality {}
+Actor SergeantFatality4 : SergeantFatality {}
+Actor SergeantFatality5 : SergeantFatality {}
+Actor ComandoFatality : bd_Token {}
+Actor ComandoFatality2 : ComandoFatality {}
+Actor LostSoulFatality : bd_Token {}
+Actor DemonFatality : bd_Token {}
+Actor DemonFatality2 : DemonFatality {}
+Actor DemonFatality3 : DemonFatality {}
+Actor CacoDemonFatality : bd_Token {}
+Actor CacoDemonFatality2 : CacoDemonFatality {}
+Actor RevenantFatality : bd_Token {}
+Actor RevenantFatality2 : RevenantFatality {}
+Actor PEFatality : bd_Token {}
+Actor FatsoFatality : bd_Token {}
+ACTOR Arachnotron2FatalityA : bd_Token {}
+ACTOR Arachnotron2FatalityB : bd_Token {}
+ACTOR ArachnotronXFatality : bd_Token {}
+ACTOR ArachnotronXFatality2 : ArachnotronXFatality {}
+ACTOR VolcabusFatality : bd_Token {}
+ACTOR VolcabusFatality2 : VolcabusFatality {}
+Actor BaronFatality : bd_Token {}
+Actor BelphegorFatality : bd_Token {}
+Actor ArchVileFatality : bd_Token {}
+Actor ArchVileFatality2 : ArchVileFatality {}
+Actor HKFatality : bd_Token {}
+Actor HKFatality2 : HKFatality {}
+Actor HKFatality3 : HKFatality {}
+Actor ArachnotronFatality : bd_Token {}
+Actor ArachnotronFatality2 : ArachnotronFatality {}
+Actor LabGuyToken1 : bd_Token {}
+Actor LabGuyToken2 : bd_Token {}
+Actor LabGuyToken3 : bd_Token {}
+
+
+//Selected
+Actor ChainsawSelected: bd_Token {}
+Actor RifleSelected : bd_Token {}
+Actor FistsSelected: bd_Token {}
+Actor ShotgunSelected: bd_Token {}
+Actor MinigunSelected: bd_Token {}
+Actor SSGSelected: bd_Token {}
+Actor RocketLauncherSelected: bd_Token {}
+Actor GrenadeLauncherSelected: bd_Token {}
+Actor PlasmaGunSelected: bd_Token {}
+Actor RailGunSelected: bd_Token {}
+Actor BFGSelected: bd_Token {}
+Actor BFG10KSelected: bd_Token {}
+Actor SubMachineGunSelected: bd_Token {}
+Actor FlameCannonSelected: bd_Token {}
+Actor RevenantLauncherSelected: bd_Token {}
+Actor LostSoulSelected: bd_Token {}
+Actor SawSelected: bd_Token {}
+
+//i give up lol
+
+Actor BarrelLifeToken : bd_Token { inventory.maxamount 100 }
+Actor NewCommands : bd_Token {}
+Actor HitHead : bd_Token { inventory.maxamount 10 }
+Actor HitLeg : bd_Token { inventory.maxamount 10 }
+Actor IsPickable : bd_Token {}
+Actor NoNewEnemies : bd_Token {}
+Actor MoveBack : bd_Token {}
+Actor EnemyIsArchvile : bd_Token {}
+Actor IsARevenant : bd_Token {}
+Actor BotAgression : bd_Token { inventory.maxamount 10 }
+Actor NoPenetration : bd_Token {}
+Actor Enraged : bd_Token {}
+Actor Curbstomp_Marine : bd_Token {}
+Actor Fatality_Marine : bd_Token {}
+Actor SSGAlt : bd_Token {}
+Actor EnemyMemory : bd_Token { inventory.maxamount 60 }
+Actor CantFire : bd_Token {}
+Actor LookingForPlayer : bd_Token { inventory.maxamount 30 }
+Actor BrutalCounter : bd_Token { inventory.maxamount 500 }
+Actor BrutalCounter2 : BrutalCounter {}
+Actor DamagePoint1 : bd_Token { inventory.maxamount 100 }
+Actor DamagePoint2 : DamagePoint1 {}
+Actor FallingHeight : bd_Token { inventory.maxamount 100 }
+Actor DeathTimer1 : bd_Token { inventory.maxamount 120 }
+Actor Timer555 : bd_Token { inventory.maxamount 555 }
+Actor TargetIsACyberdemon : bd_Token {}
+Actor TargetIsAMastermind : bd_Token {}
+Actor TargetIsABaronOfHell : bd_Token {}
+Actor TargetIsAMancubus : bd_Token {}
+Actor NoFatality : bd_Token {}
+Actor KickHasHit : bd_Token {}
+Actor ShotgunguyHead: bd_Token {}
+Actor ArachnotronChasisHits : bd_Token { inventory.maxamount 10 }
+Actor ArachnotronChasisLastHit : ArachnotronChasisHits {}
+Actor RevenantRocketFire1823 : bd_Token {}
+Actor IsFiringThisShitOut : bd_Token {}
+Actor ZombiemanAmmo : bd_Token { inventory.maxamount 20 }
+Actor TypeZombieman : bd_Token {}
+Actor EverSeenThePlayer : bd_Token {}
+Actor IsCrawling : bd_Token {}
+Actor SergeantAmmo : bd_Token { inventory.maxamount 6 }
+Actor TypeSergeant : bd_Token {}
+Actor EatMe : bd_Token {}
+Actor DemonBleedingOut : bd_Token { inventory.maxamount 50 }
+Actor StopKickingMyBallsMotherFucker : bd_Token {}
+Actor MaxLostSoulRange : bd_Token { inventory.maxamount 30 }
+Actor TargetIsAMarine : bd_Token {}
+Actor BotIsChasingYou : bd_Token {}
+Actor CheckMarines : bd_Token {}
+Actor JuggernautMachinegunAmmo : bd_Token { inventory.maxamount 30 }
+Actor JuggernautRocketAmmo : bd_Token { inventory.maxamount 6 }
+Actor RealismMode : bd_Token {}
+Actor CanGrab : bd_Token {}
+Actor BloodSplasherz : bd_Token {}
+Actor AnimuGore : bd_Token {}//bloodammount_666 easter egg
+Actor PoorGuyBurningLife : bd_Token { inventory.maxamount 20 }
+Actor lowgraphicsmode : bd_Token {}
+Actor Timer : bd_Token { inventory.maxamount 4 }
+/////////////////////////////////////
+Actor IsNOTSunlust : bd_Token { } //This token allows barrels from any map but God Machine to explode as intended when they get crushed.
+Actor Wormwood_Loaded : bd_Token { } //Used for Wormwood compatibility.
+Actor D64D2_Loaded : Wormwood_Loaded { } //Used for D64D2 compatibility.
+Actor Irkalla_Loaded : Wormwood_Loaded { } //Used for Irkalla compatibility
+Actor Bloodstain_Loaded : Wormwood_Loaded { } //Used for Bloodstain (Afrit) compatibility
+Actor HasExplosiveBarrel : bd_Token {}
+Actor ComingTOGetTheBarrel : bd_Token {}
+Actor IsAnEvilMarine : bd_Token { inventory.maxamount 5 }
+Actor AltEasyMarineVerification : bd_Token {}
+Actor MarinesBFGDispenser : bd_Token { inventory.maxamount 5 }
+ACTOR IsOnCeiling : bd_Token {}
+Actor BarrelExpMeasure : bd_Token { inventory.maxamount 950 }
+Actor evmarinenoway : bd_Token {}
+Actor evmarinecanjump : bd_Token {}
+Actor haszombiemanchunk : bd_Token {}
+Actor hassergeantchunk : bd_Token {}
+Actor HateImminent : bd_Token { inventory.maxamount 0x7FFFFFFF }
+Actor HateAttackHit : bd_Token {}
+Actor HasSpotedThePlayerAlready : bd_Token {}
+///////////TOMTEFAR EVITERNITY TOKENS///////////
+ACTOR DummyToken : bd_Token { Inventory.MaxAmount 999 }//Used for item pickups so that they work properly in multiplayer. Also used for misc. stuff
+ACTOR Levelcounter : bd_Token { Inventory.MaxAmount 32 }//Counts how many maps have been played
+ACTOR IsRandomlevel : bd_Token { }//Used for the random level script
+ACTOR PlayingRandomlevels : bd_Token { }//Playing random levels or not?
+ACTOR PlayingEviternity : bd_Token { }
+ACTOR PlayingEviternityLastEpisode : PlayingEviternity { }

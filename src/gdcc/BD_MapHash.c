@@ -1,0 +1,380 @@
+#include "ACS_Common.h"
+#include <limits.h>
+#include <stddef.h>
+
+#define HASH_SPLIT 30000
+#define SCRIPT_PREFIX "BD_ME_"
+
+#pragma ACS library "zancmpat"
+
+__addrdef __mod_arr bd_sta;
+
+bd_sta unsigned long BD_MapHashes[] =
+{
+	//Ultimate Doom
+	//Knee Deep In The Dead
+	5407079839281881887, 12359077126775929861, 13906716784571034085, 5117158657769575556, 
+	11665413215408185009, 10925556745693208772, 17670064783889043139, 14989721708464976739, 
+	16845119729966095419, 
+	//The Shores Of Hell
+	13351272842179996509, 6047958591257007801, 6179012316061212555, 6116796957184176745, 
+	11809547279582671836, 898980977487536429, 11337594929070774319, 
+	//Inferno
+	7444503858718068357, 16087653999501887014, 12851418907612824165, 12477177897153157210, 
+	9897141726307303182, 7432716815676882452, 16257149699290107767, 393495556614484485, 
+	2095202976923186833, 
+	//Sigil II
+	991333738689918248, //e6m8
+	//Doom 2
+	12076524865667171768, 16109288638794986811, 243555934344844936, 4485031148577398661, 
+	17407343880515012508, 10420507465434490223, 7744124719140702628, 10137158784313037507, 
+	10033287064886522499, 6584246398119229328, 1849635047750481396, 6599501109630231532, 
+	7272810713818352388, 7549405111711539112, 14709093605735364398, 3446289573271231546, 
+	464686722908097674, 12146858581493829149, 14780437190333593014, 7663242337208156034, 
+	9299585572396310514, 
+	//TNT Evilution
+	824264851195625166, 10379212803664609562, 13169678167957183036, 16418321697673384570, 
+	2360910926882846436, 11889209370825789145, 12482801737747871524, 7459065239830764242, 
+	6993376935485144322, 16938132064326534654, 16622017019567656740, 17129189575490724923, 
+	6024934289145513382, 13467928079525188677, 11308768990796739901, 10337065451048042309, 
+	2977711691582926469, 6794057204823736328, 593927875505963054, 7204110044062270003, 
+	2256335560226370436, 16357783425591343217, 7037352168068762959, 13306772942043430564, 
+	2356830716293986877, 14986877270000713215, 17631772095295659235, 5600249023717499229, 
+	6730844668681398989, 
+	//Plutonia Experiment
+	9027008878189102257, 11811718028783337239, 6498230072622379916, 12077643928003434890, 
+	1414749103809987327, 15080154222218711644, 1468549651471659822, 16921689528788525406, 
+	10433106019640165557, 
+	//Wadsmoosh
+	10568180580844102431,/*e1m1*/ 14384154521402496332,/*map02*/ 1671024566473545718,/*map11*/ 
+	//Eviternity
+	10632584414121315147, 16687030840402216640, 5811781407445932529, 16736354090225434106, 
+	3860710824901000349, 11258406434261716880, 16368823923043087197, 112112047450177432, 
+	9940356018446094831, 2508552849618885540, 9426870272125379381, 17796527272907971316, 
+	284836703899266438, 176183746661336960, 9195350410859572798, 18302513185874783296, 
+	//Doom II Reloaded
+	15161171513505177399, //map20
+	//EDayMap06 Patch
+	4691185847364288821, //eday06
+	//Thunderpeak Patch
+	15531474976941376192,/*map01*/ 13313187781840620046,/*map02*/
+	//D64D2
+	7956813805122853457, //map30
+	//Irkalla
+	12207479954307127869, //map11
+	//Maps Of Chaos
+	//KDITD
+	10883063815360162148, 17140769588009967847, 11529819988067590414, 11617879793193102363, 
+	12851703785515945582, 6312817072746722268, 9178553637116719343, 8879170156445740970, 
+	7341481365379011069, 
+	//TSOH
+	4609569569092660390, 15166923362296220463, 11692988443352879115, 811188292907281821, 
+	15616628813614376151, 2223949865928267486, 8478758576695210475, 
+	//INF
+	11164432149228112979, 4605408866403352523, 291966263797821098, 1895121740261515854, 
+	8418456223653180876, 15447895675378904664, 8677341255349805296, 11262131303797391374, 
+	7230728722094693658, 
+	//D2
+	11449237850233143726, 14505185740923803912, 1730520917399292838, 2049083257477632201, 
+	13590790305488362111, 14547235202785624754, 7484156971547386582, 2685820184094407774, 
+	13363366621921571840, 18060775842943755057, 9540942993736307643, 13035382443004685136, 
+	18132889642903968269, 11230925545224688321, 1286068017929066769, 226530376499720767, 
+	7764363991418234516, 11173324009714890792, 9046044683571338651, 13930470304642553199, 
+	1453558299207260071, 
+	//Maps Of Chaos (Hardcore)
+	//KDITD
+	5635501719534358627, 4477208654887352362, 10430467416810102556, 16957582906129859658, 
+	762383397383733372, 16194443970482434219, 17722677181091569091, 10144961072969890040, 
+	17294382595141195622, 
+	//TSOH
+	18268818458603633637, 17954266477798988581, 16552089765516086139, 7639369130168626785, 
+	7368409193310232616, 14834318789168386338, //8478758576695210475, 
+	//INF
+	14425473700701533324, 6020822623595556306, 13227484194116083863, 13209114166658664302, 
+	1317023419962606905, 16829699914868427499, 11300875120517090947, //11262131303797391374, 
+	18102586078389384132, 
+	//D2
+	15484819584039854347, 13242015017248513146, 8906564403656433946, 5516161647707147448, 
+	5541495810274659943, 7118145190243018610, 1926178638922985147, 16463792410123382679, 
+	8813744350901308833, 12087977044361224543, 14363383727199412536, 14242643144075046793, 
+	8262554280285037468, 8808840185810126665, 7209055142356664540, 14152779369175871942, 
+	3325264886749623696, 9886539875734111524, 11621764344676854227, 11830124753248342117, 
+	9909353104906706706, 
+	//Maps Of Chaos (Overkill)
+	//KDITD
+	16380591486090317852, 10828772085124485577, 7295352788766063913, 10282494860086561811, 
+	18302994988822342692, 234975784317884205, 17781577506860768452, 8467711290005741566, 
+	16739195021121852346, 
+	//TSOH
+	17728081382014226348, 13083819543278076955, 3617404074935391562, 5326000921794478818, 
+	14091933905251046686, 13519301719216743964, 99057967012597325, 
+	//INF
+	13422485218045278897, 5400765409053901296, 14201770054554434621, 1547912290171868526, 
+	7957048327837108790, 6277245487534979016, 339454907659687181, 17316283490058276472, 
+	13161659176615949627, 
+	//D2
+	17564898476996563451, 3669777055754144714, 1484970964132046835, 7074182363852795945, 
+	7732903349631050874, 6396798798511964160, 10504653938342761167, 16233383763323310422, 
+	2074201269344733708, 1607115934463205096, 12978868777013419732, 1388311954359084106, 
+	5941911185947821353, 3443964864620351975, 913281065097385352, 8516267549478494303, 
+	4530183226923746262, 18004046959848708726, 133763151280691595, 11403792992321589919, 
+	11650976364372116535, 
+	//Ultimate Doom (KEX Re-release)
+	6848203867374204612, /*E1M4*/ 5395882286812614488, /*E2M4*/
+	//Doom 2 (KEX Re-release)
+	12000086467791822667, /*MAP06*/ 1251818853154134241, /*MAP20*/
+	//TNT Evilution (KEX Re-release)
+	17854057569813387370, /*MAP06*/ 2207769809503957251, /*MAP10*/
+};
+
+struct BD_Map
+{
+	int file;
+	int start, len;
+};
+
+enum {LUMP_OPEN_DEFSTART = -2};
+
+[[call("StkCall"), extern("ACS"), optional_args(1)]] int ZC_LumpOpen (str name, int start, int flags);
+[[call("StkCall"), extern("ACS")]] void ZC_LumpClose (int lump);
+[[call("StkCall"), extern("ACS")]] int ZC_LumpGetInfo (int lump, int info);
+[[call("StkCall"), extern("ACS")]] str ZC_LumpReadString (int lump, int pos, int len);
+[[call("StkCall"), extern("ACS")]] int ZC_LumpRead (int lump, int pos, int type);
+
+[[call("StkCall")]]
+str ReverseStr (str in)
+{
+	BeginStrParam();
+	for(int i = StrLen(in) - 1; i >= 0; i--)
+		PrintChar(in[i]);
+
+	return EndStrParam();
+}
+
+[[call("StkCall")]]
+str ulToStr(unsigned long val)
+{
+	if(!val)
+		return "0";
+
+	int i = 30;
+
+	BeginStrParam();
+	for(; val; val /= 10)
+		PrintChar((val % 10) + '0');
+
+	return ReverseStr(EndStrParam());
+}
+
+[[call("StkCall")]]
+int clamp (int a, int min, int max)
+{
+	if(a < min)
+		return min;
+	if(a > max)
+		return max;
+	return a;
+}
+
+[[call("ScriptS")]]
+static unsigned long sbdmhash (int file, int i, int length, int ofs)
+{
+	unsigned long hash = 0;
+
+	// trim off a bit of the length if not divisible by 4
+	length -= (length % 4);
+
+	for(; i < length; i += 4)
+		hash = ZC_LumpRead(file, i + ofs, LUMP_READ_INT) + (hash << 6) + (hash << 16) - hash;
+
+	return hash;
+}
+
+static bd_sta str lumps[] =
+{
+	"SECTORS",
+	"THINGS",
+	"VERTEXES",
+	"LINEDEFS",
+	"SIDEDEFS"
+};
+
+[[call("StkCall")]]
+bool ReadWadFile (int file, struct BD_Map bd_sta *map)
+{
+	str lumpName, ident = ZC_LumpReadString(file, 1, 3);
+	int dirOfs, numLumps, binaryLumpsFound;
+	if(StrICmp(ident, "WAD") != 0)
+	{
+		Log("ERROR: map file not a wad!");
+		return false;
+	}
+
+	numLumps = ZC_LumpRead(file, 4, LUMP_READ_INT);
+	dirOfs = ZC_LumpRead(file, 8, LUMP_READ_INT);
+
+	for(int i = dirOfs; ((i - dirOfs)/16) < numLumps; i += 16)
+	{
+		lumpName = ZC_LumpReadString(file, i + 8, 8);
+
+		for(int j = 0; j < sizeof(lumps); j++)
+		{
+			if(StrICmp(lumpName, "TEXTMAP") == 0)
+			{
+				map[0].file = file;
+				map[0].start = ZC_LumpRead(file, i, LUMP_READ_INT);
+				map[0].len = ZC_LumpRead(file, i + 4, LUMP_READ_INT);
+				return true;
+			}
+
+			if(StrICmp(lumpName, lumps[j]) == 0)
+			{
+				binaryLumpsFound++;
+				map[j].file = file;
+				map[j].start = ZC_LumpRead(file, i, LUMP_READ_INT);
+				map[j].len = ZC_LumpRead(file, i + 4, LUMP_READ_INT);
+				break;
+			}
+		}
+	}
+
+	if(binaryLumpsFound != sizeof(lumps))
+	{
+		Log("VERY BAD ERROR: found incorrect number of map lumps! (", binaryLumpsFound, (char)')');
+	}
+
+	return false;
+}
+
+[[call("ScriptS")]]
+static bool InitMapStruct (struct BD_Map bd_sta *map)
+{
+	str mapName = GetPrintName(PRINTNAME_LEVEL);
+	int header = ZC_LumpOpen(mapName, -2);
+	int wadFile = ZC_LumpOpen(StrParam("maps/", mapName, ".wad"), -1, LUMP_OPEN_FULLPATH);
+
+	ZC_LumpClose(header);
+
+	if(header > wadFile)
+	{
+		ZC_LumpClose(wadFile);
+
+		map->file = ZC_LumpOpen("TEXTMAP", header);
+
+		if( (map->file <= (header + 2)) && (map->file != -1) )
+		{
+			map->start = 0;
+			map->len = ZC_LumpGetInfo(map->file, LUMP_INFO_SIZE);
+			return true;
+		}
+
+		ZC_LumpClose(map->file);
+
+		for(int i = 0; i < sizeof(lumps); i++)
+		{
+			map[i].file = ZC_LumpOpen(lumps[i], header);
+			if( (map[i].file == -1) || (map[i].file > (header + 10)) )
+			{
+				Log("ERROR: File ", lumps[i], " not found for map ", mapName, "!");
+				return false;
+			}
+
+			map[i].start = 0;
+			map[i].len = ZC_LumpGetInfo(map[i].file, LUMP_INFO_SIZE);
+		}
+
+		return false;
+	}
+	else
+	{
+		return ReadWadFile(wadFile, map);
+	}
+}
+
+[[call("StkCall")]]
+static void CloseMapStruct (struct BD_Map bd_sta *map, bool isUDMF)
+{
+	if(isUDMF)
+	{
+		ZC_LumpClose(map->file);
+		return;
+	}
+
+	for(int i = 0; i < sizeof(lumps); i++)
+	{
+		ZC_LumpClose(map[i].file);
+	}
+}
+
+[[call("StkCall")]]
+unsigned long CalculateHash ()
+{
+	static bd_sta unsigned long cached;
+	static bd_sta struct BD_Map map[5];
+	bool isUDMF = false;
+	unsigned long hash = 0;
+	int lumpCount;
+	str mapName = GetPrintName(PRINTNAME_LEVEL);
+
+	if(cached)
+		return cached;
+
+	isUDMF = InitMapStruct(map);
+
+	lumpCount = (isUDMF) ? 1 : sizeof(lumps);
+
+	for(int i = 0; i < lumpCount; i++)
+	{
+		int start = map[i].start;
+		int file = map[i].file;
+		int len = map[i].len;
+
+		for(int j = 0; j < len; j += HASH_SPLIT)
+		{
+			hash ^= sbdmhash(file, j, clamp(j + HASH_SPLIT, 0, len), start) + 0x517cc1b727220a95 + (hash << 6) + (hash >> 2);
+		}
+	}
+
+	CloseMapStruct(map, isUDMF);
+
+	cached = hash;
+	return hash;
+}
+
+[[call("ScriptS"), script("enter")]]
+static void CalcHashInSequence ()
+{
+	if(!GetCVar("bd_calculatemaphash"))
+		return;
+
+	str hash = ulToStr(CalculateHash());
+	
+	Log(hash, ", // ", GetPrintName(PRINTNAME_LEVEL));
+	Log("Script \"", SCRIPT_PREFIX, hash, "\" // ", GetPrintName(PRINTNAME_LEVEL));
+	Delay(1);
+	Exit_Normal(0);
+}
+
+[[call("ScriptS"), script("open")]]
+static void ApplyMapPatch ()
+{
+	if(GetCVar("bd_disablemapenhancements"))
+		return;
+
+	unsigned long id = CalculateHash();
+
+	if(!id)
+		return;
+	
+	for(int i = 0; i < (sizeof(BD_MapHashes) / sizeof(BD_MapHashes[0])); i++)
+	{
+		if(id == BD_MapHashes[i])
+		{
+			str scriptName = StrParam(SCRIPT_PREFIX, ulToStr(id));
+			ACS_NamedExecuteWithResult(scriptName);
+			if(GetCVar("bd_showmaphash")){
+			Log(scriptName); return;}
+			return;
+		}
+	}
+}

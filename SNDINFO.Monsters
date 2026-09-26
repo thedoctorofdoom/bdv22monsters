@@ -1,0 +1,533 @@
+//Sound caulking
+fatso/active		dsmanact
+pain/active			dspeact
+
+
+//FOOTSTEPS
+$Random grunt/footstep { ZomStep1 ZomStep2 ZomStep3 ZomStep4  }
+ZomStep1 ZomStep1 
+ZomStep2 ZomStep2
+ZomStep3 ZomStep3
+ZomStep4 ZomStep4
+$Random imp/footstep { ImpStep1 ImpStep2 ImpStep3 ImpStep4  }
+ImpStep1 ImpStep1
+ImpStep2 ImpStep2
+ImpStep3 ImpStep3
+ImpStep4 ImpStep4
+$Random fatso/footstep { FatStep1 FatStep2 FatStep3 FatStep4 }
+FatStep1 FatStep1
+FatStep2 FatStep2
+FatStep3 FatStep3
+FatStep4 FatStep4
+$Random demon/footstep { PinkySt1 PinkySt2 PinkySt3 PinkySt4 }
+PinkySt1 PinkySt1
+PinkySt2 PinkySt2
+PinkySt3 PinkySt3
+PinkySt4 PinkySt4
+$Random skel/footstep { RevStep1 RevStep2 RevStep3 RevStep4 }
+RevStep1 RevStep1
+RevStep2 RevStep2
+RevStep3 RevStep3
+RevStep4 RevStep4
+$Random baron/footstep { BruStep1 BruStep2 BruStep3 BruStep4 }
+BruStep1 BruStep1
+BruStep2 BruStep2
+BruStep3 BruStep3
+BruStep4 BruStep4
+
+$rolloff grunt/footstep 100 600
+$rolloff skel/footstep 100 600
+$rolloff demon/footstep 100 600
+$rolloff fatso/footstep 100 600
+$rolloff imp/footstep 100 600
+$rolloff baron/footstep 100 600
+
+$limit grunt/footstep 1
+$limit skel/footstep 1
+$limit demon/footstep 1
+$limit fatso/footstep 1
+$limit imp/footstep 1
+$limit baron/footstep 1
+
+//===============================================================================//
+//								NORMAL MONSTERS
+//===============================================================================//
+//ZOMBIEMAN + SHOTGUNGUY + CHAINGUNGUY
+$random grunt/pain { DSPOPAI1 DSPOPAI2 DSPOPAI3 DSPOPAI4}
+DSPOPAI1 DSPOPAI1
+DSPOPAI2 DSPOPAI2
+DSPOPAI3 DSPOPAI3
+DSPOPAI4 DSPOPAI4
+
+$random grunt/sight { ZCSIT1 ZCSIT2 ZCSIT3 ZCSIT4 ZCSIT5}
+ZCSIT1 ZCSIT1
+ZCSIT2 ZCSIT2
+ZCSIT3 ZCSIT3
+ZCSIT4 ZCSIT4
+ZCSIT5 ZCSIT5
+
+$random BURNZOM {BURNZOM1 BURNZOM2 BURNZOM3}
+BURNZOM1 BURNZOM1
+BURNZOM2 BURNZOM2
+BURNZOM3 BURNZOM3
+
+$random ZombieStep { floorhard01  floorhard02 floorhard03 floorhard04  floorhard05 floorhard06 }
+$limit ZombieStep 3
+$volume ZombieStep 0.8
+//$rolloff  ZombieStep 150 400
+
+
+//IMP
+IMPCHARG IMPCHARG
+$random imp/melee { imp/melee1 imp/melee2 imp/melee3 } 
+imp/melee1	IMPCLAW1
+imp/melee2	IMPCLAW2
+imp/melee3	IMPCLAW3
+$random imp/miss { IMPMISS1 IMPMISS2 IMPMISS3 } 
+IMPMISS1 IMPMISS1
+IMPMISS2 IMPMISS2
+IMPMISS3 IMPMISS3
+
+ImpStep1 ImpStep1 
+ImpStep2 ImpStep2 
+ImpStep3 ImpStep3 
+ImpStep4 ImpStep4 
+$random ImpStep { ImpStep1 ImpStep2 ImpStep3 ImpStep4  }
+$limit ImpStep 3
+$volume ImpStep 0.8
+
+
+$random imp/attack { ImpBall4 ImpBall5 ImpBall6 } 
+ImpBall4 ImpBall4
+ImpBall5 ImpBall5
+ImpBall6 ImpBall6
+
+$random imp/shotx { ImpBall1 ImpBall2 ImpBall3 } 
+ImpBall1 ImpBall1
+ImpBall2 ImpBall2
+ImpBall3 ImpBall3
+
+//PINKY DEMON
+$random PINKIDL { PINKIDL1 PINKIDL2 PINKIDL3 PINKIDL4 } 
+PINKIDL1 PINKIDL1
+PINKIDL2 PINKIDL2
+PINKIDL3 PINKIDL3
+PINKIDL4 PINKIDL4
+DSBIGDPN DSBIGDPN
+
+//CACODEMON
+caco/pain			DSCACPAI
+caco/active			DSCACACT
+$random caco/attack { CacoBal4 CacoBal5 CacoBal6 } 
+CacoBal4 CacoBal4
+CacoBal5 CacoBal5
+CacoBal6 CacoBal6
+
+$random caco/shotx { CacoBal1 CacoBal2 CacoBal3 } 
+CacoBal1 CacoBal1
+CacoBal2 CacoBal2
+CacoBal3 CacoBal3
+
+//LOST SOUL
+skull/pain			dssklpn
+skull/active		DSSKLIDL
+$random LSOD {LSOD1 LSOD2 LSOD3 LSOD4}
+LSOD1 LSOD1
+LSOD2 LSOD2
+LSOD3 LSOD3
+LSOD4 LSOD4
+
+
+
+
+
+
+//BARON OF HELL + HELL KNIGHT
+baron/active		DSCYBACT
+knight/active		DSKNTACT
+PSXDPN PSXDPN
+bigstep1 bigstep1
+bigstep2 bigstep2
+bigstep3 bigstep3
+bigstep4 bigstep4
+$random BaronStep { bigstep1 bigstep2 bigstep3 bigstep4 }
+$limit BaronStep 3
+$volume BaronStep 0.8
+
+$random baron/attack { BaroBal4 BaroBal5 BaroBal6 }
+BaroBal4 BaroBal4
+BaroBal5 BaroBal5
+BaroBal6 BaroBal6
+
+$random baron/shotx { BaroBal1 BaroBal2 BaroBal3 }
+BaroBal1 BaroBal1
+BaroBal2 BaroBal2
+BaroBal3 BaroBal3
+
+//REVENANT
+$random REVIDLE  { REVIDLE1 REVIDLE2 REVIDLE3 REVIDLE4 REVIDLE5 REVIDLE6 REVIDLE7 } 
+REVIDLE1 REVIDLE1
+REVIDLE2 REVIDLE2
+REVIDLE3 REVIDLE3
+REVIDLE4 REVIDLE4
+REVIDLE5 REVIDLE5
+REVIDLE6 REVIDLE6
+REVIDLE7 REVIDLE7
+
+$random REVOUCH { REVIDLE1 REVIDLE2 REVIDLE3 REVIDLE4 REVIDLE5 REVIDLE6 REVIDLE7 } 
+REVOUCH1 REVOUCH1
+REVOUCH2 REVOUCH2
+REVOUCH3 REVOUCH3
+
+$rolloff skeleton/attack 400 1600
+
+Skeleton/explode RevBoom
+$limit Skeleton/explode 6
+$rolloff Skeleton/explode 900 1600
+
+//ARACHNOTRON
+SPIPAIN1 SPIPAIN1
+SPIPAIN2 SPIPAIN2
+
+
+//CYBERDEMON
+$rolloff cyber/hoof 300 1800
+$rolloff spider/walk 350 1600
+CLAP CLAP
+$rolloff CLAP 800 3600
+$limit CLAP 4
+CYBPAIN CYBPAIN
+CYBTAT CYBTAT
+$rolloff CYBTAT 1000 8000
+DSCANFIR DSCANFIR
+$rolloff DSCANFIR 600 2400
+
+cyber/active		DSCYBACT
+
+
+//MASTERMIND
+Mastermind/minigun MASTFIRE
+$rolloff Mastermind/minigun 1200 3600
+$limit Mastermind/minigun 40
+
+
+
+
+//===============================================================================//
+//								CUSTOM MONSTERS
+//===============================================================================//
+//ICON OF SIN
+ICOSCRE ICOSCRE
+ICOBREAT ICOBREAT
+ICOTHUND ICOTHUND
+ICOFIRE ICOFIRE
+ICOLAUG ICOLAUG
+$volume ICOLAUG 2.0
+$rolloff ICOLAUG 4000 6400
+$rolloff ICOFIRE 4000 6400
+$rolloff ICOBREAT 4000 6400
+$rolloff ICOSCRE 4000 6400
+
+//VOLCABUS
+Volcabus/Sight VOLCST
+Volcabus/Pain VOLCPN
+Volcabus/Death VOLCDTH
+Volcabus/Attack VOLCATK
+$random Volcabus/Cannon { VOLCCF1 VOLCCF2 VOLCCF3 VOLCCF4 }
+VOLCCF1 VOLCCF1
+VOLCCF2 VOLCCF2
+VOLCCF3 VOLCCF3
+VOLCCF4 VOLCCF4
+VOLCBRN VOLCBRN
+
+//Arachnotron 2 gun
+PAILGF3 PAILGF3
+PAILGF2 PAILGF2
+PAILGD3 PAILGD3
+
+//Mummy
+MUMYACT MUMYACT
+MUMYSEE MUMYSEE
+MUMYDIE MUMYDIE
+
+//Mother Demon
+mother/sight dsmthsit
+mother/pain dsmthpai
+mother/death dsmthdth
+mother/attack dsmthatk
+mother/active dsmthact
+
+//OHHHHHHH SHIT!!! A RAT!!!!!
+rat/melee			dsratmel
+rat/pain			dsratpai
+rat/death1			dsratdt1
+rat/death2			dsratdt2
+rat/death3			dsratdt3
+$random rat/death		{ rat/death1 rat/death2 rat/death3 }
+
+//ZOMBIE MARINE
+$random zombiemarine/sight 
+{ 
+	zombiemarine/sight1
+	zombiemarine/sight2
+	zombiemarine/sight3
+	zombiemarine/sight4
+	zombiemarine/sight5
+	zombiemarine/sight6
+	zombiemarine/sight7
+	zombiemarine/sight8
+	zombiemarine/sight9
+	zombiemarine/sight10
+	zombiemarine/sight11 
+}
+
+zombiemarine/sight1	zspsit1
+zombiemarine/sight2	zspsit2
+zombiemarine/sight3	zspsit3
+zombiemarine/sight4	zspsit4
+zombiemarine/sight5	zspsit5
+zombiemarine/sight6	zspsit6
+zombiemarine/sight7	zspsit7
+zombiemarine/sight8	zspsit8
+zombiemarine/sight9	zspsit9
+zombiemarine/sight10 zspsit10
+zombiemarine/sight11 zspsit11
+
+$volume zombiemarine/sight 0.80
+
+$random zombiemarine/death
+{ 
+	zombiemarine/death1
+	zombiemarine/death2
+	zombiemarine/death3
+	zombiemarine/death4
+	zombiemarine/death5
+	zombiemarine/death6
+	zombiemarine/death7 
+}
+zombiemarine/death1	zspdth1
+zombiemarine/death2	zspdth2
+zombiemarine/death3	zspdth3
+zombiemarine/death4	zspdth4
+zombiemarine/death5	zspdth5
+zombiemarine/death6	zspdth6
+zombiemarine/death7	zspdth7
+
+$random zombiemarine/pain 
+{ 
+	zombiemarine/pain1
+	zombiemarine/pain2
+	zombiemarine/pain3
+	zombiemarine/pain4
+	zombiemarine/pain5
+	zombiemarine/pain6
+	zombiemarine/pain7
+	zombiemarine/pain8
+	zombiemarine/pain9
+	zombiemarine/pain10
+	zombiemarine/pain11 
+}
+
+zombiemarine/pain1		zsppn1
+zombiemarine/pain2		zsppn2
+zombiemarine/pain3		zsppn3
+zombiemarine/pain4		zsppn4
+zombiemarine/pain5		zsppn5
+zombiemarine/pain6		zsppn6
+zombiemarine/pain7		zsppn7
+zombiemarine/pain8		zsppn8
+zombiemarine/pain9		zsppn9
+zombiemarine/pain10		zsppn10
+zombiemarine/pain11		zsppn11
+
+$random zombiemarine/active { zombiemarine/active1 zombiemarine/active2 zombiemarine/active3 zombiemarine/active4 zombiemarine/active5 dsempty dsempty dsempty dsempty dsempty dsempty dsempty dsempty dsempty dsempty }
+zombiemarine/active1	zspact1
+zombiemarine/active2	zspact2
+zombiemarine/active3	zspact3
+zombiemarine/active4	zspact4
+zombiemarine/active5	zspact5
+$volume zombiemarine/active 0.76
+
+//JUGGERNAUT
+juggernaut/see BTKUNQV2
+juggernaut/roam BTKUNQV1
+juggernaut/engine BTKENGN1
+juggernaut/death BTKDETH1
+$random juggernaut/pain { BTKPAIN1 BTKPAIN2 BTKPAIN3 }
+BTKPAIN1 BTKPAIN1
+BTKPAIN2 BTKPAIN2
+BTKPAIN3 BTKPAIN3
+
+$rolloff  juggernaut/see 900 1100
+$rolloff  juggernaut/engine 900 1100
+$rolloff  juggernaut/death 900 2800
+$rolloff  juggernaut/pain 900 1100
+$rolloff  juggernaut/roam 900 1100
+
+//nazi
+$random nazi/sight { nazisight1 nazisight2 nazisight3 nazisight4 nazisight5 nazisight6 nazisight7 nazisight8 }
+$rolloff nazi/sight 200 2500
+$random nazi/death { nazideath1 nazideath2 nazideath3 nazideath4 nazideath5 nazideath6 nazideath7 nazideath8 nazideath9 nazideath10 nazideath11 }
+$random nazi/pain { nazipain1 nazipain2 nazipain3 nazipain4 nazipain5 nazipain6 nazipain7 nazipain8 }
+nazisight1 nazisit1
+nazisight2 nazisit1
+nazisight3 nazisit2
+nazisight4 nazisit3
+nazisight5 nazisit4
+nazisight5 nazisit5
+nazisight6 nazisit6
+nazisight7 nazisit7
+nazisight8 nazisit8
+nazideath1 nazidth1
+nazideath2 nazidth2
+nazideath3 nazidth3
+nazideath4 nazidth4
+nazideath5 nazidth5
+nazideath6 nazidth6
+nazideath7 nazidth7
+nazideath8 nazidth8
+nazideath9 nazidth9
+nazideath10 nazidtha
+nazideath11 nazidthb
+nazipain1 nazipn1
+nazipain2 nazipn2
+nazipain3 nazipn3
+nazipain4 nazipn4
+nazipain5 nazipn5
+nazipain6 nazipn6
+nazipain7 nazipn7
+nazipain8 nazipn8
+
+//Evil Marines
+$random EvilmarineSight { EVMRSIT1 EVMRSIT2 EVMRSIT3 EVMRSIT4 EVMRSIT5 EVMRSIT6}
+EVMRSIT1 EVMRSIT1
+EVMRSIT2 EVMRSIT2
+EVMRSIT3 EVMRSIT3
+EVMRSIT4 EVMRSIT4
+EVMRSIT5 EVMRSIT5
+EVMRSIT6 EVMRSIT6
+
+$random EvilmarineActive { dsempty dsempty dsempty EVMRACT2 EVMRACT3 EVMRACT4}
+EVMRACT1 EVMRACT1
+EVMRACT2 EVMRACT2
+EVMRACT3 EVMRACT3
+EVMRACT4 EVMRACT4
+
+$random EvilmarinePain { EVMRPN1 EVMRPN2}
+EVMRPN1 EVMRPN1
+EVMRPN2 EVMRPN2
+
+$random EvilmarineDeath { EVMRDT1 EVMRDT2}
+EVMRDT1 EVMRDT1
+EVMRDT2 EVMRDT2
+
+EVMRLAUG EVMRLAUG
+
+
+
+
+
+
+//===============================================================================//
+//							WAD COMPATIBILITY MONSTERS
+//===============================================================================//
+
+//Ancient Aliens
+
+alieno/pain AlDolore
+alieno/death AlMorto
+alieno/sight ALVede
+Alieno/Attivo AlAtti
+
+AlienGuard/See AGSEE
+AlienGuardian/Loop AGLoop
+AlienGuard/Death agdie 
+
+
+//Wolfenstein Natzheeeees
+ 
+SS/pain BWZIPN1
+
+$random SS/death { BWZIDTH1 BWZIDTH2 }
+BWZIDTH1 BWZIDTH1 
+BWZIDTH2 BWZIDTH2
+ 
+$random SS/sight { BWZISIT1 BWZISIT2 }
+BWZISIT1 BWZISIT1 
+BWZISIT2 BWZISIT2
+
+
+$random BrutalWolfensteinRetardedScream {ssscr1 ssscre2 ssscre3 }
+
+ssscr1 ssscr1
+ssscre2 ssscre2
+ssscre3 ssscre3
+
+
+//Eviternity
+
+NDemon/sight NMDZSIT
+Ndemon/pain NMDZPAIN
+Ndemon/death NMDZDTH
+Ndemon/Active NMDZACT
+Ndemon/Attack NMDZATK
+
+
+BRobot/sight EVANSIT
+BRobot/death EVANDTH
+
+
+CacoAssholeSee BCAOACT
+CacoAssholepain BCAOSEE
+CacoAssholedeath BCAODTH
+CacoAssholeAttack BCAOAT
+
+Scheletro/Morte SKEFAL
+
+
+Angel/sight ANGSSIT
+angel/pain angSPN
+angel/cube AngCUB
+angel/death ANGDTH
+Angel/attack angATK
+
+$Random Commander/Sight {FCAL1 FCAL2 FCAL3 FCAL4}
+FCAL1 FCAL1
+FCAL2 FCAL2
+FCAL3 FCAL3 
+FCAL4 FCAL4
+
+Commander/Idle FCACT
+
+//2048 Unleashed
+
+Heart/Pain HEARTDMG
+
+//Doom Zero
+
+AlphaSoul/Sight SKULSIT
+AlphaSoul/Pain SKULPN
+AlphaSoul/Death SKULDTH
+
+Witch/Sight WTCHSIT
+Witch/Spit WTCHPIT
+Witch/Pain WTCHPN
+Witch/Death WTCHDTH
+Witch/Cubeboom WTCHCUB
+
+DopeFish/Pain DOPEPN
+
+//Eviternity
+//Archangelus
+
+Archangel/sight			angelsit
+Archangel/pain			angelpn
+Archangel/death			angeldth
+Archangel/spit			angelpit
+Archangel/cube			angelcub
+Archangel/cubeboom		dsfirxpl
+
+//Wormwood
+//Bat
+
+Bat/Sight DBATSIT

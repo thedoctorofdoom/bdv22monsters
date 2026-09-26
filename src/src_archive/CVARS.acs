@@ -1,0 +1,490 @@
+#library "CVARS"
+#include "zcommon.acs"
+#import "CommonFunc.acs"
+
+script "BDRespawn" Respawn NET
+{
+	//===========================
+	//////// Detect Player Gender
+	TakeInventory("GenderFemale", 1);
+	TakeInventory("GenderMale", 1);
+	if	(GetPlayerInfo(PlayerNumber(), PLAYERINFO_GENDER) == 1) 
+	{  
+		GiveInventory("GenderFemale", 1); 
+	}
+	else 
+	{ 
+		GiveInventory("GenderMale", 1);
+	}
+	
+	//===========================
+	////////Sbar Type
+	TakeInventory("sbartype1",1);
+	TakeInventory("sbartype2",1);	
+	TakeInventory("sbartype3",1);	
+		
+	Switch(GetUserCvar(0,"bd_sbartype") )
+	{
+		Case 1: GiveInventory("Sbartype1",1); break;
+		Case 2: GiveInventory("Sbartype2",1); break;
+		Case 3: GiveInventory("Sbartype3",1); break;
+	}
+	SetInventory("CenteredHUD", getusercvar(0,"bd_centeredhud"));		
+	
+	//===========================
+	////////Weapon handling
+	If(!getcvar("bd_reloading"))
+	{
+		TakeInventory("NoReloading",1);
+	}
+	else
+	{
+		GiveInventory("NoReloading",1);
+	}
+	
+	If(!getcvar("bd_autoreload"))
+	{
+		GiveInventory("NoAutoReload",1);
+		
+	}
+	else
+	{
+		TakeInventory("NoAutoReload",1);
+	}
+
+	if(!GetCvar("bd_V21AR")) 
+	{ 
+		TakeInventory("BDV21RateofFire",1); 
+	}
+	else
+	{
+		GiveInventory("BDV21RateofFire",1); 
+	}
+	//===========================
+	Delay(1);
+	
+}
+
+script "BDInitialize" enter
+{
+	//===========================
+    // Fade In
+	
+	if(GameType () == GAME_SINGLE_PLAYER) 
+		{
+		sethudsize(160, 90, TRUE);
+		setfont("BLASCR");
+		HudMessageBold(s:"a"; HUDMSG_FADEOUT, 1, CR_BLACK, 0.1, 0.1, 0.1, 1.0);
+		}
+		
+	//===========================
+	// Options / preferences
+	ACS_NamedExecuteAlways("BDRespawn",0);
+	
+	if(GetCvar("bd_NoPickupsAnimations") != 0)
+	{
+	TakeInventory("NeverSelectedRifle",1);
+	TakeInventory("NeverSelectedASG",1);
+	TakeInventory("NeverSelectedShotgun",1);
+	TakeInventory("NeverSelectedPistol",1);
+	TakeInventory("NeverSelectedSMG",1);
+	TakeInventory("NeverSelectedRL",1);
+	TakeInventory("NeverSelectedGL",1); 
+	}	
+	
+	if (checkinventory("istacticalclass") == 1 || checkinventory("isplayingaspurist") == 1) { SetActorProperty (0, APROP_Speed, 1.0); }
+	if (checkinventory("isplayingaspurist") == 1) { TAkeInventory("IsTacticalClass", 1); }
+	
+	//===========================
+	
+	if	(IsNetworkgame() && IsServerOnly() ) 
+		{
+		ConsoleCommand("compat_clientssendfullbuttoninfo 1");
+		}
+	//===========================
+	//Spawn surviving marines
+	
+	//Rifle Marines
+	if (checkinventory("NumberOfAllies") == 1){	Spawn("Marine_Rifle", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAllies") > 1){	Spawn("Marine_Rifle", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAllies") > 2){	Spawn("Marine_Rifle", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAllies") > 3){	Spawn("Marine_Rifle", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAllies") > 4){	Spawn("Marine_Rifle", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAllies") > 5){	Spawn("Marine_Rifle", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAllies") > 6){	Spawn("Marine_Rifle", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAllies") > 7){	Spawn("Marine_Rifle", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	
+	//Shotgun Marines
+	if (checkinventory("NumberOfAlliesShotgun") == 1){	Spawn("Marine_Shotgun", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAlliesShotgun") > 1){	Spawn("Marine_Shotgun", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAlliesShotgun") > 2){	Spawn("Marine_Shotgun", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAlliesShotgun") > 3){	Spawn("Marine_Shotgun", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAlliesShotgun") > 4){	Spawn("Marine_Shotgun", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAlliesShotgun") > 5){	Spawn("Marine_Shotgun", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAlliesShotgun") > 6){	Spawn("Marine_Shotgun", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAlliesShotgun") > 7){	Spawn("Marine_Shotgun", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	
+	//Minigun Marines
+	if (checkinventory("NumberOfAlliesMinigun") == 1){	Spawn("Marine_Minigun", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAlliesMinigun") > 1){	Spawn("Marine_Minigun", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAlliesMinigun") > 2){	Spawn("Marine_Minigun", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAlliesMinigun") > 3){	Spawn("Marine_Minigun", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAlliesMinigun") > 4){	Spawn("Marine_Minigun", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAlliesMinigun") > 5){	Spawn("Marine_Minigun", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAlliesMinigun") > 6){	Spawn("Marine_Minigun", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAlliesMinigun") > 7){	Spawn("Marine_Minigun", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+		
+	//Rocket Marines
+	if (checkinventory("NumberOfAlliesRocket") == 1){	Spawn("Marine_Rocket", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAlliesRocket") > 1){	Spawn("Marine_Rocket", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAlliesRocket") > 2){	Spawn("Marine_Rocket", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAlliesRocket") > 3){	Spawn("Marine_Rocket", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAlliesRocket") > 4){	Spawn("Marine_Rocket", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAlliesRocket") > 5){	Spawn("Marine_Rocket", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAlliesRocket") > 6){	Spawn("Marine_Rocket", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAlliesRocket") > 7){	Spawn("Marine_Rocket", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+		
+	//Plasmagun Marines
+	if (checkinventory("NumberOfAlliesPlasmagun") == 1){	Spawn("Marine_Plasmagun", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAlliesPlasmagun") > 1){	Spawn("Marine_Plasmagun", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAlliesPlasmagun") > 2){	Spawn("Marine_Plasmagun", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAlliesPlasmagun") > 3){	Spawn("Marine_Plasmagun", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAlliesPlasmagun") > 4){	Spawn("Marine_Plasmagun", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAlliesPlasmagun") > 5){	Spawn("Marine_Plasmagun", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAlliesPlasmagun") > 6){	Spawn("Marine_Plasmagun", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	if (checkinventory("NumberOfAlliesPlasmagun") > 7){	Spawn("Marine_Plasmagun", GetActorX(0)-32, GetActorY(0), GetActorZ(0), 0, 0);}
+	
+	
+	TakeInventory("TankGun", 1);
+	TakeInventory("ArtilleryTankGun", 1);
+	TakeInventory("HelicopterGun", 1);
+	TakeInventory("MechGun", 1);
+	TakeInventory("HeavyMachinegunHUD", 1);
+	SetPlayerProperty(0, 0, PROP_BUDDHA);
+
+}
+
+SCRIPT "BDInitiate" OPEN
+{
+	if	(IsNetworkgame() && IsServerOnly() ) 
+		{
+		ConsoleCommand("compat_clientssendfullbuttoninfo 1");
+		}
+		
+	if(!GetCvar("bd_disablemapenhancements")) 
+	{ 
+	ReplaceTextures("FLOOR5_3", "METAL52");
+	ReplaceTextures("FLOOR5_2", "METAL52");
+	ReplaceTextures("FLAT5", "METAL53");
+	ReplaceTextures("FLOOR0_1", "METAL54");
+	ReplaceTextures("FLOOR0_3", "METAL55");
+	ReplaceTextures("FLOOR3_3", "METAL56");
+	ReplaceTextures("TLITE6_5", "LITGEN7B");
+	ReplaceTextures("TLITE6_6", "LITGEN9C");
+	ReplaceTextures("FLAT2", "FLAT2B");
+	ReplaceTextures("GRNLITE1", "GRNLIT1B");
+	}	
+
+	ReplaceTextures ("DSAND1", "SANDS1");
+	ReplaceTextures ("DSAND3", "SANDS1");
+	ReplaceTextures ("DSAND4", "SANDS1");
+	ReplaceTextures ("DSAND5", "SANDS1");
+	ReplaceTextures ("ETEX34", "SANDS1");
+	ReplaceTextures ("WALL81", "SANDS1");
+	ReplaceTextures ("ECEIL13", "SANDS1");
+	ReplaceTextures ("ECEIL15", "SANDS1");
+	ReplaceTextures ("GROUND20", "DESERT01");
+	ReplaceTextures ("SLUDGE01", "SLIME08");
+	ReplaceTextures ("DBRAIN1", "LFALL01");//Revilution Lava
+	ReplaceTextures ("LFALL1", "LFALL01");
+	ReplaceTextures ("LAVA1", "LAVAFL");
+	ReplaceTextures ("LAVA2", "LAVAFL");
+	ReplaceTextures ("LAVA3", "LAVAFL");
+	ReplaceTextures ("LAVA4", "LAVAFL");
+	ReplaceTextures ("LAVA01", "LAVAFL");
+	ReplaceTextures ("LAVA02", "LAVAFL");
+	ReplaceTextures ("LAVA03", "LAVAFL");
+	ReplaceTextures ("LAVA04", "LAVAFL");
+	ReplaceTextures ("LAVFALL1", "LFALL01");//Sunlust Lava
+	ReplaceTextures ("BLODGR1", "LFALL01");//AV Lava
+	ReplaceTextures ("SLMFALL1", "CRFAL01");//CRAPFALLS
+	ReplaceTextures ("SLMFALL2", "CRFAL01");//CRAPFALLS
+	ReplaceTextures ("SLMFALL3", "CRFAL01");//CRAPFALLS
+	
+	// Replaces similar textures so the flat checking scripts have less stuff
+	ReplaceTextures ("NUKAGE3", "NUKAGE1");
+	ReplaceTextures ("NUKAGE2", "NUKAGE1");
+	ReplaceTextures ("SLIME04", "SLIME01");
+	ReplaceTextures ("SLIME03", "SLIME01");
+	ReplaceTextures ("SLIME02", "SLIME01");
+	ReplaceTextures ("SLIME08", "SLIME05");
+	ReplaceTextures ("SLIME06", "SLIME05");
+	ReplaceTextures ("SLIME07", "SLIME05");
+	ReplaceTextures ("BLOOD3", "BLOOD1");
+	ReplaceTextures ("BLOOD2", "BLOOD1");
+}	
+
+
+
+Script "BDCHeckJanitor" (VOID)
+{
+if	(GameType () == GAME_NET_DEATHMATCH || GetCvar("bd_lowgraphicsmode") != 0 | GetCvar("zdoombrutaljanitor") != 0 ) 
+{ GiveInventory("LowGraphicsMode", 1); }
+}
+
+Script "BDCHeckJanitor2" (VOID)
+{
+if	(!GetCvar("bd_infinitecasings")) { GiveInventory("LowGraphicsMode", 1); }
+}
+
+Script "BDCHeckJanitor3" (VOID)//Making limbs not bounce with explosives
+{
+if	(GetCvar("bd_lowgraphicsmode") != 0 || GetCvar("zdoombrutaljanitor") != 0) 
+{ SetActorState(0, "NoColision", 1); }
+}
+
+
+
+Script "BDCHeckJanitor4" (VOID)
+{
+	if	(GetCvar("isrunningzandronum") != 0)
+	{
+	if	(GetCvar("bd_bloodamount") < 2) { SetActorState(0,"Vanish"); }
+	}
+
+	else
+	{
+	if	(GetCvar("zdoombrutalblood") < 2) { SetActorState(0,"Vanish"); }
+	}
+
+}
+
+Script "BDCHeckClassicMonsters" (VOID)
+{
+if	(GetCvar("bd_classicmonsters") != 0) { SetActorState(0,"ReplaceVanilla"); }
+}
+
+Script "BDCheckDecorations" (VOID)
+{
+if	(GetCvar("bd_disabledecorations") != 0) { SetActorState(0,"Vanilla"); }
+}
+
+Script "BDDisableMapEnhancements" (VOID)
+{
+if	(GetCvar("bd_disablemapenhancements") != 0) { SetActorState(0,"Vanilla"); }
+}
+
+
+Script "BDDisableNewGuns" (VOID)
+{
+if	(GetCvar("bd_disablenewguns") != 0) { SetActorState(0,"Vanilla"); }
+}
+
+
+
+Script "CheckIfDM" (VOID)
+{
+	if	(GameType () == GAME_NET_DEATHMATCH) 	GiveInventory("DMGame", 1);
+	Delay(1);
+	if	(GameType () == GAME_NET_DEATHMATCH) 	SetActorState(0,"DM"); 
+}
+
+Script "BDCheckStuff" (VOID)
+{
+if	(!GetCvar("bd_nobulletpenetration")) { TakeInventory("nopenetration", 1);}
+if	(GetCvar("bd_nobulletpenetration") != 0) { GiveInventory("nopenetration", 1);}
+if	(GetCvar("bd_shotgunstrap") != 0) { GiveInventory("useshotgunstrap", 1);}
+if	(GetCvar("zdoombd_shotgunstrap") != 0) { GiveInventory("useshotgunstrap", 1);}
+if	(GetCvar("bd_disablenewenemies") != 0) { GiveInventory("nonewenemies", 1);}
+}
+
+
+
+Script "BDCheckWaterRipples" (VOID)
+{
+if	(GetCvar("bd_disablewaterripples2") > 0) { GiveInventory("Clip2", 10); }
+}
+
+Script "BDDisableFriendlyMarines" (VOID)
+{
+if	(GetCvar("bd_disablefriendlymarines") > 0) { GiveInventory("Clip2", 10); }
+}
+
+
+Script "BDShootableAmmo" (VOID)
+{
+if	(GetCvar("bd_shootablerocketammo") < 1) { GiveInventory("Clip1", 10); }
+}
+
+
+Script "BDFootsteps" (VOID)
+{
+if	(!GetCvar("bd_footstepsounds")) { GiveInventory("FootStepDisabled", 1); }
+}
+
+
+Script "DemonRuneCheck" (VOID)
+{
+if	(GetCvar("bd_disabledemonspheres") != 0) { SetACtorState(0, "Cancels"); }
+}
+
+
+
+Script "CheckRocketBackblast" (VOID)
+{
+if	(!GetCvar("bd_rocketbackblast")) { SetACtorState(0, "Disappear"); }
+}
+
+
+Script "CheckVoxels" (VOID)
+{
+if	(!GetCvar("bd_voxeldec")) { SetACtorState(0, "Disappear"); }
+}
+
+
+
+
+
+
+
+
+
+Script "BD_CheckBloodIntensity" (VOID)
+{
+	if	(GetCvar("isrunningzandronum") != 0)
+	{
+		switch( GetCvar("bd_bloodamount") )
+		{
+			Case 0: SetActorState(0,"LowBlood"); break;
+			Case 1: SetActorState(0,"LowBlood"); break;
+			Case 2: break;
+			Case 3: SetActorState(0,"LotsOfBlood"); break;
+			Case 4: SetActorState(0,"AbsurdBlood"); break;
+			Default: //at least 5
+			SetActorState(0,"AbsurdBlood"); 
+			GiveInventory("AnimuGore", 1);
+			break;
+		}
+	}
+	else 
+	{
+		switch( GetCvar("zdoombrutalblood") )
+		{
+			Case 0: SetActorState(0,"LowBlood"); break;
+			Case 1: SetActorState(0,"LowBlood"); break;
+			Case 2: break;
+			Case 3: SetActorState(0,"LotsOfBlood"); break;
+			Case 4: SetActorState(0,"AbsurdBlood"); break;
+			Default: //at least 5
+			SetActorState(0,"AbsurdBlood"); 
+			GiveInventory("AnimuGore", 1);
+			break;
+		}
+	}
+}
+
+
+Script "BD_CheckBloodExtra1" (VOID)
+{
+		if	(GetCvar("bd_morebloodmist") >= 1)
+			{
+			SetActorState(0,"AbsurdBlood"); 
+			}
+}
+
+
+Script "BD_CheckIfLowBlood" (VOID)
+{
+if	(GetCvar("bd_bloodamount") <= 1) { SetActorState(0,"Vanish"); }
+}
+
+
+
+
+Script "ScreenEffects" (VOID)
+{
+	TakeInventory("ScreenFX", 1);
+	
+	if	(GetCvar("bd_ScreenFX") == 1) { GiveInventory("ScreenFX",1); }	//BDv21 Mode
+	if	(GetCvar("bd_ScreenFX") == 2) { GiveInventory("ScreenFX",1); }	//Off Mode
+}
+
+Script "BloodSplashTrail" (VOID)
+{
+	TakeInventory("BloodTrail", 1);
+	if	(GetCvar("bd_BloodTrail") == 1 || GetCvar("bd_ScreenFX") == 1) { GiveInventory("BloodTrail",1); }
+}
+
+
+
+
+
+
+script "BD_CheckIfOverLiquid" (void) //Water Small Splash
+{
+	if (CheckActorFloorTexture(0, "FWATER1"))    GiveInventory("IsOverWater", 1);
+	if (CheckActorFloorTexture(0, "FWATER2"))    GiveInventory("IsOverWater", 1);
+	if (CheckActorFloorTexture(0, "FWATER3"))    GiveInventory("IsOverWater", 1);
+	if (CheckActorFloorTexture(0, "FWATER4"))    GiveInventory("IsOverWater", 1);
+	
+  if (CheckActorFloorTexture(0, "NUKAGE1"))    GiveInventory("IsOverNukage", 1);
+  if (CheckActorFloorTexture(0, "NUKAGE2"))    GiveInventory("IsOverNukage", 1);
+  if (CheckActorFloorTexture(0, "NUKAGE3"))    GiveInventory("IsOverNukage", 1);
+  if (CheckActorFloorTexture(0, "NUKAGE4"))    GiveInventory("IsOverNukage", 1);
+	
+  	
+  if (CheckActorFloorTexture(0, "SLIME01"))    GiveInventory("IsOverSlime", 1);
+  if (CheckActorFloorTexture(0, "SLIME02"))    GiveInventory("IsOverSlime", 1);
+  if (CheckActorFloorTexture(0, "SLIME03"))    GiveInventory("IsOverSlime", 1);
+  if (CheckActorFloorTexture(0, "SLIME04"))    GiveInventory("IsOverSlime", 1);
+  if (CheckActorFloorTexture(0, "SLIME05"))    GiveInventory("IsOverSlime", 1);
+  if (CheckActorFloorTexture(0, "SLIME06"))    GiveInventory("IsOverSlime", 1);
+  if (CheckActorFloorTexture(0, "SLIME07"))    GiveInventory("IsOverSlime", 1);
+  if (CheckActorFloorTexture(0, "SLIME08"))    GiveInventory("IsOverSlime", 1);
+  
+  if (CheckActorFloorTexture(0, "SLIME09"))    GiveInventory("IsOverLava", 1);
+  if (CheckActorFloorTexture(0, "SLIME10"))    GiveInventory("IsOverLava", 1);
+  if (CheckActorFloorTexture(0, "SLIME11"))    GiveInventory("IsOverLava", 1);
+  if (CheckActorFloorTexture(0, "SLIME12"))    GiveInventory("IsOverLava", 1);
+  
+  if (CheckActorFloorTexture(0, "LAVA1"))    GiveInventory("IsOverLava", 1);
+  if (CheckActorFloorTexture(0, "LAVA2"))    GiveInventory("IsOverLava", 1);
+  if (CheckActorFloorTexture(0, "LAVA3"))    GiveInventory("IsOverLava", 1);
+  if (CheckActorFloorTexture(0, "LAVA4"))    GiveInventory("IsOverLava", 1);
+	
+  if (CheckActorFloorTexture(0, "BLOOD1"))    GiveInventory("IsOverBlood", 1);
+  if (CheckActorFloorTexture(0, "BLOOD2"))    GiveInventory("IsOverBlood", 1);
+  if (CheckActorFloorTexture(0, "BLOOD3"))    GiveInventory("IsOverBlood", 1);
+  if (CheckActorFloorTexture(0, "BLOOD4"))    GiveInventory("IsOverBlood", 1);
+}
+
+Script "GetActorHealth" (VOID)
+{
+	GetActorHealth(ActivatorTID());
+}
+
+Script "SetActorHealth" (VOID)
+{
+	SetActorHealth(ActivatorTID(), previoushealth);
+}
+
+script "AimMode" (VOID)
+{
+	Switch(getcvar("bd_AimMode"))
+	{
+		Case 0:
+			TakeInventory("AimMode_Toggle",1);
+			TakeInventory("AimMode_Hold",1);
+			break;
+		Case 1:
+			GiveInventory("AimMode_Toggle",1);
+			TakeInventory("AimMode_Hold",1);
+			break;
+		Case 2:
+			TakeInventory("AimMode_Toggle",1);
+			GiveInventory("AimMode_Hold",1);
+			break;
+	}
+	Delay(1);
+}
+

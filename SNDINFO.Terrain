@@ -1,0 +1,242 @@
+//********** Terrain **********
+
+slime				dsmuck
+slimesmall			dsmucksm
+watersmall			dsfloush
+burn				dsburn
+burnsmall			dsburnsm
+blood1				dssplat1
+blood2				dssplat2
+$RANDOM blood { blood1 blood2 }
+bloodsmall1			dssplat3
+bloodsmall2			dssplat4
+$RANDOM bloodsmall { bloodsmall1 bloodsmall2 }
+
+
+//AMBIENT OBJECTS
+$random Sparks/Spawn { Sparks/Sound1  Sparks/Sound2  Sparks/Sound3  Sparks/Sound4 }
+Sparks/Sound1		SPARKS1
+Sparks/Sound2		SPARKS2
+Sparks/Sound3		SPARKS3
+Sparks/Sound4		SPARKS4
+
+DSBOTTLE DSBOTTLE
+
+$random chainrattle {CHNRTL1 CHNRTL2 CHNRTL3}
+CHNRTL1 CHNRTL1
+CHNRTL2 CHNRTL2
+CHNRTL3 CHNRTL3
+
+BDFirePlace dstorch
+$limit BDfireplace 2
+$rolloff BDfireplace 100 900
+
+BDFirePlace2 dstorch2
+$limit BDfireplace2 2
+$rolloff BDfireplace2 100 900
+
+BDALARM BDALARM
+$limit BDALARM 0
+
+WINBREA WINBREA
+$limit WINBREA 20
+$volume WINBREA 0.6
+
+//AMBIENT SOUNDS
+AMBRAIN	AMBRAIN
+$limit AMBRAIN 1
+AMBAIRP AMBAIRP
+$rolloff AMBAIRP 50 80000
+ICEBRK1 ICEBRK1
+ICEBRK2 ICEBRK2
+
+$rolloff BDWFALL1 300 1000
+BDWFALL1 BDWFALL1
+$limit BDWFALL1 6
+
+$rolloff BDWFALL2 300 900
+BDWFALL2 BDWFALL2
+$limit BDWFALL2 6
+
+$rolloff BDWFALL3 500 1100
+BDWFALL3 BDWFALL3
+$limit BDWFALL3 6
+
+ACIDMELT ACIDMELT
+
+
+
+//Splish Splash
+bigspl1 bigspl1
+
+dssplas2	dssplas2
+$volume dssplas2 0.6
+
+water1 water1
+water2 water2
+water3 water3
+water4 water4
+$random world/watersplash		{water1 water2 water3 water4}
+$volume world/watersplash 1.1
+$limit world/watersplash 10
+
+world/watersplashsmall		dssplsml
+$limit world/watersplashsmall 4
+
+world/sludgegloop		dsploosh
+$limit world/sludgegloop 4
+
+world/sludgegloopsmall		dsplosml
+$limit world/sludgegloopsmall 4
+
+world/lavasizzle		dslvsiz
+$limit world/lavasizzle 4
+
+world/lavsiz2			dslvsiz2
+$limit world/lavsiz2 4
+
+world/lavasizzlesmall		dslavsml
+$limit world/lavasizzlesmall 4
+
+world/drip			dsdrip2
+$limit world/drip 4
+world/hotsiz			dshtsiz
+$limit world/hotsiz 2
+
+
+//===============================================================================//
+//									FOOTSTEPS
+//===============================================================================//
+
+//Hard - generic hard floor
+$random floorhard		{ floorhard01  floorhard02 floorhard03 floorhard04  floorhard05 floorhard06 }
+floorhard01	fshard1
+floorhard02	fshard2
+floorhard03	fshard3
+floorhard04	fshard4
+floorhard05	fshard5
+floorhard06	fshard6
+
+$limit floorhard 10
+
+//Dirt
+$random floordirt		{ floordirt01  floordirt02 floordirt03 floordirt04 }
+floordirt01	fsdirt1
+floordirt02	fsdirt2
+floordirt03	fsdirt3
+floordirt04	fsdirt4
+
+$limit floordirt 10
+$volume floordirt 0.5
+//Grass
+$random floorgrass		{ floorgrass01 floorgrass02 floorgrass03 floorgrass04 }
+floorgrass01	fsgrass1
+floorgrass02	fsgrass2
+floorgrass03	fsgrass3
+floorgrass04	fsgrass4
+
+$limit floorgrass 10
+$volume floorgrass 0.5
+//carpet
+$random floorcarpet		{ floorcarpet01 floorcarpet02 floorcarpet03 floorcarpet04 }
+floorcarpet01	FSCARP1
+floorcarpet02	FSCARP2
+floorcarpet03	FSCARP3
+floorcarpet04	FSCARP4
+
+$limit floorsnow 10
+$volume floorsnow 0.5
+//Sand
+$random floorsand		{ floorsand01 floorsand02 floorsand03 floorsand04 }
+floorsand01	fssand1
+floorsand02	fssand2
+floorsand03	fssand3
+floorsand04	fssand4
+
+$limit floorsand 10
+$volume floorsand 0.5
+//Gravel - loose crunchy surface
+$random floorgravel		{ floorgrav01  floorgrav02 floorgrav03 floorgrav04 }
+floorgrav01	fsgrav1
+floorgrav02	fsgrav2
+floorgrav03	fsgrav3
+floorgrav04	fsgrav4
+
+$limit floorgravel 10
+$volume floorgravel 0.5
+//Metal - hard metal
+$random floormetal		{ floormetl01  floormetl02 floormetl03 floormetl04 }
+floormetl01	fsmet01
+floormetl02	fsmet02
+floormetl03	fsmet03
+floormetl04	fsmet04
+
+$limit floormetal 10
+$volume floormetal 0.5
+//Metal2 - clanky metal
+$random floormetal2		{ floormetal201  floormetal202 floormetal203 floormetal204 }
+floormetal201	fsmet201
+floormetal202	fsmet202
+floormetal203	fsmet203
+floormetal204	fsmet204
+
+$limit floormetal2 10
+$volume floormetal2 0.5
+FHVMTL FHVMTL
+
+//Rock - Hard outdoor type floor
+$random floorrock		{ floorrock01  floorrock02 floorrock03 floorrock04  }
+floorrock01	fsrock1
+floorrock02	fsrock2
+floorrock03	fsrock3
+floorrock04	fsrock4
+
+$limit floorrock 10
+$volume floorrock 0.5
+//Snow
+$random floorsnow		{ floorsnow01  floorsnow02 floorsnow03 floorsnow04 }
+floorsnow01	fssnow1
+floorsnow02	fssnow2
+floorsnow03	fssnow3
+floorsnow04	fssnow4
+
+$limit floorsnow 10
+$volume floorsnow 0.5
+//Wood
+$random floorwood		{ floorwood01  floorwood02 floorwood03 floorwood04 }
+floorwood01	fswood1
+floorwood02	fswood2
+floorwood03	fswood3
+floorwood04	fswood4
+
+$limit floorwood 10
+$volume floorwood 0.5
+
+//Tile - Hard indoor floor
+$random floortile		{ floortile01  floortile02 floortile03 floortile04 }
+floortile01	fstile01
+floortile02	fstile02
+floortile03	fstile03
+floortile04	fstile04
+
+$limit floortile 10
+$volume floortile 0.5
+//Tile2 - More echoey traditional tile
+$random floortile2		{ floortile201  floortile202 floortile203 }
+floortile201	fstile21
+floortile202	fstile22
+floortile203	fstile23
+
+$limit floortile2 10
+$volume floortile2 0.5
+
+//Slimy - for the Doom snake floors
+//$random floorslimy		{ floorslimy01  floorslimy02 floorslimy03 floorslimy04 }
+floorslimy fsskinny
+
+floorslimy01	fsslimy1
+floorslimy02	fsslimy2
+floorslimy03	fsslimy3
+floorslimy04	fsslimy4
+
+$limit floorslimy 10

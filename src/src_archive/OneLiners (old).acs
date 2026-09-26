@@ -1,0 +1,39 @@
+
+//ONE LINERS?!?!
+
+struct Kill_Count
+{
+	int QuipCount;
+	bool IsTaunting;
+
+} KillCount[MAX_PLAYERS];
+
+script "OneLiners" KILL // Makes monsters give the player a speech token on death.
+{
+    if( !(ClassifyActor(0) & ACTOR_MONSTER) || KillCount[PlayerNumber()].IsTaunting == TRUE )
+    {
+        terminate;
+    }
+
+    SetActivatorToTarget(0);
+    
+    if ( (ClassifyActor(0) & ACTOR_PLAYER) && (KillCount[PlayerNumber()].IsTaunting == FALSE) )
+        KillCount[PlayerNumber()].QuipCount++;
+    else terminate;
+    
+    if(KillCount[PlayerNumber()].QuipCount > 8)
+    {
+        ActivatorSound("ONELINER", 127);
+		//PlaySound(0, "QUIP", CHAN_VOICE, 1.0, 0, 1);
+        KillCount[PlayerNumber()].IsTaunting = TRUE;
+        Delay(35*10);
+        KillCount[PlayerNumber()].QuipCount = 0;
+        KillCount[PlayerNumber()].IsTaunting = FALSE;
+    }
+    //GiveInventory("QuipCount", 1);
+}
+
+/*script "OneLiners" ENTER
+{
+	KillCount[PlayerNumber()].IsTaunting = FALSE;
+}*/

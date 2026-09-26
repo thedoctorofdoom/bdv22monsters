@@ -1,0 +1,152 @@
+ACTOR BrutalStealthArachnotron : Arachnotron Replaces StealthArachnotron
+{
+	+STEALTH
+	RenderStyle "Translucent"
+	Alpha 0
+}
+
+
+ACTOR BrutalStealthArchvile : TehArchvile Replaces StealthArchvile
+{
+	+STEALTH
+	RenderStyle "Translucent"
+	Alpha 0
+}
+
+
+ACTOR BrutalStealthBaron : BaronofHell2 Replaces StealthBaron
+{
+	+STEALTH
+	RenderStyle "Translucent"
+	Alpha 0
+}
+
+ACTOR BrutalStealthCacodemon : Cacodemon_ Replaces StealthCacodemon
+{
+	+STEALTH
+	RenderStyle "Translucent"
+	Alpha 0
+}
+
+
+
+ACTOR BrutalStealthChaingunGuy : ChaingunGuy1 Replaces StealthChaingunGuy
+{
+	+STEALTH
+	RenderStyle "Translucent"
+	Alpha 0
+}
+
+ACTOR BrutalStealthDemon : BullDemon Replaces StealthDemon
+{
+	+STEALTH
+	RenderStyle "Translucent"
+	Alpha 0
+}
+
+ACTOR BrutalStealthHellKnight : HellKnight2 Replaces StealthHellKnight
+{
+	+STEALTH
+	RenderStyle "Translucent"
+	Alpha 0
+}
+
+ACTOR BrutalStealthDoomImp : Imp Replaces StealthDoomImp
+{
+	+STEALTH
+	RenderStyle "Translucent"
+	Alpha 0
+}
+
+ACTOR BrutalStealthFatso : Mancubus Replaces StealthFatso
+{
+	+STEALTH
+	RenderStyle "Translucent"
+	Alpha 0
+}
+
+ACTOR BrutalStealthRevenant : Revenant1 Replaces StealthRevenant
+{
+	+STEALTH
+	RenderStyle "Translucent"
+	Alpha 0
+}
+
+ACTOR BrutalStealthShotgunGuy : ShotgunGuy1 Replaces StealthShotgunGuy
+{
+	+STEALTH
+	RenderStyle "Translucent"
+	Alpha 0
+}
+
+ACTOR BrutalStealthZombieMan : RifleZombie Replaces StealthZombieMan
+{
+	+STEALTH
+	RenderStyle "Translucent"
+	Alpha 0
+}
+
+//D64D2 Nightmare Monsters
+
+ACTOR NightmareImp : Imp
+{
+	+SHADOW
+	RenderStyle OptFuzzy
+	Alpha 0.5
+	HitObituary "$OB_NITIMPHIT"
+	Obituary "$OB_NITIMP"
+	States
+	{
+	Missile:
+		TNT1 A 0
+		TNT1 A 0 A_JumpIfInTargetInventory("IsInATank", 1, "LeapBack")
+		TNT1 A 0 A_JumpIfCloser(150, "LeapAttack")
+		TNT1 A 0 A_TakeInventory("SKImp", 1)
+		TNT1 A 0
+		TNT1 A 0 A_CustomMissile("MonsterTargetCheck", 34, 0, 0, 0) 
+		//TNT1 A 0 A_CustomMissile("MonsterTargetCheckFaster", 34, 0, 0, 0) 
+		TROO E 2 A_FaceTarget
+		TNT1 A 0 A_JumpIfInventory("CantFire",1, "Advancing")
+		TROO E 2 A_FaceTarget
+		TNT1 A 0 A_JumpIfCloser(170, "LeapAttack")
+		TRO1 A 2 BRIGHT A_FaceTarget
+		TRO1 A 2 BRIGHT A_FaceTarget
+		TRO1 A 2 BRIGHT A_FaceTarget
+		TRO1 A 2 BRIGHT A_FaceTarget
+		//TNT1 A 0 A_Jump(100, "specialattack")
+		TRO1 B 2 BRIGHT A_FaceTarget
+		TROO G 6 A_CustomComboAttack("NightmareImpBall", 32, 10 * random(1, 6), "imp/melee")//A_CustomMissile("FireBall_SlaughterFest", 34, 0, 0, 0) 
+		TROO F 4
+		TNT1 A 0 A_JumpIfCloser(150, "LeapAttack")
+		Goto SeeContinue
+	}
+}
+
+
+ACTOR NightmareCacodemon : Cacodemon_
+{
+	Speed 12
+	PainChance 96
+	+SHADOW
+	RenderStyle OptFuzzy
+	Alpha 0.5
+	Obituary "$OB_NITCACO"
+	HitObituary "$OB_NITCACOHIT"
+	States
+	{
+	Missile:
+		TNT1 A 0 A_JumpIfCloser(140, "Melee")
+		TNT1 A 0 A_Jump (198, 3)
+		Goto Avoid
+		TNT1 AAA 0
+		TNT1 A 0 A_JumpIfInventory("SlaughterCounter", 15, "Missile_Slaughter")
+		HEAD BC 5 A_FaceTarget
+		HEAD DDD 3 BRIGHT A_CustomMissile("CacodemonBall", 34, 0, 0, 0)
+		Goto See
+
+	Missile_Slaughter:
+		HEAD BC 5 A_FaceTarget
+		HEAD DDD 3 BRIGHT A_CustomMissile("CacodemonBall_Slaughterfest", 34, 0, 0, 0)
+		Goto See
+	}
+}

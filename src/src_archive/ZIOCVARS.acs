@@ -1,0 +1,258 @@
+#library "ZIOCVARS"
+#include "zcommon.acs"
+
+/*Script "NoDamagingLavaSplashes" ENTER NET
+{
+if	(GetCvar("bd_LavaSplashes") == 1) { ReplaceTextures("LAVAFL", "ZAVAFL"); }
+}*/ //Kept for posterity.
+
+
+Script "BDDisableChainsawSpawner" (VOID)
+{
+if	(GetCvar("bd_disablechainsawspawn") == 1) { SetActorState(0,"Vanilla"); }
+}
+
+Script "AxeOnlyScript" (VOID)
+{
+if	(GetCvar("bd_disablechainsawspawn") == 2) { SetActorState(0,"Spawn2"); }
+}
+
+Script "BDDisableSSGSpawner" (VOID)
+{
+if	(GetCvar("bd_disablessgspawn") == 1) { SetActorState(0,"Vanilla"); }
+}
+
+Script "AssaultShottyOnlyScript" (VOID)
+{
+if	(GetCvar("bd_disablessgspawn") == 2) { SetActorState(0,"Spawn2"); }
+}
+
+
+Script "BDDisableMinigunSpawner" (VOID)
+{
+if	(GetCvar("bd_disablechaingunspawn") == 1) { SetActorState(0,"Vanilla"); }
+}
+
+
+Script "SMGOnlyScript" (VOID)
+{
+if	(GetCvar("bd_disablechaingunspawn") == 2) { SetActorState(0,"Spawn2"); }
+}
+
+Script "MachineGunOnlyScript" (VOID)
+{
+if	(GetCvar("bd_disablechaingunspawn") == 3) { SetActorState(0,"Spawn3"); }
+}
+
+Script "AssaultRifleOnly" (VOID)
+{
+if	(GetCvar("bd_disablechaingunspawn") == 4) { SetActorState(0,"Spawn4"); }
+}
+
+Script "BDDisableBFGSPAWNER" (VOID)
+{
+if	(GetCvar("bd_disablebfgspawn") == 1) { SetActorState(0,"Vanilla"); }
+}
+
+Script "BFG10KOnlyScript" (VOID)
+{
+if	(GetCvar("bd_disablebfgspawn") == 2) { SetActorState(0,"BFG10K"); }
+}
+
+Script "UNMAKEROnlyScript" (VOID)
+{
+if	(GetCvar("bd_disablebfgspawn") == 3) { SetActorState(0,"Unmaker"); }
+}
+
+Script "BDDisableROCKETLAUNCHERSPAWNER" (VOID)
+{
+if	(GetCvar("bd_disablerocketlauncherspawn") == 1) { SetActorState(0,"Vanilla"); }
+}
+
+Script "GrenadeLauncherOnlyScript" (VOID)
+{
+if	(GetCvar("bd_disablerocketlauncherspawn") == 2) { SetActorState(0,"Spawn2"); }
+}
+
+Script "BDDisablePlasmaRifleSpawner" (VOID)
+{
+if	(GetCvar("bd_disableplasmaspawn") == 1) { SetActorState(0,"Vanilla"); }
+}
+
+Script "RailgunOnlyScript" (VOID)
+{
+if	(GetCvar("bd_disableplasmaspawn") == 2) { SetActorState(0,"Spawn2"); }
+}
+
+Script "ITSANATZHEE" (VOID)
+{
+if	(GetCvar("bd_WadCheck") == 1) { SetActorState(0,"ISANazi"); }
+}
+
+Script "ITSANEVILMARINE" (VOID)
+{
+if	(GetCvar("bd_WadCheck") == 2) { SetActorState(0,"DOUBLETIMETOTHEHANGER"); }
+}
+
+Script "ITSAMOTHERDEMON" (VOID)
+{
+if	(GetCvar("bd_WadCheck") == 3) { SetActorState(0,"ReplaceGoingDown"); }
+}
+
+Script "ITSEPICO" (VOID)
+{
+if	(GetCvar("bd_WadCheck") == 4) { SetActorState(0,"ISEpic2Alien"); }
+}
+
+Script "ITSBLOODSTAIN" (VOID)
+{
+if	(GetCvar("bd_WadCheck") == 5) { SetActorState(0,"bloodstain"); }
+}
+
+Script "BDDisableShotgunpawner" (VOID)
+{
+if	(GetCvar("BD_ShotgunSpawner") == 1) { SetActorState(0,"Vanilla"); }
+
+}
+
+Script "BDDeagleOnlyScript" (Void)
+{
+if	(GetCvar("BD_ShotgunSpawner") == 2) { SetActorState(0,"Spawn2"); }
+}
+
+Script "AmmoSupplyChecker" (Void)
+{
+if	(GetCvar("BD_AmmoPackCheck") == 1) { SetActorState(0,"Vanilla"); }
+}
+
+Script "BDV22Style" (void)
+{
+if	(GetCvar("BD_AmmoPackCheck") == 3) { SetActorState(0,"BDV22Style"); }
+if	(GetCvar("BD_AmmoPackCheck") == 2) { SetActorState(0,"Expanded"); }
+}
+
+Script "BrutalWolfensteinSSChecker" (VOID)
+{
+if	(GetCvar("bd_WadCheck") == 6) { SetActorState(0,"BW"); }
+}
+
+script "MG42Checker" (void)
+{
+Thing_ChangeTID(0,736);	
+
+if (CheckActorFloorTexture(736, "FLAT5_4"))
+GiveActorInventory(736, "NaziVerificate1", 1);
+
+}
+
+Script "OhNoNomg42" (VOID)
+{
+if	(GetCvar("BD_NoMg42") == 1) { SetActorState(736,"IdontwantafuckingMG42"); }
+}
+
+Script "AncientAliensCheck" (VOID)
+{
+if	(GetCvar("bd_WadCheck") == 7) { SetActorState(0,"Alieni"); }
+}
+
+Script "TNTRevilutionCheck" (VOID)
+{
+if	(GetCvar("bd_WadCheck") == 8) { SetActorState(0,"TNTRevilution"); }
+}
+
+Script "BDNoBossesCheck" (VOID)
+{
+if	(GetCvar("BD_NOBOSSES") == 1) { SetActorState(0,"BDNOBOSSES"); }
+}
+
+
+Script "NoEasyGameForMeThankYou" (VOID)
+{
+if	(GetCvar("NoDemonStrenght") == 1) { SetActorState(0,"Destroy"); }
+}
+
+Script "GIMMELESSAMMO" (VOID)
+{
+if	(GetCvar("BD_GIMMELESSAMMO") == 1) { SetActorState(0,"Spawn3"); }
+}
+
+Script "GIMMEBDGREENARMOUR" (VOID)
+{
+if	(GetCvar("BD_GREENARMOUR") == 1) { SetActorState(0,"Spawn3"); }
+}
+
+Script "NODemonWeapons" (VOID)
+{
+if	(GetCvar("BD_NODEMONWEAPONS") == 1) { SetActorState(0,"Spawn3"); }
+}
+
+Script "NODemonBlur" (VOID)
+{
+if	(GetCvar("BD_NODEMONBlur") == 1) { SetActorState(0,"Cancels"); }
+}
+
+Script "EviternityCheck" (VOID)
+{
+if	(GetCvar("bd_WadCheck") == 9) { SetActorState(0,"EVITERNITY"); }
+}
+
+Script "NotANEvilMarine" (VOID)
+{
+if	(GetCvar("bd_WadCheck") == 10) { SetActorState(0,"FormerMarine"); }
+}
+
+Script "NoRiflesForZombos" (VOID)
+{
+if	(GetCvar("bd_NoZombieRifleDrop") != 0) { SetActorState(0,"DropMag"); }
+}
+
+Script "UBGLScript" (VOID) NET
+{
+ GiveInventory("RFGrenade", 1);
+ GiveInventory("BDWeaponAction", 1);
+ GiveInventory("GoSpecial", 1);
+}
+
+Script "BDV21CacoCheck" (VOID)
+{
+if	(GetCvar("bdv22_Caco") != 0) { SetActorState(0,"BDV21Caco"); }
+}
+
+Script "GzDoomTaunt" (VOID) NET
+{
+ GiveInventory("BDWeaponAction", 1);
+ GiveInventory("DaZandronumTaunt", 1);
+ GiveInventory("GoSpecial", 1);
+}
+
+/*script "BV21AR" ENTER NET
+{
+	While(true)
+	{
+		int type = getcvar("bd_V21AR");
+		Switch(Type)
+		{
+			Case 0:
+				TakeInventory("BDV21RateofFire",1);
+				break;
+			Case 1:
+				GiveInventory("BDV21RateofFire",1);
+				break;
+		}
+		Delay(1);
+	}
+}*/
+
+
+Script "ZioExtraEnemies" (VOID)
+{
+if	(GetCvar("bd_disablenewenemies") != 0) { SetActorState(0,"NoExtraEnemies"); }
+}
+
+Script "NoRandomSprites" (VOID)
+{
+if	(GetCvar("bd_norandompickupsprites") != 0) { SetActorState(0,"NoRandom"); }
+}
+
+
+

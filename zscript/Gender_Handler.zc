@@ -1,0 +1,77 @@
+
+//===========================================================================
+//
+//
+// Zscript hack for player gender.
+//
+//
+//===========================================================================
+
+class BD_GenderHandler : StaticEventHandler
+{
+	GenderManager Gender;
+	
+	override void WorldLoaded(WorldEvent e)
+	{
+		if (gamestate != GS_LEVEL)
+			return;
+		
+		ThinkerIterator it = ThinkerIterator.Create("GenderManager", Thinker.MAX_STATNUM);
+		Gender = GenderManager(it.Next());
+		
+		if (!Gender)
+		{
+			Gender = new("GenderManager");
+			Gender.ChangeStatNum(Thinker.MAX_STATNUM);
+		}
+		
+		Gender.CheckCVars();
+	}
+}
+
+class GenderManager : Thinker
+{
+	//===========================================================================
+	//
+	//
+	//
+	//===========================================================================
+
+	transient CVar Gender[MAXPLAYERS];
+	override void Tick()
+	{		
+		for (uint i = 0; i < MAXPLAYERS; ++i)
+		{
+				
+			let plr = players[i].mo;
+			
+			if (!playerInGame[i] || !players[i].mo)
+				continue;
+			
+			if(Gender[i].getint() == 1)
+			{
+				plr.SoundClass = "fplayer";
+				plr.TakeInventory("GenderMale", 1);
+				plr.GiveInventory("GenderFemale", 1);
+			}
+			else
+			{
+				plr.SoundClass = "player";
+				plr.TakeInventory("GenderFemale", 1);
+				plr.GiveInventory("GenderMale", 1);
+			}
+		}
+	}
+	
+	void CheckCVars()
+	{
+		for (uint i = 0; i < MAXPLAYERS; ++i)
+		{
+			if (!playerInGame[i] || !players[i].mo)
+				continue;
+			
+			if (!Gender[i])
+				Gender[i] = CVar.GetCVar("bd_Gender", players[i]);
+		}
+	}
+}

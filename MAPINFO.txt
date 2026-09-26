@@ -1,0 +1,772 @@
+gameinfo
+{
+	AddEventHandlers = "ZC_TMapHack", "BD_GenderHandler"
+	DimColor = "Black"
+	DimAmount = 0.5
+}
+
+///////DIFFICULTIES
+
+
+clearskills
+
+skill baby
+{
+   EasyBossBrain
+   EasyKey
+   AutoUseHealth
+   AmmoFactor = 1
+   DamageFactor = 0.25
+   SpawnFilter = hard
+   name = "$TAGBD_BABY"
+   TextColor = "Green"
+   ReplaceActor = "ClipBox", "EasyAmmoBox"
+   ReplaceActor = "Clip", "EasyClip2"
+   ReplaceActor = "Shellbox", "AmmoShellBoxEZ" 
+   ReplaceActor = "RocketBox", "AmmoRocketBoxEZ" 
+   mustconfirm = "-==    I'M TOO YOUNG TO DIE    ==-\
+   \
+   Spawn preset: HARD\
+   Damage taken: 25%\
+   Enemy health: 100%\
+   +Extra Ammo\
+   +Keys on automap\
+   +Easier ICON OF SIN\
+   \
+   Barely a challenge. Purely for power fantasy-ish purposes."
+}
+
+skill easy
+{
+   EasyBossBrain
+   EasyKey
+   AutoUseHealth
+   AmmoFactor = 1
+   DamageFactor = 1.0
+   SpawnFilter = easy
+   name = "$TAGBD_EASY"
+   TextColor = "DarkGreen"
+   ReplaceActor = "ClipBox", "EasyAmmoBox"
+   ReplaceActor = "Clip", "EasyClip2"
+   ReplaceActor = "Shellbox", "AmmoShellBoxEZ" 
+   ReplaceActor = "RocketBox", "AmmoRocketBoxEZ" 
+   mustconfirm = "-==    HEY, NOT TOO ROUGH    ==-\
+   \
+   Spawn preset: EASY\
+   Damage taken: 100%\
+   Enemy health: 100%\
+   +Extra Ammo\
+   +Keys on automap\
+   +Easier ICON OF SIN\
+   \
+   For REALLY casual playthroughs."
+}
+
+skill normal
+{
+   AmmoFactor = 1
+   DamageFactor = 1.0
+   SpawnFilter = normal
+   name = "$TAGBD_NORMAL"
+   TextColor = "orange"
+   ReplaceActor = "ClipBox", "EasyAmmoBox"
+   ReplaceActor = "Clip", "EasyClip2"
+   ReplaceActor = "Shellbox", "AmmoShellBoxEZ" 
+   ReplaceActor = "RocketBox", "AmmoRocketBoxEZ" 
+   defaultskill
+   mustconfirm = "-==    HURT ME PLENTY!    ==-\
+   \
+   Spawn preset: NORMAL\
+   Damage taken: 100%\
+   Enemy health: 100%\
+   +Extra Ammo\
+   \
+   For casual playthroughs. Default skill level."
+}
+
+
+skill Hard
+{
+   AmmoFactor = 1
+   DamageFactor = 1.0
+   SpawnFilter = Hard
+   name = "$TAGBD_HARD"
+   TextColor = "Red"
+   mustconfirm = "-==    ULTRA-VIOLENCE    ==-\
+   \
+   Spawn preset: HARD\
+   Damage taken: 100%\
+   Enemy health: 100%\
+   \
+   For experienced players."
+}
+
+
+
+
+skill Nightmare
+{
+   AmmoFactor = 1
+   FastMonsters
+   DisableCheats
+   RespawnTime = 20
+   SpawnFilter = Nightmare
+   name = "$TAGBD_NIGHTMARE"
+   //PicName = "M_NMARE"
+   TextColor = "DarkRed"
+   mustconfirm = "-==    NIGHTMARE!    ==-\
+   \
+   Spawn preset: NIGHTMARE\
+   Damage taken: 100%\
+   Enemy health: 100%\
+   Monster Respawn Time: 20 sec.\
+   -Fast monsters and projectiles\
+   -No cheats\
+   \
+   For masochist players."
+}
+
+//6
+skill BlackMetal
+{
+   AmmoFactor = 1
+   DamageFactor = 1.5
+   MonsterHealth = 0.80
+   FastMonsters
+   SpawnFilter = Nightmare
+   name = "$TAGBD_BLACKMETAL"
+   TextColor = "Black"
+   mustconfirm = "-==    BLACK METAL    ==-\
+   \
+   Spawn preset: NIGHTMARE\
+   Damage taken: 150%\
+   Enemy health: 80%\
+   -Fast monsters and projectiles\
+   \
+   For players looking for an extra challenge."
+}
+
+
+skill Realism3
+{
+   DamageFactor = 7.0
+   MonsterHealth = 0.5
+   FriendlyHealth = 0.5
+   ACSReturn = 32
+   //FastMonsters
+   //DisableCheats
+   SpawnFilter = hard
+   name = "$TAGBD_REALISM3"
+   ReplaceActor = "ClipBox", "RealismAmmoBox"
+   ReplaceActor = "RocketBox", "RocketAmmo"
+   ReplaceActor = "Shellbox", "Shell"
+   ReplaceActor = "Cellpack", "Cell"
+   ReplaceActor = "SuperKickAttack", "SuperKickAttackRealism"
+   ReplaceActor = "Kickattack", "KickattackRealism"
+   ReplaceActor = "AirKickattack", "AirKickattackRealism"
+   ReplaceActor = "MeleeStrikeNormal", "MeleeStrikeNormalRealism"
+   ReplaceActor = "RocketBackblast", "RocketBackblastRealism"
+   ReplaceActor = "MeleeStrike2", "MeleeStrike2Realism"
+   ReplaceActor = "Tank", "TankRealism"
+    ReplaceActor = "ArtilleryTank", "ArtilleryTankRealism"
+   ReplaceActor = "AttackHelicopter", "AttackHelicopterRealism"
+   ReplaceActor = "Mech", "MechRealism"
+   TextColor = "DarkGray"
+   mustconfirm = "-==    REALISM VIOLENCE    ==-\
+   \
+   Spawn preset: HARD\
+   Damage taken: 700%\
+   Enemy health: 50%\
+   Friendly health: 50%\
+   -Less ammo\
+   -Weaker fists and kicks\
+   -Way tougher vehicles\
+   \
+   For players who hate themselves."
+}
+
+
+skill Realism5
+{
+   DamageFactor = 7.0
+   MonsterHealth = 0.5
+   FriendlyHealth = 0.5
+   ACSReturn = 32
+   SpawnFilter = Nightmare
+   FastMonsters
+   RespawnTime = 30
+   name = "$TAGBD_REALISM5"
+   ReplaceActor = "ClipBox", "RealismAmmoBox"
+   ReplaceActor = "RocketBox", "RocketAmmo"
+   ReplaceActor = "Shellbox", "Shell"
+   ReplaceActor = "Cellpack", "Cell"
+   ReplaceActor = "SuperKickAttack", "SuperKickAttackRealism"
+   ReplaceActor = "Kickattack", "KickattackRealism"
+   ReplaceActor = "AirKickattack", "AirKickattackRealism"
+   ReplaceActor = "MeleeStrikeNormal", "MeleeStrikeNormalRealism"
+   ReplaceActor = "RocketBackblast", "RocketBackblastRealism"
+   ReplaceActor = "MeleeStrike2", "MeleeStrike2Realism"
+   ReplaceActor = "Tank", "TankRealism"
+   ReplaceActor = "ArtilleryTank", "ArtilleryTankRealism"
+   ReplaceActor = "AttackHelicopter", "AttackHelicopterRealism"
+   ReplaceActor = "Mech", "MechRealism"
+   TextColor = "Gray"
+   mustconfirm = "-==    REALISM NIGHTMARE    ==-\
+   \
+   Spawn preset: NIGHTMARE\
+   Damage taken: 700%\
+   Enemy health: 50%\
+   Friendly health: 50%\
+   Monster Respawn Time: 30 sec.\
+   -Fast monsters and projectiles\
+   -Less ammo\
+   -Weaker fists and kicks\
+   -Way tougher vehicles\
+   \
+   For players who REALLY hate themselves."
+}
+
+//////////  maps and gamemodes
+
+
+episode EDAY01
+{
+optional
+name = "Extermination Day"
+}
+
+episode BDM01
+{
+name = "$TAGBD_DEATHMATCH"
+}
+
+episode DF01
+{
+optional
+name = "$TAGBD_HORDE"
+}
+
+map TEST_UAC "TEST - UAC Testing Facility"
+{
+next = "MAP01"
+secretnext = "MAP01"
+sky1 = "SKYPH2"//, 0.1
+cluster = 1
+music = D_SHAWN
+AllowRespawn
+}
+
+map TEST_OLD "TEST - Abandoned City"
+{
+next = "MAP01"
+secretnext = "MAP01"
+sky1 = "SKYEAR1", 0.1
+cluster = 1
+music = D_IN_CIT
+AllowRespawn
+}
+
+map TEST "TEST - Ruins"
+{
+next = "TEST_RUINS"
+secretnext = "TEST_RUINS"
+sky1 = "SKYEAR1", 0.1
+cluster = 1
+music = D_IN_CIT
+NoIntermission
+ResetInventory
+}
+
+///////////////////////////// EXTRA MAPS
+
+
+map TEST_01 "Slaughter Valley"
+{
+next = "DF02"
+next = "TEST_RUINS"
+sky1 = "SKYEAR1", 0.1
+music = "EPIC"
+cluster = 1
+}
+
+
+
+
+
+//////////////////////////// HORDE MODE MAPS
+
+map DF01 "Cathedral of Pain"
+{
+next = "DF02"
+sky1 = "SKYDEI"
+music = "D_DM10"
+noinfighting
+cluster = 1
+}
+
+map DF02 "Death Factory"
+{
+next = "DF03"
+sky1 = "SKYEAR1", 0.1
+music = "D_DM10"
+noinfighting
+cluster = 1
+}
+
+map DF03 "Downtown"
+{
+next = "DF04"
+sky1 = "SKYEAR1", 0.1
+music = "D_DM10"
+noinfighting
+cluster = 1
+}
+
+map DF04 "The Final Frontier"
+{
+next = "DF01"
+sky1 = "SKYEAR1", 0.1
+music = "EPIC"
+noinfighting
+cluster = 1
+}
+
+
+map BDM01 "Re-Entryway"
+{
+next = "BDM02"
+secretnext = "BDM02"
+sky1 = "SKYEAR1", 0.1
+music = D_RUNNIN
+cluster = 1
+}
+
+map BDM02 "Dead Simpler"
+{
+next = "BDM03"
+secretnext = "BDM03"
+sky1 = "SKYEAR1", 0.1
+music = D_SHAWN
+cluster = 1
+}
+
+map BDM03 "Nuclear Ashes"
+{
+next = "BDM04"
+secretnext = "BDM04"
+sky1 = "SKYCIT1"
+music = D_ADRIAN
+cluster = 1
+}
+
+
+map BDM04 "Hangarmageddon"
+{
+next = "BDM05"
+secretnext = "BDM05"
+sky1 = "SKYPHO"
+music = D_E1M1
+cluster = 1
+}
+
+
+map BDM05 "Sandstorm"
+{
+next = "BDM06"
+secretnext = "BDM06"
+sky1 = "SKYEAR1", 0.1
+music = D_DM05
+cluster = 1
+}
+
+
+map BDM06 "Another One Bites De Dust"
+{
+next = "BDM07"
+secretnext = "BDM07"
+sky1 = "SKYEAR1", 0.1
+music = D_DM06
+cluster = 1
+}
+
+map BDM07 "Pyramid"
+{
+next = "BDM09"
+secretnext = "BDM09"
+sky1 = "SKYEAR1", 0.1
+music = D_DM07
+cluster = 1
+}
+
+
+map BDM08 "Storage Center"
+{
+next = "BDM09"
+secretnext = "BDM09"
+sky1 = "SKYEAR1"
+music = D_DM08
+cluster = 1
+}
+
+map BDM09 "Cathedral"
+{
+next = "BDM10"
+secretnext = "BDM10"
+sky1 = "SKYDEI"
+music = D_DM09
+cluster = 1
+}
+
+map BDM10 "Tower of Babel"
+{
+next = "BDM01"
+secretnext = "BDM01"
+sky1 = "SKYDEI"
+music = D_dM10
+cluster = 1
+}
+
+
+map PSMAP58 "The Mansion"
+{
+next = "MAP17"
+secretnext = "PSMAP59"
+//sky1 = "SKYCIT1"
+sky1 = "SKYEAR3"
+cluster = 1
+//par = 60
+music = D_ROMERO
+}
+
+map PSMAP59 "Club Doom"
+{
+next = "MAP17"
+sky1 = "SKYCITH"
+cluster = 1
+par = 60
+music = D_STALKS
+}
+
+map PSMAP29 "Twilight Descends"
+{
+next = "MAP14"
+secretnext = "PSMAP57"
+//sky1 = "SKYCIT1"
+sky1 = "SKYEAR3"
+cluster = 1
+//par = 60
+music = d_in_cit	
+}
+
+
+map PSMAP57 "The Marshes"
+{
+next = "MAP15"
+secretnext = "MAP15"
+//sky1 = "SKYCIT1"
+sky1 = "SKYEAR3"
+cluster = 1
+//par = 60
+music = d_shawn	
+}
+
+map PSMAP16 "Hellgate"
+{
+next = "PSMAP17"
+secretnext = "PSMAP57"
+//sky1 = "SKYCIT1"
+sky1 = "SKYHELF"
+cluster = 1
+//par = 60
+music = d_dead	
+}
+
+
+map PSMAP17 "Blood Citadel"
+{
+next = "MAP21"
+secretnext = "MAP21"
+//sky1 = "SKYCIT1"
+sky1 = "SKYHELF"
+cluster = 1
+//par = 60
+music = d_doom	
+}
+
+
+
+map MAP13B lookup "HUSTR_13"
+{
+	titlepatch = "CWILV12"
+	next = "MAP14"
+	secretnext = "MAP31"
+	sky1 = "SKYCIT1"
+	cluster = 7
+	par = 210
+	music = "$MUSIC_DOOM"
+}
+
+map MAP15B lookup "HUSTR_15"
+{
+	titlepatch = "CWILV14"
+	next = "MAP16B"
+	secretnext = "MAP31"
+	sky1 = "SKYCIT1"
+	cluster = 7
+	par = 210
+	music = "$MUSIC_RUNNI2"
+}
+
+map MAP16B lookup "HUSTR_16"
+{
+	titlepatch = "CWILV15"
+	next = "MAP17B"
+	secretnext = "MAP17"
+	sky1 = "SKYCIT1"
+	cluster = 7
+	par = 150
+	music = "$MUSIC_DEAD2"
+}
+
+map MAP17B lookup "HUSTR_17"
+{
+	titlepatch = "CWILV16"
+	next = "MAP18B"
+	secretnext = "MAP18"
+	sky1 = "SKYCIT1"
+	cluster = 7
+	par = 420
+	music = "$MUSIC_STLKS3"
+}
+
+
+
+map PSXMAP16 "Hellgate"
+{
+	next = "MAP18"
+	secretnext = "MAP18"
+	sky1 = "SKYHEL1", 0.1
+	cluster = 7
+	par = 420
+	music = "$MUSIC_STLKS3"
+}
+
+
+
+map PSXMAP57 "The Marshes"
+{
+	next = "PSXMAP58"
+	secretnext = "PSXMAP58"
+	sky1 = "SKYEAR3", 0.1
+	cluster = 7
+	par = 420
+	music = "$MUSIC_ADRIAN"
+}
+
+
+map PSXMAP58 "Twilight Descends"
+{
+	next = "MAP15"
+	secretnext = "MAP15"
+	sky1 = "SKYEAR3", 0.1
+	cluster = 7
+	par = 420
+	music = "$MUSIC_ADRIAN"
+}
+
+
+map TITLEMAP "Titlemap"
+{
+}
+
+
+// Cast Sequences
+Intermission Doom2Cast
+{
+	Cast
+	{
+		CastClass = "RifleZombieCast"
+		CastName = "Rifle Zombie"
+		AttackSound = "Missile", 1, "Rifle/Fire"
+	}
+	Cast
+	{
+		CastClass = "PistolZombieCast"
+		CastName = "Pistol Zombie"
+		AttackSound = "Missile", 1, "Pistol/Fire"
+	}	
+	Cast
+	{
+		CastClass = "ShotgunGuy1Cast"
+		CastName = "Shotgun Zombie"
+		AttackSound = "Missile", 1, "Shotgun/Fire"
+		AttackSound = "MissilePump", 2, "Shotgun/Pump"
+	}
+	Cast
+	{
+		CastClass = "SMGGuyCast"
+		CastName = "SMG Zombie"
+		AttackSound = "Missile", 1, "SMG/Fire"
+	}	
+	Cast
+	{
+		CastClass = "ChaingunGuy1Cast"
+		CastName = "Minigun Zombie"
+		AttackSound = "Missile", 1, "Chaingun/Fire"
+		AttackSound = "Missile", 2, "Chaingun/Fire"
+		AttackSound = "Missile", 3, "Chaingun/Fire"
+	}
+	Cast
+	{
+		CastClass = "LabGuyCast"
+		CastName = "Civilian Zombie"
+		AttackSound = "Missile", 1, "skeleton/swing"
+	}	
+	Cast
+	{
+		CastClass = "ImpCast"
+		CastName = "$CC_IMP"
+		AttackSound = "Melee", 2, "imp/melee"		
+		AttackSound = "Missile", 2, "imp/attack"
+	}
+	Cast
+	{
+		CastClass = "BullDemonCast"
+		CastName = "$CC_DEMON"
+		AttackSound = "Melee", 1, "demon/melee"
+	}
+	Cast
+	{
+		CastClass = "TehLostSoulCast"
+		CastName = "$CC_LOST"
+		AttackSound = "Missile", 1, "skull/melee"
+	}
+	Cast
+	{
+		CastClass = "Cacodemon_Cast"
+		CastName = "$CC_CACO"
+		AttackSound = "Melee", 1, "imp/attack"				
+		AttackSound = "Missile", 1, "caco/attack"
+	}
+	Cast
+	{
+		CastClass = "HellKnight2Cast"
+		CastName = "$CC_HELL"
+		AttackSound = "Melee", 1, "Melee/SwingStrong"	
+		AttackSound = "Missile", 1, "baron/attack"
+	}
+	Cast
+	{
+		CastClass = "BaronOfHell2Cast"
+		CastName = "$CC_BARON"
+		AttackSound = "Melee", 1, "Melee/SwingStrong"			
+		AttackSound = "Missile", 1, "baron/attack"
+	}
+	Cast
+	{
+		CastClass = "Belphegor2Cast"
+		CastName = "Belphegor"
+		AttackSound = "Melee", 1, "Melee/SwingStrong"			
+		AttackSound = "Missile", 1, "baron/attack"
+	}
+	Cast
+	{
+		CastClass = "Arachnotron1Cast"
+		CastName = "$CC_ARACH"
+		AttackSound = "Missile", 1, "baby/attack"
+	}
+	Cast
+	{
+		CastClass = "Arachnotron2Cast"
+		CastName = "Ancient Arachnotron"
+		AttackSound = "Missile", 1, "PAILGF2"
+	}	
+	Cast
+	{
+		CastClass = "PainElemental1Cast"
+		CastName = "$CC_PAIN"
+		AttackSound = "Missile", 2, "skull/melee"
+	}
+	Cast
+	{
+		CastClass = "Revenant1Cast"
+		CastName = "$CC_REVEN"
+		AttackSound = "Missile", 1, "skeleton/attack"
+		AttackSound = "Melee", 1, "skeleton/swing"
+		AttackSound = "Melee", 3, "skeleton/melee"
+	}
+	Cast
+	{
+		CastClass = "BDMummyCast"
+		CastName = "Mummy (Epic 2)"
+		AttackSound = "Melee", 1, "skeleton/swing"
+		AttackSound = "Melee", 3, "skeleton/melee"
+	}	
+	Cast
+	{
+		CastClass = "ExperimentCast"
+		CastName = "Experiment"
+		AttackSound = "Melee", 1, "skeleton/swing"
+		AttackSound = "Melee", 3, "skeleton/melee"
+	}		
+	Cast
+	{
+		CastClass = "MancubusCast"
+		CastName = "$CC_MANCU"
+		AttackSound = "Missile", 1, "fatso/attack"
+		AttackSound = "Missile", 4, "fatso/attack"
+		AttackSound = "Missile", 7, "fatso/attack"
+	}
+	Cast
+	{
+		CastClass = "VolcabusCast"
+		CastName = "Volcabus"
+		AttackSound = "Missile", 1, "Volcabus/attack"
+		AttackSound = "Missile", 4, "Volcabus/attack"
+		AttackSound = "Missile", 7, "Volcabus/attack"
+		AttackSound = "Melee", 1, "Volcabus/attack"
+	}	
+	Cast
+	{
+		CastClass = "TehArchvileCast"
+		CastName = "$CC_ARCH"
+		AttackSound = "Missile", 1, "vile/start"
+	}
+	Cast
+	{
+		CastClass = "TheSpiderMastermindCast"
+		CastName = "$CC_SPIDER"
+		AttackSound = "Missile", 1, "spider/attack"
+		AttackSound = "Missile", 2, "spider/attack"			
+	}
+	Cast
+	{
+		CastClass = "TheCyberdemonCast"
+		CastName = "$CC_CYBER"
+		AttackSound = "Missile", 1, "weapons/rocklf"
+		AttackSound = "Missile", 3, "weapons/rocklf"
+		AttackSound = "Missile", 5, "weapons/rocklf"
+		AttackSound = "Melee", 1, "CLAP"
+	}
+	Cast
+	{
+		CastClass = "MotherdemonCast"
+		CastName = "Motherdemon"
+		AttackSound = "Missile", 1, "mother/attack"
+	}	
+	Cast
+	{
+		CastClass = "JuggernautCast"
+		CastName = "Juggernaut"
+		AttackSound = "Missile", 1, "weapons/rocklf"
+		AttackSound = "Missile", 3, "weapons/rocklf"
+		AttackSound = "Missile", 5, "weapons/rocklf"
+	}		
+	Cast
+	{
+		CastClass = "DoomPlayer"
+		CastName = "$CC_HERO"
+		AttackSound = "Missile", 0, "weapons/sshotf"
+	}
+	Link = Doom2Cast	// restart cast call
+}

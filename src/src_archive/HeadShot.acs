@@ -1,0 +1,12 @@
+#library "HeadShot"
+#include "zcommon.acs"
+
+
+script "Head_Shot" (VOID)
+{
+    SetActivatorToTarget(0); //passed from PUFFGETSOWNER    
+    if ((ClassifyActor(0) & ACTOR_MONSTER) && CheckInventory("IsDown")==0 && CheckInventory("IsCrouching")==0)
+    {
+        Thing_Damage2(0, 30, "Head"); // replace with your custom headshot damage type
+    }
+}

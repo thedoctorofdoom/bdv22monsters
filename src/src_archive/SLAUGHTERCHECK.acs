@@ -1,0 +1,41 @@
+#library "SLAUGHTERCHECK"
+#include "zcommon.acs"
+
+int slaughtermapdetector;
+
+Script "SlaughtermapCheck" (VOID)
+{
+	slaughtermapdetector = slaughtermapdetector + 1;
+	//delay(1);
+	GiveInventory("SlaughterCounter", slaughtermapdetector); 
+	//GiveInventory("SlaughterCounter2", slaughtermapdetector); 
+	//GiveInventory("Clip2", slaughtermapdetector); 
+	
+	if ( slaughtermapdetector > 350 ) 
+	{	
+		//SetActorState(0, "Stand"); 
+		//GiveInventory("ItsASlaughter", 1);
+		GiveInventory("SlaughterCounter", 500); 
+	}
+}
+
+int slaughtermapdetectorDECO;
+
+Script "SlaughtermapCheckDecoration" (VOID)
+{
+	slaughtermapdetectorDECO = slaughtermapdetectorDECO + 1;
+	if ( slaughtermapdetectorDECO > 0 ) 
+	{ 
+		SetActorState(0, "StandCheap"); 
+		GiveInventory("ItsASlaughter", 1); 
+	}
+}
+
+Script "SlaughtermapCheckCorpse" (VOID)
+{
+	if ( GetCvar("BD_DestructibleBodies" ) == 1 || slaughtermapdetector > 200 )
+	{	
+		delay(1);
+		SetActorState(0, "NoBlock", FALSE);
+	}
+}

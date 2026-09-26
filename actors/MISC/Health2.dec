@@ -1,0 +1,333 @@
+// Health bonus -------------------------------------------------------------
+
+ACTOR HealthPlus : Health Replaces HealthBonus
+{
+	//$Category Health and Armor
+	//$Sprite BON1A0
+	//$Title "Health bonus"
+	Game Doom
+	SpawnID 152
+	+COUNTITEM
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.NEVERRESPAWN
+	+FORCEXYBILLBOARD
+	-CANNOTPUSH
+	Inventory.Amount 2
+	Inventory.MaxAmount 300
+	Tag "Health Bonus"
+	Inventory.PickupMessage "$GOTHTHBONUS"
+	States
+	{
+	Spawn:
+		BON1 A 0
+		BON1 A 0 ACS_NamedExecuteAlways("BDCheckDecorations", 0, 0, 0, 0)//Check if advanced decorations are disabled.
+	Spawn2:	
+        TNT1 A 0 A_CheckSight ("Spawn3")
+		BON1 ABCDCB 2 A_SpawnItem("BlueFlareSmallItem",0,7)
+		Loop
+	Spawn3:
+		BON1 A 9
+		Goto Spawn2
+	Vanilla:
+		BON1 ABCDCB 2
+		Loop
+	}
+}
+
+
+Actor HealthPlusNoCount : HealthPlus
+{
+	-COUNTITEM
+}
+
+
+
+// Green armor --------------------------------------------------------------
+
+Actor LightArmor : BasicArmorPickup Replaces GreenArmor
+{
+	//$Category Health and Armor
+	//$Sprite ARM1A0
+	//$Title "Green armor"
+	Game Doom
+	Scale 1.2
+	SpawnID 68
+	Radius 20
+	Height 16
+	Inventory.Pickupmessage "$GOTARMOR"
+	Inventory.Icon "ARM1A0"
+	Armor.SavePercent 50.1
+	Armor.SaveAmount 100
+    Inventory.PickupSound "ARMOR"
+	+FORCEXYBILLBOARD
+	-CANNOTPUSH
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_CheckSight("Spawn2")
+		ARM1 B 10
+		ARM1 AAAAA 2 bright A_SpawnItem("GreenFlareMedium",0,10)
+		loop
+	Spawn2:
+		ARM1 B 10
+		ARM1 A 10 bright
+		ARM1 B 10
+		ARM1 A 10 bright
+		Goto Spawn
+	}
+}
+
+// Blue armor ---------------------------------------------------------------
+
+Actor HeavyArmor : BasicArmorPickup Replaces BlueArmor
+{
+	//$Category Health and Armor
+	//$Sprite ARM2A0
+	//$Title "Blue armor"
+	Game Doom
+	SpawnID 69
+	Scale 1.2
+	Radius 20
+	Height 16
+	Inventory.Pickupmessage "$GOTMEGA"
+	Inventory.Icon "ARM2A0"
+	Armor.Savepercent 50.1
+	Armor.Saveamount 200
+    Inventory.PickupSound "Pickup/HeavyArmor"
+	+FORCEXYBILLBOARD
+	-CANNOTPUSH
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_CheckSight("Spawn2")
+		ARM2 B 10
+		ARM2 AAAAA 2 bright A_SpawnItem("BlueFlareMedium2",0,10)
+		loop
+	Spawn2:
+		ARM2 B 10
+		ARM2 A 10 bright
+		ARM2 B 10
+		ARM2 A 10 bright
+		Goto Spawn	
+	}
+}
+
+
+Actor GiveArmor : BasicArmorBonus
+{
+	Game Doom
+	SpawnID 22
+	Radius 20
+	Height 16
+	Inventory.Pickupmessage "$GOTARMBONUS"
+	Inventory.Icon "BON2A0"
+	Armor.Savepercent 50.1
+	Armor.Saveamount 1
+	Armor.Maxsaveamount 9999
+	+COUNTITEM
+	+INVENTORY.ALWAYSPICKUP
+	+FORCEXYBILLBOARD
+	-CANNOTPUSH
+	States
+	{
+	Spawn:
+		BON2 AAABBBCCCDDDCCCBBB 2
+		loop
+	}
+}
+
+
+ACTOR CrueltyBonus5armor : BasicArmorBonus
+{
+	Game Doom
+	SpawnID 152
+	-COUNTITEM
+	Radius 220
+	+INVENTORY.ALWAYSPICKUP
+	+FORCEXYBILLBOARD
+	-CANNOTPUSH
+	Inventory.Icon "BON3A0"
+	Armor.Savepercent 50.1
+	Armor.Saveamount 5
+	Armor.Maxsaveamount 150
+	Inventory.PickupMessage "$GOTCRUELTYARMOR"
+	States
+	{
+	Spawn:
+        TNT1 A 50
+		Stop
+	}
+}
+
+
+// Armor bonus --------------------------------------------------------------
+
+Actor ArmorShard : BasicArmorBonus Replaces ArmorBonus
+{
+	//$Category Health and Armor
+	//$Sprite BON2A0
+	//$Title "Armor bonus"
+	Game Doom
+	SpawnID 22
+	Radius 20
+	Height 16
+	Inventory.Pickupmessage "$GOTARMBONUS"
+	Inventory.Icon "BON2A0"
+	Armor.Savepercent 50.1
+	Armor.Saveamount 2
+	Armor.Maxsaveamount 300
+	+COUNTITEM
+	+INVENTORY.NEVERRESPAWN
+	+INVENTORY.ALWAYSPICKUP
+	+FORCEXYBILLBOARD
+	-CANNOTPUSH
+	States
+	{
+	Spawn:
+		BON2 AAABCDB 2
+		Loop
+	}
+}
+
+
+Actor ArmorShardNoCount: ArmorShard
+{
+-COUNTITEM
+}
+
+
+
+
+
+Actor ArmorShardDroped : BasicArmorBonus
+{
+	Game Doom
+	Radius 20
+	Height 16
+	Inventory.Pickupmessage "$GOTARMBONUS"
+	Inventory.Icon "BON2A0"
+	Armor.Savepercent 50.1
+	Armor.Saveamount 5
+	Armor.Maxsaveamount 300
+	+COUNTITEM
+	+INVENTORY.NEVERRESPAWN
+	+INVENTORY.ALWAYSPICKUP
+	+FORCEXYBILLBOARD
+	-CANNOTPUSH
+	States
+	{
+	Spawn:
+        //TNT1 A 0 A_CheckSight ("Spawn2")
+		BON2 AAABCDB 2 //A_SpawnItem("GreenFlareSmall",0,7)
+		Loop
+	Spawn2:
+		BON2 A 9
+		Goto Spawn
+	}
+}
+
+Actor BasicArmorShardDroped: ArmorShardDroped
+{
+	-COUNTITEM
+	Armor.Maxsaveamount 100
+}
+
+Actor HeavyArmorShardDroped: BasicArmorShardDroped
+{
+	Armor.Maxsaveamount 200
+}
+
+
+
+
+
+
+
+ACTOR Stimpack2 : Health Replaces Stimpack
+{
+	//$Category Health and Armor
+	//$Sprite MEDKB0
+	//$Title "Stimpack"
+	Game Doom
+	SpawnID 23
+	Inventory.Amount 10
+	Inventory.PickupMessage "$GOTSTIM"
+	Health.LowMessage 25, "$GOTSTIMNEED"
+	Inventory.PickupSound "GOTHPS"
+	+FORCEXYBILLBOARD
+	-CANNOTPUSH
+	States
+	{
+	Spawn:
+		MEDK B 2
+		MEDK B -1
+		Stop
+	}
+}
+
+// Medikit -----------------------------------------------------------------
+
+ACTOR Medikit2 : Health Replaces Medikit
+{
+	//$Category Health and Armor
+	//$Sprite MEDKA0
+	//$Title "Medikit"
+	Game Doom
+	SpawnID 24
+	Inventory.Amount 25
+	Inventory.PickupMessage "$GOTMEDIKIT"
+	Health.LowMessage 25, "$GOTMEDINEED"
+	Inventory.PickupSound"GOTHPB"
+	+FORCEXYBILLBOARD
+	-CANNOTPUSH
+	States
+	{
+	Spawn:
+        MEDK A 1
+		MEDK A -1
+		Stop	
+	}
+}
+
+
+
+
+
+ACTOR GiveHealth : Health
+{
+	Game Doom
+	SpawnID 152
+	+COUNTITEM
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.Amount 1
+	Inventory.MaxAmount 9999
+	Inventory.PickupMessage "$GOTHTHBONUS"
+	+FORCEXYBILLBOARD
+	-CANNOTPUSH
+	States
+	{
+	Spawn:
+		BON1 AAABBBCCCDDDCCCBBB 2
+		Loop
+	}
+}
+
+ACTOR CrueltyBonus5health : Health
+{
+	Game Doom
+	SpawnID 152
+	-COUNTITEM
+	Radius 220
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.Amount 5
+	Inventory.MaxAmount 9999
+	Inventory.PickupMessage "$GOTCRUELTYHEALTH"
+	States
+	{
+	Spawn:
+        TNT1 A 50
+		Stop
+	}
+}
+
+

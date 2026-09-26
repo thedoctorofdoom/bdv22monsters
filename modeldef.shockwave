@@ -1,0 +1,323 @@
+Model HorizontalShockwave      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "shockwave.md3"    // Model index, model file
+   Skin 0 "ShockWhite1.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 7.0 7.0 0.1            // Scale values
+   FrameIndex XXXX A 0 0         // The sprite lump, sprite frame, model index, frame number
+   ZOffset 2.0
+}
+
+Model HorizontalShockwave      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "shockwave.md3"    // Model index, model file
+   Skin 0 "ShockWhite2.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 7.0 7.0 0.1            // Scale values
+   FrameIndex XXXX B 0 1         // The sprite lump, sprite frame, model index, frame number
+   ZOffset 2.0
+}
+
+Model HorizontalShockwave      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "shockwave.md3"    // Model index, model file
+   Skin 0 "ShockWhite3.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 7.0 7.0 0.1            // Scale values
+   FrameIndex XXXX C 0 2         // The sprite lump, sprite frame, model index, frame number
+   ZOffset 2.0
+}
+
+Model HorizontalShockwave      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "shockwave.md3"    // Model index, model file
+   Skin 0 "ShockWhite4.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 7.0 7.0 0.1            // Scale values
+   FrameIndex XXXX D 0 3         // The sprite lump, sprite frame, model index, frame number
+   ZOffset 2.0
+}
+
+Model HorizontalShockwave      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "shockwave.md3"    // Model index, model file
+   Skin 0 "ShockWhite5.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 7.0 7.0 0.1            // Scale values
+   FrameIndex XXXX E 0 4         // The sprite lump, sprite frame, model index, frame number
+   ZOffset 2.0
+}
+
+Model HorizontalShockwave      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "shockwave.md3"    // Model index, model file
+   Skin 0 "ShockWhite6.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 7.0 7.0 0.1            // Scale values
+   FrameIndex XXXX F 0 5         // The sprite lump, sprite frame, model index, frame number
+   ZOffset 2.0
+}
+
+Model HorizontalShockwave      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "shockwave.md3"    // Model index, model file
+   Skin 0 "ShockWhite7.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 7.0 7.0 0.1            // Scale values
+   FrameIndex XXXX G 0 6         // The sprite lump, sprite frame, model index, frame number
+   ZOffset 2.0
+}
+
+Model HorizontalShockwave      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "shockwave.md3"    // Model index, model file
+   Skin 0 "ShockWhite8.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 7.0 7.0 0.1            // Scale values
+   FrameIndex XXXX I 0 7         // The sprite lump, sprite frame, model index, frame number
+   ZOffset 2.0
+}
+
+
+
+Model HorizontalShockwave2      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "shockwave.md3"    // Model index, model file
+   Skin 0 "ShockWhite1.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 7.0 7.0 0.1            // Scale values
+   FrameIndex XXXX A 0 0         // The sprite lump, sprite frame, model index, frame number
+   ZOffset 2.0
+}
+
+Model HorizontalShockwave2      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "shockwave.md3"    // Model index, model file
+   Skin 0 "ShockWhite2.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 7.0 7.0 0.1            // Scale values
+   FrameIndex XXXX B 0 1         // The sprite lump, sprite frame, model index, frame number
+   ZOffset 2.0
+}
+
+Model HorizontalShockwave2      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "shockwave.md3"    // Model index, model file
+   Skin 0 "ShockWhite3.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 7.0 7.0 0.1            // Scale values
+   FrameIndex XXXX C 0 2         // The sprite lump, sprite frame, model index, frame number
+   ZOffset 2.0
+}
+
+Model HorizontalShockwave2      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "shockwave.md3"    // Model index, model file
+   Skin 0 "ShockWhite4.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 7.0 7.0 0.1            // Scale values
+   FrameIndex XXXX D 0 3         // The sprite lump, sprite frame, model index, frame number
+   ZOffset 2.0
+}
+
+Model HorizontalShockwave2      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "shockwave.md3"    // Model index, model file
+   Skin 0 "ShockWhite5.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 7.0 7.0 0.1            // Scale values
+   FrameIndex XXXX E 0 4         // The sprite lump, sprite frame, model index, frame number
+   ZOffset 2.0
+}
+
+Model HorizontalShockwave2      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "shockwave.md3"    // Model index, model file
+   Skin 0 "ShockWhite6.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 7.0 7.0 0.1            // Scale values
+   FrameIndex XXXX F 0 5         // The sprite lump, sprite frame, model index, frame number
+   ZOffset 2.0
+}
+
+Model HorizontalShockwave2      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "shockwave.md3"    // Model index, model file
+   Skin 0 "ShockWhite7.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 7.0 7.0 0.1            // Scale values
+   FrameIndex XXXX G 0 6         // The sprite lump, sprite frame, model index, frame number
+   ZOffset 2.0
+}
+
+Model HorizontalShockwave2      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "shockwave.md3"    // Model index, model file
+   Skin 0 "ShockWhite8.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 7.0 7.0 0.1            // Scale values
+   FrameIndex XXXX I 0 7         // The sprite lump, sprite frame, model index, frame number
+   ZOffset 2.0
+}
+
+Model HorizontalShockwave3      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "shockwave.md3"    // Model index, model file
+   Skin 0 "ShockWhite1.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 7.0 7.0 0.1            // Scale values
+   FrameIndex XXXX A 0 0         // The sprite lump, sprite frame, model index, frame number
+   ZOffset 2.0
+}
+
+Model HorizontalShockwave3      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "shockwave.md3"    // Model index, model file
+   Skin 0 "ShockWhite2.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 7.0 7.0 0.1            // Scale values
+   FrameIndex XXXX B 0 1         // The sprite lump, sprite frame, model index, frame number
+   ZOffset 2.0
+}
+
+Model HorizontalShockwave3      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "shockwave.md3"    // Model index, model file
+   Skin 0 "ShockWhite3.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 7.0 7.0 0.1            // Scale values
+   FrameIndex XXXX C 0 2         // The sprite lump, sprite frame, model index, frame number
+   ZOffset 2.0
+}
+
+Model HorizontalShockwave3     // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "shockwave.md3"    // Model index, model file
+   Skin 0 "ShockWhite4.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 7.0 7.0 0.1            // Scale values
+   FrameIndex XXXX D 0 3         // The sprite lump, sprite frame, model index, frame number
+   ZOffset 2.0
+}
+
+Model HorizontalShockwave3      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "shockwave.md3"    // Model index, model file
+   Skin 0 "ShockWhite5.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 7.0 7.0 0.1            // Scale values
+   FrameIndex XXXX E 0 4         // The sprite lump, sprite frame, model index, frame number
+   ZOffset 2.0
+}
+
+Model HorizontalShockwave3      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "shockwave.md3"    // Model index, model file
+   Skin 0 "ShockWhite6.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 7.0 7.0 0.1            // Scale values
+   FrameIndex XXXX F 0 5         // The sprite lump, sprite frame, model index, frame number
+   ZOffset 2.0
+}
+
+Model HorizontalShockwave3      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "shockwave.md3"    // Model index, model file
+   Skin 0 "ShockWhite7.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 7.0 7.0 0.1            // Scale values
+   FrameIndex XXXX G 0 6         // The sprite lump, sprite frame, model index, frame number
+   ZOffset 2.0
+}
+
+Model HorizontalShockwave3      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "shockwave.md3"    // Model index, model file
+   Skin 0 "ShockWhite8.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 7.0 7.0 0.1            // Scale values
+   FrameIndex XXXX I 0 7         // The sprite lump, sprite frame, model index, frame number
+   ZOffset 2.0
+}
+
+
+Model HorizontalShockwave4      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "shockwave.md3"    // Model index, model file
+   Skin 0 "ShockWhite1.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 7.0 7.0 0.1            // Scale values
+   FrameIndex XXXX A 0 0         // The sprite lump, sprite frame, model index, frame number
+   ZOffset 2.0
+}
+
+Model HorizontalShockwave4      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "shockwave.md3"    // Model index, model file
+   Skin 0 "ShockWhite2.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 7.0 7.0 0.1            // Scale values
+   FrameIndex XXXX B 0 1         // The sprite lump, sprite frame, model index, frame number
+   ZOffset 2.0
+}
+
+Model HorizontalShockwave4      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "shockwave.md3"    // Model index, model file
+   Skin 0 "ShockWhite3.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 7.0 7.0 0.1            // Scale values
+   FrameIndex XXXX C 0 2         // The sprite lump, sprite frame, model index, frame number
+   ZOffset 2.0
+}
+
+Model HorizontalShockwave4      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "shockwave.md3"    // Model index, model file
+   Skin 0 "ShockWhite4.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 7.0 7.0 0.1            // Scale values
+   FrameIndex XXXX D 0 3         // The sprite lump, sprite frame, model index, frame number
+   ZOffset 2.0
+}
+
+Model HorizontalShockwave4      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "shockwave.md3"    // Model index, model file
+   Skin 0 "ShockWhite5.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 7.0 7.0 0.1            // Scale values
+   FrameIndex XXXX E 0 4         // The sprite lump, sprite frame, model index, frame number
+   ZOffset 2.0
+}
+
+Model HorizontalShockwave4      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "shockwave.md3"    // Model index, model file
+   Skin 0 "ShockWhite6.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 7.0 7.0 0.1            // Scale values
+   FrameIndex XXXX F 0 5         // The sprite lump, sprite frame, model index, frame number
+   ZOffset 2.0
+}
+
+Model HorizontalShockwave4      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "shockwave.md3"    // Model index, model file
+   Skin 0 "ShockWhite7.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 7.0 7.0 0.1            // Scale values
+   FrameIndex XXXX G 0 6         // The sprite lump, sprite frame, model index, frame number
+   ZOffset 2.0
+}
+
+Model HorizontalShockwave4      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "shockwave.md3"    // Model index, model file
+   Skin 0 "ShockWhite8.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 7.0 7.0 0.1            // Scale values
+   FrameIndex XXXX I 0 7         // The sprite lump, sprite frame, model index, frame number
+   ZOffset 2.0
+}
+

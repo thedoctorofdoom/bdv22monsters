@@ -1,0 +1,49 @@
+script "EvilMarine_Wad_Patches"
+{
+	delay(1);
+	
+	if(bd_wadcheck == 6) //Scythe II (Plasma Rifle Marine)
+	{
+		if(CheckActorClass(27,"MrX")) terminate;
+		else 
+		SetActorProperty(27,APROP_Health,240); 
+		SetActorProperty(27,APROP_Speed,16.0);
+	}
+	else if(bd_wadcheck == 7) //Resurgence (Plasma Rifle Marine)
+	{
+		SetActorProperty(27,APROP_Health,250); 
+		SetActorProperty(27,APROP_Speed,3.0);
+	}
+	else if(bd_wadcheck == 10) //Bloodstain (Rifle Marine)
+	{
+		SetActorProperty(27,APROP_Speed,10.0);
+	}
+	else if(bd_wadcheck == 12) //Jenesis (Shotgun Marine)
+	{
+		SetActorProperty(27,APROP_Health,90);
+	}
+}
+
+script "Afrit_Wad_Patches"
+{
+	delay(1);
+	if(bd_wadcheck == 6) //Scythe II
+	{
+		SetActorProperty(0,APROP_Health,2500);
+	}
+	else if(bd_wadcheck == 10) //Bloodstain
+	{
+		GiveInventory("Bloodstain_Loaded",1);
+		SetActorProperty(0,APROP_Health,1500);
+		SetActorProperty(0,APROP_Speed,10.0);
+		SetActorProperty(0,APROP_Mass,600);	
+	}
+}
+
+script "Barrel_Wad_Patches"
+{
+	if(bd_wadcheck == 18)
+	{
+		SetActorProperty(0,APROP_Health,1);
+	}
+}

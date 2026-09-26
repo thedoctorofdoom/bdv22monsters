@@ -1,0 +1,228 @@
+//Super-turbo-mega optimized particle spawner! Recommended for not eating up server bandwidth with particles.
+//usage:    "####" "#" 0 A_SpawnItemEx("ClientSideSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+//recommended naming : ACTORNAME_particles
+ACTOR ClientSideSpawner
+{
+	Radius 0
+	Height 0
+	Alpha 0.0
+	Mass 0
+	RenderStyle "none"
+	+INVISIBLE
+	+NOBLOCKMAP
+	+CLIENTSIDEONLY
+	+NOINTERACTION
+	+NOCLIP
+	+NOTARGET
+	States
+	{
+	Spawn:
+		TNT1 A 0 //first frame is empty because doom (and i dont trust NODELAY)
+		TNT1 A 0 //now put your particles here
+		stop
+	}
+}
+
+
+
+Actor SpritePrecacher
+{
+	Renderstyle "none"
+	+INVISIBLE
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	States
+	{
+	Spawn:
+		TNT1 A 0 //my beloved
+		//////////////////////gore
+		//generic + burn
+		BL8A A 0
+		BLHT A 0
+		BLOR A 0
+		BLUD A 0
+		BPDL A 0
+		BRTL A 0
+		BSPR A 0
+		GTXP A 0
+		GTXZ A 0
+		GUTS A 0
+		XDB5 A 0
+		XDB6 A 0
+		XDT1 A 0
+		XME5 A 0
+		XME8 A 0
+		XMT1 A 0
+		XMT2 A 0
+		BDT2 A 0
+		BDT3 A 0
+		CARB A 0
+		PBR1 A 0
+		XBRN A 0
+
+		//////////////////////weapons
+		
+		//////////////////////effects
+		//flares
+		FSO1 A 0
+		L2NB A 0
+		L2NG A 0
+		L2NR A 0
+		L2NY A 0
+		LENB A 0
+		LENG A 0
+		LENR A 0
+		LENS A 0
+		LENW A 0
+		LENY A 0
+		TLMF A 0
+		//flames
+		CFCF A 0
+		CFFX A 0
+		EFIR A 0
+		F1RE A 0
+		F2RE A 0
+		FIR1 A 0
+		FIR2 A 0
+		FIR3 A 0
+		FIR5 A 0
+		FIR6 A 0
+		FIRB A 0
+		FIRG A 0
+		FLME A 0
+		FLXB A 0
+		FLXP A 0
+		FR7X A 0
+		FRFX A 0
+		FRPB A 0
+		FRPG A 0
+		FRPR A 0
+		FX98 A 0
+		INFE A 0
+		NF3R A 0
+		NF4R A 0
+		PLAF A 0
+		SPFM A 0
+		SPFN A 0
+		SPGM A 0
+		SPGN A 0
+		SRKB A 0
+		SRKG A 0
+		SRKR A 0
+		TRKB A 0
+		TRKG A 0
+		TRKR A 0
+		X003 A 0
+		X004 A 0
+		//particles
+		BAL1 A 0
+		BAL2 A 0
+		BAL7 A 0
+		BFOG A 0
+		BPRT A 0
+		BPUF A 0
+		BUBL A 0
+		DUST A 0
+		FX33 A 0
+		FX34 A 0
+		FX57 A 0
+		FX58 A 0
+		GLSP A 0
+		JNK1 A 0
+		JNK2 A 0
+		JNK3 A 0
+		LIQU A 0
+		MANF A 0
+		MSBL A 0
+		OFOG A 0
+		PBAL A 0
+		PBEX A 0
+		PFOG A 0
+		SHOQ A 0
+		SPKB A 0
+		SPKG A 0
+		SPKN A 0
+		SPKO A 0
+		SPKS A 0
+		SPRK A 0
+		VFOG A 0
+		WOOD A 0
+		ZGPL A 0
+		//Explosions
+		DTXP A 0
+		EXP1 A 0
+		EXP2 A 0
+		EXP3 A 0
+		EXP4 A 0
+		EXP5 A 0
+		EXP6 A 0
+		EXP7 A 0
+		EXP8 A 0
+		EXPG A 0
+		EXPL A 0
+		EXPZ A 0
+		PLX6 A 0
+		PLX7 A 0
+		WTXP A 0
+		WTXZ A 0
+		XPAC A 0
+		//SFX
+		ASHY A 0
+		ASHZ A 0
+		BLHD A 0
+		BSPH A 0
+		BSPL A 0
+		CMMN A 0
+		DIRP A 0
+		IPF2 A 0
+		LSPL A 0
+		LVAS A 0
+		NKSH A 0
+		NSPL A 0
+		SDRT A 0
+		SHOK A 0
+		SHwK A 0
+		SLIM A 0
+		SPHB A 0
+		SPHG A 0
+		SPHR A 0
+		SPHW A 0
+		SPSH A 0
+		TFOG A 0
+		WSPH A 0
+		WSPL A 0
+		//smoke
+		BSP4 A 0
+		BSP5 A 0
+		ESMK A 0
+		FBB3 A 0
+		FBB4 A 0
+		FBB5 A 0
+		PUF2 A 0
+		PUF3 A 0
+		SB17 A 0
+		SB18 A 0
+		SM1K A 0
+		SM4K A 0
+		SM5K A 0
+		SM6K A 0
+		SM7K A 0
+		SM9K A 0
+		SMBK A 0
+		SMk2 A 0
+		SMK3 A 0
+		SMK5 A 0
+		SMOK A 0
+		SMWP A 0
+		TNT1 A 0
+		TNT1 A 0
+		TNT1 A 0
+		TNT1 A 0
+		TNT1 A 0
+		TNT1 A 0
+		TNT1 A 0
+
+		//////////////////////monsters
+		stop
+	}
+}

@@ -1,0 +1,440 @@
+// Doom II Enhancements
+Script "BD_ME_12076524865667171768" // MAP01
+{
+	SpawnForced("EvidenceCheckerChainsaw",-480.0,848.0,0.0,68,0.0);
+}
+
+Script "BD_ME_16109288638794986811" // MAP02
+{
+	SpawnForced("EvidenceCheckerBlueKey",928.0,576.0,0.0,44,0.0);
+}
+
+Script "BD_ME_14384154521402496332" // MAP02 (Wadsmoosh)
+{
+	//Delay(1);
+	//ACS_NamedExecuteWithResult("BD_ME_14384154521402496332",0,0,0,0);
+	SpawnForced("EvidenceCheckerBlueKey",928.0,576.0,0.0,44,0.0);
+}
+
+Script "BD_ME_243555934344844936" // MAP03
+{
+	SpawnForced("EvidenceCheckerBlueKey",4608.0,3360.0,0.0,85,0.0);
+}
+
+Script "BD_ME_4485031148577398661" // MAP04
+{
+	SpawnForced("EvidenceCheckerBlueKey",-832.0,304.0,0.0,21,0.0);
+}
+
+Script "BD_ME_17407343880515012508" // MAP05
+{
+	SpawnForced("EvidenceCheckerBlueKey",976.0,-640.0,0.0,50,0.0);
+}
+
+Script "BD_ME_10420507465434490223" // MAP06
+{
+	SpawnForced("EvidenceCheckerBlueKey",-800.0,608.0,0.0,36,0.0);
+}
+
+Script "BD_ME_12000086467791822667" // MAP06 (KEX)
+{
+	SpawnForced("EvidenceCheckerBlueKey",-800.0,608.0,0.0,36,0.0);
+}
+
+Script "BD_ME_7744124719140702628" // MAP07
+{
+	SpawnForced("EvidenceCheckerInvisibility",-64.0,-832.0,0.0,7,0.0);
+}
+
+Script "BD_ME_10137158784313037507" // MAP09
+{
+	SpawnForced("EvidenceCheckerBlueKey",-480.0,1504.0,0.0,185,0.0);
+}
+
+Script "BD_ME_10033287064886522499" // MAP10
+{
+	SpawnForced("EvidenceCheckerInvisibility",800.0,-1632.0,0.0,470,0.0);
+}
+
+Script "BD_ME_1671024566473545718" // MAP11 (Wadsmoosh)
+{
+}
+
+Script "BD_ME_6584246398119229328" // MAP12
+{
+	SpawnForced("EvidenceCheckerGreenTorch",464.0,1840.0,0.0,147,0.0);
+}
+
+Script "BD_ME_1849635047750481396" // MAP13
+{
+	SpawnForced("EvidenceCheckerGreenTorch",-1024.0,-1760.0,0.0,175,0.0);
+}
+
+Script "BD_ME_6599501109630231532" // MAP14
+{
+	SpawnForced("EvidenceCheckerInvisibility",800.0,-1072.0,0.0,138,0.0);
+}
+
+Script "BD_ME_7272810713818352388" // MAP15
+{
+	SpawnForced("EvidenceCheckerBlueKey",-1072.0,-3040.0,0.0,337,0.0);
+}
+
+Script "BD_ME_7549405111711539112" // MAP16
+{
+	SpawnForced("EvidenceCheckerGreenTorch",352.0,416.0,0.0,1,0.0);
+}
+
+Script "BD_ME_14709093605735364398" // MAP17
+{
+	SpawnForced("EvidenceCheckerInvisibility",-3056.0,-2560.0,0.0,81,0.0);
+}
+
+Script "BD_ME_3446289573271231546" // MAP18
+{
+	SpawnForced("EvidenceCheckerBlueSkull",1936.0,1488.0,0.0,268,0.0);
+}
+
+Script "BD_ME_464686722908097674" // MAP19
+{
+	SpawnForced("EvidenceCheckerBlueSkull",1088.0,896.0,0.0,370,0.0);
+}
+
+Script "BD_ME_12146858581493829149" // MAP20
+{
+	SpawnForced("EvidenceCheckerGreenTorch",2192.0,-2864.0,0.0,13,0.0);
+}
+
+Script "BD_ME_1251818853154134241" // MAP20 (KEX)
+{
+	SpawnForced("EvidenceCheckerGreenTorch",2192.0,-2864.0,0.0,13,0.0);
+}
+
+Script "BD_ME_14780437190333593014" // MAP24
+{
+	SpawnForced("EvidenceCheckerBlueKey",-112.0,288.0,0.0,23,0.0);
+}
+
+Script "BD_ME_7663242337208156034" // MAP25
+{
+	SpawnForced("EvidenceCheckerBlueSkull",-1312.0,3456.0,0.0,106,0.0);
+}
+
+Script "BD_ME_9299585572396310514" // MAP30
+{
+}
+
+//Maps Of Chaos
+Script "BD_ME_11449237850233143726" // MAP01
+{
+	SpawnForced("EvidenceCheckerChainsaw",-480.0,848.0,0.0,68,0.0);
+}
+
+Script "BD_ME_14505185740923803912" // MAP02
+{
+	SpawnForced("EvidenceCheckerBlueKey",928.0,576.0,0.0,44,0.0);
+}
+
+Script "BD_ME_1730520917399292838" // MAP03
+{
+	SpawnForced("EvidenceCheckerBlueKey",4608.0,3360.0,0.0,85,0.0);
+}
+
+Script "BD_ME_2049083257477632201" // MAP04
+{
+	SpawnForced("EvidenceCheckerBlueKey",-832.0,304.0,0.0,21,0.0);
+}
+
+Script "BD_ME_13590790305488362111" // MAP05
+{
+	SpawnForced("EvidenceCheckerBlueKey",976.0,-640.0,0.0,50,0.0);
+}
+
+Script "BD_ME_14547235202785624754" // MAP06
+{
+	SpawnForced("EvidenceCheckerBlueKey",-800.0,608.0,0.0,36,0.0);
+}
+
+Script "BD_ME_7484156971547386582" // MAP07
+{
+	SpawnForced("EvidenceCheckerInvisibility",-64.0,-832.0,0.0,7,0.0);
+}
+
+Script "BD_ME_2685820184094407774" // MAP09
+{
+	SpawnForced("EvidenceCheckerBlueKey",-480.0,1504.0,0.0,185,0.0);
+}
+
+Script "BD_ME_13363366621921571840" // MAP10
+{
+	SpawnForced("EvidenceCheckerInvisibility",800.0,-1632.0,0.0,470,0.0);
+}
+
+Script "BD_ME_18060775842943755057" // MAP12
+{
+	SpawnForced("EvidenceCheckerGreenTorch",464.0,1840.0,0.0,147,0.0);
+}
+
+Script "BD_ME_9540942993736307643" // MAP13
+{
+	SpawnForced("EvidenceCheckerGreenTorch",-1024.0,-1760.0,0.0,175,0.0);
+}
+
+Script "BD_ME_13035382443004685136" // MAP14
+{
+	SpawnForced("EvidenceCheckerInvisibility",800.0,-1072.0,0.0,138,0.0);
+}
+
+Script "BD_ME_18132889642903968269" // MAP15
+{
+	SpawnForced("EvidenceCheckerBlueKey",-1072.0,-3040.0,0.0,337,0.0);
+}
+
+Script "BD_ME_11230925545224688321" // MAP16
+{
+	SpawnForced("EvidenceCheckerGreenTorch",352.0,416.0,0.0,1,0.0);
+}
+
+Script "BD_ME_1286068017929066769" // MAP17
+{
+	SpawnForced("EvidenceCheckerInvisibility",-3056.0,-2560.0,0.0,81,0.0);
+}
+
+Script "BD_ME_226530376499720767" // MAP18
+{
+	SpawnForced("EvidenceCheckerBlueSkull",1936.0,1488.0,0.0,268,0.0);
+}
+
+Script "BD_ME_7764363991418234516" // MAP19
+{
+	SpawnForced("EvidenceCheckerBlueSkull",1088.0,896.0,0.0,370,0.0);
+}
+
+Script "BD_ME_11173324009714890792" // MAP20
+{
+	SpawnForced("EvidenceCheckerGreenTorch",2192.0,-2864.0,0.0,13,0.0);
+}
+
+Script "BD_ME_9046044683571338651" // MAP24
+{
+	SpawnForced("EvidenceCheckerBlueKey",-112.0,288.0,0.0,23,0.0);
+}
+
+Script "BD_ME_13930470304642553199" // MAP25
+{
+	SpawnForced("EvidenceCheckerBlueSkull",-1312.0,3456.0,0.0,106,0.0);
+}
+
+Script "BD_ME_1453558299207260071" // MAP30
+{
+}
+
+//Maps Of Chaos (Hardcore)
+Script "BD_ME_15484819584039854347" // MAP01
+{
+	SpawnForced("EvidenceCheckerChainsaw",-480.0,848.0,0.0,68,0.0);
+}
+
+Script "BD_ME_13242015017248513146" // MAP02
+{
+	SpawnForced("EvidenceCheckerBlueKey",928.0,576.0,0.0,44,0.0);
+}
+
+Script "BD_ME_8906564403656433946" // MAP03
+{
+	SpawnForced("EvidenceCheckerBlueKey",928.0,576.0,0.0,44,0.0);
+}
+
+Script "BD_ME_5516161647707147448" // MAP04
+{
+	SpawnForced("EvidenceCheckerBlueKey",-832.0,304.0,0.0,21,0.0);
+}
+
+Script "BD_ME_5541495810274659943" // MAP05
+{
+	SpawnForced("EvidenceCheckerBlueKey",976.0,-640.0,0.0,50,0.0);
+}
+
+Script "BD_ME_7118145190243018610" // MAP06
+{
+	SpawnForced("EvidenceCheckerBlueKey",-800.0,608.0,0.0,36,0.0);
+}
+
+Script "BD_ME_1926178638922985147" // MAP07
+{
+	SpawnForced("EvidenceCheckerInvisibility",-64.0,-832.0,0.0,7,0.0);
+}
+
+Script "BD_ME_16463792410123382679" // MAP09
+{
+	SpawnForced("EvidenceCheckerBlueKey",-480.0,1504.0,0.0,185,0.0);
+}
+
+Script "BD_ME_8813744350901308833" // MAP10
+{
+	SpawnForced("EvidenceCheckerInvisibility",800.0,-1632.0,0.0,470,0.0);
+}
+
+Script "BD_ME_12087977044361224543" // MAP12
+{
+	SpawnForced("EvidenceCheckerGreenTorch",464.0,1840.0,0.0,147,0.0);
+}
+
+Script "BD_ME_14363383727199412536" // MAP13
+{
+	SpawnForced("EvidenceCheckerGreenTorch",-1024.0,-1760.0,0.0,175,0.0);
+}
+
+Script "BD_ME_14242643144075046793" // MAP14
+{
+	SpawnForced("EvidenceCheckerInvisibility",800.0,-1072.0,0.0,138,0.0);
+}
+
+Script "BD_ME_8262554280285037468" // MAP15
+{
+	SpawnForced("EvidenceCheckerBlueKey",-1072.0,-3040.0,0.0,337,0.0);
+}
+
+Script "BD_ME_8808840185810126665" // MAP16
+{
+	SpawnForced("EvidenceCheckerGreenTorch",352.0,416.0,0.0,1,0.0);
+}
+
+Script "BD_ME_7209055142356664540" // MAP17
+{
+	SpawnForced("EvidenceCheckerInvisibility",-3056.0,-2560.0,0.0,81,0.0);
+}
+
+Script "BD_ME_14152779369175871942" // MAP18
+{
+	SpawnForced("EvidenceCheckerBlueSkull",1936.0,1488.0,0.0,268,0.0);
+}
+
+Script "BD_ME_3325264886749623696" // MAP19
+{
+	SpawnForced("EvidenceCheckerBlueSkull",1088.0,896.0,0.0,370,0.0);
+}
+
+Script "BD_ME_9886539875734111524" // MAP20
+{
+	SpawnForced("EvidenceCheckerGreenTorch",2192.0,-2864.0,0.0,13,0.0);
+}
+
+Script "BD_ME_11621764344676854227" // MAP24
+{
+	SpawnForced("EvidenceCheckerBlueKey",-112.0,288.0,0.0,23,0.0);
+}
+
+Script "BD_ME_11830124753248342117" // MAP25
+{
+	SpawnForced("EvidenceCheckerBlueSkull",-1312.0,3456.0,0.0,106,0.0);
+}
+
+Script "BD_ME_9909353104906706706" // MAP30
+{
+}
+
+//Maps Of Chaos (Overkill)
+Script "BD_ME_17564898476996563451" // MAP01
+{
+	SpawnForced("EvidenceCheckerChainsaw",-480.0,848.0,0.0,68,0.0);
+}
+
+Script "BD_ME_3669777055754144714" // MAP02
+{
+	SpawnForced("EvidenceCheckerBlueKey",928.0,576.0,0.0,44,0.0);
+}
+
+Script "BD_ME_1484970964132046835" // MAP03
+{
+	SpawnForced("EvidenceCheckerBlueKey",4608.0,3360.0,0.0,85,0.0);
+}
+
+Script "BD_ME_7074182363852795945" // MAP04
+{
+	SpawnForced("EvidenceCheckerBlueKey",-832.0,304.0,0.0,21,0.0);
+}
+
+Script "BD_ME_7732903349631050874" // MAP05
+{
+	SpawnForced("EvidenceCheckerBlueKey",976.0,-640.0,0.0,50,0.0);
+}
+
+Script "BD_ME_6396798798511964160" // MAP06
+{
+	SpawnForced("EvidenceCheckerBlueKey",-800.0,608.0,0.0,36,0.0);
+}
+
+Script "BD_ME_10504653938342761167" // MAP07
+{
+	SpawnForced("EvidenceCheckerInvisibility",-64.0,-832.0,0.0,7,0.0);
+}
+
+Script "BD_ME_16233383763323310422" // MAP09
+{
+	SpawnForced("EvidenceCheckerBlueKey",-480.0,1504.0,0.0,185,0.0);
+}
+
+Script "BD_ME_2074201269344733708" // MAP10
+{
+	SpawnForced("EvidenceCheckerInvisibility",800.0,-1632.0,0.0,470,0.0);
+}
+
+Script "BD_ME_1607115934463205096" // MAP12
+{
+	SpawnForced("EvidenceCheckerGreenTorch",464.0,1840.0,0.0,147,0.0);
+}
+
+Script "BD_ME_12978868777013419732" // MAP13
+{
+	SpawnForced("EvidenceCheckerGreenTorch",-1024.0,-1760.0,0.0,175,0.0);
+}
+
+Script "BD_ME_1388311954359084106" // MAP14
+{
+	SpawnForced("EvidenceCheckerInvisibility",800.0,-1072.0,0.0,138,0.0);
+}
+
+Script "BD_ME_5941911185947821353" // MAP15
+{
+	SpawnForced("EvidenceCheckerBlueKey",-1072.0,-3040.0,0.0,337,0.0);
+}
+
+Script "BD_ME_3443964864620351975" // MAP16
+{
+	SpawnForced("EvidenceCheckerGreenTorch",352.0,416.0,0.0,1,0.0);
+}
+
+Script "BD_ME_913281065097385352" // MAP17
+{
+	SpawnForced("EvidenceCheckerInvisibility",-3056.0,-2560.0,0.0,81,0.0);
+}
+
+Script "BD_ME_8516267549478494303" // MAP18
+{
+	SpawnForced("EvidenceCheckerBlueSkull",1936.0,1488.0,0.0,268,0.0);
+}
+
+Script "BD_ME_4530183226923746262" // MAP19
+{
+	SpawnForced("EvidenceCheckerBlueSkull",1088.0,896.0,0.0,370,0.0);
+}
+
+Script "BD_ME_18004046959848708726" // MAP20
+{
+	SpawnForced("EvidenceCheckerGreenTorch",2192.0,-2864.0,0.0,13,0.0);
+}
+
+Script "BD_ME_133763151280691595" // MAP24
+{
+	SpawnForced("EvidenceCheckerBlueKey",-112.0,288.0,0.0,23,0.0);
+}
+
+Script "BD_ME_11403792992321589919" // MAP25
+{
+	SpawnForced("EvidenceCheckerBlueSkull",-1312.0,3456.0,0.0,106,0.0);
+}
+
+Script "BD_ME_11650976364372116535" // MAP30
+{
+}

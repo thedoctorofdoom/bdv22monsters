@@ -1,0 +1,445 @@
+//Scripts of my old bike. Required to make the tank work.
+
+script "BDGeneralInput" ENTER
+{
+	int buttons, fwmove, sidemove;
+	while(true)
+	{
+		fwmove = GetPlayerInput(-1, INPUT_FORWARDMOVE);
+		sidemove = GetPlayerInput(-1, INPUT_SIDEMOVE);
+		buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+		
+		if(fwmove > 100)
+		{
+			GiveInventory("Accelerate", 1);
+		}
+		else if(fwmove < -100)
+		{
+			GiveInventory("Backpedal", 1);
+		}
+		else
+		{
+			TakeInventory("Accelerate", 1);
+			TakeInventory("Backpedal", 1);
+		}
+		
+		if(sidemove > 100)
+		{
+			GiveInventory("TurnRight", 1);
+		}
+		else if(sidemove < -100)
+		{
+			GiveInventory("TurnLeft", 1);
+		}
+		else
+		{
+			TakeInventory("TurnLeft", 1);
+			TakeInventory("TurnRight", 1);
+		}
+		
+		if(buttons & BT_USE)
+			GiveInventory("PressedUse", 1);
+		else
+			TakeInventory("PressedUse", 1);
+		
+		if(buttons & BT_JUMP)
+			GiveInventory("PressedJump", 1);
+		else
+			TakeInventory("PressedJump", 1);
+		
+		delay(1);
+	}
+}
+
+
+Script "HeliRollRight" (VOID)
+{
+	ChangeActorRoll (0, 0.005, 1); delay (1);
+	ChangeActorRoll (0, 0.010, 1); delay (1);
+	ChangeActorRoll (0, 0.015, 1); delay (1);
+	ChangeActorRoll (0, 0.02, 1); delay (1);
+	ChangeActorRoll (0, 0.03, 1); delay (1);
+	ChangeActorRoll (0, 0.05, 1); delay (1);
+	ChangeActorRoll (0, 0.06, 1); delay (1);
+	ChangeActorRoll (0, 0.07, 1); delay (1);
+	ChangeActorRoll (0, 0.075, 1); delay (1);
+	ChangeActorRoll (0, 0.08, 1); delay (1);
+	ChangeActorRoll (0, 0.085, 1); delay (1);
+	ChangeActorRoll (0, 0.09, 1); delay (1);
+}
+
+Script "HeliRollLeft" (VOID)
+{
+	ChangeActorRoll (0, -0.005, 1); delay (1);
+	ChangeActorRoll (0, -0.010, 1); delay (1);
+	ChangeActorRoll (0, -0.015, 1); delay (1);
+	ChangeActorRoll (0, -0.02, 1); delay (1);
+	ChangeActorRoll (0, -0.03, 1); delay (1);
+	ChangeActorRoll (0, -0.05, 1); delay (1);
+	ChangeActorRoll (0, -0.06, 1); delay (1);
+	ChangeActorRoll (0, -0.07, 1); delay (1);
+	ChangeActorRoll (0, -0.075, 1); delay (1);
+	ChangeActorRoll (0, -0.08, 1); delay (1);
+	ChangeActorRoll (0, -0.085, 1); delay (1);
+	ChangeActorRoll (0, -0.09, 1); delay (1);
+}
+
+
+
+
+Script "HeliStopRight" (VOID)
+{
+	ChangeActorRoll (0, 0.09, 1); delay (1);
+	ChangeActorRoll (0, 0.085, 1); delay (1);
+	ChangeActorRoll (0, 0.08, 1); delay (1);
+	ChangeActorRoll (0, 0.075, 1); delay (1);
+	ChangeActorRoll (0, 0.07, 1); delay (1);
+	ChangeActorRoll (0, 0.06, 1); delay (1);
+	ChangeActorRoll (0, 0.05, 1); delay (1);
+	ChangeActorRoll (0, 0.03, 1); delay (1);
+	ChangeActorRoll (0, 0.02, 1); delay (1);
+	ChangeActorRoll (0, 0.015, 1); delay (1);
+	ChangeActorRoll (0, 0.007, 1); delay (1);
+	ChangeActorRoll (0, 0, 1); delay (1);
+}
+
+Script "HeliStopLeft" (VOID)
+{
+	ChangeActorRoll (0, -0.09, 1); delay (1);
+	ChangeActorRoll (0, -0.085, 1); delay (1);
+	ChangeActorRoll (0, -0.08, 1); delay (1);
+	ChangeActorRoll (0, -0.075, 1); delay (1);
+	ChangeActorRoll (0, -0.07, 1); delay (1);
+	ChangeActorRoll (0, -0.06, 1); delay (1);
+	ChangeActorRoll (0, -0.05, 1); delay (1);
+	ChangeActorRoll (0, -0.03, 1); delay (1);
+	ChangeActorRoll (0, -0.02, 1); delay (1);
+	ChangeActorRoll (0, -0.015, 1); delay (1);
+	ChangeActorRoll (0, -0.007, 1); delay (1);
+	ChangeActorRoll (0, 0, 1); delay (1);
+}
+
+
+//Bike
+Script "BikeRollRight" (VOID)
+{
+	ChangeActorRoll (0, 0.005, 1); delay (1);
+	ChangeActorRoll (0, 0.010, 1); delay (1);
+	ChangeActorRoll (0, 0.015, 1); delay (1);
+	ChangeActorRoll (0, 0.02, 1); delay (1);
+	ChangeActorRoll (0, 0.03, 1); delay (1);
+	ChangeActorRoll (0, 0.05, 1); delay (1);
+}
+
+Script "BikeRollLeft" (VOID)
+{
+	ChangeActorRoll (0, -0.005, 1); delay (1);
+	ChangeActorRoll (0, -0.010, 1); delay (1);
+	ChangeActorRoll (0, -0.015, 1); delay (1);
+	ChangeActorRoll (0, -0.02, 1); delay (1);
+	ChangeActorRoll (0, -0.03, 1); delay (1);
+	ChangeActorRoll (0, -0.05, 1); delay (1);
+}
+
+Script "BikeStopRight" (VOID)
+{
+	ChangeActorRoll (0, 0.04, 1); delay (1);
+	ChangeActorRoll (0, 0.03, 1); delay (1);
+	ChangeActorRoll (0, 0.02, 1); delay (1);
+	ChangeActorRoll (0, 0.015, 1); delay (1);
+	ChangeActorRoll (0, 0, 1); delay (1);
+}
+
+Script "BikeStopLeft" (VOID)
+{
+	ChangeActorRoll (0, -0.04, 1); delay (1);
+	ChangeActorRoll (0, -0.03, 1); delay (1);
+	ChangeActorRoll (0, -0.02, 1); delay (1);
+	ChangeActorRoll (0, -0.015, 1); delay (1);
+	ChangeActorRoll (0, 0, 1); delay (1);
+}
+
+
+
+
+Script "BDFiredTankMainGun" (VOID) NET
+{
+	delay (90);
+	TakeInventory("FiredTankMainGun", 1);
+}
+
+
+Script "BDUnMorph" (VOID) NET
+{
+	delay (1);
+	UnMorphActor(0, 0);
+	TakeInventory("MorphToken", 1);
+}
+
+Script "BDCHeckOnline" (VOID)//Check if player is online.
+{
+	if (GameType () > 0) 
+		SetActorState(0,"IsOnline"); 
+}
+
+script "GetVehiclePreviousHealth" (VOID) NET
+{
+	vehicleprevioushealth = GetActorProperty(261, APROP_Health);
+	delay(1);
+}
+
+script "GetVehiclePreviousHealth2" (VOID) NET
+{
+	VehicleArrayHealth[PlayerNumber()] = GetActorProperty(0, APROP_HEALTH);
+	VehicleArrayArmor[PlayerNumber()] = CheckInventory("BasicArmor");
+	VehicleArrayArmorClass[PlayerNumber()] = GetArmorInfo(ARMORINFO_CLASSNAME);
+	//Log(s:"Health= ", i: VehicleArrayHealth[PlayerNumber()]);
+	//Log(s:"Armor#= ", i: VehicleArrayArmor[PlayerNumber()]);
+	//Log(s:"ArmorClass= ", s: VehicleArrayArmorClass[PlayerNumber()]);
+	delay(1);
+}
+
+
+//Entering Heavy Machinegun
+script "BDEnterHMG" (VOID) NET
+{
+	TakeInventory("SwitchFlashlight", 1);
+	TakeInventory("FlashlightOn", 1);
+	TakeInventory("NightVisionTank", 1);
+	TakeInventory("PowerLightAmp", 1);
+	delay(6);
+	GiveInventory("MorphToken", 1);
+	TakeInventory("PowerInvisibility",1);
+	SetActorAngle (0, GetActorAngle (261));
+	Thing_Move(0, 261, 1);
+	//Return ArmorClass and # of Armor Points
+	if (VehicleArrayArmorClass[PlayerNumber()] != "None")
+	{
+		GiveInventory(VehicleArrayArmorClass[PlayerNumber()], 1);
+		//Log(s:"Returned ArmorClass= ", s:GetArmorInfo(ARMORINFO_CLASSNAME));
+		//Log(s:"Returned InitialArmor= ", i:CheckInventory("BasicArmor"));
+		
+		if (CheckInventory("BasicArmor") > VehicleArrayArmor[PlayerNumber()])
+		{
+			While(CheckInventory("BasicArmor") > VehicleArrayArmor[PlayerNumber()])
+			{
+				TakeInventory("BasicArmor",1);
+			}
+		}
+		else if (CheckInventory("BasicArmor") < VehicleArrayArmor[PlayerNumber()])
+		{
+			While (CheckInventory("BasicArmor") < VehicleArrayArmor[PlayerNumber()])
+			{
+				GiveInventory("GiveArmor",1);
+			}
+		}
+	}
+	//Log(s:"Enter ArmorPoints= ", i:CheckInventory("BasicArmor"));
+	SetActorProperty(0, APROP_HEALTH, VehicleArrayHealth[PlayerNumber()]);
+	//Log(s:"Enter Health= ", i: GetActorProperty(0, APROP_HEALTH));
+	int thisgunmachinegunammo = CheckActorInventory(261, "HeavyMachinegunAmmo");
+	GiveInventory("HeavyMachinegunAmmo", thisgunmachinegunammo);
+	delay(1);
+}
+
+
+
+//leaving Heavy Machinegun
+script "BDLeaveHMG" (VOID) NET
+{
+	TakeInventory("SwitchFlashlight", 1);
+	TakeInventory("FlashlightOn", 1);
+	TakeInventory("NightVisionTank", 1);
+	TakeInventory("PowerLightAmp", 1);
+	delay (1);
+	VehicleArrayHealth[PlayerNumber()] = GetActorProperty(0, APROP_HEALTH);
+	VehicleArrayArmor[PlayerNumber()] = CheckInventory("BasicArmor");
+	VehicleArrayArmorClass[PlayerNumber()] = GetArmorInfo(ARMORINFO_CLASSNAME);
+	delay (1);
+	//Log(s:"Health= ", i: VehicleArrayHealth[PlayerNumber()]);
+	//Log(s:"Armor#= ", i: VehicleArrayArmor[PlayerNumber()]);
+	//Log(s:"ArmorClass= ", s: VehicleArrayArmorClass[PlayerNumber()]);
+	int thisgunmachinegunammo = CheckInventory("HeavyMachinegunAmmo");
+	GiveActorInventory(261, "HeavyMachinegunAmmo", thisgunmachinegunammo);
+	TakeInventory("HeavyMachinegunAmmo", 9999);
+	Thing_Move(0, 264, 1);
+	UnMorphActor(0, 0);
+	delay (1);
+	TakeInventory("MorphToken", 1);
+	if (VehicleArrayArmorClass[PlayerNumber()] != "None")
+	{
+		GiveInventory(VehicleArrayArmorClass[PlayerNumber()], 1);
+		//Log(s:"Returned ArmorClass= ", s:GetArmorInfo(ARMORINFO_CLASSNAME));
+		//Log(s:"Returned InitialArmor#= ", i:CheckInventory("BasicArmor"));
+		
+		if (CheckInventory("BasicArmor") > VehicleArrayArmor[PlayerNumber()])
+		{
+			While(CheckInventory("BasicArmor") > VehicleArrayArmor[PlayerNumber()])
+			{
+				TakeInventory("BasicArmor",1);
+			}
+		}
+		else if (CheckInventory("BasicArmor") < VehicleArrayArmor[PlayerNumber()])
+		{
+			While (CheckInventory("BasicArmor") < VehicleArrayArmor[PlayerNumber()])
+			{
+				GiveInventory("GiveArmor",1);
+			}
+		}
+	}
+	//Log(s:"Post ArmorPoints= ", i: CheckInventory("BasicArmor"));
+	SetActorProperty(0, APROP_HEALTH, VehicleArrayHealth[PlayerNumber()]);
+	//Log(s:"Post Health= ", i: GetActorProperty(0, APROP_HEALTH));
+}
+
+
+//Entering Tank
+script "BDEnterTank" (VOID) NET
+{
+	TakeInventory("SwitchFlashlight", 1);
+	TakeInventory("FlashlightOn", 1);
+	TakeInventory("NightVisionTank", 1);
+	TakeInventory("PowerLightAmp", 1);
+	delay(6);
+	GiveInventory("MorphToken", 1);
+	TakeInventory("PowerInvisibility",1);
+	SetActorAngle (0, GetActorAngle (261));
+	Thing_Move(0, 261, 1);
+	vehicleprevioushealth = GetActorProperty(261, APROP_Health);
+	SetActorProperty(0, APROP_Health, vehicleprevioushealth);
+	int thisgunmachinegunammo = CheckActorInventory(261, "HeavyMachinegunAmmo");
+	int thisTankCannon10Ammo = CheckActorInventory(261, "TankCannon10Ammo");
+	int thisAutocannon2Ammo = CheckActorInventory(261, "Autocannon2Ammo");
+	int thisAutocannon2Ammo2 = CheckActorInventory(261, "Autocannon2Ammo2");
+	int thisvehicleRocketAmmo = CheckActorInventory(261, "RocketAmmo");
+	int thisvehicleMissileAmmo = CheckActorInventory(261, "MissileAmmo");
+	int vehiclepreviousbaseangle = CheckActorInventory(261, "TankBaseDirection");
+	GiveInventory("HeavyMachinegunAmmo", thisgunmachinegunammo);
+	GiveInventory("TankCannon10Ammo", thisTankCannon10Ammo);
+	GiveInventory("Autocannon2Ammo", thisAutocannon2Ammo);
+	GiveInventory("Autocannon2Ammo2", thisAutocannon2Ammo2);
+	GiveInventory("RocketAmmo", thisvehicleRocketAmmo);
+	GiveInventory("MissileAmmo", thisvehicleMissileAmmo);
+	GiveInventory("IsInATank",1);
+	SetUserVariable(0, "user_tankbasedirection", vehiclepreviousbaseangle);
+	delay(1);
+}
+
+//leaving Tank
+script "BDLeaveTank" (VOID) NET
+{
+	TakeInventory("SwitchFlashlight", 1);
+	TakeInventory("FlashlightOn", 1);
+	TakeInventory("NightVisionTank", 1);
+	TakeInventory("PowerLightAmp", 1);
+	vehicleprevioushealth = GetActorProperty(0, APROP_Health);
+	int thisgunmachinegunammo = CheckInventory("HeavyMachinegunAmmo");
+	int thisTankCannon10Ammo = CheckInventory("TankCannon10Ammo");
+	int thisAutocannon2Ammo = CheckInventory("Autocannon2Ammo");
+	int thisAutocannon2Ammo2 = CheckInventory("Autocannon2Ammo2");
+	int thisvehicleRocketAmmo = CheckInventory("RocketAmmo");
+	int thisvehicleMissileAmmo = CheckInventory("MissileAmmo");
+	int vehiclepreviousbaseangle = GetUserVariable(0, "user_tankbasedirection");
+	TakeInventory("HeavyMachinegunAmmo", 9999);
+	TakeInventory("TankCannon10Ammo", 9999);
+	TakeInventory("Autocannon2Ammo", 9999);
+	TakeInventory("Autocannon2Ammo2", 9999);
+	TakeInventory("RocketAmmo", 9999);
+	TakeInventory("MissileAmmo", 9999);
+	TakeInventory("IsInATank", 9);
+	Thing_Move(0, 264, 1);
+	UnMorphActor(0, 0);
+	delay (1);
+	TakeInventory("MorphToken", 1);
+	if (VehicleArrayArmorClass[PlayerNumber()] != "None")
+	{
+		GiveInventory(VehicleArrayArmorClass[PlayerNumber()], 1);
+		//Log(s:"Returned ArmorClass= ", s:GetArmorInfo(ARMORINFO_CLASSNAME));
+		//Log(s:"Returned InitialArmor#= ", i:CheckInventory("BasicArmor"));
+		
+		if (CheckInventory("BasicArmor") > VehicleArrayArmor[PlayerNumber()])
+		{
+			While(CheckInventory("BasicArmor") > VehicleArrayArmor[PlayerNumber()])
+			{
+				TakeInventory("BasicArmor",1);
+			}
+		}
+		else if (CheckInventory("BasicArmor") < VehicleArrayArmor[PlayerNumber()])
+		{
+			While (CheckInventory("BasicArmor") < VehicleArrayArmor[PlayerNumber()])
+			{
+				GiveInventory("GiveArmor",1);
+			}
+		}
+	}
+	SetActorProperty(0, APROP_HEALTH, VehicleArrayHealth[PlayerNumber()]);
+	//Log(s:"Post Health= ", i: GetActorProperty(0, APROP_HEALTH));
+	//Log(s:"Post ArmorPoints= ", i: CheckInventory("BasicArmor"));
+	SetActorProperty(261, APROP_Health, vehicleprevioushealth);
+	GiveActorInventory(261, "HeavyMachinegunAmmo", thisgunmachinegunammo);
+	GiveActorInventory(261, "TankCannon10Ammo", thisTankCannon10Ammo);
+	GiveActorInventory(261, "Autocannon2Ammo", thisAutocannon2Ammo);
+	GiveActorInventory(261, "Autocannon2Ammo2", thisAutocannon2Ammo2);
+	GiveActorInventory(261, "RocketAmmo", thisvehicleRocketAmmo);
+	GiveActorInventory(261, "MissileAmmo", thisvehicleMissileAmmo);
+	GiveActorInventory(261, "TankBaseDirection", vehiclepreviousbaseangle);
+	SetPlayerProperty(0, 0, 4);
+}
+
+script "BDForceUnmorph" (VOID) NET
+{
+	GiveInventory("CeaseMorph",1);
+	TakeInventory("PowerInvulnerable", 1);
+	UnMorphActor(0, 1);
+	TakeInventory("MorphToken", 1);
+}
+
+
+//Set Tank's new base angle after you leave it.
+script "BDSetBaseAngle" (VOID) NET
+{
+	delay (1);
+	int thisvehiclecurrentbaseangle = CheckInventory("TankBaseDirection");
+	delay (1);
+	SpawnSpot("TankBaseStationed", 0, 0, thisvehiclecurrentbaseangle*256/360);
+	delay (1);
+}
+
+
+//Set the current direction of a newly spawned tank.
+script "BDSetNewTankDirection" (VOID) NET
+{
+	delay (1);
+	int thisvehicleinitialbaseangle = GetActorAngle(0);
+	int angleformulacalculation = thisvehicleinitialbaseangle >> 8;
+	int angleformulacalculationlastpart = angleformulacalculation*360/256;
+	delay (1);
+	GiveInventory("TankBaseDirection", angleformulacalculationlastpart);
+	delay (1);
+}
+
+
+
+Script "BDEnterTankInfo"(VOID)
+{
+	setfont("TNHSA0");
+	hudmessage(s:"A"; 
+				HUDMSG_PLAIN, 0, CR_UNTRANSLATED, 0.5, 0.57, 1.0);
+		delay(40 * 6);
+}
+
+Script "BDMechAmmoHUD"(VOID)
+{
+	setfont("CONFONT");
+	int mgunammo = CheckInventory("HeavyMachinegunAmmo");
+	hudmessage(d: mgunammo; HUDMSG_PLAIN, 0, CR_LIGHTBLUE, 0.38, 0.80, 0.06);
+	int rocketammo = CheckInventory("MechRocketAmmo");
+	hudmessage(d: rocketammo; HUDMSG_PLAIN, 0, CR_LIGHTBLUE, 0.65, 0.80, 0.06);
+	int laserammo = CheckInventory("MechLaserAmmo");
+	hudmessage(d: laserammo; HUDMSG_PLAIN, 0, CR_LIGHTBLUE, 0.38, 0.94, 0.06);	
+	int mortarammo = CheckInventory("MechMortarAmmo");
+	hudmessage(d: mortarammo; HUDMSG_PLAIN, 0, CR_LIGHTBLUE, 0.65, 0.94, 0.06);	
+	int mechhealth = GetActorProperty(0, APROP_HEALTH);
+	hudmessage(d: mechhealth; HUDMSG_PLAIN, 0, CR_LIGHTBLUE, 0.50, 0.96, 0.06);		
+	delay(2);
+}

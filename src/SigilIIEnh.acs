@@ -1,0 +1,35 @@
+// Sigil II Enhancements
+bool Sigil2 = False;
+
+/*Script "E6M8_4A387087"
+{
+	//SpawnForced("BossMode",2216.0,96.0,0.0,0,0.0);
+	SpawnForced("BossMode",2032.0,136.0,-152.0,0,0.0);
+}
+
+script "Sigil2_Mastermind_Patch" 
+{ delay(1); SetActorProperty(0,APROP_HEALTH,9000); SetActorState(0, "IsSigil2"{}1); }*/
+
+Script "E6M1_7D02B006"{}
+Script "E6M2_40809007"{}
+Script "E6M3_162C8087"{}
+Script "E6M4_57808004"{}
+Script "E6M5_416CA006"{}
+Script "E6M6_4A808009"{}
+Script "E6M7_40489009"{}
+
+Script "BD_ME_991333738689918248" // E6M8
+{
+	Sigil2 = True;
+}
+
+Script "E6M9_1C80A007"{}
+
+script "Sigil2_Mastermind_Patch" 
+{ 
+	delay(1); 
+	if(Sigil2 == False) terminate;
+	else 
+		SetActorProperty(0,APROP_HEALTH,9000); 
+		SetActorState(0, "IsSigil2"); 
+}

@@ -1,0 +1,71 @@
+#library "DoxStuff"
+#include "zcommon.acs"
+
+SCRIPT "Breathing" ENTER
+{
+	Delay(25); //Enough time for all the other size setting stuff to take place
+	while(true)
+	{
+	if(GetActorProperty(0, APROP_Health) < 1) { delay(25); }
+	else
+		{
+		SetActorProperty(0, APROP_ScaleY, 0.98);
+		Delay(25);
+		SetActorProperty(0, APROP_ScaleY, 1.0);
+		Delay(25);
+		}
+	}
+}
+
+
+SCRIPT "AgileZombies" (void)
+{
+	int value = GetCVAR("bd_AgileZombies");
+	SetResultValue(value);
+}
+
+script "GetCrosshair" (int Weapon)
+{
+  static str _cvarPrefixes[50] = {
+    "Pistol", "SMG", "ASG", "SSG", "Shotgun", "Minigun", "Rifle", "RL", "GL", "Plasma", "Railgun", "BFG9K", "BFG10K", "Unmaker", "Flame", "Rev"//...
+  };
+
+  str cvarName = StrParam(s:"bd_Cross", s:_cvarPrefixes[Weapon-1]);
+  SetResultValue(getCVAR(cvarName));
+}
+
+script "SetMugshot" (int Face)
+{
+	if (GameType() != GAME_SINGLE_PLAYER) { terminate; } //it'd activate for all players in netplay, so yeah. don't.
+	Switch(Face)
+	{
+	case 0: SetMugShotState("Normal"); break;
+	case 1: SetMugShotState("Pain"); break;
+	case 2: SetMugShotState("Rampage"); break;
+	case 3: SetMugShotState("Ouch"); break;
+	case 4: SetMugShotState("Grin"); break;
+	case 5: SetMugShotState("God"); break;
+	}
+	delay(1);
+}
+
+Script "RandomizeCrosshair" (void)
+{
+	SetCVAR("bd_CrossPistol", random(1,99));
+	SetCVAR("bd_CrossSMG", random(1,99));
+	SetCVAR("bd_CrossASG", random(1,99));
+	SetCVAR("bd_CrossSSG", random(1,99));
+	SetCVAR("bd_CrossShotgun", random(1,99));
+	SetCVAR("bd_CrossMinigun", random(1,99));
+	SetCVAR("bd_CrossRifle", random(1,99));
+	SetCVAR("bd_CrossRL", random(1,99));
+	SetCVAR("bd_CrossGL", random(1,99));
+	SetCVAR("bd_CrossPlasma", random(1,99));
+	SetCVAR("bd_CrossRailgun", random(1,99));
+	SetCVAR("bd_CrossBFG9K", random(1,99));
+	SetCVAR("bd_CrossBFG10K", random(1,99));
+	SetCVAR("bd_CrossUnmaker", random(1,99));
+	SetCVAR("bd_CrossFlame", random(1,99));
+	SetCVAR("bd_CrossRev", random(1,99));
+	delay(1);
+}

@@ -1,0 +1,415 @@
+
+#libdefine HUDTIC 0.03
+#libdefine HUD_STAYTIME_FOREVER (-1)
+
+#libdefine HUD_BLENDSTYLE_NORMAL 0
+#libdefine HUD_BLENDSTYLE_ADDITIVE 1
+
+#libdefine HUD_ALIGN_CENTER 0
+#libdefine HUD_ALIGN_LEFT 1
+#libdefine HUD_ALIGN_RIGHT 2
+#libdefine HUD_ALIGN_TOP 1
+#libdefine HUD_ALIGN_BOTTOM 2
+
+#libdefine HUD_PROJECTION_AUTO 0
+#libdefine HUD_PROJECTION_3D 1
+#libdefine HUD_PROJECTION_YSHEARING 2
+
+int ACSUtils_Ints[55] = {
+	240.0, // CursorY
+	false, // R_TextColorIsString
+	480.0, // CursorAreaHeight
+	CR_UNTRANSLATED, // R_TextColor
+	-1, // CachedPort
+	0.0, // R_AppearTime
+	HUD_STAYTIME_FOREVER, // R_StayTime
+	1.0, // CursorSpeedY
+	false, // CursorWrapX
+	0.0, // R3D_CameraY
+	false, // R_TextWordWrap
+	0.0, // R3D_CameraPitch
+	0.0, // R3D_2DOffsetX
+	HUD_ALIGN_CENTER, // R_AlignX
+	0, // R_RotatedX
+	0.0, // R3D_Y
+	320.0, // CursorPrevX
+	HUD_PROJECTION_AUTO, // R3D_ProjectionMode
+	0.0, // R_Y
+	0.0, // R3D_CameraX
+	0.0, // R3D_Z
+	0.0, // R3D_2DOffsetY
+	0, // R_RotatedZ
+	640.0, // R_BaseWidth
+	true, // R_ShowIn3DView
+	1.0, // R_Alpha
+	false, // R_CenterText
+	HUDMSG_LAYER_OVERHUD, // R_Layer
+	0.0, // R3D_CameraAngle
+	0, // CursorMotionX
+	1.0, // R_IScaleX
+	1.0, // CursorSpeedX
+	0.0, // R3D_X
+	false, // R_LogMessage
+	true, // R_ShowOnOverlayAutomap
+	320.0, // CursorX
+	0, // HudStateStackTop
+	false, // R_ShowToEveryone
+	0, // CursorMotionY
+	HUD_BLENDSTYLE_NORMAL, // R_BlendStyle
+	0.0, // R3D_CameraZ
+	0.0, // R_X
+	true, // R3D_AutoDistanceScale
+	false, // CursorWrapY
+	0, // R_RotatedY
+	false, // R_ExcludeStatusBar
+	480.0, // R_BaseHeight
+	240.0, // CursorPrevY
+	0.0, // R_DisappearTime
+	HUD_ALIGN_CENTER, // R_AlignY
+	true, // R_ShowOnFullAutomap
+	1.0, // R_IScaleY
+	false, // R_Is3DPoint
+	640.0, // CursorAreaWidth
+	false, // R_TextTypeOn
+};
+
+str ACSUtils_Strings[1] = {
+	"SMALLFONT", // R_TextFont
+};
+
+#define ACSUTILS_ERROR_PROGRAM 0
+#define ACSUTILS_ERROR_MAPPING 1
+#define ACSUTILS_ERROR_LIMIT 2
+
+function void ACSUtils_ProgramError(str message)
+{
+	ACSUtils_ErrorHandler(ACSUTILS_ERROR_PROGRAM, message);
+}
+
+function void ACSUtils_LimitError(str message)
+{
+	ACSUtils_ErrorHandler(ACSUTILS_ERROR_LIMIT, message);
+}
+
+function void ACSUtils_ErrorHandler(int type, str message)
+{
+	str text = "";
+	if (IsServer() != IsClient())
+	{
+		if (IsServer())
+			text = "[\cgserverside\c-] ";
+		else
+			text = "[\cdclientside\c-] ";
+	}
+	
+	text = StrParam(s:text, d:Timer(), s:" ACSUtils error: ", s:message);
+	if (!IsClient())
+		Log(s:text);
+
+	if (GetCVar("acsutils_noerrors"))
+		return;
+
+	printbold(s:text);
+}
+#libdefine PORT_ZDOOM 1
+#libdefine PORT_GZDOOM 2
+#libdefine PORT_ZANDRONUM 3
+
+
+
+// Port identification methods copied from ACS-X
+function int IdentifySourcePort(void)
+{
+	if (ACSUtils_Ints[4] != -1)
+		return ACSUtils_Ints[4];
+
+	if (GetPlayerAccountName(0) != 0)
+	{
+		// GetPlayerAccountName returns a string (possibly empty) in Zandronum
+		// but 0 in GZDoom.
+		ACSUtils_Ints[4] = PORT_ZANDRONUM;
+		return ACSUtils_Ints[4];
+	}
+	
+	int tid = UniqueTid();
+	if (SpawnForced("DynamicLight", 0, 0, 0, tid))
+	{
+		// DynamicLight is a built-in actor in GZDoom.
+		Thing_Remove(tid);
+		ACSUtils_Ints[4] = PORT_GZDOOM;
+		return ACSUtils_Ints[4];
+	}
+	
+	ACSUtils_Ints[4] = PORT_ZDOOM;
+	return ACSUtils_Ints[4];
+}
+
+function str GetPortName(void)
+{
+	int port = IdentifySourcePort();
+	switch (port)
+	{
+	case PORT_ZDOOM:
+		return "ZDoom";
+	case PORT_GZDOOM:
+		return "GZDoom";
+	case PORT_ZANDRONUM:
+		return "Zandronum";
+	}
+
+	return StrParam(s:"IdentifySourcePort() returned ", d:port);
+}
+
+function bool IsZandronum(void)
+{
+	return IdentifySourcePort() == PORT_ZANDRONUM;
+}
+
+function bool IsGZDoom(void)
+{
+	int port = IdentifySourcePort();
+	return port == PORT_GZDOOM || port == PORT_ZANDRONUM;
+}
+
+function bool IsServer(void)
+{
+	if (ConsolePlayerNumber() < 0)
+		return true;
+		
+	// Needs to be done like this to avoid crashing the script in ZDoom.
+	if (IsZandronum())
+		return !IsNetworkGame();
+	
+	return true;
+}
+
+function bool IsClient(void)
+{
+	return ConsolePlayerNumber() >= 0;
+}
+
+function bool IsServerOnly(void)
+{
+	return IsServer() && !IsClient();
+}
+
+function bool IsClientOnly(void)
+{
+	return IsClient() && !IsServer();
+}
+
+Function int GetVelocity (void)
+{
+	int vel;
+	int x = GetActorVelX(0);
+	int y = GetActorVelY(0);
+	int angle = VectorAngle(x, y);
+	if (((angle + 0.125) % 0.5) > 0.25)
+		vel = FixedDiv(y, Sin(angle));
+	else
+		vel = FixedDiv(x, Cos(angle));
+	//SetFont("smallfont");
+	//PrintBold(s:"Veloctity: ",f:vel);
+	return vel >> 16;
+}
+
+function int CheckPlayerOnGround(void)
+{
+	int onground;
+	if(GetActorZ (0) == GetActorFloorZ (0) || GetActorVelZ(0) == 0 && !Spawn("FloorCheck", GetActorX(0), GetActorY(0), GetActorZ(0) - (4 << 16), 0, GetActorAngle(0)))
+	{
+		onground = 1;
+		//SetFont("smallfont");
+		//Print(s: "on ground");
+	}
+	else
+	{
+		onground = 0;
+		//SetFont("smallfont");
+		//Print(s: "in air");
+	}
+	return onground;
+}
+
+#libdefine PLAYER_VIEWHEIGHT 44		//BD default player height
+
+function int JustCrouched(void)
+{
+	int Crouched;
+	int buttons = GetPlayerInput(-1, INPUT_BUTTONS) & (~GetPlayerInput(-1, INPUT_OLDBUTTONS));
+	//if(GetActorViewHeight(0) <= ((PLAYER_VIEWHEIGHT / 2 << 16) + 6.0)||((GetPlayerInput(-1, MODINPUT_BUTTONS) & BT_CROUCH) && !(GetPlayerInput(-1, MODINPUT_OLDBUTTONS) & BT_CROUCH)))
+	if(GetActorViewHeight(0) <= ((PLAYER_VIEWHEIGHT / 2 << 16) + 6.0) || buttons & BT_CROUCH)
+	{
+		Crouched = 1;
+		//SetFont("smallfont");
+		//Print(s: "Crouching");
+	}
+	else
+	{
+		Crouched = 0;
+		//SetFont("smallfont");
+		//Print(s: "Standing");
+	}
+	return Crouched;
+}
+
+function int SprintCheck(void)
+{
+	int InfiniteSprint;
+	if (bd_infinitesprint == 1 || CheckInventory("PowerStrength")==1)
+	{
+		InfiniteSprint = 1;
+		GiveInventory("InfiniteSprint", 1);
+		TakeInventory("UsedStamina", 0x7FFFFFFF);
+	}
+	else
+	{
+		InfiniteSprint = 0;
+		TakeInventory("InfiniteSprint", 0x7FFFFFFF);
+	}
+	return InfiniteSprint;
+}
+
+function bool IsPlayerAlive(void)
+{
+	return GetActorProperty(0, APROP_Health) > 0;
+}
+
+function int RollChecker(void)
+{
+	int CanRoll;
+	if( CheckInventory("ClimbingCheck") == 0 || CheckInventory("Kicking") == 0 || CheckInventory("ExecuteDownedEnemy") == 0 || 
+		CheckInventory("IsDown")==0 || CheckInventory("GoFatality") == 0 || CheckInventory("GoSpecial") == 0 || CheckInventory("TankGun") == 0 || 
+		CheckInventory("ArtilleryTankGun") == 0 || CheckInventory("MechGun") == 0 || CheckInventory("attackhelicopterGun") == 0 || 
+		CheckInventory("HeavyMachinegunHUD") == 0 || CheckInventory("BikeHUD") == 0 || CheckInventory("D4BaronHUD") == 0 || 
+		CheckInventory("D4RevenantHUD") == 0 || CheckInventory("HasBarrel") == 0 || CheckInventory("GotMeatShield") == 0)
+	{
+		CanRoll = 1;
+	}
+	else
+	{
+		CanRoll = 0;
+	}
+	return CanRoll;
+}
+
+// Functions
+function int FixedABS (int x)
+{
+    if (x < 0.0)
+        return (-(x>>16))<<16;
+
+    return x;
+}
+
+function int PlaceOnFloor(int tid)
+{
+    if (ThingCount(0, tid) != 1) { 	
+	return 1; }
+	
+    SetActorPosition(tid, GetActorX(tid), GetActorY(tid), GetActorFloorZ(tid), 0);
+    return 0;
+}
+
+int previoushealth;
+function int GetActorHealth(int tid) 
+{ 
+	previoushealth = GetActorProperty(tid, APROP_Health); 
+	//return GetActorProperty(tid, APROP_Health); 
+	return previoushealth;
+}
+function void SetActorHealth(int tid, int Health)
+{
+	if (GetActorProperty(tid, APROP_Health) != Health)
+		SetActorProperty(tid, APROP_Health, Health);
+}
+
+function void SetInventory(str item, int amount)
+{
+	int diff = amount - CheckInventory(item);
+	if (diff > 0)
+		GiveInventory(item, diff);
+	else if (diff < 0)
+		TakeInventory(item, -diff);
+}
+
+function raw min (raw a, raw b)
+{
+	return (a < b) ? a : b;
+}
+
+World Int 16: demonarrayHealth[];
+World Int 17: demonarrayArmor[];
+World Str 18: demonarrayArmorClass[];
+
+World int 19: VehicleArrayHealth[32];
+World int 20: VehicleArrayArmor[32];
+World str 21: VehicleArrayArmorClass[32];
+int playerprevioushealth;
+int playerpreviousarmor;
+int vehicleprevioushealth;
+
+#define DROPCOUNT 28
+str dropItems[DROPCOUNT] =
+{
+	"BrutalAxe",
+	"Chain_saw",
+	"BrutalPistol",
+	"BrutalSMG",
+	"Revolver",
+	"Rifle",
+	"Sniper",
+	"Shot_Gun",
+	"SSG",
+	"AssaultShotgun",
+	"MiniGun",
+	"GrenadeLauncher",
+	"Rocket_Launcher",
+	"RailGun",
+	"Plasma_Gun",
+	"BFG10K",
+	"BIG_FUCKING_GUN",
+	"Unmaker",
+	"HellishMissileLauncher",
+	"FlameCannon",
+	"Flamethrower2",
+	"Devastator",
+	"MP40",
+	"NukeLauncher",
+	"MG42",
+	"DSweap",
+	"IncendiaryLauncher",
+	"HandGrenades"
+};
+
+str checkItem[DROPCOUNT] =
+{
+	"BrutalAxe",
+	"Chain_saw",
+	"BrutalPistol",
+	"BrutalSMG",
+	"Revolver",
+	"Rifle",
+	"Sniper",
+	"Shot_Gun",
+	"SSG",
+	"AssaultShotgun",
+	"MiniGun",
+	"GrenadeLauncher",
+	"Rocket_Launcher",
+	"RailGun",
+	"Plasma_Gun",
+	"BFG10K",
+	"BIG_FUCKING_GUN",
+	"Unmaker",
+	"HellishMissileLauncher",
+	"FlameCannon",
+	"Flamethrower2",
+	"Devastator",
+	"MP40",
+	"NukeLauncher",
+	"MG42",
+	"DSweap",
+	"IncendiaryLauncher",
+	"HandGrenades"
+};

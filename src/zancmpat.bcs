@@ -1,0 +1,67 @@
+#ifdef __INCLUDED__
+	#error This file must be #imported.
+#endif
+
+#library "scratch"
+#import "zcommon.bcs"
+
+strict namespace {
+
+private int IsZandronum = -1;
+
+enum {LUMP_OPEN_DEFSTART = -2};
+
+int ZC_IsZandronum ()
+{
+	if(IsZandronum != -1)
+		return IsZandronum;
+
+	return IsZandronum = (int)bool(SystemTime());
+}
+
+int ZC_LumpOpen (str name, int start = LUMP_OPEN_DEFSTART, int flags = 0)
+{
+	if(ZC_IsZandronum())
+	{
+		if( (start == LUMP_OPEN_DEFSTART) && !flags)
+			return LumpOpen(name);
+
+		return LumpOpen(name, start, flags);
+	}
+
+	return ScriptCall("ZandroCompat", "LumpOpen", name, start, flags);
+}
+
+void ZC_LumpClose (int lump)
+{
+	if(ZC_IsZandronum())
+		LumpClose(lump);
+	else
+		ScriptCall("ZandroCompat", "LumpClose", lump);
+}
+
+raw ZC_LumpGetInfo (int lump, int info = LUMP_READ_UBYTE)
+{
+	if(ZC_IsZandronum())
+		return LumpGetInfo(lump, info);
+
+	return ScriptCall("ZandroCompat", (info == LUMP_INFO_NAME) ? "LumpGetInfoStr" : "LumpGetInfoInt", lump, info);
+}
+
+str ZC_LumpReadString (int lump, int pos = 0, int len = INT_MAX)
+{
+	if(ZC_IsZandronum())
+		return LumpReadString(lump, pos, len);
+
+	return ScriptCall("ZandroCompat", "LumpReadString", lump, pos, len);
+}
+
+int ZC_LumpRead (int lump, int pos, int type = LUMP_READ_UBYTE)
+{
+	if(ZC_IsZandronum())
+		return LumpRead(lump, pos, type);
+
+	return ScriptCall("ZandroCompat", "LumpRead", lump, pos, type);
+}
+
+}
